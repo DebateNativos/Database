@@ -10,7 +10,10 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name="qualificationrubrics")
-@NamedQuery(name="Qualificationrubric.findAll", query="SELECT q FROM Qualificationrubric q")
+@NamedQueries(value = {
+		@NamedQuery(name = "Qualificationrubric.findAll", query = "SELECT qr FROM Qualificationrubric qr"),
+		@NamedQuery(name= "Qualificationrubric.findById", query = "SELECT qr FROM Qualificationrubric qr WHERE qr.idQualificationRubrics = :id")
+})
 public class Qualificationrubric implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idQualificationRubrics;

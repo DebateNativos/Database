@@ -10,7 +10,10 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name="debatetypes")
-@NamedQuery(name="Debatetype.findAll", query="SELECT d FROM DebateType d")
+@NamedQueries(value = {
+		@NamedQuery(name= "DebateType.findAll", query = "SELECT dt FROM DebateType dt"),
+		@NamedQuery(name= "DebateType.findById", query = "SELECT dt FROM DebateType dt WHERE dt.idDebateTypes = :id")
+})
 public class DebateType implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idDebateTypes;

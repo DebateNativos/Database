@@ -10,7 +10,12 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name="Professor.findAll", query="SELECT p FROM Professor p")
+@NamedQueries(value = {
+		@NamedQuery(name = "Professor.findAll", query = "SELECT p FROM Professor p"),
+		@NamedQuery(name= "Professor.findById", query = "SELECT p FROM Professor p WHERE p.idProfessor = :id"),
+		@NamedQuery(name= "Professor.findByEmail", query = "SELECT p FROM Professor p WHERE p.email = :email"),
+		@NamedQuery(name= "Professor.login", query = "SELECT p FROM Professor p WHERE p.email = :email AND p.password = :password")
+})
 public class Professor implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idProfessor;

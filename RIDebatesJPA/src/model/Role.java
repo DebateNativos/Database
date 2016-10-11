@@ -9,7 +9,10 @@ import java.io.Serializable;
  * 
  */
 @Entity
-@NamedQuery(name="Role.findAll", query="SELECT r FROM Role r")
+@NamedQueries(value = {
+		@NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r"),
+		@NamedQuery(name= "User.findById", query = "SELECT r FROM Role r WHERE r.idRole = :id")
+})
 
 public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;

@@ -12,7 +12,12 @@ import java.util.List;
  */
 @Entity
 @Table(name="debates")
-@NamedQuery(name="Debate.findAll", query="SELECT d FROM Debate d")
+@NamedQueries(value = {
+		@NamedQuery(name= "Debate.findAll", query = "SELECT d FROM Debate d"),
+		@NamedQuery(name= "Debate.findById", query = "SELECT d FROM Debate d WHERE d.idDebates = :id"),
+		@NamedQuery(name= "Debate.findByDate", query = "SELECT d FROM Debate d WHERE d.createdDate = :date"),
+		@NamedQuery(name= "Debate.findByType", query = "SELECT d FROM Debate d WHERE d.debateType.idDebateTypes = :idDebateType")
+})
 public class Debate implements Serializable {
 	private static final long serialVersionUID = 1L;
 

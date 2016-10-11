@@ -10,7 +10,9 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name="confirmed_users")
-@NamedQuery(name="ConfirmedUser.findAll", query="SELECT c FROM ConfirmedUser c")
+@NamedQueries(value = {
+		@NamedQuery(name= "ConfirmedUser.findAll", query = "SELECT cu FROM Course cu")
+})
 public class ConfirmedUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private ConfirmedUserPK id;
