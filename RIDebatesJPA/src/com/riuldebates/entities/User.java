@@ -1,4 +1,4 @@
-package model;
+package com.riuldebates.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -34,7 +34,6 @@ public class User implements Serializable {
 	private String phone;
 	private Date timeStamp;
 	private List<Course> courses;
-	private List<Debate> debates;
 	
 	public User() {
 	}
@@ -57,8 +56,8 @@ public class User implements Serializable {
 
 
 
-	@Id
-	@GeneratedValue
+	@Id 
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getIdUsers() {
 		return this.idUsers;
 	}
@@ -168,19 +167,7 @@ public class User implements Serializable {
 		this.courses = courses;
 	}
 
-	// bi-directional many-to-many association to Debate
-	@ManyToMany(cascade={CascadeType.ALL})
-	@JoinTable(name = "confirmed_users", joinColumns = { @JoinColumn(name = "Users_idUsers") }, inverseJoinColumns = {
-			@JoinColumn(name = "Debates_idDebates") } )
-	public List<Debate> getDebates() {
-		return this.debates;
-	}
-
-	public void setDebates(List<Debate> debates) {
-		this.debates = debates;
-	}
-	
-	 public String hashPass(String password) 
+	public String hashPass(String password) 
 	    {
 	        String passwordToHash = password;
 	        String generatedPassword = null;

@@ -7,7 +7,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-import model.User;
+import com.riuldebates.entities.ConfirmedUser;
+import com.riuldebates.entities.User;
 
 public class Tester2 {
 
@@ -31,25 +32,30 @@ public class Tester2 {
 			query2.setParameter("email", "@gmail");  
 			User returnedPerson2 = query2.getSingleResult(); 
 			
-			TypedQuery<User> loginQuery = em.createNamedQuery("User.login", User.class);
-			loginQuery.setParameter("email", "joe@gmail"); 
+			/*TypedQuery<User> loginQuery = em.createNamedQuery("User.login", User.class);
+			loginQuery.setParameter("email", "@gmail"); 
 			loginQuery.setParameter("password", returnedPerson.hashPass("123"));
-			User returnedPerson3 = loginQuery.getSingleResult(); 
+			User returnedPerson3 = loginQuery.getSingleResult(); */
 			
-			TypedQuery<User> getll = em.createNamedQuery("User.findAll", User.class);
-			List<User> listaUsuarios = getll.getResultList();
+			TypedQuery<User> getall = em.createNamedQuery("User.findAll", User.class);
+			List<User> listaUsuarios = getall.getResultList();
+			
+			TypedQuery<ConfirmedUser> getallCU = em.createNamedQuery("ConfirmedUser.findAll", ConfirmedUser.class);
+			List<ConfirmedUser> cu = getallCU.getResultList();
+
 
 			em.getTransaction().commit();
 			entityManagerFactory.close();
-			
-			System.out.println("Nombre: " + returnedPerson.getName() + " ---- Email: " + returnedPerson.getEmail());
-			System.out.println("Nombre: " + returnedPerson2.getName() + " ---- Email: " + returnedPerson2.getEmail());
-			System.out.println("Nombre: " + returnedPerson3.getName() + " ---- Email: " + returnedPerson3.getEmail());
-
 			for (User user : listaUsuarios) {
 				System.out.println("Lista-- " );
 				System.out.println("Nombre: " + user.getName() + " ---- Email: " + user.getEmail());
 			}	
+			
+			for (ConfirmedUser user : cu) {
+				System.out.println("Lista-- " );
+				System.out.println("Nombre: " + user.getUser().getName()+ " ---- Debate: " + user.getDebate().getName() + " ---- Role: " + user.getRole().getName());
+			}	
+			
 			
 	}catch (Exception e) {
 		e.printStackTrace();

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="RIDebatesJPA" transaction-type="RESOURCE_LOCAL">
-		<class>model.Course</class>
-		<class>model.Debaterule</class>
-		<class>model.Debate</class>
-		<class>model.DebateType</class>
-		<class>model.Professor</class>
-		<class>model.Qualificationrubric</class>
-		<class>model.Role</class>
-		<class>model.User</class>
+		<class>com.riuldebates.entities.Course</class>
+		<class>com.riuldebates.entities.Debaterule</class>
+		<class>com.riuldebates.entities.Debate</class>
+		<class>com.riuldebates.entities.DebateType</class>
+		<class>com.riuldebates.entities.Professor</class>
+		<class>com.riuldebates.entities.Qualificationrubric</class>
+		<class>com.riuldebates.entities.Role</class>
+		<class>com.riuldebates.entities.User</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://us-cdbr-azure-east-c.cloudapp.net/ridebatesdb"/>
 			<property name="javax.persistence.jdbc.user" value="b8869f0444e8db"/>

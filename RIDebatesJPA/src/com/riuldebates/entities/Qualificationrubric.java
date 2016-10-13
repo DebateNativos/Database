@@ -1,6 +1,7 @@
-package model;
+package com.riuldebates.entities;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
 
 
@@ -20,12 +21,14 @@ public class Qualificationrubric implements Serializable {
 	private int course_idCourse;
 	private String rubricName;
 	private String rubricPercentage;
+	private Professor professor;
 
 	public Qualificationrubric() {
 	}
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getIdQualificationRubrics() {
 		return this.idQualificationRubrics;
 	}
@@ -59,6 +62,17 @@ public class Qualificationrubric implements Serializable {
 
 	public void setRubricPercentage(String rubricPercentage) {
 		this.rubricPercentage = rubricPercentage;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="professor")
+	public Professor getProfessor() {
+		return professor;
+	}
+
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
 	}
 
 }

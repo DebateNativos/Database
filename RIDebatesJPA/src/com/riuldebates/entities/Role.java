@@ -1,4 +1,4 @@
-package model;
+package com.riuldebates.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,11 +11,12 @@ import java.io.Serializable;
 @Entity
 @NamedQueries(value = {
 		@NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r"),
-		@NamedQuery(name= "User.findById", query = "SELECT r FROM Role r WHERE r.idRole = :id")
+		@NamedQuery(name= "Role.findById", query = "SELECT r FROM Role r WHERE r.idRole = :id")
 })
 
 public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
 	private int idRole;
 	private String desciption;
 	private String name;
@@ -30,7 +31,7 @@ public class Role implements Serializable {
 	}
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getIdRole() {
 		return this.idRole;
 	}
@@ -56,5 +57,5 @@ public class Role implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 }

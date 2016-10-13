@@ -1,4 +1,4 @@
-package model;
+package com.riuldebates.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -18,13 +18,14 @@ public class Debaterule implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idDebateRules;
 	private int sections;
+	private String rules;
 
 	public Debaterule() {
 	}
 
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getIdDebateRules() {
 		return this.idDebateRules;
 	}
@@ -43,4 +44,13 @@ public class Debaterule implements Serializable {
 	}
 
 
+	public String getRules() {
+		return rules;
+	}
+
+
+	public void setRules(String rules) {
+		this.rules = rules;
+	}
+	
 }

@@ -1,9 +1,8 @@
-package model;
+package com.riuldebates.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -26,8 +25,6 @@ public class Debate implements Serializable {
 	private Date createdDate;
 	private DebateType debateType;
 	private Date startingDate;
-	private List<Course> courses;
-	private List<User> users;
 	private Debaterule debaterule;
 	private boolean isActive;
 	
@@ -44,7 +41,7 @@ public class Debate implements Serializable {
 	}
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getIdDebates() {
 		return this.idDebates;
 	}
@@ -95,24 +92,6 @@ public class Debate implements Serializable {
 
 	public void setDebateType(DebateType debateType) {
 		this.debateType = debateType;
-	}
-	
-	@ManyToMany(mappedBy="courseDebates")
-	public List<Course> getCourses() {
-		return this.courses;
-	}
-
-	public void setCourses(List<Course> courses) {
-		this.courses = courses;
-	}
-
-	@ManyToMany(mappedBy="debates")
-	public List<User> getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
 	}
 	
 	@OneToOne

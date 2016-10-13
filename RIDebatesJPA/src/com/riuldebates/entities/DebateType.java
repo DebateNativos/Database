@@ -1,4 +1,4 @@
-package model;
+package com.riuldebates.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -30,7 +30,7 @@ public class DebateType implements Serializable {
 	}
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getIdDebateTypes() {
 		return this.idDebateTypes;
 	}

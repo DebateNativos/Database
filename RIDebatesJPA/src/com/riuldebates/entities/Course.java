@@ -1,4 +1,4 @@
-package model;
+package com.riuldebates.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,7 +26,6 @@ public class Course implements Serializable {
 	private int curseQuarter;
 	private int curseYear;
 	private double finalQualification;
-	private List<Debate> courseDebates;
 	private List<User> users;
 	private Professor professor;
 
@@ -41,7 +40,7 @@ public class Course implements Serializable {
 	}
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getIdCourse() {
 		return this.idCourse;
 	}
@@ -58,6 +57,7 @@ public class Course implements Serializable {
 		this.name = name;
 	}
 
+	@Column(unique=true)
 	public String getCourseCode() {
 		return this.courseCode;
 	}
@@ -92,25 +92,7 @@ public class Course implements Serializable {
 
 	@ManyToMany
 	@JoinTable(
-		name="debates_has_course"
-		, joinColumns={
-			@JoinColumn(name="Course_idCourse")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="Debates_idDebates")
-			}
-		)
-	public List<Debate> getCourseDebates() {
-		return this.courseDebates;
-	}
-
-	public void setCourseDebates(List<Debate> courseDebates) {
-		this.courseDebates = courseDebates;
-	}
-
-	@ManyToMany
-	@JoinTable(
-		name="users_has_course"
+		name="users_course"
 		, joinColumns={
 			@JoinColumn(name="Course_idCourse")
 			}

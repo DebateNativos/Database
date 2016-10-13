@@ -1,10 +1,12 @@
 package testers;
 
-import model.*;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import com.riuldebates.entities.*;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Tester {
@@ -26,13 +28,22 @@ public class Tester {
             DebateType dt = new DebateType("Modelos de 7 secciones", "Modelo Australiano");
             Debate d = new Debate("Luigui y su administracion", Calendar.getInstance().getTime(), dt, Calendar.getInstance().getTime(), true);
             Role r = new Role("Administrador Master", "Tiene acceso a todas las funcionalidades del sistema!");
-            Course c = new Course("Basura politica", "32C", 2, 2016);
-            Professor p = new Professor(Calendar.getInstance().getTime(), "@villalta", "Villalta", "Solis", "Jose Maria", "123", "800IZQUIERDA", Calendar.getInstance().getTime());
-        
+            Course c = new Course("Basura politica", "32C", 2, 2016);       
+            Professor p = new Professor("@villalta","123", "CUBA","Jose Maria", "Villalta", "Solis", Calendar.getInstance().getTime(), 6335, false, "800IZQUIERDA", Calendar.getInstance().getTime());
+            c.setProfessor(p);
+            ArrayList<User> ul = new ArrayList<>(); 
+            ul.add(u);
+            c.setUsers(ul);
+            ConfirmedUser cu = new ConfirmedUser();
+            		cu.setUser(u);
+            		cu.setDebate(d);
+            		cu.setRole(r);
+            //Calendar.getInstance().getTime(), "@villalta", "Villalta", "Solis", "Jose Maria", "123", "800IZQUIERDA", Calendar.getInstance().getTime()
             //cambiar em por el dato que es
             //em.persist(u);
-            u.setPassword(u2.hashPass("123"));
-            //em.merge(u2);
+            u2.setPassword(u2.hashPass("123"));
+            em.merge(u2);
+            em.persist(cu);
             em.persist(u);
             em.persist(dt);
             em.persist(d);
@@ -45,6 +56,7 @@ public class Tester {
         }
         catch (Exception e) {
             em.getTransaction().rollback();
+            entityManagerFactory.close();
             e.printStackTrace();
         }
         finally{
