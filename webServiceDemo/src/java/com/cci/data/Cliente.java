@@ -5,11 +5,17 @@
  */
 package com.cci.data;
 
+import com.riuldebates.data.UserData;
+import com.riuldebates.entities.User;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author chang
  */
 public class Cliente {
+
     int id;
     String nombre;
     int edad;
@@ -22,9 +28,7 @@ public class Cliente {
         this.nombre = nombre;
         this.edad = edad;
     }
-    
-    
-    
+
     public int getId() {
         return id;
     }
@@ -48,6 +52,21 @@ public class Cliente {
     public void setEdad(int edad) {
         this.edad = edad;
     }
-    
-    
+
+    public List<Cliente> transformUsersFromJPA() {
+
+        ArrayList<Cliente> ac = new ArrayList<>();
+        Cliente c = new Cliente();
+        UserData ud = new UserData();
+        List<User> u = ud.getUsers();
+
+        for (User user : u) {
+            c.nombre = user.getName();
+            c.id = user.getIdUsers();
+            ac.add(c);
+        }
+
+        return ac;
+    }
+
 }

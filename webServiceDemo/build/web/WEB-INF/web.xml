@@ -26,7 +26,6 @@
     <servlet>
         <servlet-name>Jersey REST Service</servlet-name>
         <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
-        
         <init-param>
             <param-name>com.sun.jersey.config.server.provider.packages</param-name>
             <param-value>com.cci.demo.rest</param-value>
