@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
+import com.riuldebates.data.UserData;
 import com.riuldebates.entities.ConfirmedUser;
 import com.riuldebates.entities.User;
 
@@ -16,7 +17,7 @@ public class Tester2 {
 		// TODO Auto-generated method stub
 		try {
 			
-			EntityManagerFactory entityManagerFactory = null;
+			/*EntityManagerFactory entityManagerFactory = null;
 			EntityManager em = null;
 			entityManagerFactory = Persistence.createEntityManagerFactory("RIDebatesJPA");
 			
@@ -31,31 +32,30 @@ public class Tester2 {
 			TypedQuery<User> query2 = em.createNamedQuery("User.findByEmail", User.class);
 			query2.setParameter("email", "@gmail");  
 			User returnedPerson2 = query2.getSingleResult(); 
-			
+			*/
 			/*TypedQuery<User> loginQuery = em.createNamedQuery("User.login", User.class);
 			loginQuery.setParameter("email", "@gmail"); 
 			loginQuery.setParameter("password", returnedPerson.hashPass("123"));
 			User returnedPerson3 = loginQuery.getSingleResult(); */
 			
-			TypedQuery<User> getall = em.createNamedQuery("User.findAll", User.class);
-			List<User> listaUsuarios = getall.getResultList();
+			UserData ud = new UserData();
+			List<User> listaUsuarios = ud.getUsers();
 			
-			TypedQuery<ConfirmedUser> getallCU = em.createNamedQuery("ConfirmedUser.findAll", ConfirmedUser.class);
+			/*TypedQuery<ConfirmedUser> getallCU = em.createNamedQuery("ConfirmedUser.findAll", ConfirmedUser.class);
 			List<ConfirmedUser> cu = getallCU.getResultList();
 
-
 			em.getTransaction().commit();
-			entityManagerFactory.close();
+			entityManagerFactory.close();*/
 			for (User user : listaUsuarios) {
-				System.out.println("Lista-- " );
+				System.out.println("Lista-- Usuarios" );
 				System.out.println("Nombre: " + user.getName() + " ---- Email: " + user.getEmail());
 			}	
 			
-			for (ConfirmedUser user : cu) {
-				System.out.println("Lista-- " );
+			/*for (ConfirmedUser user : cu) {
+				System.out.println("Lista-- Debates" );
 				System.out.println("Nombre: " + user.getUser().getName()+ " ---- Debate: " + user.getDebate().getName() + " ---- Role: " + user.getRole().getName());
 			}	
-			
+			*/
 			
 	}catch (Exception e) {
 		e.printStackTrace();
