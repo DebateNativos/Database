@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Soler/Desktop/webServiceDemo/src/java/tester/NewMain.java</file>
-            <file>file:/C:/Users/Soler/Desktop/webServiceDemo/web/index.xhtml</file>
-            <file>file:/C:/Users/Soler/Desktop/webServiceDemo/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Soler/Desktop/webServiceDemo/src/java/com/cci/data/Cliente.java</file>
-            <file>file:/C:/Users/Soler/Desktop/webServiceDemo/src/java/com/cci/demo/rest/Formatos.java</file>
+            <file>file:/Users/Soler/Documents/RIDebates/Database/webServiceDemo/src/java/com/cci/data/Cliente.java</file>
+            <file>file:/Users/Soler/Documents/RIDebates/Database/webServiceDemo/web/WEB-INF/web.xml</file>
+            <file>file:/Users/Soler/Documents/RIDebates/Database/webServiceDemo/src/java/tester/NewMain.java</file>
         </group>
     </open-files>
 </project-private>

@@ -25,7 +25,10 @@ public class NewMain {
         
         for (User user : u) {
             
-            System.out.println(""+user.getName());
+            System.out.println("Usuario: ");
+            System.out.println("- "+user.getName() + " " + user.getLastName() + " " + user.getEmail());
+            System.out.println("");
+            
         }
     }
     
