@@ -19,7 +19,9 @@ import java.util.List;
 		@NamedQuery(name= "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
 		@NamedQuery(name= "User.login", query = "SELECT u FROM User u WHERE u.email = :email AND u.password = :password")
 })
+
 public class User implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	private int idUsers;
 	private String address;
@@ -34,8 +36,10 @@ public class User implements Serializable {
 	private String phone;
 	private Date timeStamp;
 	private List<Course> courses;
+	private String idToken;
 	
 	public User() {
+		
 	}
 	
 	public User(String email, String password, String address, String name, String lastName, String lastName2,
@@ -52,9 +56,9 @@ public class User implements Serializable {
 		this.password = password;
 		this.phone = phone;
 		this.timeStamp = timeStamp;
+		this.idToken = createIdToken(this.email);
+		
 	}
-
-
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -167,15 +171,27 @@ public class User implements Serializable {
 		this.courses = courses;
 	}
 
-	public String hashPass(String password) 
+	public String getIdToken() {
+		return idToken;
+	}
+
+	public void setIdToken(String idToken) {
+		this.idToken = idToken;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	public String createIdToken(String email) 
 	    {
-	        String passwordToHash = password;
-	        String generatedPassword = null;
+			
+	        String generatedToken = null;
 	        try {
 	            // Create MessageDigest instance for MD5
 	            MessageDigest md = MessageDigest.getInstance("MD5");
 	            //Add password bytes to digest
-	            md.update(passwordToHash.getBytes());
+	            md.update(email.getBytes());
 	            //Get the hash's bytes 
 	            byte[] bytes = md.digest();
 	            //This bytes[] has bytes in decimal format;
@@ -183,18 +199,18 @@ public class User implements Serializable {
 	            StringBuilder sb = new StringBuilder();
 	            for(int i=0; i< bytes.length ;i++)
 	            {
-	                sb.append(Integer.toString((bytes[i] & 0xff) + 0x606, 16).substring(1));
+	                sb.append(Integer.toString((bytes[i] & 0xff) + 0x606* 16).substring(1));
 	            }
 	            //Get complete hashed password in hex format
-	            generatedPassword = sb.toString();
+	            generatedToken = sb.toString();
 	        } 
 	        catch (NoSuchAlgorithmException e) 
 	        {
 	            e.printStackTrace();
 	        }
-	        System.out.println(generatedPassword);
+	        System.out.println(generatedToken);
 	        
-	        return generatedPassword;
+	        return generatedToken;
 	    }
 
 }

@@ -7,7 +7,6 @@ package tester;
 
 import com.riuldebates.data.UserData;
 import com.riuldebates.entities.User;
-import java.util.List;
 
 /**
  *
@@ -20,16 +19,15 @@ public class NewMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        UserData ud = new UserData();
-        List<User> u = ud.getUsers();
-        
-        for (User user : u) {
+        UserData ud = new UserData();        
+        for (User user : ud.getUsers()) {
             
             System.out.println("Usuario: ");
             System.out.println("- "+user.getName() + " " + user.getLastName() + " " + user.getEmail());
             System.out.println("");
             
         }
+    
     }
     
 }
