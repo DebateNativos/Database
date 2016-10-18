@@ -59,7 +59,7 @@ public class DebateType implements Serializable {
 		this.name = name;
 	}
 
-	@OneToMany (mappedBy="debatetype", targetEntity=DebateSection.class)
+	@OneToMany (mappedBy="debatetype", targetEntity=DebateSection.class, fetch = FetchType.LAZY)
 	public List<DebateSection> getSections() {
 		return sections;
 	}

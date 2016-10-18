@@ -38,7 +38,8 @@ public class ConfirmedUser implements Serializable {
 		this.id = id;
 	}
 
-	@OneToOne
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="user")
 	public User getUser() {
 		return user;
 	}
@@ -48,7 +49,8 @@ public class ConfirmedUser implements Serializable {
 		this.user = user;
 	}
 	
-	@OneToOne
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="debate")
 	public Debate getDebate() {
 		return debate;
 	}
@@ -58,8 +60,8 @@ public class ConfirmedUser implements Serializable {
 		this.debate = debate;
 	}
 
-	@OneToOne
-	@JoinColumn(name="user_role")
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="role")
 	public Role getRole() {
 		return this.role;
 	}

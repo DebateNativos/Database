@@ -27,7 +27,7 @@ public class Tester {
             User u2 = new User("@gmail.com","123", "San jose", "Carlos", "Perez", "Solis", Calendar.getInstance().getTime(), 34562, false, "7234-7334",Calendar.getInstance().getTime());
             DebateType dt = new DebateType("Modelos de 7 secciones", "Modelo Australiano");
             Debate d = new Debate("Luigui y su administracion", Calendar.getInstance().getTime(), dt, Calendar.getInstance().getTime(), true);
-            Role r = new Role("Administrador Master", "Tiene acceso a todas las funcionalidades del sistema!");
+            Role r = new Role("Debatiente", "Debatear!!!!");
             Course c = new Course("Basura politica", "32C", 2, 2016);       
             Professor p = new Professor("@villalta","123", "CUBA","Jose Maria", "Villalta", "Solis", Calendar.getInstance().getTime(), 6335, false, "800IZQUIERDA", Calendar.getInstance().getTime());
             c.setProfessor(p);
@@ -38,17 +38,22 @@ public class Tester {
             		cu.setUser(u);
             		cu.setDebate(d);
             		cu.setRole(r);
+            UserCourse uc = new UserCourse();
+            uc.setUser(u);
+            uc.setCourse(c);
+            uc.setQualification(90.0);
             //Calendar.getInstance().getTime(), "@villalta", "Villalta", "Solis", "Jose Maria", "123", "800IZQUIERDA", Calendar.getInstance().getTime()
             //cambiar em por el dato que es
-            //em.persist(u);
+            
             em.merge(u2);
-            em.persist(cu);
             em.persist(u);
             em.persist(dt);
             em.persist(d);
             em.persist(r);
             em.persist(c);
             em.persist(p);
+            em.persist(uc);
+            em.persist(cu);
             em.flush();
             em.getTransaction().commit();
             System.out.println("Actualizado!!!!!!!");

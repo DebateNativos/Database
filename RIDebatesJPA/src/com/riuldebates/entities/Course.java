@@ -90,17 +90,8 @@ public class Course implements Serializable {
 	public void setFinalQualification(double finalQualification) {
 		this.finalQualification = finalQualification;
 	}
-
-	@ManyToMany
-	@JoinTable(
-		name="users_course"
-		, joinColumns={
-			@JoinColumn(name="Course_idCourse")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="Users_idUsers")
-			}
-		)
+	
+	@OneToMany (mappedBy="course", targetEntity= UserCourse.class, fetch = FetchType.LAZY)
 	public List<User> getUsers() {
 		return this.users;
 	}
@@ -109,7 +100,7 @@ public class Course implements Serializable {
 		this.users = users;
 	}
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="course_professor")
 	public Professor getProfessor() {
 		return this.professor;

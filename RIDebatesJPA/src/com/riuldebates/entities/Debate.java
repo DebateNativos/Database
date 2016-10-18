@@ -3,6 +3,7 @@ package com.riuldebates.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -13,6 +14,8 @@ import java.util.Date;
 @Table(name="debates")
 @NamedQueries(value = {
 		@NamedQuery(name= "Debate.findAll", query = "SELECT d FROM Debate d"),
+		@NamedQuery(name= "Debate.findAllActive", query = "SELECT d FROM Debate d WHERE d.isActive = :active"),
+		@NamedQuery(name= "Debate.findByDebate", query = "SELECT d FROM Debate d WHERE d = :d"),
 		@NamedQuery(name= "Debate.findById", query = "SELECT d FROM Debate d WHERE d.idDebates = :id"),
 		@NamedQuery(name= "Debate.findByDate", query = "SELECT d FROM Debate d WHERE d.createdDate = :date"),
 		@NamedQuery(name= "Debate.findByType", query = "SELECT d FROM Debate d WHERE d.debateType.idDebateTypes = :idDebateType")
@@ -26,6 +29,7 @@ public class Debate implements Serializable {
 	private DebateType debateType;
 	private Date startingDate;
 	private boolean isActive;
+	private List<User> users;
 	
 	public Debate() {
 	}
@@ -92,6 +96,15 @@ public class Debate implements Serializable {
 	public void setDebateType(DebateType debateType) {
 		this.debateType = debateType;
 	}
-	
+
+	@OneToMany (mappedBy="debate", targetEntity=ConfirmedUser.class, fetch = FetchType.EAGER)
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
 
 }

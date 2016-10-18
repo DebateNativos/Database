@@ -37,6 +37,7 @@ public class User implements Serializable {
 	private Date timeStamp;
 	private List<Course> courses;
 	private String idToken;
+	private List<Debate> debates;
 	
 	public User() {
 		
@@ -87,11 +88,11 @@ public class User implements Serializable {
 		this.birthday = birthday;
 	}
 
+	@Column(unique=true)
 	public String getEmail() {
 		return this.email;
 	}
 
-	@Column(unique=true)
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -162,7 +163,7 @@ public class User implements Serializable {
 	}
 
 	// bi-directional many-to-many association to Course
-	@ManyToMany(cascade={CascadeType.ALL}, mappedBy = "users")
+	@OneToMany (mappedBy="user", targetEntity=UserCourse.class, fetch = FetchType.LAZY)
 	public List<Course> getCourses() {
 		return this.courses;
 	}
@@ -212,5 +213,16 @@ public class User implements Serializable {
 	        
 	        return generatedToken;
 	    }
+	
+	@OneToMany (mappedBy="user", targetEntity=ConfirmedUser.class, fetch = FetchType.LAZY)
+	public List<Debate> getDebates() {
+		return debates;
+	}
+
+	public void setDebates(List<Debate> debates) {
+		this.debates = debates;
+	}
+	
+	
 
 }

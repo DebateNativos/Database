@@ -12,7 +12,9 @@ import java.util.List;
  * 
  */
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
+@Table(name = "professor")
+@Inheritance()
+//@Inheritance(strategy=InheritanceType.JOINED)
 @NamedQueries(value = {
 		@NamedQuery(name = "Professor.findAll", query = "SELECT p FROM Professor p")
 
