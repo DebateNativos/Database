@@ -5,22 +5,22 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the debaterules database table.
+ * The persistent class for the DebateSections database table.
  *
  */
 @Entity
-@Table(name="debaterules")
+@Table(name="debatesection")
 @NamedQueries(value = {
-		@NamedQuery(name= "Debaterule.findAll", query = "SELECT dr FROM Debaterule dr"),
-		@NamedQuery(name= "Debaterule.findById", query = "SELECT dr FROM Debaterule dr WHERE dr.idDebateRules = :id")
+		@NamedQuery(name= "DebateSection.findAll", query = "SELECT ds FROM DebateSection ds"),
 })
-public class Debaterule implements Serializable {
+public class DebateSection implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idDebateRules;
 	private int sections;
 	private String rules;
+	private DebateType debatetype;
 
-	public Debaterule() {
+	public DebateSection() {
 	}
 
 
@@ -43,7 +43,6 @@ public class Debaterule implements Serializable {
 		this.sections = sections;
 	}
 
-
 	public String getRules() {
 		return rules;
 	}
@@ -52,5 +51,18 @@ public class Debaterule implements Serializable {
 	public void setRules(String rules) {
 		this.rules = rules;
 	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="debateype")
+	public DebateType getDebatetype() {
+		return debatetype;
+	}
+
+
+	public void setDebatetype(DebateType debatetype) {
+		this.debatetype = debatetype;
+	}
+	
+	
 	
 }

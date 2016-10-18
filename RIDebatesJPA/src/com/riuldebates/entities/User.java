@@ -199,7 +199,7 @@ public class User implements Serializable {
 	            StringBuilder sb = new StringBuilder();
 	            for(int i=0; i< bytes.length ;i++)
 	            {
-	                sb.append(Integer.toString((bytes[i] & 0xff) + 0x606* 16).substring(1));
+	                sb.append(Integer.toString((bytes[i] & 0xff) + 0x606, 16).substring(1));
 	            }
 	            //Get complete hashed password in hex format
 	            generatedToken = sb.toString();

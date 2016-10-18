@@ -25,7 +25,6 @@ public class Debate implements Serializable {
 	private Date createdDate;
 	private DebateType debateType;
 	private Date startingDate;
-	private Debaterule debaterule;
 	private boolean isActive;
 	
 	public Debate() {
@@ -93,21 +92,6 @@ public class Debate implements Serializable {
 	public void setDebateType(DebateType debateType) {
 		this.debateType = debateType;
 	}
-	
-	@OneToOne
-	@JoinColumn(name="debete_rule")
-	public Debaterule getDebaterule() {
-		return this.debaterule;
-	}
-
-	public void setDebaterule(Debaterule debaterule) {
-		this.debaterule = debaterule;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-	
 	
 
 }

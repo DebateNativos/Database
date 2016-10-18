@@ -2,6 +2,7 @@ package com.riuldebates.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 
 /**
@@ -19,6 +20,7 @@ public class DebateType implements Serializable {
 	private int idDebateTypes;
 	private String description;
 	private String name;
+	private List<DebateSection> sections;
 
 	public DebateType() {
 	}
@@ -56,5 +58,16 @@ public class DebateType implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	@OneToMany (mappedBy="debatetype", targetEntity=DebateSection.class)
+	public List<DebateSection> getSections() {
+		return sections;
+	}
+
+	public void setSections(List<DebateSection> sections) {
+		this.sections = sections;
+	}
+	
+	
 
 }

@@ -48,7 +48,7 @@ public class Tester2 {
 			entityManagerFactory.close();*/
 			for (User user : listaUsuarios) {
 				System.out.println("Lista-- Usuarios" );
-				System.out.println("Nombre: " + user.getName() + " ---- Email: " + user.getEmail() + "------ Password: " + user.getPassword());
+				System.out.println("Nombre: " + user.getName() + " ---- Email: " + user.getEmail() + "------ Password: " + user.getPassword() + " ------TOKEN: " + user.getIdToken());
 			}	
 			
 			/*for (ConfirmedUser user : cu) {

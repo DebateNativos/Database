@@ -41,7 +41,6 @@ public class Tester {
             //Calendar.getInstance().getTime(), "@villalta", "Villalta", "Solis", "Jose Maria", "123", "800IZQUIERDA", Calendar.getInstance().getTime()
             //cambiar em por el dato que es
             //em.persist(u);
-            u2.setPassword(u2.hashPass("123"));
             em.merge(u2);
             em.persist(cu);
             em.persist(u);

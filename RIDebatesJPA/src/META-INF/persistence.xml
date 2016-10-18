@@ -2,7 +2,7 @@
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="RIDebatesJPA" transaction-type="RESOURCE_LOCAL">
 		<class>com.riuldebates.entities.Course</class>
-		<class>com.riuldebates.entities.Debaterule</class>
+		<class>com.riuldebates.entities.DebateSections</class>
 		<class>com.riuldebates.entities.Debate</class>
 		<class>com.riuldebates.entities.DebateType</class>
 		<class>com.riuldebates.entities.Professor</class>
