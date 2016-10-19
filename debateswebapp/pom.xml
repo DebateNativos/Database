@@ -36,11 +36,6 @@
             <version>2.23.2</version>
         </dependency>
         <dependency>
-            <groupId>com.riul.jpa</groupId>
-            <artifactId>jpa</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>

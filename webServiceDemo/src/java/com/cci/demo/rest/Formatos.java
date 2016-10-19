@@ -18,6 +18,7 @@ public class Formatos {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    
     public List<Cliente> getFormatos(){
         List<Cliente> ac = new ArrayList<>();
         Cliente cliente = new Cliente();
