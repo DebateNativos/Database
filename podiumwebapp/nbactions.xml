@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-jpapodium</actionName>
+            <displayName>jpapodium</displayName>
+            <goals>
+                <goal>install:install-file</goal>
+            </goals>
+            <properties>
+                <file>C:\Users\Soler\Documents\GitHub\Database\com.podiumcr.jpa.jar</file>
+                <groupId>com.podiumcr.jpa</groupId>
+                <artifactId>jpa</artifactId>
+                <version>1.0</version>
+                <packaging>jar</packaging>
+            </properties>
+        </action>
+    </actions>
