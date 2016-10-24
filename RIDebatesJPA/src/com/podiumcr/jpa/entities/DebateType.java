@@ -23,6 +23,7 @@ public class DebateType implements Serializable {
 	private int idDebateTypes;
 	private String description;
 	private String name;
+	private String rules;
 	private List<DebateSection> sections;
 
 	public DebateType() {
@@ -69,6 +70,14 @@ public class DebateType implements Serializable {
 
 	public void setSections(List<DebateSection> sections) {
 		this.sections = sections;
+	}
+
+	public String getRules() {
+		return rules;
+	}
+
+	public void setRules(String rules) {
+		this.rules = rules;
 	}
 	
 	

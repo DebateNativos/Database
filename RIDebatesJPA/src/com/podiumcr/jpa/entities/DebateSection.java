@@ -17,9 +17,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 })
 public class DebateSection implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int idDebateRules;
+	private int idDebateSection;
 	private int sections;
-	private String rules;
+	private int minutesPerUser;
 	private DebateType debatetype;
 
 	public DebateSection() {
@@ -29,11 +29,11 @@ public class DebateSection implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getIdDebateRules() {
-		return this.idDebateRules;
+		return this.idDebateSection;
 	}
 
-	public void setIdDebateRules(int idDebateRules) {
-		this.idDebateRules = idDebateRules;
+	public void setIdDebateRules(int idDebateSection) {
+		this.idDebateSection = idDebateSection;
 	}
 
 
