@@ -28,11 +28,11 @@ public class DebateSection implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	public int getIdDebateRules() {
+	public int getIdDebateSection() {
 		return this.idDebateSection;
 	}
 
-	public void setIdDebateRules(int idDebateSection) {
+	public void setIdDebateSection(int idDebateSection) {
 		this.idDebateSection = idDebateSection;
 	}
 
@@ -45,14 +45,18 @@ public class DebateSection implements Serializable {
 		this.sections = sections;
 	}
 
-	public String getRules() {
-		return rules;
+
+	
+	
+	public int getMinutesPerUser() {
+		return minutesPerUser;
 	}
 
 
-	public void setRules(String rules) {
-		this.rules = rules;
+	public void setMinutesPerUser(int minutesPerUser) {
+		this.minutesPerUser = minutesPerUser;
 	}
+
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="debateype")

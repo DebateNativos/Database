@@ -29,9 +29,9 @@ public class ActiveDebateWS {
     public List<ActiveDebate> getActiveDebates() {
         DebateData dd = new DebateData();
         List<ActiveDebate> debatesList = new ArrayList<>();   
-        ActiveDebate ad = new ActiveDebate();
         try {
             for (Debate d : dd.getActiveDebates()) {
+               ActiveDebate ad = new ActiveDebate();
                ad.setName(d.getName());
                ad.setIdDebates(d.getIdDebates());
                ad.setDebateType(d.getDebateType());
