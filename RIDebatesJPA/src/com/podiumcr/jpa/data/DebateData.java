@@ -10,12 +10,10 @@ import javax.persistence.TypedQuery;
 
 import com.podiumcr.jpa.entities.Debate;
 
-public class DebateData {
-
-	private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PodiumJPA");;
-	private EntityManager em = entityManagerFactory.createEntityManager();
-	//private Session session = em.unwrap(Session.class);
+public class DebateData{
 	
+	private EntityManager em;
+
 /*	@NamedQuery(name= "Debate.findAll", query = "SELECT d FROM Debate d"),
     @NamedQuery(name= "Debate.findAllActive", query = "SELECT d FROM Debate d WHERE d.isActive = :active"),
 	@NamedQuery(name= "Debate.findByDebate", query = "SELECT d FROM Debate d WHERE d = :d"),
@@ -23,20 +21,19 @@ public class DebateData {
 	@NamedQuery(name= "Debate.findByDate", query = "SELECT d FROM Debate d WHERE d.createdDate = :date"),
 	@NamedQuery(name= "Debate.findByType", query = "SELECT d FROM Debate d WHERE d.debateType.idDebateTypes = :idDebateType")*/
 
+	public DebateData(EntityManager em) {	
+		this.em = em;
+	}
+
 	public List<Debate> getDebates(){
 		
 		List<Debate> returnedList = new ArrayList<>();
 		
 		try{
 				
-			em.getTransaction().begin();
-
 			TypedQuery<Debate> getall = em.createNamedQuery("Debate.findAll", Debate.class);
 			List<Debate> listaDebate = getall.getResultList();
-		
-			em.getTransaction().commit();
-			entityManagerFactory.close();
-			
+				
 			returnedList = listaDebate;
 			
 			} catch (Exception e) {
@@ -47,21 +44,16 @@ public class DebateData {
 		return returnedList;
 	}
 	
-public List<Debate> getActiveDebates(){
+	public List<Debate> getActiveDebates(){
 		
 		List<Debate> returnedList = new ArrayList<>();
 		
 		try{
 				
-			em.getTransaction().begin();
-
 			TypedQuery<Debate> getall = em.createNamedQuery("Debate.findAllActive", Debate.class);
 			getall.setParameter("active", true);
 			List<Debate> listaDebate = getall.getResultList();
-		
-			em.getTransaction().commit();
-			entityManagerFactory.close();
-			
+				
 			returnedList = listaDebate;
 			
 			} catch (Exception e) {

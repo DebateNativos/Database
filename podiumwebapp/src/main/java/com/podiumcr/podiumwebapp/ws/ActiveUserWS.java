@@ -7,15 +7,18 @@ package com.podiumcr.podiumwebapp.ws;
 
 import com.podiumcr.jpa.data.UserData;
 import com.podiumcr.jpa.entities.User;
+import com.podiumcr.podiumwebapp.common.EntityListener;
 import com.podiumcr.podiumwebapp.data.ActiveUser;
 import com.podiumcr.podiumwebapp.data.LoginStatus;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import javafx.scene.media.Media;
-import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -26,22 +29,21 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("user")
 public class ActiveUserWS {
+//cambiar al jpa para que sea wrapper
 
-    //cambiar al jpa para que sea wrapper
     @GET
-    @Path("/login")
+    @Path("login")
     @Produces(MediaType.APPLICATION_JSON)
-    public LoginStatus Login(@QueryParam("email") String email, @QueryParam("password") String password) {
+    public LoginStatus loginUser(@QueryParam("email") String email, @QueryParam("password") String password) {
         LoginStatus status = new LoginStatus();
-        UserData ud = new UserData();
+        UserData ud = new UserData(EntityListener.em);
         ActiveUser user = new ActiveUser();
-        
+
         try {
             User u = ud.getUserByEmail(email);
             if (u.getPassword().equals(u.encryptPass(password))) {
                 status.setStatus("@validLogin");
-                
-                user.setIdUsers(u.getIdUsers());
+
                 user.setName(u.getName());
                 user.setLastName(u.getLastName());
                 user.setLastName2(u.getLastName2());
@@ -51,7 +53,7 @@ public class ActiveUserWS {
                 user.setIdUniversity(u.getIdUniversity());
                 user.setAddress(u.getAddress());
                 user.setBirthday(u.getBirthday());
-     
+
                 status.setUser(user);
             } else {
                 status.setStatus("@invalidPassword");
@@ -60,7 +62,6 @@ public class ActiveUserWS {
             status.setStatus("@invalidEmail");
         }
 
-        
         return status;
 
     }
@@ -69,24 +70,38 @@ public class ActiveUserWS {
     @Path("getAll")
     @Produces(MediaType.APPLICATION_JSON)
     public List<ActiveUser> getUsers() {
-        UserData ud = new UserData();
+        UserData ud = new UserData(EntityListener.em);
         List<ActiveUser> lau = new ArrayList<>();
         for (User user : ud.getUsers()) {
             ActiveUser au = new ActiveUser();
             au.setName(user.getName());
-            au.setIdUsers(user.getIdUsers());
-            lau.add(au);
+            au.setEmail(user.getEmail());
+            lau.add(au); 
         }
         return lau;
     }
 
     @GET
-    @Path("getAll2")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<User> getUsersAll() {
-        UserData ud = new UserData();
-        return ud.getUsers();
+    @Path("registeruser")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String registerUser(@QueryParam("name") String name, @QueryParam("lastname") String lastname,
+            @QueryParam("lastname2") String lastname2, @QueryParam("email") String email,
+            @QueryParam("password") String password, @QueryParam("phone") String phone,
+            @QueryParam("birthday") String birthday, @QueryParam("address") String address,
+            @QueryParam("idUniversity") int idUniversity){
+        String status = "";
+        UserData ud = new UserData(EntityListener.em);
+        try {
+            DateFormat df = new SimpleDateFormat("mm/dd/yyyy");
+            Date birthdateFormated = df.parse(birthday);
+            ud.registerUser(new User(email, password, address, name, lastname, lastname2, birthdateFormated, idUniversity, false, phone));
+            status = "@validRegistration";    
+        } catch (Exception e) {
+            e.printStackTrace();
+              status = "@invalidRegistration";
+        }
+
+        return status;
 
     }
-
 }

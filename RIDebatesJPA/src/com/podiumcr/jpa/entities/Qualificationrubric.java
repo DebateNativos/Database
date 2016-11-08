@@ -28,7 +28,7 @@ public class Qualificationrubric implements Serializable {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getIdQualificationRubrics() {
 		return this.idQualificationRubrics;
 	}

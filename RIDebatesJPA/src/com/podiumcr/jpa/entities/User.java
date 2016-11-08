@@ -27,7 +27,7 @@ import java.util.List;
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private int idUsers;
+	private long idUsers;
 	private String address;
 	private Date birthday;
 	private String email;
@@ -66,12 +66,12 @@ public class User implements Serializable {
 	}
 
 	@Id 
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	public int getIdUsers() {
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	public long getIdUsers() {
 		return this.idUsers;
 	}
 
-	public void setIdUsers(int idUsers) {
+	public void setIdUsers(long idUsers) {
 		this.idUsers = idUsers;
 	}
 

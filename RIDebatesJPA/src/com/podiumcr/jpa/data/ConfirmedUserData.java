@@ -38,7 +38,7 @@ public class ConfirmedUserData {
 			}
 			
 			em.getTransaction().commit();
-			entityManagerFactory.close();
+			em.close();
 			
 			} catch (Exception e) {
 			// TODO: handle exception

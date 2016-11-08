@@ -11,56 +11,70 @@ import javax.persistence.TypedQuery;
 import com.podiumcr.jpa.entities.User;
 
 public class UserData {
-	
-	private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PodiumJPA");;
-	private EntityManager em = entityManagerFactory.createEntityManager();
-	//private Session session = em.unwrap(Session.class);
 
-	public List<User> getUsers(){
-		
+	private EntityManager em;
+
+	public UserData(EntityManager em) {
+		// TODO Auto-generated constructor stub
+		this.em = em;
+	}
+
+	public List<User> getUsers() {
+
 		List<User> returnedList = new ArrayList<>();
-		
-		try{
-			em.getTransaction().begin();
+
+		try {
 
 			TypedQuery<User> query = em.createNamedQuery("User.findAll", User.class);
 			List<User> listaUsuarios = query.getResultList();
-		
-			em.getTransaction().commit();
-			entityManagerFactory.close();
-			
 			returnedList = listaUsuarios;
-			
-			} catch (Exception e) {
+
+		} catch (Exception e) {
 
 			e.printStackTrace();
 		}
 
 		return returnedList;
 	}
-	
-	public User getUserByEmail(String email){
-		
+
+	public User getUserByEmail(String email) {
+
 		User returnedPerson = new User();
 
-		try{
+		try {
 
-			em.getTransaction().begin();
-	
 			TypedQuery<User> query = em.createNamedQuery("User.findByEmail", User.class);
 			query.setParameter("email", email);
 			returnedPerson = query.getSingleResult();
-		
-		em.getTransaction().commit();
-		entityManagerFactory.close();
-			
+
 		} catch (Exception e) {
 
 			e.printStackTrace();
 		}
-		
+
 		return returnedPerson;
 	}
 
+	public boolean registerUser(User user) {
+
+		boolean returned = false;
+
+		try {
+
+				em.getTransaction().begin();
+				em.persist(user);
+				em.getTransaction().commit();
+				
+				returned = true;
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			returned=false;
+		}
+
+		return returned;
+
+	}
 
 }

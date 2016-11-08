@@ -4,14 +4,15 @@
  * and open the template in the editor.
  */
 package com.podiumcr.podiumwebapp.ws;
-
+ 
 import com.podiumcr.jpa.data.DebateData;
 import com.podiumcr.jpa.entities.Debate;
+import com.podiumcr.podiumwebapp.common.EntityListener;
 import com.podiumcr.podiumwebapp.data.ActiveDebate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import javax.ws.rs.Path; 
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -27,9 +28,9 @@ public class ActiveDebateWS {
     @Path("/activedebates")
     @Produces(MediaType.APPLICATION_JSON)
     public List<ActiveDebate> getActiveDebates() {
-        DebateData dd = new DebateData();
+        DebateData dd = new DebateData(EntityListener.em);
         List<ActiveDebate> debatesList = new ArrayList<>();   
-        try {
+        try { 
             for (Debate d : dd.getActiveDebates()) {
                ActiveDebate ad = new ActiveDebate();
                ad.setName(d.getName());

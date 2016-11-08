@@ -7,21 +7,22 @@ package com.podiumcr.podiumwebapp.ws;
 
 import com.podiumcr.jpa.data.UserData;
 import com.podiumcr.jpa.entities.User;
+import com.podiumcr.podiumwebapp.common.EntityListener;
 import org.apache.commons.codec.digest.DigestUtils;
-
+  
 
 /**
  *
  * @author Soler
  */
 public class NewMain {
-
+  
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        UserData ud = new UserData();  
+        UserData ud = new UserData(EntityListener.em);  
         String encripted = DigestUtils.md5Hex("123");
         //System.out.println(""+ud.getUserByEmail("@gmail").getName())
         System.out.println("pass: " + encripted);
