@@ -22,37 +22,46 @@ public class Tester {
         try {
             em.getTransaction().begin();
  
-            User u = new User("@gmail","123", "San jose", "Joe", "Fernandez", "Lozano", Calendar.getInstance().getTime(), 321, true, "7001-7001");
-//            User u2 = new User("@gmail.com","123", "San jose", "Carlos", "Perez", "Solis", Calendar.getInstance().getTime(), 34562, false, "7234-7334");
+            User u = new User("@gmail","123", "San jose", "Joe", "Fernandez", "Lozano", 321, true, "7001-7001");
+            User u2 = new User("@gmail.com","123", "San jose", "Carlos", "Perez", "Solis", 34562, false, "7234-7334");
             DebateType dt = new DebateType("Modelos de 7 secciones", "Modelo Australiano");
             Debate d = new Debate("Luigui y su administracion", Calendar.getInstance().getTime(), dt, Calendar.getInstance().getTime(), true);
-//            Role r = new Role("Debatiente", "Debatear!!!!");
-//            Course c = new Course("Basura politica", "32C", 2, 2016);       
-//            Professor p = new Professor("@villalta","123", "CUBA","Jose Maria", "Villalta", "Solis", Calendar.getInstance().getTime(), 6335, false, "800IZQUIERDA");
-//            c.setProfessor(p);
-//            ArrayList<User> ul = new ArrayList<>(); 
-//            ul.add(u);
-//            c.setUsers(ul);
-//            ConfirmedUser cu = new ConfirmedUser();
-//            		cu.setUser(u);
-//            		cu.setDebate(d);
-//            		cu.setRole(r);
-//            UserCourse uc = new UserCourse();
-//            uc.setUser(u);
-//            uc.setCourse(c);
-//            uc.setQualification(90.0);
+            Debate d2 = new Debate("Trump presidente!", Calendar.getInstance().getTime(), dt, Calendar.getInstance().getTime(), true);
+            Debate d3 = new Debate("Trumpsito", Calendar.getInstance().getTime(), dt, Calendar.getInstance().getTime(), true);
+            Debate d4 = new Debate("Debatiendo debates", Calendar.getInstance().getTime(), dt, Calendar.getInstance().getTime(), true);
+            Debate d5 = new Debate("Perros o gatos", Calendar.getInstance().getTime(), dt, Calendar.getInstance().getTime(), true);
+            Role r = new Role("Debatiente", "Debatear!!!!");
+            Course c = new Course("Basura politica", 2, 2016);       
+            Professor p = new Professor("@villalta","123", "CUBA","Jose Maria", "Villalta", "Solis", 6335, "800IZQUIERDA");
+            c.setProfessor(p);
+            ArrayList<User> ul = new ArrayList<>(); 
+            ul.add(u);
+            c.setUsers(ul);
+            ConfirmedUser cu = new ConfirmedUser();
+            		cu.setUser(u);
+            		cu.setDebate(d);
+           		cu.setRole(r);
+            UserCourse uc = new UserCourse();
+            uc.setUser(u);
+            uc.setCourse(c);
+            uc.setQualification(90.0);
             //Calendar.getInstance().getTime(), "@villalta", "Villalta", "Solis", "Jose Maria", "123", "800IZQUIERDA", Calendar.getInstance().getTime()
             //cambiar em por el dato que es
             
            //em.merge(u2);
             em.persist(dt);
             em.persist(d);
+            em.persist(d2);
+            em.persist(d3);
+            em.persist(d4);
+            em.persist(d5);
             em.persist(u);
-//            em.persist(r);
-//            em.persist(c);
-//            em.persist(p);
-//            em.persist(uc);
-//            em.persist(cu);
+            em.persist(u2);
+            em.persist(r);
+            em.persist(c);
+            em.persist(p);
+            em.persist(uc);
+            em.persist(cu);
             
             em.getTransaction().commit();
             System.out.println("Actualizado!!!!!!!");

@@ -32,7 +32,7 @@ public class Tester2 {
 				//User u = ud.getUserByEmail("@gmail");
 				List<User> listaUsuarios= ud.getUsers();			
 			    List<Debate> listaDebates = dd.getActiveDebates();	
-			    User u = new User("soler@gmail","123", "San jose", "Jorge", "Soler", "Jimenez", Calendar.getInstance().getTime(), 321, false, "7001-7001");
+			    User u = new User("soler@gmail","123", "San jose", "Jorge", "Soler", "Jimenez", 321, false, "7001-7001");
 			    if(ud.registerUser(u)){
 			    	System.out.println("Registrado" );
 			    }else{

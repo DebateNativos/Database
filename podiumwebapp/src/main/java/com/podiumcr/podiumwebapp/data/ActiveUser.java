@@ -5,8 +5,6 @@
  */
 package com.podiumcr.podiumwebapp.data;
 
-import java.util.Date;
-
 /**
  *
  * @author Soler
@@ -22,13 +20,12 @@ public class ActiveUser {
     private String idToken;
     private int idUniversity;
     private String address;
-    private Date birthday;
 
     public ActiveUser() {
 
     }
 
-    public ActiveUser(int idUsers, String name, String lastName, String lastName2, String email, String phone, String idToken, int idUniversity, String address, Date birthday) {
+    public ActiveUser(int idUsers, String name, String lastName, String lastName2, String email, String phone, String idToken, int idUniversity, String address) {
         this.idUsers = idUsers;
         this.name = name;
         this.lastName = lastName;
@@ -38,7 +35,6 @@ public class ActiveUser {
         this.idToken = idToken;
         this.idUniversity = idUniversity;
         this.address = address;
-        this.birthday = birthday;
     }
     
     public int getIdUsers() {
@@ -112,15 +108,5 @@ public class ActiveUser {
     public void setAddress(String address) {
         this.address = address;
     }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-    
-    
 
 }

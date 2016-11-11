@@ -3,6 +3,8 @@ package com.podiumcr.jpa.entities;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.podiumcr.jpa.resources.CodeGenerator;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -29,22 +31,22 @@ public class Course implements Serializable {
 	private String courseCode;
 	private int curseQuarter;
 	private int curseYear;
-	private double finalQualification;
 	private List<User> users;
 	private Professor professor;
 
 	public Course() {
 	}
 
-	public Course(String name, String courseCode, int curseQuarter, int curseYear) {
+	public Course(String name, int curseQuarter, int curseYear) {
+		CodeGenerator cd = new CodeGenerator();
 		this.name = name;
-		this.courseCode = courseCode;
+		this.courseCode = cd.getToken(5);
 		this.curseQuarter = curseQuarter;
 		this.curseYear = curseYear;
 	}
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getIdCourse() {
 		return this.idCourse;
 	}
@@ -86,14 +88,6 @@ public class Course implements Serializable {
 		this.curseYear = curseYear;
 	}
 
-	public double getFinalQualification() {
-		return this.finalQualification;
-	}
-
-	public void setFinalQualification(double finalQualification) {
-		this.finalQualification = finalQualification;
-	}
-	
 	@OneToMany (mappedBy="course", targetEntity= UserCourse.class, fetch = FetchType.LAZY)
 	public List<User> getUsers() {
 		return this.users;

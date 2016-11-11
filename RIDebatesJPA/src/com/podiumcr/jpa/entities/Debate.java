@@ -47,7 +47,7 @@ public class Debate implements Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getIdDebates() {
 		return this.idDebates;
 	}

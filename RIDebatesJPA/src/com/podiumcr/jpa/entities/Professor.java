@@ -28,9 +28,8 @@ public class Professor extends User implements Serializable {
 		
 	}
 	
-	public Professor(String email, String password, String address, String name, String lastName, String lastName2,
-			Date birthday, int idUniversity, boolean isAdmin, String phone) {
-		super(email, password, address, name, lastName, lastName2, birthday, idUniversity, isAdmin, phone);	
+	public Professor(String email, String password, String address, String name, String lastName, String lastName2, int idUniversity, String phone) {
+		super(email, password, address, name, lastName, lastName2, idUniversity, phone);	
 
 	}
 

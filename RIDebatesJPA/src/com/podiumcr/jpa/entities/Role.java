@@ -34,7 +34,7 @@ public class Role implements Serializable {
 	}
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getIdRole() {
 		return this.idRole;
 	}

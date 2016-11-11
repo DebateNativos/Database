@@ -29,7 +29,6 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private long idUsers;
 	private String address;
-	private Date birthday;
 	private String email;
 	private int idUniversity;
 	private boolean isAdmin;
@@ -47,11 +46,25 @@ public class User implements Serializable {
 		
 	}
 	
-	public User(String email, String password, String address, String name, String lastName, String lastName2,
-			Date birthday, int idUniversity, boolean isAdmin, String phone) {		
+	public User(String email, String password, String address, String name, String lastName, String lastName2, int idUniversity, String phone) {		
 		
 		this.address = address;
-		this.birthday = birthday;
+		this.email = email;
+		this.idUniversity = idUniversity;
+		this.isAdmin = false;
+		this.lastName = lastName;
+		this.lastName2 = lastName2;
+		this.name = name;
+		this.password = encryptPass(password);
+		this.phone = phone;
+		this.timeStamp = Calendar.getInstance().getTime();
+		this.idToken = createIdToken(this.email);
+		
+	}
+	 
+	public User(String email, String password, String address, String name, String lastName, String lastName2, int idUniversity, boolean isAdmin, String phone) {		
+		
+		this.address = address;
 		this.email = email;
 		this.idUniversity = idUniversity;
 		this.isAdmin = isAdmin;
@@ -66,7 +79,7 @@ public class User implements Serializable {
 	}
 
 	@Id 
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public long getIdUsers() {
 		return this.idUsers;
 	}
@@ -81,15 +94,6 @@ public class User implements Serializable {
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	@Temporal(TemporalType.DATE)
-	public Date getBirthday() {
-		return this.birthday;
-	}
-
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
 	}
 
 	@Column(unique=true)

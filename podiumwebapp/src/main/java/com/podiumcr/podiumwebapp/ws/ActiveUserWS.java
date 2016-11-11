@@ -10,11 +10,7 @@ import com.podiumcr.jpa.entities.User;
 import com.podiumcr.podiumwebapp.common.EntityListener;
 import com.podiumcr.podiumwebapp.data.ActiveUser;
 import com.podiumcr.podiumwebapp.data.LoginStatus;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -52,7 +48,6 @@ public class ActiveUserWS {
                 user.setIdToken(u.getIdToken());
                 user.setIdUniversity(u.getIdUniversity());
                 user.setAddress(u.getAddress());
-                user.setBirthday(u.getBirthday());
 
                 status.setUser(user);
             } else {
@@ -65,7 +60,7 @@ public class ActiveUserWS {
         return status;
 
     }
-
+ 
     @GET
     @Path("getAll")
     @Produces(MediaType.APPLICATION_JSON)
@@ -87,20 +82,17 @@ public class ActiveUserWS {
     public String registerUser(@QueryParam("name") String name, @QueryParam("lastname") String lastname,
             @QueryParam("lastname2") String lastname2, @QueryParam("email") String email,
             @QueryParam("password") String password, @QueryParam("phone") String phone,
-            @QueryParam("birthday") String birthday, @QueryParam("address") String address,
+            @QueryParam("address") String address,
             @QueryParam("idUniversity") int idUniversity){
         String status = "";
         UserData ud = new UserData(EntityListener.em);
-        try {
-            DateFormat df = new SimpleDateFormat("mm/dd/yyyy");
-            Date birthdateFormated = df.parse(birthday);
-            ud.registerUser(new User(email, password, address, name, lastname, lastname2, birthdateFormated, idUniversity, false, phone));
-            status = "@validRegistration";    
-        } catch (Exception e) {
-            e.printStackTrace();
-              status = "@invalidRegistration";
-        }
-
+            //DateFormat df = new SimpleDateFormat("mm/dd/yyyy");
+            //Date birthdateFormated = df.parse(birthday);
+            if (ud.registerUser(new User(email, password, address, name, lastname, lastname2,  idUniversity, false, phone))) {
+                 status = "@validRegistration";    
+            }else{
+            status = "@invalidRegistration";
+            }
         return status;
 
     }

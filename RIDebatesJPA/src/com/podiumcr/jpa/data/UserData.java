@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import com.podiumcr.jpa.entities.User;
+import com.podiumcr.jpa.resources.SendEmail;
 
 public class UserData {
-
+	
+	SendEmail se = new SendEmail();
 	private EntityManager em;
 
 	public UserData(EntityManager em) {
@@ -64,9 +64,14 @@ public class UserData {
 				em.getTransaction().begin();
 				em.persist(user);
 				em.getTransaction().commit();
-				
+				try{
+				se.SendWelcomeEmail(user);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				returned = true;
 
+				
 		} catch (Exception e) {
 
 			e.printStackTrace();
