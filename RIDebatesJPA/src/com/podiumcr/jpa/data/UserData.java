@@ -75,6 +75,7 @@ public class UserData {
 		} catch (Exception e) {
 
 			e.printStackTrace();
+			em.getTransaction().rollback();
 			returned=false;
 		}
 

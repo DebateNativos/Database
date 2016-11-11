@@ -25,13 +25,14 @@ public class ConfirmedUser implements Serializable {
 	private User user;
 	private Debate debate;
 	private Role role;
+	private int warnings;
 
 	public ConfirmedUser() {
 	}
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getId() {
 		return id;
 	}
@@ -72,5 +73,16 @@ public class ConfirmedUser implements Serializable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+
+
+	public int getWarnings() {
+		return warnings;
+	}
+
+
+	public void setWarnings(int warnings) {
+		this.warnings = warnings;
+	}
+	
 	
 }
