@@ -18,12 +18,14 @@ import java.util.List;
 		@NamedQuery(name= "DebateType.findAll", query = "SELECT dt FROM DebateType dt"),
 		@NamedQuery(name= "DebateType.findById", query = "SELECT dt FROM DebateType dt WHERE dt.idDebateTypes = :id")
 })
+
 public class DebateType implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idDebateTypes;
 	private String description;
 	private String name;
 	private String rules;
+	private int totalTimeInMinutes;
 	private List<DebateSection> sections;
 
 	public DebateType() {
@@ -79,7 +81,13 @@ public class DebateType implements Serializable {
 	public void setRules(String rules) {
 		this.rules = rules;
 	}
-	
-	
 
+	public int getTotalTimeInMinutes() {
+		return totalTimeInMinutes;
+	}
+
+	public void setTotalTimeInMinutes(int totalTimeInMinutes) {
+		this.totalTimeInMinutes = totalTimeInMinutes;
+	}
+	
 }

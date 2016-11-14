@@ -26,7 +26,7 @@ import java.util.List;
 public class Debate implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int idDebates;
+	private int id;
 	private String name;
 	private Date createdDate;
 	private DebateType debateType;
@@ -49,14 +49,14 @@ public class Debate implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getIdDebates() {
-		return this.idDebates;
+		return this.id;
 	}
 
 	public void setIdDebates(int idDebates) {
-		this.idDebates = idDebates;
+		this.id = idDebates;
 	}
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getCreatedDate() {
 		return this.createdDate;
 	}
@@ -81,7 +81,7 @@ public class Debate implements Serializable {
 		this.name = name;
 	}
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getStartingDate() {
 		return this.startingDate;
 	}
@@ -97,7 +97,7 @@ public class Debate implements Serializable {
 	}
 
 	public void setDebateType(DebateType debateType) {
-		this.debateType = debateType;
+		this.debateType = debateType; 
 	}
 
 	@OneToMany (mappedBy="debate", targetEntity=ConfirmedUser.class, fetch = FetchType.LAZY)

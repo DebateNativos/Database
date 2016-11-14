@@ -7,11 +7,12 @@ package com.podiumcr.podiumwebapp.ws;
 
 import com.podiumcr.jpa.data.UserData;
 import com.podiumcr.jpa.entities.User;
-import com.podiumcr.podiumwebapp.common.EntityListener;
+import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFactory;
 import com.podiumcr.podiumwebapp.data.ActiveUser;
 import com.podiumcr.podiumwebapp.data.LoginStatus;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -31,8 +32,9 @@ public class ActiveUserWS {
     @Path("login")
     @Produces(MediaType.APPLICATION_JSON)
     public LoginStatus loginUser(@QueryParam("email") String email, @QueryParam("password") String password) {
+        EntityManager em = entityManagerFactory.createEntityManager();
         LoginStatus status = new LoginStatus();
-        UserData ud = new UserData(EntityListener.em);
+        UserData ud = new UserData(em);
         ActiveUser user = new ActiveUser();
 
         try {
@@ -50,11 +52,14 @@ public class ActiveUserWS {
                 user.setAddress(u.getAddress());
 
                 status.setUser(user);
+                em.close();
             } else {
                 status.setStatus("@invalidPassword");
+                em.close();
             }
         } catch (Exception e) {
             status.setStatus("@invalidEmail");
+            em.close();
         }
 
         return status;
@@ -65,7 +70,8 @@ public class ActiveUserWS {
     @Path("getAll")
     @Produces(MediaType.APPLICATION_JSON)
     public List<ActiveUser> getUsers() {
-        UserData ud = new UserData(EntityListener.em);
+        EntityManager em = entityManagerFactory.createEntityManager();
+        UserData ud = new UserData(em);
         List<ActiveUser> lau = new ArrayList<>();
         for (User user : ud.getUsers()) {
             ActiveUser au = new ActiveUser();
@@ -73,6 +79,7 @@ public class ActiveUserWS {
             au.setEmail(user.getEmail());
             lau.add(au); 
         }
+        em.close();
         return lau;
     }
 
@@ -85,7 +92,8 @@ public class ActiveUserWS {
             @QueryParam("address") String address,
             @QueryParam("idUniversity") int idUniversity){
         String status = "";
-        UserData ud = new UserData(EntityListener.em);
+        EntityManager em = entityManagerFactory.createEntityManager();
+        UserData ud = new UserData(em);
             //DateFormat df = new SimpleDateFormat("mm/dd/yyyy");
             //Date birthdateFormated = df.parse(birthday);
             if (ud.registerUser(new User(email, password, address, name, lastname, lastname2,  idUniversity, false, phone))) {

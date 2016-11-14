@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import com.podiumcr.jpa.entities.ConfirmedUser;
@@ -18,45 +16,22 @@ import com.podiumcr.jpa.entities.User;
 @NamedQuery(name= "ConfirmedUser.findByRole", query = "SELECT cu FROM ConfirmedUser cu WHERE cu.role = :role")*/
 public class ConfirmedUserData {
 	
-	private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PodiumJPA");;
-	private EntityManager em = entityManagerFactory.createEntityManager();
+	private EntityManager em;
 
-	public List<Debate> getConfirmedDebatesFromUser(User user){
-		
-		List<Debate> returnedList = new ArrayList<>();
-		
-		try{
-				
-			em.getTransaction().begin();
-
-			TypedQuery<ConfirmedUser> query = em.createNamedQuery("ConfirmedUser.findByUser", ConfirmedUser.class);
-			query.setParameter("user", user);
-			List<ConfirmedUser> listaUsuarios = query.getResultList();
-		
-			for (ConfirmedUser confirmedUser : listaUsuarios) {
-				returnedList.add(confirmedUser.getDebate());
-			}
-			
-			em.getTransaction().commit();
-			em.close();
-			
-			} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-
-		return returnedList;
+	public ConfirmedUserData(EntityManager em) {
+		// TODO Auto-generated constructor stub
+		this.em = em;
 	}
-	
-public List<User> getUsers(){
-		
-		ArrayList<User> returnedList = new ArrayList<>();
-		
-		try{
-			
-			TypedQuery<ConfirmedUser> queryCU = em.createNamedQuery("ConfirmedUser.findByDebate", ConfirmedUser.class);
-			queryCU.setParameter("user", null);
+
+	public List<ConfirmedUser> getAll() {
+
+		List<ConfirmedUser> returnedList = new ArrayList<>();
+
+		try {
+
+			TypedQuery<ConfirmedUser> queryCU = em.createNamedQuery("ConfirmedUser.findAll", ConfirmedUser.class);
 			List<ConfirmedUser> listaCU = queryCU.getResultList();
+			returnedList = listaCU;
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -64,5 +39,48 @@ public List<User> getUsers(){
 
 		return returnedList;
 	}
-	
+
+	public List<User> getUsersFromDebate(Debate debate) {
+
+		List<User> returnedList = new ArrayList<>();
+
+		try {
+
+			TypedQuery<ConfirmedUser> queryCU = em.createNamedQuery("ConfirmedUser.findUsersFromDebate",
+					ConfirmedUser.class);
+			queryCU.setParameter("debate", debate);
+			List<ConfirmedUser> listaCU = queryCU.getResultList();
+			for (ConfirmedUser confirmedUser : listaCU) {
+
+				returnedList.add(confirmedUser.getUser());
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		return returnedList;
+	}
+
+	public List<ConfirmedUser> getDebatesFromUser(User user) {
+
+		List<ConfirmedUser> returnedList = new ArrayList<>();
+
+		try {
+
+			TypedQuery<ConfirmedUser> queryCU = em.createNamedQuery("ConfirmedUser.findDebatesFromUser",
+					ConfirmedUser.class);
+			queryCU.setParameter("user", user);
+			List<ConfirmedUser> listaCU = queryCU.getResultList();
+			returnedList = listaCU;
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		return returnedList;
+	}
+
 }

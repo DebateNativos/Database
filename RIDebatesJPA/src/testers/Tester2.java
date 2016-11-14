@@ -1,13 +1,10 @@
 package testers;
 
-import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-
 import com.podiumcr.jpa.data.ConfirmedUserData;
 import com.podiumcr.jpa.data.DebateData;
 import com.podiumcr.jpa.data.UserData;
@@ -27,35 +24,45 @@ public class Tester2 {
 				UserData ud = new UserData(em);
 				DebateData dd = new DebateData(em);
 				
-				//ConfirmedUserData cu = new ConfirmedUserData(); 
+				ConfirmedUserData cud = new ConfirmedUserData(em); 
 				//DebateData dd = new DebateData();		
 				//User u = ud.getUserByEmail("@gmail");
 				List<User> listaUsuarios= ud.getUsers();			
-			    List<Debate> listaDebates = dd.getActiveDebates();	
-			    User u = new User("soler@gmail","123", "San jose", "Jorge", "Soler", "Jimenez", 321, false, "7001-7001");
+			    List<Debate> listaDebates = dd.getDebates();	
+			   /* User u = new User("soler@gmail","123", "San jose", "Jorge", "Soler", "Jimenez", 321, false, "7001-7001");
 			    if(ud.registerUser(u)){
 			    	System.out.println("Registrado" );
 			    }else{
 			    	
 			    	System.out.println("NO Registrado" );
-			    }
+			    }*/
 				/*TypedQuery<ConfirmedUser> getallCU = em.createNamedQuery("ConfirmedUser.findAll", ConfirmedUser.class);
 				List<ConfirmedUser> cu = getallCU.getResultList();
 				em.getTransaction().commit();
 				entityManagerFactory.close();*/
-			    System.out.println("Lista-- Usuarios" );
-				for (User user : listaUsuarios) {
-					
-					System.out.println("Nombre: " + user.getName() + " ---- Email: " + user.getEmail() + "------ Password: " + user.getPassword() + " ------TOKEN: " + user.getIdToken());
-					
+			    
+			    
+			    List<ConfirmedUser> cu = cud.getDebatesFromUser(ud.getUserByEmail("@gmail"));
+			    
+			    for (ConfirmedUser confirmedUser : cu) {
+			    	 System.out.println("Usuarios " + confirmedUser.getUser().getName() +" ---- Ligado al debate " + confirmedUser.getDebate().getName() + " --- ROL " + confirmedUser.getRole().getName() );
 				}
-				
-				for (Debate debate : listaDebates) {
-				System.out.println("Lista-- Debates: ");
-					System.out.println("Nombre: " + debate.getName() + " ---- Fecha: " + debate.getStartingDate() + "------ Tipo: " + debate.getDebateType().getName());
-				
-				}
-				
+//			    System.out.println("Lista-- Usuarios" );
+//				for (User user : listaUsuarios) {
+//					System.out.println("Nombre: " + user.getName() + " ---- Email: " + user.getEmail() + "------ Password: " + user.getPassword());
+//					System.out.println("Lista-- Debates: ");
+//					for (Debate debate : cu.getDebatesFromUser(user)) {
+//						System.out.println("Nombre: " + debate.getName() + " ---- Fecha: " + debate.getStartingDate());
+//					}
+//					
+//				}
+//				
+//				for (Debate debate : listaDebates) {
+//				System.out.println("Lista-- Debates: ");
+//					System.out.println("Nombre: " + debate.getName() + " ---- Fecha: " + debate.getStartingDate() + "------ Tipo: " + debate.getDebateType().getName());
+//				
+//				}
+//				
 				em.close();
 				entityManagerFactory.close();
 				

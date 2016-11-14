@@ -5,8 +5,8 @@
  */
 package com.podiumcr.podiumwebapp.data;
 
-import com.podiumcr.jpa.entities.DebateType;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -16,7 +16,8 @@ public class ActiveDebate {
 
     private int idDebates;
     private String name;
-    private DebateType debateType;
+    private String debateType;
+    private int debateTypeId;
     private Date startingDate;
     private boolean isActive;
 
@@ -38,15 +39,7 @@ public class ActiveDebate {
     public void setName(String name) {
         this.name = name;
     }
-
-    public DebateType getDebateType() {
-        return debateType;
-    }
-
-    public void setDebateType(DebateType debateType) {
-        this.debateType = debateType;
-    }
-
+    
     public Date getStartingDate() {
         return startingDate;
     }
@@ -62,7 +55,23 @@ public class ActiveDebate {
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;
     }
-    
+
+    public String getDebateType() {
+        return debateType;
+    }
+
+    public void setDebateType(String debateType) {
+        this.debateType = debateType;
+    }
+
+    public int getDebateTypeId() {
+        return debateTypeId;
+    }
+
+    public void setDebateTypeId(int debateTypeId) {
+        this.debateTypeId = debateTypeId;
+    }
+
     
 
 }

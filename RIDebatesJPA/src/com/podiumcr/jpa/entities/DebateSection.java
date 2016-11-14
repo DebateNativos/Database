@@ -14,16 +14,27 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name="debatesection")
 @NamedQueries(value = {
 		@NamedQuery(name= "DebateSection.findAll", query = "SELECT ds FROM DebateSection ds"),
+		@NamedQuery(name= "DebateSection.findByDebate", query = "SELECT ds FROM DebateSection ds WHERE ds.debatetype = :debatetype")
 })
 public class DebateSection implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idDebateSection;
-	private int sections;
+	private int section;
 	private int minutesPerUser;
 	private DebateType debatetype;
 
 	public DebateSection() {
 	}
+
+	
+	
+	public DebateSection(int section, int minutesPerUser, DebateType debatetype) {
+		super();
+		this.section = section;
+		this.minutesPerUser = minutesPerUser;
+		this.debatetype = debatetype;
+	}
+
 
 
 	@Id
@@ -38,11 +49,11 @@ public class DebateSection implements Serializable {
 
 
 	public int getSections() {
-		return this.sections;
+		return this.section;
 	}
 
 	public void setSections(int sections) {
-		this.sections = sections;
+		this.section = sections;
 	}
 
 
