@@ -17,10 +17,10 @@ import java.util.List;
 @Table(name="debates")
 @NamedQueries(value = {
 		@NamedQuery(name= "Debate.findAll", query = "SELECT d FROM Debate d"),
+		@NamedQuery(name= "Debate.findByDate", query = "SELECT d FROM Debate d WHERE d.startingDate BETWEEN :startDate AND :endDate ORDER BY d.startingDate"),
 		@NamedQuery(name= "Debate.findAllActive", query = "SELECT d FROM Debate d WHERE d.isActive = :active"),
 		@NamedQuery(name= "Debate.findByDebate", query = "SELECT d FROM Debate d WHERE d = :d"),
 		@NamedQuery(name= "Debate.findById", query = "SELECT d FROM Debate d WHERE d.idDebates = :id"),
-		@NamedQuery(name= "Debate.findByDate", query = "SELECT d FROM Debate d WHERE d.createdDate = :date"),
 		@NamedQuery(name= "Debate.findByType", query = "SELECT d FROM Debate d WHERE d.debateType.idDebateTypes = :idDebateType")
 })
 public class Debate implements Serializable {

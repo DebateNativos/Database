@@ -62,6 +62,32 @@ public class ActiveDebateWS {
 
     }
     
+     @GET
+    @Path("/getactualdebates")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ActiveDebate> getActualDebates() {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        DebateData dd = new DebateData(em);
+        List<ActiveDebate> debatesList = new ArrayList<>();       
+        try { 
+            for (Debate d : dd.getActualDebates()) {
+               ActiveDebate ad = new ActiveDebate();
+               ad.setName(d.getName());
+               ad.setIdDebates(d.getIdDebates());
+               ad.setDebateType(d.getDebateType().getName());
+               ad.setDebateTypeId(d.getDebateType().getIdDebateTypes());
+               ad.setStartingDate(d.getStartingDate());
+               ad.setIsActive(d.getIsActive());
+               debatesList.add(ad);
+            }
+           em.close();
+        } catch (Exception e) {
+            em.close();
+        }
+        return debatesList;
+
+    }
+    
         //cambiar al jpa para que sea wrapper
     @GET
     @Path("/confirmeddebates")
@@ -96,7 +122,7 @@ public class ActiveDebateWS {
         List<ActiveDebateSections> sectionsList = new ArrayList<>();   
         try { 
             for (DebateSection ds : dsd.getAllBydebate(dd.getDebateById(id).getDebateType())) {
-               ActiveDebateSections ads = new ActiveDebateSections(ds.getSections(), ds.getMinutesPerUser());                
+               ActiveDebateSections ads = new ActiveDebateSections(ds.getSections(), ds.getMinutesPerUser(), ds.getIsActiveSection());                
                 sectionsList.add(ads);
             }
            em.close();

@@ -13,10 +13,12 @@ public class ActiveDebateSections {
     
     private int sectionNUmber;
     private int minutesPerUser;
+    private boolean activeSection;
 
-    public ActiveDebateSections(int sectionNUmber, int minutesPerUser) {
+    public ActiveDebateSections(int sectionNUmber, int minutesPerUser, boolean activeSection) {
         this.sectionNUmber = sectionNUmber;
         this.minutesPerUser = minutesPerUser;
+        this.activeSection = activeSection;
     }
 
     public int getSectionNUmber() {
@@ -33,6 +35,14 @@ public class ActiveDebateSections {
 
     public void setMinutesPerUser(int minutesPerUser) {
         this.minutesPerUser = minutesPerUser;
+    }
+
+    public boolean isActiveSection() {
+        return activeSection;
+    }
+
+    public void setActiveSection(boolean isActiveSection) {
+        this.activeSection = isActiveSection;
     }
     
     

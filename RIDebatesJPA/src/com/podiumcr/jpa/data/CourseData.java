@@ -17,15 +17,6 @@ public class CourseData {
 		this.em = em;
 	}
 
-/*	@NamedQueries(value = {
-			@NamedQuery(name= "Course.findAll", query = "SELECT c FROM Course c"),
-			@NamedQuery(name= "Course.findById", query = "SELECT c FROM Course c WHERE c.idCourse = :id"),
-			@NamedQuery(name= "Course.findByProfessor", query = "SELECT c FROM Course c WHERE c.professor = :professor"),
-			@NamedQuery(name= "Course.findByName", query = "SELECT c FROM Course c WHERE c.name = :name"),
-			@NamedQuery(name= "Course.findByCourseCode", query = "SELECT c FROM Course c WHERE c.courseCode = :courseCode"),
-			@NamedQuery(name= "Course.findByQuarterYear", query = "SELECT c FROM Course c WHERE c.curseQuarter = :curseQuarter AND c.curseYear = :curseYear")
-	})*/
-	
 	public List<Course> getAll() {
 
 		List<Course> returnedList = new ArrayList<>();
@@ -81,4 +72,49 @@ public class CourseData {
 
 		return returnedList;
 	}
+	
+	public boolean persistDebate(Course course) {
+
+		boolean returned = false;
+
+		try {
+
+			em.getTransaction().begin();
+			em.persist(course);
+			em.getTransaction().commit();
+
+			returned = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			em.getTransaction().rollback();
+			returned = false;
+		}
+
+		return returned;
+
+	}
+
+	public boolean removeDebate(Course course) {
+
+		boolean returned = false;
+
+		try {
+
+			em.getTransaction().begin();
+			em.remove(course);
+			em.getTransaction().commit();
+
+			returned = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			em.getTransaction().rollback();
+			returned = false;
+		}
+
+		return returned;
+
+	}
+	
 }

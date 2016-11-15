@@ -1,6 +1,8 @@
 package com.podiumcr.jpa.data;
 
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -35,14 +37,74 @@ public class DebateData {
 	public DebateData(EntityManager em) {
 		this.em = em;
 	}
-
+	
 	public List<Debate> getDebates() {
 
 		List<Debate> returnedList = new ArrayList<>();
 
+		//Date end = cal.getTime();
 		try {
 
 			TypedQuery<Debate> getall = em.createNamedQuery("Debate.findAll", Debate.class);
+			List<Debate> listaDebate = getall.getResultList();
+
+			returnedList = listaDebate;
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		return returnedList;
+	}
+	
+
+	public List<Debate> getActualDebates() {
+
+		List<Debate> returnedList = new ArrayList<>();
+		Calendar calend = Calendar.getInstance();
+		calend.set(Calendar.YEAR, 2100);
+		calend.set(Calendar.MONTH, 11); // 11 = december
+		calend.set(Calendar.DAY_OF_MONTH, 31); // new years eve
+		Calendar calstart = Calendar.getInstance();
+		calstart.set(Calendar.HOUR_OF_DAY, 1);
+
+
+		//Date end = cal.getTime();
+		try {
+
+			TypedQuery<Debate> getall = em.createNamedQuery("Debate.findByDate", Debate.class);
+			getall.setParameter("startDate",calstart.getTime());
+			getall.setParameter("endDate", calend.getTime());
+			List<Debate> listaDebate = getall.getResultList();
+
+			returnedList = listaDebate;
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		return returnedList;
+	}
+	
+	public List<Debate> getHistoryDebates() {
+
+		List<Debate> returnedList = new ArrayList<>();
+		Calendar calend = Calendar.getInstance();
+		calend.set(Calendar.YEAR, 2015);
+		calend.set(Calendar.MONTH, 11); // 11 = december
+		calend.set(Calendar.DAY_OF_MONTH, 31); // new years eve
+		Calendar calstart = Calendar.getInstance();
+		calstart.set(Calendar.HOUR_OF_DAY, 1);
+
+
+		//Date end = cal.getTime();
+		try {
+
+			TypedQuery<Debate> getall = em.createNamedQuery("Debate.findByDate", Debate.class);
+			getall.setParameter("startDate", calend.getTime());
+			getall.setParameter("endDate", calstart.getTime());
 			List<Debate> listaDebate = getall.getResultList();
 
 			returnedList = listaDebate;

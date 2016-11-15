@@ -21,6 +21,7 @@ public class DebateSection implements Serializable {
 	private int idDebateSection;
 	private int section;
 	private int minutesPerUser;
+	private boolean isActiveSection;
 	private DebateType debatetype;
 
 	public DebateSection() {
@@ -33,6 +34,8 @@ public class DebateSection implements Serializable {
 		this.section = section;
 		this.minutesPerUser = minutesPerUser;
 		this.debatetype = debatetype;
+		this.isActiveSection = false;
+		
 	}
 
 
@@ -56,9 +59,19 @@ public class DebateSection implements Serializable {
 		this.section = sections;
 	}
 
+	
+	public boolean getIsActiveSection() {
+		return isActiveSection;
+	}
 
-	
-	
+
+
+	public void setIsActiveSection(boolean isActiveSection) {
+		this.isActiveSection = isActiveSection;
+	}
+
+
+
 	public int getMinutesPerUser() {
 		return minutesPerUser;
 	}

@@ -1,5 +1,6 @@
 package testers;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -29,7 +30,7 @@ public class Tester2 {
 				//User u = ud.getUserByEmail("@gmail");
 				List<User> listaUsuarios= ud.getUsers();			
 			    List<Debate> listaDebates = dd.getDebates();	
-			   /* User u = new User("soler@gmail","123", "San jose", "Jorge", "Soler", "Jimenez", 321, false, "7001-7001");
+			    /* User u = new User("soler@gmail","123", "San jose", "Jorge", "Soler", "Jimenez", 321, false, "7001-7001");
 			    if(ud.registerUser(u)){
 			    	System.out.println("Registrado" );
 			    }else{
@@ -41,12 +42,12 @@ public class Tester2 {
 				em.getTransaction().commit();
 				entityManagerFactory.close();*/
 			    
-			    
+			    /*  
 			    List<ConfirmedUser> cu = cud.getDebatesFromUser(ud.getUserByEmail("@gmail"));
 			    
 			    for (ConfirmedUser confirmedUser : cu) {
 			    	 System.out.println("Usuarios " + confirmedUser.getUser().getName() +" ---- Ligado al debate " + confirmedUser.getDebate().getName() + " --- ROL " + confirmedUser.getRole().getName() );
-				}
+				}*/
 //			    System.out.println("Lista-- Usuarios" );
 //				for (User user : listaUsuarios) {
 //					System.out.println("Nombre: " + user.getName() + " ---- Email: " + user.getEmail() + "------ Password: " + user.getPassword());
@@ -56,12 +57,18 @@ public class Tester2 {
 //					}
 //					
 //				}
-//				
-//				for (Debate debate : listaDebates) {
-//				System.out.println("Lista-- Debates: ");
-//					System.out.println("Nombre: " + debate.getName() + " ---- Fecha: " + debate.getStartingDate() + "------ Tipo: " + debate.getDebateType().getName());
-//				
-//				}
+			    System.out.println("FECHA: "+Calendar.getInstance().getTime());
+				for (Debate debate : listaDebates) {
+				System.out.println("Lista-- Debates: ");
+				try {
+					System.out.println("Nombre: " + debate.getName() + " ---- Fecha: " + debate.getStartingDate() + "------ Tipo: " + debate.getDebateType().getName());
+				
+					
+				} catch (NullPointerException e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+				}
 //				
 				em.close();
 				entityManagerFactory.close();
