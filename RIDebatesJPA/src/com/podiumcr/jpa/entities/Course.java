@@ -30,8 +30,8 @@ public class Course implements Serializable {
 	private int idCourse;
 	private String name;
 	private String courseCode;
-	private int curseQuarter;
-	private int curseYear;
+	private int courseQuarter;
+	private int courseYear;
 	private List<User> users;
 	private Professor professor;
 
@@ -42,8 +42,8 @@ public class Course implements Serializable {
 		CodeGenerator cd = new CodeGenerator();
 		this.name = name;
 		this.courseCode = cd.getToken(5);
-		this.curseQuarter = curseQuarter;
-		this.curseYear = curseYear;
+		this.courseQuarter = curseQuarter;
+		this.courseYear = curseYear;
 	}
 
 	@Id
@@ -73,20 +73,20 @@ public class Course implements Serializable {
 		this.courseCode = courseCode;
 	}
 	
-	public int getCurseQuarter() {
-		return curseQuarter;
+	public int getCourseQuarter() {
+		return courseQuarter;
 	}
 
-	public void setCurseQuarter(int curseQuarter) {
-		this.curseQuarter = curseQuarter;
+	public void setCourseQuarter(int curseQuarter) {
+		this.courseQuarter = curseQuarter;
 	}
 
-	public int getCurseYear() {
-		return curseYear;
+	public int getCourseYear() {
+		return courseYear;
 	}
 
-	public void setCurseYear(int curseYear) {
-		this.curseYear = curseYear;
+	public void setCourseYear(int curseYear) {
+		this.courseYear = curseYear;
 	}
 
 	@OneToMany (mappedBy="course", targetEntity= UserCourse.class, fetch = FetchType.LAZY)
