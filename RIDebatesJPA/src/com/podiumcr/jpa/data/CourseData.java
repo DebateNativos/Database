@@ -73,7 +73,7 @@ public class CourseData {
 		return returnedList;
 	}
 	
-	public boolean persistDebate(Course course) {
+	public boolean persistCourse(Course course) {
 
 		boolean returned = false;
 
@@ -95,7 +95,7 @@ public class CourseData {
 
 	}
 
-	public boolean removeDebate(Course course) {
+	public boolean removeCourse(Course course) {
 
 		boolean returned = false;
 

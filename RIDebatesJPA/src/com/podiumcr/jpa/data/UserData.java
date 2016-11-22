@@ -12,7 +12,7 @@ import com.podiumcr.jpa.entities.User;
 import com.podiumcr.jpa.resources.SendEmail;
 
 public class UserData {
-	
+
 	SendEmail se = new SendEmail();
 	private EntityManager em;
 
@@ -58,30 +58,83 @@ public class UserData {
 	}
 
 	public boolean registerUser(User user) {
-		
+
 		boolean returned = false;
 
 		try {
 
-				em.getTransaction().begin();
-				em.persist(user);
-				em.getTransaction().commit();
-				try{
+			em.getTransaction().begin();
+			em.persist(user);
+			em.getTransaction().commit();
+			try {
 				se.SendWelcomeEmail(user);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				returned = true;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			returned = true;
 
-				
 		} catch (Exception e) {
 			e.printStackTrace();
 			em.getTransaction().rollback();
-			returned=false;
+			returned = false;
 		}
 
 		return returned;
 
+	}
+
+	public boolean updateUser(User user) {
+
+		boolean returned = false;
+
+		try {
+
+			User searchUser = this.getUserByToken(user.getIdToken());
+			searchUser.setName(user.getName());
+			searchUser.setEmail(user.getEmail());
+			searchUser.setLastName(user.getLastName());
+			searchUser.setLastName2(user.getLastName2());
+			searchUser.setIdUniversity(user.getIdUniversity());
+			searchUser.setPassword(user.getPassword());
+			searchUser.setAddress(user.getAddress());
+			searchUser.setPhone(user.getPhone());
+					
+			em.getTransaction().begin();
+			em.persist(searchUser);
+			em.getTransaction().commit();
+			try {
+				se.SendInformationChangedEmail(user);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			returned = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			em.getTransaction().rollback();
+			returned = false;
+		}
+
+		return returned;
+
+	}
+
+	public User getUserByToken(String token) {
+
+		User returnedPerson = new User();
+
+		try {
+
+			TypedQuery<User> query = em.createNamedQuery("User.findByToken", User.class);
+			query.setParameter("token", token);
+			returnedPerson = query.getSingleResult();
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		return returnedPerson;
 	}
 
 }

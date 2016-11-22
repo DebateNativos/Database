@@ -30,13 +30,13 @@ public class Tester2 {
 				//User u = ud.getUserByEmail("@gmail");
 				List<User> listaUsuarios= ud.getUsers();			
 			    List<Debate> listaDebates = dd.getDebates();	
-			    /* User u = new User("soler@gmail","123", "San jose", "Jorge", "Soler", "Jimenez", 321, false, "7001-7001");
+			     User u = new User("latinapodiumcr@gmail.com","123", "San jose", "wdqf", "TESTER", "TESTERINO", 321, false, "7001-7001");
 			    if(ud.registerUser(u)){
 			    	System.out.println("Registrado" );
 			    }else{
 			    	
 			    	System.out.println("NO Registrado" );
-			    }*/
+			    }
 				/*TypedQuery<ConfirmedUser> getallCU = em.createNamedQuery("ConfirmedUser.findAll", ConfirmedUser.class);
 				List<ConfirmedUser> cu = getallCU.getResultList();
 				em.getTransaction().commit();
@@ -57,7 +57,7 @@ public class Tester2 {
 //					}
 //					
 //				}
-			    System.out.println("FECHA: "+Calendar.getInstance().getTime());
+			 /*   System.out.println("FECHA: "+Calendar.getInstance().getTime());
 				for (Debate debate : listaDebates) {
 				System.out.println("Lista-- Debates: ");
 				try {
@@ -70,7 +70,7 @@ public class Tester2 {
 				}
 				}
 //				
-				em.close();
+*/				em.close();
 				entityManagerFactory.close();
 				
 				//System.out.println("Usuario encontrado: " );

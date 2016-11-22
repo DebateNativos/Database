@@ -30,6 +30,8 @@ public class Course implements Serializable {
 	private int idCourse;
 	private String name;
 	private String courseCode;
+	private String classroom;
+	private String schedule;
 	private int curseQuarter;
 	private int curseYear;
 	private List<User> users;
@@ -38,12 +40,14 @@ public class Course implements Serializable {
 	public Course() {
 	}
 
-	public Course(String name, int curseQuarter, int curseYear) {
+	public Course(String name, int curseQuarter, int curseYear, String classroom, String schedule) {
 		CodeGenerator cd = new CodeGenerator();
 		this.name = name;
 		this.courseCode = cd.getToken(5);
 		this.curseQuarter = curseQuarter;
 		this.curseYear = curseYear;
+		this.classroom = classroom;
+		this.schedule = schedule;
 	}
 
 	@Id
@@ -108,4 +112,22 @@ public class Course implements Serializable {
 		this.professor = professor;
 	}
 
+	public String getClassroom() {
+		return classroom;
+	}
+
+	public void setClassroom(String classroom) {
+		this.classroom = classroom;
+	}
+
+	public String getSchedule() {
+		return schedule;
+	}
+
+	public void setSchedule(String schedule) {
+		this.schedule = schedule;
+	}
+
+	
+	
 }

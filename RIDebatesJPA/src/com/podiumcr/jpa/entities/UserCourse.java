@@ -14,8 +14,8 @@ import com.podiumcr.jpa.entities.User;
 @Table(name = "user_course")
 @NamedQueries(value = {
 		@NamedQuery(name = "UserCourse.findAll", query = "SELECT uc FROM UserCourse uc"),
-		@NamedQuery(name= "UserCourse.findById", query = "SELECT uc FROM UserCourse uc WHERE uc.user = :user"),
-		@NamedQuery(name= "UserCourse.findByUser", query = "SELECT uc FROM UserCourse uc WHERE uc.course = :course")
+		@NamedQuery(name= "UserCourse.findCoursesByUser", query = "SELECT uc FROM UserCourse uc WHERE uc.user = :user"),
+		@NamedQuery(name= "UserCourse.findByUsersByCourse", query = "SELECT uc FROM UserCourse uc WHERE uc.course = :course")
 })
 public class UserCourse implements Serializable {
 

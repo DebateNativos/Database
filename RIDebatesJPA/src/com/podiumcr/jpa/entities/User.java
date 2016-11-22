@@ -21,7 +21,8 @@ import java.util.List;
 		@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
 		@NamedQuery(name= "User.findById", query = "SELECT u FROM User u WHERE u.idUsers = :id"),
 		@NamedQuery(name= "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
-		@NamedQuery(name= "User.login", query = "SELECT u FROM User u WHERE u.email = :email AND u.password = :password")
+		@NamedQuery(name= "User.login", query = "SELECT u FROM User u WHERE u.email = :email AND u.password = :password"),
+		@NamedQuery(name= "User.findByToken", query = "SELECT u FROM User u WHERE u.idToken = :token")
 })
 
 public class User implements Serializable {
