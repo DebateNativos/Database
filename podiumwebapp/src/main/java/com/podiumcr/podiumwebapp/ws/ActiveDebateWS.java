@@ -120,7 +120,7 @@ public class ActiveDebateWS {
         try {
             for (DebateSection ds : dsd.getAllBydebate(dd.getDebateById(id).getDebateType())) {
                 ActiveDebateSections ads = new ActiveDebateSections(ds.getSections(), ds.getMinutesPerUser(), ds.getIsActiveSection());
-                sectionsList.add(ads);
+                sectionsList.add(ads);              
             }
             em.close();
         } catch (Exception e) {
