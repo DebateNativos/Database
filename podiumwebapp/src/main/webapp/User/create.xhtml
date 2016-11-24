@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:coco="http://xmlns.jcp.org/jsf/composite/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:composition>
+        <p:dialog id="UserDlg" widgetVar="UserDialog" modal="true" appendTo="@(body)" resizable="false" draggable="false">
+            <h:form id="UserForm">
+                <p:panelGrid  columns="2">
+                    
+                    <!-- LLenar con la info que jala-->
+                    <f:facet name="header">
+                        <p:row>
+                            <p:column colspan="7">Nuevo usuario</p:column>
+                        </p:row>
+                    </f:facet>
+                    
+            <p:outputLabel value="Nombre" for="firstName" />
+            <p:inputText id="firstName" value="#{userController.name}"  required="true" size="45" maxlength="45"/>
+
+            <p:outputLabel value="Primer apellido" for="lastName" />
+            <p:inputText id="lastName" value="#{userController.lastname}"  required="true"  size="45" maxlength="45"/>
+
+            <p:outputLabel value="Segundo apellido" for="secondLastName" />
+            <p:inputText id="secondLastName" value="#{userController.secondLastName}" title="" required="true"  size="45" maxlength="45"/>
+
+            <p:outputLabel value="Fotografía" for="picture" />
+            <p:inputTextarea rows="4" autoResize="false" class="full-width" id="picture" value="#{userController.photo}" />
+
+            <p:outputLabel value="Correo electrónico" for="email" />
+            <p:inputText id="email" value="#{userController.email}" title="#{messages.CreateStaffTitle_email}" size="50" maxlength="50"/>
+
+            <p:outputLabel value="Dirección" for="dirección" />
+            <p:inputText id="dirección" value="#{userController.address}" title="#{messages.CreateStaffTitle_address}" required="true" requiredMessage="#{messages.CreateStaffRequiredMessage_address}" size="45" maxlength="45"/>
+
+            <p:outputLabel value="Usuario" for="username" />
+            <p:inputText id="username" value="#{userController.username}" title="#{messages.CreateStaffTitle_username}" required="true" requiredMessage="#{messages.CreateStaffRequiredMessage_username}" size="16" maxlength="16"/>
+
+            <p:outputLabel for="phone" value="Teléfono:" />
+            <p:inputMask id="phone" value="#{userController.phone}" mask="(999) 999-9999"/>
+
+            <p:outputLabel value="Contraseña: " for="password" />
+            <p:password id="password" value="#{userController.password}" feedback="true" />
+
+
+            <p:outputLabel for="Role" value="Role:" />
+            <p:selectOneRadio id="Role" value="#{userController.role}">
+                <f:selectItem itemLabel="Administrador" itemValue="1" />
+                <f:selectItem itemLabel="Profesor" itemValue="2" />
+                <f:selectItem itemLabel="Estudiante" itemValue="3" />
+            </p:selectOneRadio>
+                    
+                    <f:facet name="footer">
+                        <div class="footer-right">
+                            <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="" onclick="PF('ProfileDialog').hide()" immediate="true" onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()"/>
+                        </div>
+                    </f:facet>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+            
+
+            <!--<p:commandButton value="Guardar" id="nonAjax" actionListener="" ajax="false" />
+            <p:commandButton value="Cancelar" id="nonAjax" actionListener="" ajax="false" />-->
+
+
+</html>
+

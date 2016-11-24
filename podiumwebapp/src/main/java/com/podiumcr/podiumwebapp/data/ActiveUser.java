@@ -5,13 +5,15 @@
  */
 package com.podiumcr.podiumwebapp.data;
 
+import com.podiumcr.jpa.entities.User;
+
 /**
  *
  * @author Soler
  */
 public class ActiveUser {
 
-    private int idUsers;
+    private long idUsers;
     private String name;
     private String lastName;
     private String lastName2;
@@ -25,7 +27,7 @@ public class ActiveUser {
 
     }
 
-    public ActiveUser(int idUsers, String name, String lastName, String lastName2, String email, String phone, String idToken, int idUniversity, String address) {
+    public ActiveUser(long idUsers, String name, String lastName, String lastName2, String email, String phone, String idToken, int idUniversity, String address) {
         this.idUsers = idUsers;
         this.name = name;
         this.lastName = lastName;
@@ -37,11 +39,23 @@ public class ActiveUser {
         this.address = address;
     }
     
-    public int getIdUsers() {
+    public ActiveUser(User u){
+        this.idUsers = u.getIdUsers();
+        this.name = u.getName();
+        this.lastName = u.getLastName();
+        this.lastName2 = u.getLastName2();
+        this.email = u.getEmail();
+        this.phone = u.getPhone();
+        this.idToken = u.getIdToken();
+        this.idUniversity = u.getIdUniversity();
+        this.address = u.getAddress();
+    }
+    
+    public long getIdUsers() {
         return idUsers;
     }
 
-    public void setIdUsers(int idUsers) {
+    public void setIdUsers(long idUsers) {
         this.idUsers = idUsers;
     }
 

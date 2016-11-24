@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      >
+    <!--Bootfaces-->
+    <h:head>
+
+        <title>Inicio de sesión </title>
+    </h:head>
+    <h:body style="background-image:url(#{resource['images/Blur2.png']})">
+        <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+        <h:form id="loginForm">
+
+            <b:row>
+                <b:column medium-screen="4">
+                </b:column>
+                <b:column medium-screen="6" >
+                    <b:image library="images" name="logo-latina-2015.png" tooltip="Universidad Latina" style="padding-top:25%;display:block;margin-left: 10%; margin-left: 10%;"/>
+                </b:column> 
+            </b:row>
+
+            <b:row style="border-collapse: separate; border-spacing:  5px;">
+                <b:column medium-screen="4"> </b:column>
+
+                <b:column medium-screen="4">
+                    <p:inputText placeholder="Correo electrónico" value="#{login.email}" id="username" style="width:100%; padding: 2%;" required="true" />
+
+                </b:column>
+                <b:column medium-screen="6" style-class="message">
+
+                </b:column>
+            </b:row>
+
+            <b:row style="border-collapse: separate; border-spacing:  5px;">
+                <b:column medium-screen="4">
+
+                </b:column>
+                <b:column medium-screen="4">
+                    <p:password placeholder="Contraseña" id="password1" value="#{login.password}" style="width:100%; padding: 2%;" required="true"  />
+
+                </b:column>
+                <b:column medium-screen="6" styleClass="message">
+
+                </b:column>
+            </b:row>
+            <b:row style="border-collapse: separate; border-spacing:  5px;">
+                <b:column medium-screen="2" >
+
+                </b:column>
+                <b:column span="2" offset="2">
+                    <p:commandButton styleClass="ui-priority-primary" value="Ingresar" update="growl" actionListener="#{login.loginSession}"
+                                     oncomplete="handleLoginRequest(xhr, status, args)" style="width:100%; padding: 5%;"/>
+
+                </b:column>
+                <b:column span="2">
+                    <b:button  value="Olvide la contraseña"  onclick="" look="primary" style="width:100%; padding: 5%;" />
+                </b:column>
+
+            </b:row>
+            <b:row>
+                <b:column span="2">
+                    
+                </b:column>
+            </b:row>
+            <b:row style="height: 80%"></b:row>
+        </h:form>
+        <script type="text/javascript">
+            function handleLoginRequest(xhr, status, args) {
+                if (args.validationFailed || !args.loggedIn) {
+                    PF('dlg').jq.effect("shake", {times: 5}, 100);
+                } else {
+                    PF('dlg').hide();
+                    $('#loginLink').fadeOut();
+                }
+            }
+        </script>
+    </h:body>
+</html>
+

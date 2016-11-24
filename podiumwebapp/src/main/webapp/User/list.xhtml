@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:coco="http://xmlns.jcp.org/jsf/composite/ui">
+
+    <h:form id="UserListForm" class="form-height">
+
+        <p:contextMenu id="UserDataTableContextMenu" for="datalist:datalist">  
+            <p:menuitem value="Crear" onclick="document.getElementById('UserfListForm:datalist:datalist:createButton').click();" icon="ui-icon-plus"/>
+            <p:menuitem value="Ver" onclick="document.getElementById('UserListForm:datalist:datalist:viewButton').click();" icon="ui-icon-search"/>
+            <p:menuitem value="Editar" onclick="document.getElementById('UserListForm:datalist:datalist:editButton').click();" icon="ui-icon-pencil"/>
+            <p:menuitem value="Borrar" onclick="document.getElementById('UserListForm:datalist:datalist:deleteButton').click();" icon="ui-icon-trash"/>
+            <p:separator/>
+          <p:menuitem value="Nombre" icon="ui-icon-search"/>  
+            <p:menuitem value="Apellido" icon="ui-icon-search"/>  
+            <p:menuitem value="Segundo apellido" icon="ui-icon-search"/>  
+            <p:menuitem value="Fotografía" icon="ui-icon-search"   />  
+            <p:menuitem value="Correo" icon="ui-icon-search"/>
+        </p:contextMenu>
+
+        <coco:datatable id="datalist"
+                        >
+
+            <p:ajax event="colResize" listener="#{staffController.onResize}"/>
+
+            <f:facet name="header">
+                <table style="width: 100%;">
+                    <tr style="width: 100%">
+                        <td style="width: 20%" class="no-border">
+
+                        </td>
+                        <td style="width: 60%" class="no-border">
+                            
+
+                        </td>
+                        <td style="width: 20%" class="no-border">
+                            
+                        </td>
+                    </tr>
+                </table>
+                <div class="row row-nomargin">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                        <h:outputText value="#{messages.ListStaffTitle}"/>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="pull-right">
+                            <p:columnToggler datasource="datalist" trigger="toggler" >
+                                
+                            </p:columnToggler>
+                            <p:commandButton id="toggler" type="button" value="Columns" class="btn-primary" icon="fa fa-list"/>
+                            <p:commandButton value="Save"  styleClass="btn-success" icon="fa fa-edit" update=":growl,@this"/>
+                        </div>
+                    </div>
+                </div>
+            </f:facet>
+
+         
+            <p:column headerText="Nombre">
+            <h:outputText value="#{userController.name}" />
+            </p:column>
+            <p:column headerText="Apellido">
+            <h:outputText value="#{userController.firstName}" />
+            </p:column>
+            <p:column headerText="Segundo apellido">
+            <h:outputText value="#{userController.lastName}" />
+            </p:column>
+            <p:column headerText="Fotografía">
+            <h:outputText value="#{userController.picture}" />
+            </p:column>
+            <p:column headerText="Correo electrónico">
+            <h:outputText value="#{userController.email}" />
+            </p:column>
+            <p:column headerText="Dirección"  >
+            <h:outputText  value="#{userController.address}" />
+            </p:column>
+            <p:column headerText="Usuario" >
+            <h:outputText id="username" value="#{userController.username}"/>
+            </p:column>
+            <p:column  headerText="Teléfono:" >
+            <h:outputText id="phone" value="#{userController.phone}"/>
+            </p:column>
+            <p:column headerText="Contraseña: " >
+            <h:outputText id="password" value="#{userController.password}" />
+            </p:column>
+
+
+            <f:facet name="{buttons}">
+                <div class="footer-left">
+           
+                    <p:commandButton id="createButton" styleClass="btn-primary" icon="fa fa-plus"   value="Crear"  update=":UserCreateForm:UserCreateForm" onclick="PF('UserCreateDialog').show()" onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()"> 
+                    <p:confirm header="Usuario nuevo"/>
+                    </p:commandButton>
+                    <p:commandButton id="viewButton"   styleClass="btn-primary" icon="fa fa-search" value="Ver" update=":UserViewForm:UserViewForm" oncomplete="PF('UserViewDialog').show()" disabled="#{empty staffController.selected}" onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()"/>
+                    <p:commandButton id="editButton"   styleClass="btn-primary" icon="fa fa-pencil" value="Editar" update=":UserEditForm:UserEditForm" oncomplete="PF('UserEditDialog').show()" disabled="#{empty staffController.selected}" onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()"/>
+                    <p:commandButton id="deleteButton" styleClass="btn-primary" icon="fa fa-trash"  value="Borrar" actionListener="#{staffController.delete}" update=":growl,datalist" disabled="#{empty staffController.selected}" onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()">
+                        <p:confirm header="Confirmación" message="¿Desea borrar el registro?" icon="fa fa-warning"></p:confirm>
+                    </p:commandButton>
+                </div>
+            </f:facet>
+
+        </coco:datatable>
+
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

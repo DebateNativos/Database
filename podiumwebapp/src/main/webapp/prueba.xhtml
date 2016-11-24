@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+       <h:form id="CourseTableForm">
+                            <p:dataTable id="dataList" var="course" value="#{courseView.courses}"  selectionMode="single" widgetVar="dataTable" emptyMessage="No existe"  style="display:block; font: serif; font-size: 8px;  "
+                                         class="form-height" reflow="true" rows="5" paginator="true">
+
+                                <f:facet name="header" >
+                                    <p:commandButton id="toggler" type="button"  icon="ui-icon-calculator" style="float:right; width: 10px; height: 10px;" class="btn-primary"  />
+                                    <p:columnToggler datasource="dataList" trigger="toggler" />
+                                    <h:outputText value="Cursos"/>
+                                </f:facet>
+                                <p:column headerText="Codigo" sortBy="#{course.code}" filterBy="#{course.code}"   filterMatchMode="contains" style=" height: 2%;">
+                                    <h:outputText value="#{course.code}" />
+                                </p:column>
+
+                                <p:column headerText="Cuatrimeste" sortBy="#{course.term}" filterBy="#{course.term}"   filterMatchMode="contains">
+                                    <h:outputText value="#{course.term}" />
+                                </p:column>
+
+                                <p:column headerText="Nombre" sortBy="#{course.name}" filterBy="#{course.name}"   filterMatchMode="contains" >
+                                    <h:outputText value="#{course.name}" />
+                                </p:column>
+
+                                <p:column headerText="Año" sortBy="#{course.year}" filterBy="#{course.year}"  filterMatchMode="contains">
+                                    <h:outputText value="#{course.year}" />
+                                </p:column>
+
+                                <p:column headerText="Profesor" sortBy="" filterBy=""   filterMatchMode="contains">
+                                    <h:outputText value="#{course.year}" />
+                                </p:column>
+
+                                
+
+                               
+
+                                <f:facet name="footer">
+
+                                    <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Nuevo" type="button" onclick="PF('CourseCreateDialog').show();" />
+                                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar" type="button" onclick="PF('CourseEditDialog').show();" />
+                                    
+                                    <p:commandButton id="deleteButton" styleClass="btn-danger" icon="fa fa-trash"  value="Borrar"  onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()">
+                                    <p:confirm header="Confirmación" message="¿Desea borrar el registro?" icon="fa fa-warning"/>
+                                    </p:commandButton>
+                                    <!--<p:commandButton process="user" update=":UserTableForm:userInfoDetail" icon="ui-icon-search" value="Ver" oncomplete="PF('userInfoDialog').show()" />-->
+                                </f:facet>
+                            </p:dataTable>
+           
+            </h:form>
+    </h:body>
+</html>
+
