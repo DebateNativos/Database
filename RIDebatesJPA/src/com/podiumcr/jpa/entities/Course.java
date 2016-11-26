@@ -30,20 +30,24 @@ public class Course implements Serializable {
 	private int idCourse;
 	private String name;
 	private String courseCode;
-	private int courseQuarter;
-	private int courseYear;
+	private String classroom;
+	private String schedule;
+	private int curseQuarter;
+	private int curseYear;
 	private List<User> users;
 	private Professor professor;
 
 	public Course() {
 	}
 
-	public Course(String name, int curseQuarter, int curseYear) {
+	public Course(String name, int curseQuarter, int curseYear, String classroom, String schedule) {
 		CodeGenerator cd = new CodeGenerator();
 		this.name = name;
 		this.courseCode = cd.getToken(5);
-		this.courseQuarter = curseQuarter;
-		this.courseYear = curseYear;
+		this.curseQuarter = curseQuarter;
+		this.curseYear = curseYear;
+		this.classroom = classroom;
+		this.schedule = schedule;
 	}
 
 	@Id
@@ -73,20 +77,20 @@ public class Course implements Serializable {
 		this.courseCode = courseCode;
 	}
 	
-	public int getCourseQuarter() {
-		return courseQuarter;
+	public int getCurseQuarter() {
+		return curseQuarter;
 	}
 
-	public void setCourseQuarter(int curseQuarter) {
-		this.courseQuarter = curseQuarter;
+	public void setCurseQuarter(int curseQuarter) {
+		this.curseQuarter = curseQuarter;
 	}
 
-	public int getCourseYear() {
-		return courseYear;
+	public int getCurseYear() {
+		return curseYear;
 	}
 
-	public void setCourseYear(int curseYear) {
-		this.courseYear = curseYear;
+	public void setCurseYear(int curseYear) {
+		this.curseYear = curseYear;
 	}
 
 	@OneToMany (mappedBy="course", targetEntity= UserCourse.class, fetch = FetchType.LAZY)
@@ -108,4 +112,22 @@ public class Course implements Serializable {
 		this.professor = professor;
 	}
 
+	public String getClassroom() {
+		return classroom;
+	}
+
+	public void setClassroom(String classroom) {
+		this.classroom = classroom;
+	}
+
+	public String getSchedule() {
+		return schedule;
+	}
+
+	public void setSchedule(String schedule) {
+		this.schedule = schedule;
+	}
+
+	
+	
 }

@@ -32,11 +32,24 @@ public class Debate implements Serializable {
 	private DebateType debateType;
 	private Date startingDate;
 	private boolean isActive;
+	private Course course1;
+	private Course course2;
 	private List<User> users;
 	
 	public Debate() {
 	}
 
+	public Debate(String name, Date createdDate, DebateType debateType, Date startingDate,
+			boolean isActive , Course course1, Course course2) {
+		this.name = name;
+		this.createdDate = createdDate;
+		this.debateType = debateType;
+		this.startingDate = startingDate;
+		this.isActive = isActive;
+		this.course1 = course1;
+		this.course2 = course2;
+	}
+	
 	public Debate(String name, Date createdDate, DebateType debateType, Date startingDate,
 			boolean isActive) {
 		this.name = name;
@@ -44,6 +57,7 @@ public class Debate implements Serializable {
 		this.debateType = debateType;
 		this.startingDate = startingDate;
 		this.isActive = isActive;
+
 	}
 
 	@Id
@@ -109,5 +123,24 @@ public class Debate implements Serializable {
 		this.users = users;
 	}
 
+	@OneToOne
+	@JoinColumn(name="Course_1")
+	public Course getCourse1() {
+		return course1;
+	}
 
+	public void setCourse1(Course course1) {
+		this.course1 = course1;
+	}
+	
+	@OneToOne
+	@JoinColumn(name="Course_2")
+	public Course getCourse2() {
+		return course2;
+	}
+
+	public void setCourse2(Course course2) {
+		this.course2 = course2;
+	}
+	
 }
