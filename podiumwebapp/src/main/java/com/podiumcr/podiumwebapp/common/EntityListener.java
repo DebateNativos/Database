@@ -49,7 +49,7 @@ public class EntityListener implements ServletContextListener, ServletRequestLis
     public void requestInitialized(ServletRequestEvent sre) {
         
        if (em == null) {
-             EntityListener.em = entityManagerFactory.createEntityManager(); 
+             this.em = entityManagerFactory.createEntityManager(); 
         }
     }
     /*

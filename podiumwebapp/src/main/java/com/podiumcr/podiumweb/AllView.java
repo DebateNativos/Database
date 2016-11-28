@@ -16,13 +16,13 @@ import com.podiumcr.jpa.entities.User;
 import com.podiumcr.jpa.entities.Debate;
 import com.podiumcr.jpa.entities.DebateType;
 import com.podiumcr.jpa.entities.Professor;
-import static com.podiumcr.podiumwebapp.common.EntityListener.em;
+import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFactory;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
-
+import javax.persistence.EntityManager;
 
 /**
  *
@@ -31,43 +31,29 @@ import javax.faces.view.ViewScoped;
 @Named(value = "allView")
 @ViewScoped
 public class AllView implements Serializable {
-private List<User> user;
 
-private List<Debate> debate;
-private List<Course> course;
-private List<DebateType> type;
+    private List<User> user;
+    private List<Debate> debate;
+    private List<Course> course;
+    private List<DebateType> type;
 
-    public List<Course> getCourse() {
-        return course;
-    }
-
-    public void setCourse(List<Course> course) {
-        this.course = course;
-    }
-
-
-
-
- 
-   DebateData dDta = new DebateData(em);
-   UserData data = new UserData(em);
-   CourseData cData = new CourseData(em);  
-   DebateTypeData typedata = new DebateTypeData(em);
-
-
-@PostConstruct
+    @PostConstruct
     public void init() {
-        user = data.getUsers();      
+        EntityManager em = entityManagerFactory.createEntityManager();
+        DebateData dDta = new DebateData(em);
+        UserData data = new UserData(em);
+        CourseData cData = new CourseData(em);
+        DebateTypeData typedata = new DebateTypeData(em);
+        user = data.getUsers();
         debate = dDta.getDebates();
         course = cData.getAll();
         type = typedata.getAll();
+        em.close();
     }
 
     public List<User> getUser() {
         return user;
     }
-
-   
 
     public List<Debate> getDebate() {
         return debate;
@@ -81,7 +67,15 @@ private List<DebateType> type;
         this.type = type;
     }
 
-  public String roleSelected(User a) {
+    public List<Course> getCourse() {
+        return course;
+    }
+
+    public void setCourse(List<Course> course) {
+        this.course = course;
+    }
+
+    public String roleSelected(User a) {
         String role = null;
         if (a instanceof Professor) {
             role = "Profesor";
@@ -92,8 +86,6 @@ private List<DebateType> type;
             role = "Estudiante";
         }
         return role;
-}
- 
-    
- 
+    }
+
 }

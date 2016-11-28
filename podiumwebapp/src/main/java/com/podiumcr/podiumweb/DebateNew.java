@@ -8,15 +8,11 @@ package com.podiumcr.podiumweb;
 import com.podiumcr.jpa.data.DebateData;
 import com.podiumcr.jpa.entities.Debate;
 import com.podiumcr.jpa.entities.DebateType;
-import com.podiumcr.jpa.entities.Professor;
-import com.podiumcr.jpa.entities.User;
 import static com.podiumcr.podiumwebapp.common.EntityListener.em;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
-import static javassist.CtMethod.ConstParameter.string;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.context.SessionScoped;
 import org.primefaces.context.RequestContext;
 

@@ -19,7 +19,9 @@ import javax.faces.event.ActionEvent;
 import com.podiumcr.jpa.data.UserData;
 import com.podiumcr.jpa.entities.User;
 import static com.podiumcr.podiumwebapp.common.EntityListener.em;
+import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFactory;
 import java.io.Serializable;
+import javax.persistence.EntityManager;
 
 
 /**
@@ -74,7 +76,8 @@ public class LoginAdmin implements Serializable {
     
  
  public void loginSession(ActionEvent event) {
-     
+        
+        EntityManager em = entityManagerFactory.createEntityManager(); 
         User user = new User(email, password, "", "", "", "", 0, true, email);
         User userVerification = new User();
   
@@ -102,6 +105,7 @@ public class LoginAdmin implements Serializable {
          
         FacesContext.getCurrentInstance().addMessage(null, message);
         context.addCallbackParam("loggedIn", loggedIn);
+        em.close();
     } 
     
  public String userName(){
