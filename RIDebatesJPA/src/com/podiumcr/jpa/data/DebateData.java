@@ -96,7 +96,7 @@ public class DebateData {
 		calend.set(Calendar.MONTH, 11); // 11 = december
 		calend.set(Calendar.DAY_OF_MONTH, 31); // new years eve
 		Calendar calstart = Calendar.getInstance();
-		calstart.set(Calendar.HOUR_OF_DAY, 1);
+		calstart.set(Calendar.HOUR_OF_DAY, 0);
 
 
 		//Date end = cal.getTime();

@@ -10,10 +10,10 @@ package com.podiumcr.podiumwebapp.data;
  * @author Soler
  */
 public class CourseStatus {
-    
+
     private String status;
     private ActiveCourse course;
-
+ 
     public CourseStatus() {
     }
 

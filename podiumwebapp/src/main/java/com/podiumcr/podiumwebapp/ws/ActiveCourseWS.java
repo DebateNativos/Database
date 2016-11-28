@@ -9,7 +9,6 @@ import com.podiumcr.jpa.data.CourseData;
 import com.podiumcr.podiumwebapp.data.ActiveUserCourse;
 import com.podiumcr.jpa.data.UserCourseData;
 import com.podiumcr.jpa.data.UserData;
-import com.podiumcr.jpa.entities.Course;
 import com.podiumcr.jpa.entities.UserCourse;
 import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFactory;
 import com.podiumcr.podiumwebapp.data.ActiveCourse;
@@ -57,18 +56,18 @@ public class ActiveCourseWS {
     public CourseStatus getCourseByCode(@QueryParam("code") String code) {
         EntityManager em = entityManagerFactory.createEntityManager();
         CourseStatus cs = new CourseStatus();
-        CourseData cd = new CourseData(em);   
-        try{
+        CourseData cd = new CourseData(em);
+        try {
             ActiveCourse ac = new ActiveCourse(cd.getCourseByCode(code));
             cs.setStatus("@validCode");
             cs.setCourse(ac);
-        
+
             em.close();
         } catch (Exception e) {
             em.close();
             cs.setStatus("@invalidCode");
         }
-        
+
         return cs;
 
     }
@@ -82,24 +81,35 @@ public class ActiveCourseWS {
         CourseData cd = new CourseData(em);
         UserData ud = new UserData(em);
         UserCourseData ucd = new UserCourseData(em);
-        
+        //Pending reg
+        UserCourse uc = new UserCourse();
+        uc.setCourse(cd.getCourseByCode(code));
+        uc.setUser(ud.getUserByEmail(email));
+        uc.setQualification(0);
+        boolean reg = true;
+
         try {
-            UserCourse uc = new UserCourse();
-            uc.setCourse(cd.getCourseByCode(code));
-            uc.setUser(ud.getUserByEmail(email));
-            uc.setQualification(0);          
-            if (ucd.persistUserCourse(uc)) {
-                cs.setStatus("@validRegistration");
-                 em.close();
-            }else{
-            cs.setStatus("@invalidRegistration");
-             em.close();
-            }                        
+            for (UserCourse ucFromList : ucd.getUserCourses(uc.getUser())) {
+                if (ucFromList.getCourse().equals(uc.getCourse())) {
+                    reg = false;
+                }
+            }
+            if (reg) {
+                if (ucd.persistUserCourse(uc)) {
+                    cs.setStatus("@validRegistration");
+                    cs.setCourse(new ActiveCourse(uc.getCourse()));
+                    em.close();
+                }
+            } else {
+                cs.setStatus("@courseAlreadyRegistrated");
+                em.close();
+            }
+
         } catch (Exception e) {
             em.close();
             cs.setStatus("@invalidRegistration");
         }
-        
+
         return cs;
 
     }

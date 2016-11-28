@@ -23,10 +23,12 @@ public class ActiveCourse {
     private int curseYear;
     private String professor;
 
+
     public ActiveCourse() {
     }
 
     public ActiveCourse(int idCourse, String name, String classroom, String schedule, int curseQuarter, int curseYear, String professor) {
+
         this.idCourse = idCourse;
         this.name = name;
         this.classroom = classroom;
@@ -34,6 +36,7 @@ public class ActiveCourse {
         this.curseQuarter = curseQuarter;
         this.curseYear = curseYear;
         this.professor = professor;
+
     }
 
     public ActiveCourse(Course c) {
@@ -44,6 +47,7 @@ public class ActiveCourse {
         this.curseQuarter = c.getCurseQuarter();
         this.curseYear = c.getCurseYear();
         this.professor = c.getProfessor().getName() + " " + c.getProfessor().getLastName();
+
     }
 
     public int getIdCourse() {
@@ -109,7 +113,6 @@ public class ActiveCourse {
     public void setProfessor(String professor) {
         this.professor = professor;
     }
-    
     
      public void ConvertCourse(Course c) {
         this.idCourse = c.getIdCourse();
