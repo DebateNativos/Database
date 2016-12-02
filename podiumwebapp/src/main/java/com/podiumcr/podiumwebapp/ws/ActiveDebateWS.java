@@ -119,7 +119,7 @@ public class ActiveDebateWS {
         List<ActiveDebateSections> sectionsList = new ArrayList<>();
         try {
             for (DebateSection ds : dsd.getAllBydebate(dd.getDebateById(id).getDebateType())) {
-                ActiveDebateSections ads = new ActiveDebateSections(ds.getSections(), ds.getMinutesPerUser(), ds.getIsActiveSection());
+                ActiveDebateSections ads = new ActiveDebateSections(ds.getSection(), ds.getMinutesPerUser(), ds.getIsActiveSection(), ds.getSectionName());
                 sectionsList.add(ads);              
             }
             em.close();

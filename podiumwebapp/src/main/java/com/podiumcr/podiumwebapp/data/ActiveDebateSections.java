@@ -14,11 +14,13 @@ public class ActiveDebateSections {
     private int sectionNUmber;
     private int minutesPerUser;
     private boolean activeSection;
+    private String name;
 
-    public ActiveDebateSections(int sectionNUmber, int minutesPerUser, boolean activeSection) {
+    public ActiveDebateSections(int sectionNUmber, int minutesPerUser, boolean activeSection, String name) {
         this.sectionNUmber = sectionNUmber;
         this.minutesPerUser = minutesPerUser;
         this.activeSection = activeSection;
+        this.name = name;
     }
 
     public int getSectionNUmber() {
@@ -44,6 +46,14 @@ public class ActiveDebateSections {
     public void setActiveSection(boolean isActiveSection) {
         this.activeSection = isActiveSection;
     }
-    
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+   
     
 }

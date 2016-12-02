@@ -5,6 +5,9 @@
  */
 package com.podiumcr.podiumweb;
 
+import com.podiumcr.jpa.data.CourseData;
+import com.podiumcr.jpa.data.DebateData;
+import com.podiumcr.jpa.data.DebateTypeData;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,31 +17,53 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import org.primefaces.context.RequestContext;
 import javax.faces.event.ActionEvent;
 import com.podiumcr.jpa.data.UserData;
+import com.podiumcr.jpa.entities.Course;
+import com.podiumcr.jpa.entities.Debate;
+import com.podiumcr.jpa.entities.DebateType;
 import com.podiumcr.jpa.entities.User;
-import static com.podiumcr.podiumwebapp.common.EntityListener.em;
 import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFactory;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.EntityManager;
-
+import org.primefaces.context.RequestContext;
 
 /**
  *
  * @author Joss
  */
-@ManagedBean(name="login")
+@ManagedBean(name = "login")
 @SessionScoped
 public class LoginAdmin implements Serializable {
 
-   String email;
-   String password;
-  
-   private UIComponent component;
+    private String email;
+    private String password;
+    private User user;
+    private UIComponent component;
+    private List<Debate> debates;
+    private List<User> users;
+    private List<Course> course;
+
+    public LoginAdmin() {
+    }
+
+    public LoginAdmin(String email, String password, User user) {
+        this.email = email;
+        this.password = password;
+        this.user = user;
+    }
 
     public LoginAdmin(UIComponent component) {
         this.component = component;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public UIComponent getComponent() {
@@ -47,14 +72,6 @@ public class LoginAdmin implements Serializable {
 
     public void setComponent(UIComponent component) {
         this.component = component;
-    }
-   
-    public LoginAdmin() {
-    }
-    
-    public LoginAdmin(String email, String password) {
-        this.email = email;
-        this.password = password;
     }
 
     public String getEmail() {
@@ -65,7 +82,6 @@ public class LoginAdmin implements Serializable {
         this.email = email;
     }
 
-
     public String getPassword() {
         return password;
     }
@@ -73,52 +89,81 @@ public class LoginAdmin implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
- 
- public void loginSession(ActionEvent event) {
-        
-        EntityManager em = entityManagerFactory.createEntityManager(); 
-        User user = new User(email, password, "", "", "", "", 0, true, email);
+
+    public List<Debate> getDebates() {
+        return debates;
+    }
+
+    public void setDebates(List<Debate> debates) {
+        this.debates = debates;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public List<Course> getCourse() {
+        return course;
+    }
+
+    public void setCourse(List<Course> course) {
+        this.course = course;
+    }
+
+    public void loginSession(ActionEvent event) {
+
+        EntityManager em = entityManagerFactory.createEntityManager();
+
+        User userToVerify = new User(email, password, "", "", "", "", 0, true, email);
         User userVerification = new User();
-  
-        UserData userdata = new UserData(em);
         RequestContext context = RequestContext.getCurrentInstance();
+        UserData userdata = new UserData(em);
+        DebateData dDta = new DebateData(em);
+        UserData data = new UserData(em);
+        CourseData cData = new CourseData(em);
         FacesMessage message = null;
         userVerification = userdata.getUserByEmail(email);
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        boolean loggedIn;
-        
-        if(password!= null && user.getPassword().equals(userVerification.getPassword()) && userVerification.getIsAdmin()== true) {
-            loggedIn = true;
-            try {
-                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", userVerification.getName());
-                ec.redirect("menuPrincipal.xhtml");
-            } catch (IOException ex) {
-                Logger.getLogger(LoginAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        boolean loggedIn = false;
+
+        if (email.equals(userVerification.getEmail())) {
+            if (password != null && userToVerify.getPassword().equals(userVerification.getPassword()) && userVerification.getIsAdmin() == true) {
+                try {
+                    this.user = userVerification;
+                    this.users = data.getUsers();
+                    this.course = cData.getAll();
+                    this.debates = dDta.getDebates();
+                    message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", user.getName());
+                    ec.redirect("menuPrincipal.xhtml");
+                    loggedIn = true;
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    //Logger.getLogger(this.email).log(Level.SEVERE, null, ex);
+                     loggedIn = false;
+                }
+
+            } else {
+                loggedIn = false;
+                message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error al iniciar sesión", "Contraseña Inválida");
             }
-            
         } else {
             loggedIn = false;
-            
-            message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error al iniciar sesión", "Credenciales inválidas");
+            message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error al iniciar sesión", "Correo Electronico Inválido");
         }
-         
+
         FacesContext.getCurrentInstance().addMessage(null, message);
         context.addCallbackParam("loggedIn", loggedIn);
         em.close();
-    } 
-    
- public String userName(){
-     UserData userdata = new UserData(em);
-     User user = userdata.getUserByEmail(email);
-     String name = user.getName() + " " + user.getLastName();
-         return name;
- }
+    }
+
     //Diferenciar profes, estdiantes y administradores.
-    
-    public String logout(){
-    FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-    return "/index.xhtml?faces-redirect=true";
+    public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "/index.xhtml?faces-redirect=true";
     }
 
 }

@@ -23,10 +23,12 @@ public class Tester {
             em.getTransaction().begin();
  
             User u = new User("@gmail","123", "San jose", "Joe", "Fernandez", "Lozano", 321, true, "7001-7001");
-            User u2 = new User("@gmail.com","123", "San jose", "Carlos", "Perez", "Solis", 34562, false, "7234-7334");
-            DebateType dt = new DebateType("Modelos de 7 secciones", "Modelo Australiano");
             Course c = new Course("Basura politica", 2, 2016, "C1-4", "Viernes 3:00pm - 6:00pm");    
             Course c2 = new Course("Mi mama amasa la masa", 2, 2016, "C2-5", "Jueves 11:00pm - 5:00pm"); 
+            DebateType dt = new DebateType("Modelos de 7 secciones", "Modelo Australiano");
+           /* User u2 = new User("@gmail.com","123", "San jose", "Carlos", "Perez", "Solis", 34562, false, "7234-7334");
+            
+            
             Debate d = new Debate("Luigui y su administracion", Calendar.getInstance().getTime(), dt, Calendar.getInstance().getTime(), false, c, c2);
             Debate d2 = new Debate("Trump presidente!", Calendar.getInstance().getTime(), dt, Calendar.getInstance().getTime(), true, c, c2);
             Debate d3 = new Debate("Trumpsito", Calendar.getInstance().getTime(), dt, Calendar.getInstance().getTime(), false, c, c2);
@@ -50,20 +52,21 @@ public class Tester {
             //cambiar em por el dato que es
             
            //em.merge(u2);
-            em.persist(dt);
+            
             em.persist(d);
             em.persist(d2);
             em.persist(d3);
             em.persist(d4);
             em.persist(d5);
             em.persist(u);
-            em.persist(u2);
-            em.persist(r);
+            em.persist(u2);            
+            em.persist(r);         
+            em.persist(p);
+            em.persist(uc);*/
             em.persist(c);
             em.persist(c2);
-            em.persist(p);
-            em.persist(uc);
-            em.persist(cu);
+            em.persist(u);
+            em.persist(dt);
             
             em.getTransaction().commit();
             System.out.println("Actualizado!!!!!!!");

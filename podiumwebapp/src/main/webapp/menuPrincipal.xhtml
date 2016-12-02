@@ -99,6 +99,7 @@
             </div><!-- /.col -->
         </p:dialog>
 
+        <!-- NOTIFICACIONES -->
         <div class="wrapper">
 
             <header class="main-header">
@@ -317,8 +318,8 @@
                                     <li class="user-header">
                                         <h:graphicImage library="dist" name="img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
                                         <p>
-                                             -Administrador-
-                                             <small>#{login.userName()}</small>
+                                             #{login.user.name}
+                                             <small>Administrador</small>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
@@ -376,7 +377,7 @@
                                                 <a href="menuDebate.xhtml">
                                                     <i class="fa fa-clipboard" style="color:"></i>
                                                     <span>
-                                                       Debate
+                                                       Debates
                                                     </span>
                                                     <i class="fa fa-angle-left pull-right"></i>
                                                 </a>

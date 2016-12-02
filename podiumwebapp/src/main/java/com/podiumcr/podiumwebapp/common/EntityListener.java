@@ -16,7 +16,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;
-
+ 
 public class EntityListener implements ServletContextListener, ServletRequestListener {
  
     public static final String EM_NAME = "em";
@@ -26,7 +26,7 @@ public class EntityListener implements ServletContextListener, ServletRequestLis
     public void contextInitialized(ServletContextEvent sce) {
         System.out.println("............Inicializando parametros de JPA............");
 ///-------JpaManager.initEntityManagerFactory(); Remplazar esto para el startEntityManager de los componentes...
-        EntityListener.entityManagerFactory = Persistence.createEntityManagerFactory("PodiumJPA");
+        this.entityManagerFactory = Persistence.createEntityManagerFactory("PodiumJPA");
        
     }
 
@@ -34,7 +34,7 @@ public class EntityListener implements ServletContextListener, ServletRequestLis
         System.out.println("............Terminando parametros de JPA...............");
 
 //------JpaManager.EndEntityManagerFactory(); Remplazar esto para el startEntityManager de los componentes...
-        EntityListener.entityManagerFactory.close();
+        this.entityManagerFactory.close();
     }
 
     public void requestDestroyed(ServletRequestEvent sre) {

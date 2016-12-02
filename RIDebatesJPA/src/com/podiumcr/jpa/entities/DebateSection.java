@@ -23,18 +23,18 @@ public class DebateSection implements Serializable {
 	private int minutesPerUser;
 	private boolean isActiveSection;
 	private DebateType debatetype;
+	private String sectionName;
 
 	public DebateSection() {
 	}
 
-	
-	
-	public DebateSection(int section, int minutesPerUser, DebateType debatetype) {
+	public DebateSection(int section, int minutesPerUser, DebateType debatetype, String sectionName) {
 		super();
 		this.section = section;
 		this.minutesPerUser = minutesPerUser;
 		this.debatetype = debatetype;
 		this.isActiveSection = false;
+		this.sectionName = sectionName;
 		
 	}
 
@@ -48,15 +48,6 @@ public class DebateSection implements Serializable {
 
 	public void setIdDebateSection(int idDebateSection) {
 		this.idDebateSection = idDebateSection;
-	}
-
-
-	public int getSections() {
-		return this.section;
-	}
-
-	public void setSections(int sections) {
-		this.section = sections;
 	}
 
 	
@@ -91,6 +82,36 @@ public class DebateSection implements Serializable {
 
 	public void setDebatetype(DebateType debatetype) {
 		this.debatetype = debatetype;
+	}
+
+
+
+	public int getSection() {
+		return section;
+	}
+
+
+
+	public void setSection(int section) {
+		this.section = section;
+	}
+
+
+
+	public String getSectionName() {
+		return sectionName;
+	}
+
+
+
+	public void setSectionName(String sectionName) {
+		this.sectionName = sectionName;
+	}
+
+
+
+	public void setActiveSection(boolean isActiveSection) {
+		this.isActiveSection = isActiveSection;
 	}
 	
 	

@@ -46,7 +46,7 @@ public class DebateTypeData {
 		
 		try {
 
-			TypedQuery<DebateType> getall = em.createNamedQuery("DebateType.findById", DebateType.class);
+			TypedQuery<DebateType> getall = em.createNamedQuery("DebateType.findAll", DebateType.class);
 			debateType = getall.getResultList();
 
 

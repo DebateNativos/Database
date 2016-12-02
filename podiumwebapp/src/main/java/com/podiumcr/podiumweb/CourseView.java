@@ -9,21 +9,20 @@ import com.podiumcr.jpa.data.CourseData;
 import com.podiumcr.jpa.data.UserData;
 import com.podiumcr.jpa.entities.Professor;
 import com.podiumcr.jpa.entities.User;
-import static com.podiumcr.podiumwebapp.common.EntityListener.em;
 import com.podiumcr.jpa.entities.Course;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import org.primefaces.context.RequestContext;
-
+ 
 
 /**
  *
  * @author Joss
  */
 @ManagedBean(name="courseView")
-@ViewScoped
+@SessionScoped
 public class CourseView implements Serializable {
      
     private int idCourse;
@@ -33,11 +32,6 @@ public class CourseView implements Serializable {
     private int curseYear;
     private List<User> users;
     private Professor professor;
-    
-    
-     
-    CourseData dCourse = new CourseData(em);
-    UserData prof = new UserData(em);
   
      public CourseView() {
     }
@@ -55,7 +49,7 @@ public class CourseView implements Serializable {
     public int getIdCourse() {
         return idCourse;
     }
-
+ 
     public void setIdCourse(int idCourse) {
         this.idCourse = idCourse;
     }

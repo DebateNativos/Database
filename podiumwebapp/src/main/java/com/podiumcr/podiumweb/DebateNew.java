@@ -9,11 +9,13 @@ import com.podiumcr.jpa.data.DebateData;
 import com.podiumcr.jpa.entities.Debate;
 import com.podiumcr.jpa.entities.DebateType;
 import static com.podiumcr.podiumwebapp.common.EntityListener.em;
+import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFactory;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.persistence.EntityManager;
 import org.primefaces.context.RequestContext;
 
 /**
@@ -36,9 +38,7 @@ public class DebateNew implements Serializable{
     
     
     private Debate selectedDebate; 
-    
-    DebateData dData = new DebateData(em);
-    
+        
     public DebateNew(String name, Date createdDate, DebateType debateType, Date startingDate, boolean isActive) {
         this.name = name;
         this.createdDate = createdDate;
@@ -120,8 +120,9 @@ public class DebateNew implements Serializable{
         } else {
             isActive = false;
         }
-       
-        dData.persistDebate(newDebate);
+       EntityManager em = entityManagerFactory.createEntityManager();
+       DebateData dData = new DebateData(em);
+       dData.persistDebate(newDebate);
 
         RequestContext.getCurrentInstance().closeDialog("El debate ha sido registrado");
     }
