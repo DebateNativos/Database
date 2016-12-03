@@ -25,9 +25,14 @@ import com.podiumcr.jpa.entities.DebateType;
 import com.podiumcr.jpa.entities.User;
 import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFactory;
 import java.io.Serializable;
+<<<<<<< Updated upstream
 import java.util.List;
 import javax.persistence.EntityManager;
 import org.primefaces.context.RequestContext;
+=======
+import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+>>>>>>> Stashed changes
 
 /**
  *
@@ -39,31 +44,51 @@ public class LoginAdmin implements Serializable {
 
     private String email;
     private String password;
+<<<<<<< Updated upstream
     private User user;
     private UIComponent component;
     private List<Debate> debates;
     private List<User> users;
     private List<Course> course;
+=======
+    private User userVerification = new User();
+    UserData userdata = new UserData(em);
+
+    private UIComponent component;
+>>>>>>> Stashed changes
 
     public LoginAdmin() {
     }
 
+<<<<<<< Updated upstream
     public LoginAdmin(String email, String password, User user) {
         this.email = email;
         this.password = password;
         this.user = user;
+=======
+    public LoginAdmin(String email, String password) {
+        this.email = email;
+        this.password = password;
+>>>>>>> Stashed changes
     }
 
     public LoginAdmin(UIComponent component) {
         this.component = component;
     }
 
+<<<<<<< Updated upstream
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+=======
+    public LoginAdmin(String email, String password, User user) {
+        this.email = email;
+        this.password = password;
+        this.userVerification = user;
+>>>>>>> Stashed changes
     }
 
     public UIComponent getComponent() {
@@ -73,6 +98,17 @@ public class LoginAdmin implements Serializable {
     public void setComponent(UIComponent component) {
         this.component = component;
     }
+<<<<<<< Updated upstream
+=======
+
+    public User getUserVerification() {
+        return userVerification;
+    }
+
+    public void setUserVerification(User userVerification) {
+        this.userVerification = userVerification;
+    }
+>>>>>>> Stashed changes
 
     public String getEmail() {
         return email;
@@ -90,6 +126,7 @@ public class LoginAdmin implements Serializable {
         this.password = password;
     }
 
+<<<<<<< Updated upstream
     public List<Debate> getDebates() {
         return debates;
     }
@@ -120,14 +157,22 @@ public class LoginAdmin implements Serializable {
 
         User userToVerify = new User(email, password, "", "", "", "", 0, true, email);
         User userVerification = new User();
+=======
+    public void loginSession(ActionEvent event) {
+
+        EntityManager em = entityManagerFactory.createEntityManager();
+        User user = new User(email, password, "", "", "", "", 0, true, email);
+
+>>>>>>> Stashed changes
         RequestContext context = RequestContext.getCurrentInstance();
         UserData userdata = new UserData(em);
         DebateData dDta = new DebateData(em);
         UserData data = new UserData(em);
         CourseData cData = new CourseData(em);
         FacesMessage message = null;
-        userVerification = userdata.getUserByEmail(email);
+        this.userVerification = userdata.getUserByEmail(email);
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+<<<<<<< Updated upstream
         boolean loggedIn = false;
 
         if (email.equals(userVerification.getEmail())) {
@@ -153,6 +198,24 @@ public class LoginAdmin implements Serializable {
         } else {
             loggedIn = false;
             message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error al iniciar sesión", "Correo Electronico Inválido");
+=======
+        boolean loggedIn;
+
+        if (password != null && user.getPassword().equals(userVerification.getPassword()) && userVerification.getIsAdmin() == true) {
+            loggedIn = true;
+            try {
+
+                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", userVerification.getName());
+                ec.redirect("menuPrincipal.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(LoginAdmin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            loggedIn = false;
+
+            message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error al iniciar sesión", "Credenciales inválidas");
+>>>>>>> Stashed changes
         }
 
         FacesContext.getCurrentInstance().addMessage(null, message);

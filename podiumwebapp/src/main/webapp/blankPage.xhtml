@@ -15,13 +15,13 @@
                         <div class="col-lg-3 col-xs-6">
                             <div class="small-box bg-yellow">
                                 <div class="inner">
-                                    <h3>100</h3>
-                                    <p>Usuarios</p>
+                                    <h1>Usuarios</h1>
+                                    <p> <h1>#{allView.user.size()} </h1></p>
                                 </div>
                                 <div class="icon">
                                     <i class="fa fa-user"></i>
                                 </div>
-                                <p:commandLink class="small-box-footer" action="menuUser.xhtml" update="myPanel,myDashBoard"  onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()">
+                                <p:commandLink class="small-box-footer" action="menuUser.xhtml" update="myPanel,myDashBoard">
                                     <i class="fa fa-arrow-circle-right"></i> Mas información
                                 </p:commandLink>
                             </div>
@@ -29,7 +29,7 @@
                         <div class="col-lg-3 col-xs-6">
                             <div class="small-box bg-aqua">
                                 <div class="inner">
-                                    <h3>100</h3>
+                                    <h3>#{allView.debate.size()}</h3>
                                     <p>Debates</p>
                                 </div>
                                 <div class="icon">
@@ -44,7 +44,7 @@
                         <div class="col-lg-3 col-xs-6">
                             <div class="small-box bg-blue">
                                 <div class="inner">
-                                    <h3>100</h3>
+                                    <h3>#{allView.course.size()}</h3>
                                     <p>Cursos</p>
                                 </div>
                                 <div class="icon">

@@ -1,9 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta charset="utf-8"/>
@@ -106,7 +108,7 @@
                 <!-- Logo -->
                 <a href="menu.xhtml" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini"><h3 style="font-size: 12;">P</h3></span>
+                    <span class="logo-mini"><h3 style="">P</h3></span>
                     <!-- logo for regular state and mobile devices -->
                     <span class="logo-m"><h:graphicImage library="images" name="logo.png" /></span>
                 </a>
@@ -132,17 +134,14 @@
                                     <li class="user-header">
                                         <h:graphicImage library="dist" name="img/avatar2.png" class="img-circle" alt="User Image"/>
                                         <p>
-<<<<<<< Updated upstream
-                                             #{login.user.name}
                                              <small>Administrador</small>
-=======
-                                            <h3>#{login.userVerification.name}</h3>
+
+                                            <h3></h3>
                                              
                                              <small>-Administrador-</small>
                                              
                                              
->>>>>>> Stashed changes
-                                        </p>
+                </p>
                                     </li>
                                     <!-- Menu Body -->
                                   
@@ -208,7 +207,7 @@
                                                        <ui:fragment >
 
                                                         <li >
-                                                            <p:commandLink  update="myPanel,myDashBoard"  onstart="start()" onsuccess="finish()">
+                                                            <p:commandLink  >
                                                                 <i class="fa fa-circle-o"></i>
                                                                 Tipos de debates
                                                                 <small class="label pull-right bg-aqua"></small>
@@ -222,7 +221,7 @@
                                                        <ui:fragment >
 
                                                         <li >
-                                                            <p:commandLink  update="myPanel,myDashBoard"  onstart="start()" onsuccess="finish()">
+                                                            <p:commandLink >
                                                                 <i class="fa fa-circle-o"></i>
                                                                 Debates
                                                                 <small class="label pull-right bg-aqua"></small>
@@ -341,9 +340,49 @@
                 <!-- Main content -->
                 <section class="content">
                     <!--                    <ui:insert name="body"/>                   -->
-                    <h:panelGroup id="myPanel" layout="block">
-                         <ui:include src= "blankPage.xhtml"/>
-                    </h:panelGroup>
+                    
+                        
+                        <h:form id="form">
+
+                             <p:panelGrid columns="2" columnClasses="column" layout="grid" style="display: block; font: serif; font-size: 14px; " > 
+                                  <f:facet name="header">
+                                    <p:commandButton icon="fa fa-user" styleClass="btn-danger" value="Asignar rol" />
+                                    </f:facet>
+                                 
+                                    <h:outputLabel for="debatiente01" value="Debatiente 1:"  style="font: serif; font-size: 14px;"/>
+                                    <p:inplace id="debatiente01" editor="true">
+                                        <p:inputText value="" required="true" label="text" style="font: serif; font-size: 14px;" />
+                                    </p:inplace>
+                                
+                                                             
+                                    <h:outputLabel for="debatiente02" value="Debatiente 2:" style="font: serif; font-size: 14px;"/>
+                                    <p:inplace id="debatiente02" editor="true" >
+                                        <p:inputText value="" required="true" label="text" style="font: serif; font-size: 14px;" />
+                                    </p:inplace>
+                              
+                                                       
+                                    <h:outputLabel for="asesor01" value="Asesor 1:" style="font: serif; font-size: 14px;"/>
+                                    <p:inplace id="asesor01" editor="true">
+                                        <p:inputText value="" required="true" label="text" style="font: serif; font-size: 14px;"/>
+                                    </p:inplace>
+                               
+                               
+                                    <h:outputLabel for="asesor02" value="Asesor 2:" style="font: serif; font-size: 14px;"/>
+                                    <p:inplace id="asesor02" editor="true">
+                                        <p:inputText value="" required="true" label="text" style="font: serif; font-size: 14px;"/>
+                                    </p:inplace>
+                                    
+                                    <f:facet name="footer">
+
+                                    <p:commandButton styleClass="btn-success" icon="fa fa-save"  value="Guardar cambios" />
+                                   </f:facet>
+                                   
+                                </p:panelGrid> 
+                            <f:facet name="footer">
+
+                                <p:commandButton styleClass="btn-success" icon="fa fa-save"  value="Guardar cambios" />
+                            </f:facet>
+                        </h:form>
 
                 </section>
             </div><!-- /.content-wrapper -->
@@ -476,3 +515,4 @@
                 </script>-->
     </h:body>
 </html>
+
