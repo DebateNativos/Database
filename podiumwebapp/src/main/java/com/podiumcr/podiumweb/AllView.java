@@ -35,6 +35,7 @@ public class AllView implements Serializable {
     List<Debate> debate;
     List<Course> course;
     List<DebateType> type;
+    
 
     public AllView() {
     }
