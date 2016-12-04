@@ -343,45 +343,83 @@
                     
                         
                         <h:form id="form">
+                        <p:dataTable var="sale" value="">
+                            <f:facet name="header">
+                                <p:commandButton styleClass="btn-warning" icon="fa fa-save"  value="Asignar roles" />
+                            </f:facet>
 
-                             <p:panelGrid columns="2" columnClasses="column" layout="grid" style="display: block; font: serif; font-size: 14px; " > 
-                                  <f:facet name="header">
-                                    <p:commandButton icon="fa fa-user" styleClass="btn-danger" value="Asignar rol" />
-                                    </f:facet>
-                                 
-                                    <h:outputLabel for="debatiente01" value="Debatiente 1:"  style="font: serif; font-size: 14px;"/>
-                                    <p:inplace id="debatiente01" editor="true">
-                                        <p:inputText value="" required="true" label="text" style="font: serif; font-size: 14px;" />
-                                    </p:inplace>
-                                
-                                                             
-                                    <h:outputLabel for="debatiente02" value="Debatiente 2:" style="font: serif; font-size: 14px;"/>
-                                    <p:inplace id="debatiente02" editor="true" >
-                                        <p:inputText value="" required="true" label="text" style="font: serif; font-size: 14px;" />
-                                    </p:inplace>
+                            <p:columnGroup type="header">
+                                <p:row>
+                                    <p:column colspan="2" headerText="1º Grupo" />
+                                    <p:column colspan="2" headerText="2º Grupo" />
+                                </p:row>
+                            </p:columnGroup>
+                            
+                          
+                            
+                            <p:column rowspan="6" >
+                               <h:outputLabel for="debatiente01" value="Debatiente:"  style="font: serif; font-size: 14px;"/> 
+                                <p:separator />
+                                <p:row><h:outputLabel for="debatiente03" value="Debatiente:"  style="font: serif; font-size: 14px;"/> </p:row>
+                                <p:separator />
+                               <p:row> <h:outputLabel for="debatiente05" value="Debatiente:"  style="font: serif; font-size: 14px;"/> </p:row>
+                               <p:separator />
+                                <p:row><h:outputLabel for="asesor01" value="Asesor:" style="font: serif; font-size: 14px;"/></p:row>
+                                <p:separator />
+                                <p:row><h:outputLabel for="observador01" value="Observador:" style="font: serif; font-size: 14px;"/></p:row>
+                                <p:separator />
+                                <p:row><h:outputLabel for="observador02" value="Observador:" style="font: serif; font-size: 14px;"/></p:row>
+                            <p:separator />
+                            </p:column>
+                            
+                           <p:column rowspan="6">
+                                <h:outputLabel value=""  style="font: serif; font-size: 14px;"/> 
+                                <p:separator />
+                                <p:row><h:outputLabel  value=""  style="font: serif; font-size: 14px;"/> </p:row>
+                                <p:separator />
+                               <p:row> <h:outputLabel value=""  style="font: serif; font-size: 14px;"/> </p:row>
+                               <p:separator />
+                                <p:row><h:outputLabel  value="" style="font: serif; font-size: 14px;"/></p:row>
+                                <p:separator />
+                                <p:row><h:outputLabel  value="" style="font: serif; font-size: 14px;"/></p:row>
+                                <p:separator />
+                                <p:row><h:outputLabel  value="" style="font: serif; font-size: 14px;"/></p:row>
+                            </p:column>
+
+                           <p:column rowspan="6" >
+                                <p:row><h:outputLabel for="debatiente02" value="Debatiente:"  style="font: serif; font-size: 14px;"/> </p:row>
+                                <p:separator />
+                                <p:row><h:outputLabel for="debatiente04" value="Debatiente:"  style="font: serif; font-size: 14px;"/> </p:row>
+                                <p:separator />
+                               <p:row> <h:outputLabel for="debatiente06" value="Debatiente:"  style="font: serif; font-size: 14px;"/> </p:row>
+                               <p:separator />
+                                <p:row><h:outputLabel for="asesor02" value="Asesor:" style="font: serif; font-size: 14px;"/></p:row>
+                                <p:separator />
+                                <p:row><h:outputLabel for="observador01" value="Observador:" style="font: serif; font-size: 14px;"/></p:row>
+                                <p:separator />
+                                <p:row><h:outputLabel for="observador02" value="Observador:" style="font: serif; font-size: 14px;"/></p:row>
+                            </p:column>
+
+                             <p:column rowspan="6" >
+                                <p:row><h:outputLabel value=""  style="font: serif; font-size: 14px;"/> </p:row>
+                                <p:separator />
+                                <p:row><h:outputLabel  value=""  style="font: serif; font-size: 14px;"/> </p:row>
+                                <p:separator />
+                               <p:row> <h:outputLabel value=""  style="font: serif; font-size: 14px;"/> </p:row>
+                               <p:separator />
+                                <p:row><h:outputLabel  value="" style="font: serif; font-size: 14px;"/></p:row>
+                                <p:separator />
+                                <p:row><h:outputLabel  value="" style="font: serif; font-size: 14px;"/></p:row>
+                                <p:separator />
+                                <p:row><h:outputLabel  value="" style="font: serif; font-size: 14px;"/></p:row>
+                            </p:column>
+                           
                               
-                                                       
-                                    <h:outputLabel for="asesor01" value="Asesor 1:" style="font: serif; font-size: 14px;"/>
-                                    <p:inplace id="asesor01" editor="true">
-                                        <p:inputText value="" required="true" label="text" style="font: serif; font-size: 14px;"/>
-                                    </p:inplace>
-                               
-                               
-                                    <h:outputLabel for="asesor02" value="Asesor 2:" style="font: serif; font-size: 14px;"/>
-                                    <p:inplace id="asesor02" editor="true">
-                                        <p:inputText value="" required="true" label="text" style="font: serif; font-size: 14px;"/>
-                                    </p:inplace>
-                                    
-                                    <f:facet name="footer">
-
-                                    <p:commandButton styleClass="btn-success" icon="fa fa-save"  value="Guardar cambios" />
-                                   </f:facet>
-                                   
-                                </p:panelGrid> 
+                            
                             <f:facet name="footer">
-
                                 <p:commandButton styleClass="btn-success" icon="fa fa-save"  value="Guardar cambios" />
                             </f:facet>
+                        </p:dataTable>
                         </h:form>
 
                 </section>
