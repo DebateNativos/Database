@@ -313,21 +313,29 @@
                          
             <!-- pop up de agregar-->
              <p:dialog id="debateDlg"  widgetVar="DebateDialog" modal="true" appendTo="@(body)" resizable="false"  header="Nuevo">
-                            <h:form id="DebateForm">
+                            <h:form id="UserForm">
                                 <p:panelGrid columns="2">
-                                     <!-- FORM-->
+
                                     <p:outputLabel value="Nombre" for="name" />
                                     <p:inputText id="name" value="#{debateNew.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
-
-                                    <p:outputLabel value="Primer apellido" for="lastName" />
-                                    <p:inputText id="lastName" value="#{debateNew.startingDate}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
-
                                     
-
+                                    <p:outputLabel for="popup" value="Fecha del debate:" />
+                                    <p:calendar id="popup" value="#{debateNew.startingDate}" required="true" requiredMessage="Debe ingresar la información correcta"/>
+                                    
+                                    <p:outputLabel for="time" value="Hora:" />
+                                    <p:calendar id="time" value="#{debateNew.hour}" pattern="HH:mm" timeOnly="true"  required="true" requiredMessage="Debe ingresar la información correcta"/>
+                                    
+                                    <p:outputLabel for="debate" value="Tipo de debate: " />
+                                    <p:selectOneMenu id="debate" value="" effect="fold">
+                                        <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                        
+                                        <f:selectItems value="#{allView.type}" />
+                                    </p:selectOneMenu>
+                                   
                                     <f:facet name="footer" >
                                         <div class="footer-right">
                                             <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Agregar" actionListener="#{debateNew.newDeb()}" update=":form:msgs"  />
-                                            <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('DebateDialog').hide()" immediate="true" onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()"/>
+                                            <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('UserDialog').hide()" immediate="true" onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()"/>
                                         </div>
                                     </f:facet>
                                 </p:panelGrid>
