@@ -142,7 +142,7 @@
                                             <h:form>
                                                 <p:commandLink style="color: white" value="Cerrar sesión" styleClass="btn btn-default btn-flat" action="#{login.logout()}">
                                                     <i class="fa fa-sign-out fa-lg"></i>
-                                                    &nbsp;
+                                                    
                                                 </p:commandLink>
                                             </h:form>
                                         </div>
@@ -375,6 +375,7 @@
                         <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Nuevo" type="button" onclick="PF('DebateDialog').show();" />
                         <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar" type="button" onclick="PF('DebateEditDialog').show();" />
                          <!-- onclick="PF('DebateEditDialog').show();" -->
+                         <p:commandButton styleClass="btn-warning" icon="fa fa-check-circle-o" value="Activar" type="button" />
                         <p:commandButton id="deleteButton" styleClass="btn-danger" icon="fa fa-trash"  value="Borrar"  onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()">
                             <p:confirm header="Confirmación" message="¿Desea borrar el registro?" icon="fa fa-warning"/>
                         </p:commandButton>

@@ -34,6 +34,9 @@ public class DebateNew implements Serializable{
     private Date createdDate;
     private DebateType debateType;
     private Date startingDate;
+    private Date hour;
+
+   
     private boolean isActive;
     
     
@@ -108,6 +111,13 @@ public class DebateNew implements Serializable{
 
     public void setSelectedDebate(Debate selectedDebate) {
         this.selectedDebate = selectedDebate;
+    }
+     public Date getHour() {
+        return hour;
+    }
+
+    public void setHour(Date hour) {
+        this.hour = hour;
     }
     
     public void newDeb() {
