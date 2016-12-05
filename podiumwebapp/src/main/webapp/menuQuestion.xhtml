@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -10,8 +9,7 @@
     <h:head>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <title>Debate</title>
-        <!-- Tell the browser to be responsive to screen width -->
+        <title>PODIUM</title>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
         <meta http-equiv="cache-control" content="max-age=0" />
         <meta http-equiv="cache-control" content="no-cache" />
@@ -21,11 +19,7 @@
         <!-- Bootstrap 3.3.5 -->
         <h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css"/>
 
-        <!-- Font Awesome -->
-        <!--<h:outputStylesheet library="css" name="font-awesome.min.css"/>-->
-        <!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>-->
-        <!-- Ionicons -->
-        <!--        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>-->
+
         <h:outputStylesheet library="css" name="ionicons.min.css"/>
         <!-- Theme style -->
         <h:outputStylesheet library="dist" name="css/AdminLTE.min.css"/>
@@ -36,11 +30,8 @@
         <h:outputStylesheet library="plugins" name="iCheck/flat/blue.css"/>
         <!-- jvectormap -->
         <h:outputStylesheet library="plugins" name="jvectormap/jquery-jvectormap-1.2.2.css"/>
-        <!-- Date Picker -->
-        <!--        <h:outputStylesheet library="plugins" name="datepicker/datepicker3.css"/>-->
-        <!-- Daterange picker -->
-        <!--<h:outputStylesheet library="plugins" name="daterangepicker/daterangepicker-bs3.css"/>-->
-        <!-- bootstrap wysihtml5 - text editor -->
+       
+  
         <h:outputStylesheet library="plugins" name="bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>
         <h:outputStylesheet library="css" name="nprogress.css"/>
         <style type="text/css">
@@ -107,7 +98,7 @@
                 <!-- Logo -->
                 <a href="menu.xhtml" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini"><h3 style="font-size: 12;">P</h3></span>
+                    <span class="logo-mini"><h3 style="font-size: 20px;">P</h3></span>
                     <!-- logo for regular state and mobile devices -->
                     <span class="logo-m"><h:graphicImage library="images" name="logo.png" /></span>
                 </a>
@@ -121,6 +112,7 @@
                         <ul class="nav navbar-nav">
 
                           
+                            
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -132,8 +124,9 @@
                                     <li class="user-header">
                                         <h:graphicImage library="dist" name="img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
                                         <p>
-                                             -Administrador-
-                                             <small>#{login.userName()}</small>
+                                            <!-- Devolver aquí el usuario logeado-->
+                                             #{login.user}
+                                             <small>-Administrador-</small>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
@@ -142,12 +135,12 @@
                                         <div class="pull-left">
                                             <!--                                            <a href="#" class="btn btn-default btn-flat">Profile</a>-->
                                             <h:form>
-                                                <p:commandLink value="Profile" styleClass="btn btn-default btn-flat" onclick="PF('ProfileDialog').show()"/>
+                                                <p:commandLink value="Ver perfil" styleClass="btn btn-default btn-flat" onclick="PF('ProfileDialog').show()"/>
                                             </h:form>
                                         </div>
                                         <div class="pull-right">
                                             <h:form>
-                                                <p:commandLink style="color: white" value="Sign out" styleClass="btn btn-default btn-flat" action="#{login.logout()}">
+                                                <p:commandLink style="color: white" value="Cerrar sesión" styleClass="btn btn-default btn-flat" action="#{login.logout()}">
                                                     <i class="fa fa-sign-out fa-lg"></i>
                                                     &nbsp;
                                                 </p:commandLink>
@@ -178,39 +171,66 @@
                             </div>
                             <div class="pull-left info">
                                 <p></p>
-                                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                                <a href="#"><i class=""></i>PODIUM</a>
                             </div>
                         </div>
                       <ul class="sidebar-menu" id="sidebar-menu" style="height: 80%;width: 100%">
-                            <li class="header" id="liHeader">Menu</li>
+                            <li class="header" id="liHeader">Menú</li>
                             <h:panelGroup id="menuListGroup" class="sidebar-menu">
-                              
-                                    <ui:fragment >
+                              <ui:fragment >
                                         <li class="treeview" id="mainTree">
                                             <ui:fragment >
-                                                <a href="menuDebate.xhtml">
-                                                    <i class="fa fa-clipboard" style="color:"></i>
+                                                <a >
+                                                    <i class="fa fa-dashboard" style="color:"></i>
                                                     <span>
-                                                       Debate
+                                                        Debates
                                                     </span>
                                                     <i class="fa fa-angle-left pull-right"></i>
                                                 </a>
-                                            </ui:fragment>
-                                          
-                                        </li>
-                                    </ui:fragment>
-                                <ui:fragment >
-                                        <li class="treeview" id="mainTree">
-                                            <ui:fragment >
-                                                <a href="menuDebate.xhtml">
-                                                    <i class="fa fa-clipboard" style="color:"></i>
-                                                    <span>
-                                                       Secciones
-                                                    </span>
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </a>
-                                            </ui:fragment>
-                                          
+                                                
+                                            <ul class="treeview-menu">
+                                               
+                                                       <ui:fragment >
+
+                                                        <li >
+                                                            <a href="menuStage.xhtml">
+                                                                <i class="fa fa-circle-o"></i>
+                                                                Tipos de debates
+                                                                <small class="label pull-right bg-aqua"></small>
+                                                            </a>
+                                                        </li>      
+
+                                                    </ui:fragment>>      
+                                            </ul>
+                                            <ul class="treeview-menu">
+                                               
+                                                       <ui:fragment >
+
+                                                        <li >
+                                                            <a href="menuDebate.xhtml">
+                                                                <i class="fa fa-circle-o"></i>
+                                                                Debates
+                                                                <small class="label pull-right bg-aqua"></small>
+                                                            </a>
+                                                        </li>      
+
+                                                    </ui:fragment>>      
+                                            </ul>
+                                                <ul class="treeview-menu">
+                                               
+                                                       <ui:fragment >
+
+                                                        <li >
+                                                            <a href="menuChronometer.xhtml">
+                                                                <i class="fa fa-circle-o"></i>
+                                                                Asignar cronómetro
+                                                                <small class="label pull-right bg-aqua"></small>
+                                                            </a>
+                                                        </li>      
+
+                                                    </ui:fragment>>      
+                                            </ul>
+                                           </ui:fragment>      
                                         </li>
                                     </ui:fragment>
                                <ui:fragment >
@@ -221,7 +241,7 @@
                                                     <span>
                                                        Usuarios
                                                     </span>
-                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                    
                                                 </a>
                                             </ui:fragment>
                                             
@@ -233,32 +253,15 @@
                                                 <a href="menuCourse.xhtml">
                                                     <i class="fa fa-clipboard" style="color:"></i>
                                                     <span>
-                                                       Curso
+                                                       Cursos
                                                     </span>
-                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                    
                                                 </a>
                                             </ui:fragment>
                                           
                                         </li>
                                     </ui:fragment>
-                                
-                                            
-                                       
-                                  
-                                <ui:fragment >
-                                        <li class="treeview" id="mainTree">
-                                            <ui:fragment >
-                                                <a href="menuChronometer.xhtml">
-                                                    <i class="fa fa-clipboard" style="color:"></i>
-                                                    <span>
-                                                      Cronometro
-                                                    </span>
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </a>
-                                            </ui:fragment>
-                                          
-                                        </li>
-                                    </ui:fragment>
+
                                 <ui:fragment >
                                         <li class="treeview" id="mainTree">
                                             <ui:fragment >
@@ -267,7 +270,7 @@
                                                     <span>
                                                        Preguntas
                                                     </span>
-                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                    
                                                 </a>
                                             </ui:fragment>
                                           
@@ -288,15 +291,15 @@
                 <section class="content-header">
 
                     <h1>
-                        Menú principal
-                        <small>Panel de control</small>
+                        Preguntas
+                        <small>Panel de control de preguntas</small>
                     </h1>
                     <h:panelGroup id="myDashBoard" class="breadcrumb">
                         <ol class="breadcrumb">
 
                             <li><a href="menuPrincipal.xhtml"><i class="fa fa-dashboard"></i>Página Principal</a></li>
 
-                            <li class="active"> </li>
+                            <li class="active">Preguntas</li>
 
                         </ol>
 

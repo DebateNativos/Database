@@ -1,10 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <ui:composition>
         <!-- panel de opciones-->
@@ -15,14 +14,15 @@
                     <div class="row" style="height: 100%">
                         <div class="col-lg-3 col-xs-6">
                             <div class="small-box bg-yellow">
-                                <div class="inner">
-                                    <h3>#{login.users.size()}</h3>
-                                    <p>Usuarios</p>
+                                <div class="inner" style="font-size: medium">
+                                    <p style="font-size: 22px; font-weight: bold;">Usuarios</p>
+                                    <p style="font-size: 24px; font-weight: bold;">#{allView.user.size()}</p>
+                                    
                                 </div>
                                 <div class="icon">
                                     <i class="fa fa-user"></i>
                                 </div>
-                                <p:commandLink class="small-box-footer" action="menuUser.xhtml" update="myPanel,myDashBoard"  onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()">
+                                <p:commandLink class="small-box-footer" action="menuUser.xhtml" update="myPanel,myDashBoard">
                                     <i class="fa fa-arrow-circle-right"></i> Mas información
                                 </p:commandLink>
                             </div>
@@ -30,13 +30,14 @@
                         <div class="col-lg-3 col-xs-6">
                             <div class="small-box bg-aqua">
                                 <div class="inner">
-                                    <h3>#{login.debates.size()}</h3>
-                                    <p>Debates</p>
+                                    <p style="font-size: 22px; font-weight: bold;">Debates</p>
+                                    <p style="font-size: 24px; font-weight: bold;">#{allView.debate.size()}</p>
+                                    
                                 </div>
                                 <div class="icon">
-                                    <i class="fa fa-plane"></i>
+                                    <i class="fa fa-user-secret"></i>
                                 </div>
-                                <p:commandLink class="small-box-footer" action="menuDebate.xhtml" update="myPanel,myDashBoard"  onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()">
+                                <p:commandLink class="small-box-footer" action="menuDebate.xhtml" update="myPanel,myDashBoard">
                                     <i class="fa fa-arrow-circle-right"></i> Más información
                                 </p:commandLink>
                             </div>
@@ -45,41 +46,30 @@
                         <div class="col-lg-3 col-xs-6">
                             <div class="small-box bg-blue">
                                 <div class="inner">
-                                    <h3>#{login.course.size()}</h3>
-                                    <p>Cursos</p>
+                                    <p style="font-size: 22px; font-weight: bold;">Curso</p>
+                                    <p style="font-size: 24px; font-weight: bold;">#{allView.course.size()}</p>
                                 </div>
                                 <div class="icon">
                                     <i class="fa fa-clipboard"></i>
                                 </div>
-                                <p:commandLink class="small-box-footer" action="menuCourse.xhtml" update="myPanel,myDashBoard"  onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()">
+                                <p:commandLink class="small-box-footer" action="menuCourse.xhtml" update="myPanel,myDashBoard">
                                     <i class="fa fa-arrow-circle-right"></i> Más información
                                 </p:commandLink>
                             </div>
                         </div> 
-                        <div class="col-lg-3 col-xs-6">
-                            <div class="small-box bg-fuchsia">
-                                <div class="inner">
-                                    <h3>100</h3>
-                                    <p>Tiempo</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-clock-o"></i>
-                                </div>
-                                <p:commandLink class="small-box-footer" action="menuChronometer.xhtml" update="myPanel,myDashBoard"  onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()">
-                                    <i class="fa fa-arrow-circle-right"></i> Más información
-                                </p:commandLink>
-                            </div>
-                        </div> 
-                               <div class="col-lg-3 col-xs-6">
+                   
+                         
+                             <div class="col-lg-3 col-xs-6">
                             <div class="small-box bg-green">
                                 <div class="inner">
-                                    <h3>100</h3>
-                                    <p>Preguntas</p>
+                                   <p style="font-size: 22px; font-weight: bold;">Preguntas</p>
+                                   <!-- LLamar al tamaño de preguntas-->
+                                    <p style="font-size: 24px; font-weight: bold;"> 100</p>
                                 </div>
                                 <div class="icon">
                                     <i class="fa fa-comment-o"></i>
                                 </div>
-                                <p:commandLink class="small-box-footer" action="menuQuestion.xhtml" update="myPanel,myDashBoard"  onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()">
+                                <p:commandLink class="small-box-footer" action="menuQuestion.xhtml" update="myPanel,myDashBoard" >
                                     <i class="fa fa-arrow-circle-right"></i> Más información
                                 </p:commandLink>
                             </div>
@@ -88,20 +78,7 @@
                     </div>
                 </div>
             </div>
-            <div class="panel panel-primary">
-               
-    <p:growl id="growl" />
- 
-    <p:row>
-    <h3 style="margin-top:0">Etapa de preguntas</h3>
-    <p:progressBar value="50" labelTemplate="{value}%" displayOnly="true"/>
-    </p:row>
-    <p:row>
-        <p:column colspan="2">
-            
-        </p:column>
-    </p:row>        
-            </div>
+           
         </h:form>
     </ui:composition>
 
