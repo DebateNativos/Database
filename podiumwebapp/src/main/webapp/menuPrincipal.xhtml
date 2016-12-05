@@ -95,7 +95,7 @@
         <p:dialog appendTo="@(body)" resizable="false" header="test" widgetVar="Chat" responsive="true" position="right,bottom" width="400px">
             <div class="col-md-12">
                 <!-- DIRECT CHAT -->
-                
+
             </div><!-- /.col -->
         </p:dialog>
 
@@ -119,8 +119,8 @@
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
 
-                            
-                            
+
+
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -132,20 +132,12 @@
                                     <li class="user-header">
                                         <h:graphicImage library="dist" name="img/avatar2.png" class="img-circle" alt="User Image"/>
                                         <p>
-<<<<<<< Updated upstream
-                                             #{login.user.name}
-                                             <small>Administrador</small>
-=======
-                                            <h3>#{login.userVerification.name}</h3>
-                                             
-                                             <small>-Administrador-</small>
-                                             
-                                             
->>>>>>> Stashed changes
+                                            <h3>#{login.user.name} #{login.user.lastName}</h3>
+                                            <small>-Administrador-</small>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
-                                  
+
                                     <li class="user-footer">
                                         <div class="pull-left">
                                             <!--                                            <a href="#" class="btn btn-default btn-flat">Profile</a>-->
@@ -189,113 +181,115 @@
                                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                             </div>
                         </div>
-                      <ul class="sidebar-menu" id="sidebar-menu" style="height: 80%;width: 100%">
+                        <ul class="sidebar-menu" id="sidebar-menu" style="height: 80%;width: 100%">
                             <li class="header" id="liHeader">Menú</li>
                             <h:panelGroup id="menuListGroup" class="sidebar-menu">
-                              
-                                   <ui:fragment >
-                                        <li class="treeview" id="mainTree">
-                                            <ui:fragment >
-                                                <a >
-                                                    <i class="" style="color:"></i>
-                                                    <span>
-                                                        Debates
-                                                    </span>
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </a>
-                                                
-                                            <ul class="treeview-menu">
-                                               
-                                                       <ui:fragment >
 
-                                                        <li >
-                                                            <a href="menuStage.xhtml">
-                                                                <i class="fa fa-circle-o"></i>
-                                                                Tipos de debates
-                                                                <small class="label pull-right bg-aqua"></small>
-                                                            </a>
-                                                        </li>      
-
-                                                    </ui:fragment>>      
-                                            </ul>
-                                            <ul class="treeview-menu">
-                                               
-                                                       <ui:fragment >
-
-                                                        <li >
-                                                            <a href="menuDebate.xhtml">
-                                                                <i class="fa fa-circle-o"></i>
-                                                                Debates
-                                                                <small class="label pull-right bg-aqua"></small>
-                                                            </a>
-                                                        </li>      
-
-                                                    </ui:fragment>>      
-                                            </ul>
-                                                <ul class="treeview-menu">
-                                               
-                                                       <ui:fragment >
-
-                                                        <li >
-                                                            <a href="menuChronometer.xhtml">
-                                                                <i class="fa fa-circle-o"></i>
-                                                                Asignar cronómetro
-                                                                <small class="label pull-right bg-aqua"></small>
-                                                            </a>
-                                                        </li>      
-
-                                                    </ui:fragment>>      
-                                            </ul>
-                                           </ui:fragment>      
-                                        </li>
-                                    </ui:fragment>
-                               <ui:fragment >
-                                        <li class="treeview" id="mainTree">
-                                            <ui:fragment >
-                                                <a href="menuUser.xhtml">
-                                                    <i class="fa fa-users" style="color:"></i>
-                                                    <span>
-                                                       Usuarios
-                                                    </span>
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </a>
-                                            </ui:fragment>
+                                <ui:fragment >
+                                    <li class="treeview" id="mainTree">
+                                        <ui:fragment >
+                                            <a >
+                                                <i class="" style="color:"></i>
+                                                <span>
+                                                    Debates
+                                                </span>
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </a>
                                             
-                                        </li>
-                                    </ui:fragment>
+                                             <ul class="treeview-menu">
+
+                                                <ui:fragment >
+
+                                                    <li >
+                                                        <a href="menuDebate.xhtml">
+                                                            <i class="fa fa-circle-o"></i>
+                                                            Debates
+                                                            <small class="label pull-right bg-aqua"></small>
+                                                        </a>
+                                                    </li>      
+
+                                                </ui:fragment>>      
+                                            </ul>
+
+                                            <ul class="treeview-menu">
+
+                                                <ui:fragment >
+
+                                                    <li >
+                                                        <a href="menuStage.xhtml">
+                                                            <i class="fa fa-circle-o"></i>
+                                                            Tipos de debates
+                                                            <small class="label pull-right bg-aqua"></small>
+                                                        </a>
+                                                    </li>      
+
+                                                </ui:fragment>>      
+                                            </ul>
+                                           
+                                            <ul class="treeview-menu">
+
+                                                <ui:fragment >
+
+                                                    <li >
+                                                        <a href="menuChronometer.xhtml">
+                                                            <i class="fa fa-circle-o"></i>
+                                                            Asignar cronómetro
+                                                            <small class="label pull-right bg-aqua"></small>
+                                                        </a>
+                                                    </li>      
+
+                                                </ui:fragment>>      
+                                            </ul>
+                                        </ui:fragment>      
+                                    </li>
+                                </ui:fragment>
                                 <ui:fragment >
-                                        <li class="treeview" id="mainTree">
-                                            <ui:fragment >
-                                                <a href="menuCourse.xhtml">
-                                                    <i class="fa fa-clipboard" style="color:"></i>
-                                                    <span>
-                                                       Curso
-                                                    </span>
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </a>
-                                            </ui:fragment>
-                                          
-                                        </li>
-                                    </ui:fragment>
-                                
-                               
+                                    <li class="treeview" id="mainTree">
+                                        <ui:fragment >
+                                            <a href="menuUser.xhtml">
+                                                <i class="fa fa-users" style="color:"></i>
+                                                <span>
+                                                    Usuarios
+                                                </span>
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </a>
+                                        </ui:fragment>
+
+                                    </li>
+                                </ui:fragment>
                                 <ui:fragment >
-                                        <li class="treeview" id="mainTree">
-                                            <ui:fragment >
-                                                <a href="menuQuestion.xhtml">
-                                                    <i class="fa fa-clipboard" style="color:"></i>
-                                                    <span>
-                                                       Preguntas
-                                                    </span>
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </a>
-                                            </ui:fragment>
-                                          
-                                        </li>
-                                    </ui:fragment>
+                                    <li class="treeview" id="mainTree">
+                                        <ui:fragment >
+                                            <a href="menuCourse.xhtml">
+                                                <i class="fa fa-clipboard" style="color:"></i>
+                                                <span>
+                                                    Curso
+                                                </span>
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </a>
+                                        </ui:fragment>
+
+                                    </li>
+                                </ui:fragment>
+
+
+                                <ui:fragment >
+                                    <li class="treeview" id="mainTree">
+                                        <ui:fragment >
+                                            <a href="menuQuestion.xhtml">
+                                                <i class="fa fa-clipboard" style="color:"></i>
+                                                <span>
+                                                    Preguntas
+                                                </span>
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </a>
+                                        </ui:fragment>
+
+                                    </li>
+                                </ui:fragment>
                             </h:panelGroup>
                         </ul>
-                        
+
                     </section>
                     <!-- /.sidebar -->
                 </h:form>
@@ -327,7 +321,7 @@
                 <section class="content">
                     <!--                    <ui:insert name="body"/>                   -->
                     <h:panelGroup id="myPanel" layout="block">
-                         <ui:include src= "blankPage.xhtml"/>
+                        <ui:include src= "blankPage.xhtml"/>
                     </h:panelGroup>
 
                 </section>

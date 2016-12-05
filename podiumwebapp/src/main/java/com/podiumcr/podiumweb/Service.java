@@ -7,23 +7,13 @@ package com.podiumcr.podiumweb;
 
 
 import com.podiumcr.jpa.data.DebateData;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import com.podiumcr.jpa.data.UserData;
 import com.podiumcr.jpa.entities.User;
 import com.podiumcr.jpa.entities.Debate;
-import com.podiumcr.jpa.entities.Professor;
 import static com.podiumcr.podiumwebapp.common.EntityListener.em;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import static org.glassfish.grizzly.http.server.Constants.a;
-import static org.glassfish.grizzly.http.util.Constants.a;
-import org.primefaces.event.RowEditEvent;
+import java.util.List;
 /**
  *
  * @author Joss

@@ -527,7 +527,7 @@
                     <p:inputText id="year" value="" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50"/>
 
                     <p:outputLabel value="Profesor" for="profesor" />
-                    <p:selectOneMenu id="profesor" value="#{courseView.professor}"  >
+                    <p:selectOneMenu id="profesor" value="#{courseView.professor.name} #{courseView.professor.lastName}"  >
                         <f:selectItem itemLabel="Seleccione un profesor"/>
                         <f:selectItems value=""
                                        var="profesorItem"
@@ -572,7 +572,7 @@
                         </p:dialog>
         
         <h:form id="CourseTableForm">
-            <p:dataTable id="dataList" var="course" value="#{allView.course}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe" widgetVar="dataTable" >
+            <p:dataTable id="dataList" var="course" value="#{login.course}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe" widgetVar="dataTable" >
 
                                 <f:facet name="header" >
                                     <p:commandButton id="toggler" type="button"  icon="ui-icon-calculator" style="float:right; width: 10px; height: 10px;" class="btn-primary"  />

@@ -355,7 +355,7 @@
                        <p:growl id="msgs" showDetail="true" />
                             
                        
-                       <p:dataTable id="dataList" var="user" value="#{allView.user}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe"  widgetVar="dataTable" paginator="true" rows="10" editable="true" selectionMode="single" selection="#{dialogView.selectedUser}" rowKey="#{user.idUniversity}"  >
+                       <p:dataTable id="dataList" var="user" value="#{login.user}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe"  widgetVar="dataTable" paginator="true" rows="10" editable="true" selectionMode="single" selection="#{dialogView.selectedUser}" rowKey="#{user.idUniversity}"  >
 
        
                                 <f:facet name="header" >
@@ -376,9 +376,9 @@
                                     <h:outputText value="#{user.lastName2}" />
                                 </p:column>
 
-                                <p:column headerText="Rol" sortBy="#{allView.roleSelected(user)}" filterBy="#{service.roleSelected(user)}"  >
+                           <p:column headerText="Rol" sortBy="#{login.roleSelected(user)}" filterBy="#{login.roleSelected(user)}"  >
 
-                                    <h:outputText id="Role" value="#{allView.roleSelected(user)}" />
+                                    <h:outputText id="Role" value="#{login.roleSelected(user)}" />
                                 </p:column>
 
                                 <p:column headerText="Correo electrónico" sortBy="#{user.email}" filterBy="#{user.email}" >

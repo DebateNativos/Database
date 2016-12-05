@@ -31,10 +31,10 @@ import javax.persistence.EntityManager;
 @SessionScoped
 public class AllView implements Serializable {
 
-    List<User> user;
-    List<Debate> debate;
-    List<Course> course;
-    List<DebateType> type;
+    private List<User> user;
+    private List<Debate> debate;
+    private List<Course> course;
+    private List<DebateType> type;
     
 
     public AllView() {
