@@ -7,6 +7,7 @@ package com.podiumcr.podiumweb;
 
 import com.podiumcr.jpa.data.CourseData;
 import com.podiumcr.jpa.data.DebateData;
+import com.podiumcr.jpa.data.DebateTypeData;
 import java.io.IOException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -18,6 +19,7 @@ import javax.faces.event.ActionEvent;
 import com.podiumcr.jpa.data.UserData;
 import com.podiumcr.jpa.entities.Course;
 import com.podiumcr.jpa.entities.Debate;
+import com.podiumcr.jpa.entities.DebateType;
 import com.podiumcr.jpa.entities.Professor;
 import com.podiumcr.jpa.entities.User;
 import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFactory;
@@ -41,6 +43,7 @@ public class LoginAdmin implements Serializable {
     private List<Debate> debates;
     private List<User> users;
     private List<Course> course;
+    private List<DebateType> type;
 
     public LoginAdmin() {
     }
@@ -111,6 +114,15 @@ public class LoginAdmin implements Serializable {
         this.course = course;
     }
 
+    public List<DebateType> getType() {
+        return type;
+    }
+
+    public void setType(List<DebateType> type) {
+        this.type = type;
+    }
+    
+
     public void loginSession(ActionEvent event) {
 
         EntityManager em = entityManagerFactory.createEntityManager();
@@ -122,9 +134,11 @@ public class LoginAdmin implements Serializable {
         DebateData dDta = new DebateData(em);
         UserData data = new UserData(em);
         CourseData cData = new CourseData(em);
+        DebateTypeData typedata = new DebateTypeData(em);
         FacesMessage message = null;
         userVerification = userdata.getUserByEmail(email);
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        
         boolean loggedIn = false;
 
         if (email.equals(userVerification.getEmail())) {
@@ -134,6 +148,7 @@ public class LoginAdmin implements Serializable {
                     this.users = data.getUsers();
                     this.course = cData.getAll();
                     this.debates = dDta.getDebates();
+                    this.type = typedata.getAll();
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", user.getName());
                     ec.redirect("menuPrincipal.xhtml");
                     loggedIn = true;
