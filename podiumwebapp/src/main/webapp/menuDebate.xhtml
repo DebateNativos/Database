@@ -362,8 +362,8 @@
                         <h:outputText value="#{debate.name}" />
                     </p:column>
 
-                    <p:column headerText="Activo" sortBy="" filterBy=""   filterMatchMode="contains">
-                        <h:outputText value="#{debate}" />
+                    <p:column headerText="Activo" sortBy="#{login.activeDebate(debate)}" filterBy="#{login.activeDebate(debate)}"   filterMatchMode="contains">
+                        <h:outputText value="#{login.activeDebate(debate)}" />
                     </p:column>
 
                     <p:column headerText="Type" sortBy="#{debate.debateType.name}" filterBy="#{debate.debateType.name}"   filterMatchMode="contains">

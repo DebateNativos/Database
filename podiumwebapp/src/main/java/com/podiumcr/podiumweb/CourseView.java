@@ -32,6 +32,7 @@ public class CourseView implements Serializable {
     private int curseYear;
     private List<User> users;
     private Professor professor;
+    private Course selectedCourse;
   
      public CourseView() {
     }
@@ -101,6 +102,16 @@ public class CourseView implements Serializable {
     public void setProfessor(Professor professor) {
         this.professor = professor;
     }
+
+    public Course getSelectedCourse() {
+        return selectedCourse;
+    }
+
+    public void setSelectedCourse(Course selectedCourse) {
+        this.selectedCourse = selectedCourse;
+    }
+    
+    
      public void newCourse(){
      Course course = new Course();
      
