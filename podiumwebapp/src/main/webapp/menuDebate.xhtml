@@ -363,7 +363,7 @@
                     </p:column>
 
                     <p:column headerText="Activo" sortBy="" filterBy=""   filterMatchMode="contains">
-                        <h:outputText value="" />
+                        <h:outputText value="#{debate}" />
                     </p:column>
 
                     <p:column headerText="Type" sortBy="#{debate.debateType.name}" filterBy="#{debate.debateType.name}"   filterMatchMode="contains">
@@ -395,54 +395,7 @@
             </div><!-- /.content-wrapper -->
 
             <!-- Control Sidebar -->
-            <aside class="control-sidebar control-sidebar-dark">
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <!-- Home tab content -->
-                    <div class="tab-pane" id="control-sidebar-home-tab">
-
-
-                        <h3 class="control-sidebar-heading">Tasks Progress</h3>
-                        <ul class="control-sidebar-menu">
-                            <li>
-                                <a href="javascript::;">
-                                    <h4 class="control-sidebar-subheading">
-                                        Custom Template Design
-                                        <span class="label label-danger pull-right">70%</span>
-                                    </h4>
-                                    <div class="progress progress-xxs">
-                                        <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript::;">
-                                    <h4 class="control-sidebar-subheading">
-                                        Update Resume
-                                        <span class="label label-success pull-right">95%</span>
-                                    </h4>
-                                    <div class="progress progress-xxs">
-                                        <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript::;">
-                                    <h4 class="control-sidebar-subheading">
-                                        Laravel Integration
-                                        <span class="label label-warning pull-right">50%</span>
-                                    </h4>
-                                    <div class="progress progress-xxs">
-                                        <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul><!-- /.control-sidebar-menu -->
-
-                    </div><!-- /.tab-pane -->
-
-                </div>
-            </aside><!-- /.control-sidebar -->
+            
 
             <!-- Add the sidebar's background. This div must be placed
                  immediately after the control sidebar -->

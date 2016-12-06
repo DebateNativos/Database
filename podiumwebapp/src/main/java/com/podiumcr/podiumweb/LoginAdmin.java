@@ -190,4 +190,15 @@ public class LoginAdmin implements Serializable {
         }
         return role;
     }
+     public String activeDebate(Debate d) {
+        String active = null;
+
+        if (d.getIsActive() == true) {
+            active = "Activo";
+        } else {
+            active = "Desactivo";
+        }
+
+        return active;
+    }
 }
