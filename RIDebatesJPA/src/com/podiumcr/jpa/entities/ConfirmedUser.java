@@ -27,6 +27,7 @@ public class ConfirmedUser implements Serializable {
 	private Debate debate;
 	private Role role;
 	private int warnings;
+	private String team;
 
 	public ConfirmedUser() {
 	}
@@ -83,6 +84,16 @@ public class ConfirmedUser implements Serializable {
 
 	public void setWarnings(int warnings) {
 		this.warnings = warnings;
+	}
+
+
+	public String getTeam() {
+		return team;
+	}
+
+
+	public void setTeam(String team) {
+		this.team = team;
 	}
 	
 	

@@ -4,6 +4,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import com.podiumcr.jpa.data.CourseData;
+import com.podiumcr.jpa.data.DebateData;
+import com.podiumcr.jpa.data.UserData;
 import com.podiumcr.jpa.entities.*;
 
 import java.util.ArrayList;
@@ -21,11 +24,14 @@ public class Tester {
 		
         try {
             em.getTransaction().begin();
- 
+            
             User u = new User("@gmail","123", "San jose", "Joe", "Fernandez", "Lozano", 321, true, "7001-7001");
             Course c = new Course("Basura politica", 2, 2016, "C1-4", "Viernes 3:00pm - 6:00pm");    
             Course c2 = new Course("Mi mama amasa la masa", 2, 2016, "C2-5", "Jueves 11:00pm - 5:00pm"); 
             DebateType dt = new DebateType("Modelos de 7 secciones", "Modelo Australiano");
+            Debate d = new Debate("Quorum", Calendar.getInstance().getTime(), dt, Calendar.getInstance().getTime(), false, c, c2);
+            Comment com = new Comment(d, u, "HOLAAAA", c);  
+            Professor p = new Professor("@villalta","123", "CUBA","Jose Maria", "Villalta", "Solis", 6335, "800IZQUIERDA");
            /* User u2 = new User("@gmail.com","123", "San jose", "Carlos", "Perez", "Solis", 34562, false, "7234-7334");
             
             
@@ -51,9 +57,8 @@ public class Tester {
             //Calendar.getInstance().getTime(), "@villalta", "Villalta", "Solis", "Jose Maria", "123", "800IZQUIERDA", Calendar.getInstance().getTime()
             //cambiar em por el dato que es
             
-           //em.merge(u2);
-            
-            em.persist(d);
+           // 
+            * em.merge(u2);        
             em.persist(d2);
             em.persist(d3);
             em.persist(d4);
@@ -63,10 +68,13 @@ public class Tester {
             em.persist(r);         
             em.persist(p);
             em.persist(uc);*/
+            em.persist(d);
             em.persist(c);
             em.persist(c2);
             em.persist(u);
             em.persist(dt);
+            em.persist(com);
+            em.persist(p);
             
             em.getTransaction().commit();
             System.out.println("Actualizado!!!!!!!");

@@ -49,6 +49,8 @@ public class ActiveDebateWS {
                 ad.setDebateTypeId(d.getDebateType().getIdDebateTypes());
                 ad.setStartingDate(d.getStartingDate());
                 ad.setIsActive(d.getIsActive());
+                ad.setCourse1(d.getCourse1().getCourseCode());
+                ad.setCourse2(d.getCourse2().getCourseCode());
                 debatesList.add(ad);
             }
             em.close();
@@ -100,6 +102,8 @@ public class ActiveDebateWS {
                 cdu.setRole(cuser.getRole().getIdRole());
                 cdu.setWarning(cuser.getWarnings());
                 cdu.setDebate(cuser.getDebate().getIdDebates());
+                cdu.setTeam(cuser.getTeam());
+                
                 lcu.add(cdu);
             }
             em.close();

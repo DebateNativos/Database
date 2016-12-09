@@ -6,7 +6,6 @@
 package com.podiumcr.podiumwebapp.data;
 
 import com.podiumcr.jpa.entities.Course;
-import javax.ws.rs.Path;
 
 /**
  *
@@ -23,11 +22,10 @@ public class ActiveCourse {
     private int curseYear;
     private String professor;
 
-
     public ActiveCourse() {
     }
 
-    public ActiveCourse(int idCourse, String name, String classroom, String schedule, int curseQuarter, int curseYear, String professor) {
+    public ActiveCourse(int idCourse, String name, String classroom, String schedule, int curseQuarter, int curseYear, String professor, String code) {
 
         this.idCourse = idCourse;
         this.name = name;
@@ -36,6 +34,7 @@ public class ActiveCourse {
         this.curseQuarter = curseQuarter;
         this.curseYear = curseYear;
         this.professor = professor;
+        this.courseCode = code;
 
     }
 
@@ -46,8 +45,12 @@ public class ActiveCourse {
         this.schedule = c.getSchedule();
         this.curseQuarter = c.getCurseQuarter();
         this.curseYear = c.getCurseYear();
-        this.professor = c.getProfessor().getName() + " " + c.getProfessor().getLastName();
-
+        if (c.getProfessor() == null) {
+            this.professor = "Asignación Pendiente";
+        } else {
+            this.professor = c.getProfessor().getName() + " " + c.getProfessor().getLastName();
+        }
+        this.courseCode = c.getCourseCode();
     }
 
     public int getIdCourse() {
@@ -113,8 +116,8 @@ public class ActiveCourse {
     public void setProfessor(String professor) {
         this.professor = professor;
     }
-    
-     public void ConvertCourse(Course c) {
+
+    public void ConvertCourse(Course c) {
         this.idCourse = c.getIdCourse();
         this.name = c.getName();
         this.classroom = c.getClassroom();

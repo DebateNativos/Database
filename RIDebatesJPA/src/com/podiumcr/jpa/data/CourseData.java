@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import com.podiumcr.jpa.entities.Course;
+import com.podiumcr.jpa.resources.CodeGenerator;
 
 public class CourseData {
 
@@ -15,6 +16,24 @@ public class CourseData {
 	public CourseData(EntityManager em) {
 		// TODO Auto-generated constructor stub
 		this.em = em;
+	}
+
+	public List<String> getAllCodes() {
+
+		List<String> returnedList = new ArrayList<>();
+
+		try {
+
+			TypedQuery<String> querycourse = em.createNamedQuery("Course.findAllCodes", String.class);
+			List<String> listaC = querycourse.getResultList();
+			returnedList = listaC;
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		return returnedList;
 	}
 
 	public List<Course> getAll() {
@@ -26,7 +45,7 @@ public class CourseData {
 			TypedQuery<Course> querycourse = em.createNamedQuery("Course.findAll", Course.class);
 			List<Course> listaC = querycourse.getResultList();
 			returnedList = listaC;
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -45,15 +64,16 @@ public class CourseData {
 			querycourse.setParameter("courseCode", courseCode);
 			Course listaC = querycourse.getSingleResult();
 			returnedList = listaC;
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
+			returnedList = null;
 			e.printStackTrace();
 		}
 
 		return returnedList;
 	}
-	
+
 	public Course getCourseById(int id) {
 
 		Course returnedList = new Course();
@@ -64,7 +84,7 @@ public class CourseData {
 			querycourse.setParameter("id", id);
 			Course listaC = querycourse.getSingleResult();
 			returnedList = listaC;
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -72,24 +92,31 @@ public class CourseData {
 
 		return returnedList;
 	}
-	
+
 	public boolean persistCourse(Course course) {
 
 		boolean returned = false;
 
-		try {
+		do {
+			
+			try {
 
-			em.getTransaction().begin();
-			em.persist(course);
-			em.getTransaction().commit();
+				em.getTransaction().begin();
+				em.persist(course);
+				em.flush();
+				em.getTransaction().commit();
 
-			returned = true;
+				returned = true;
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			em.getTransaction().rollback();
-			returned = false;
-		}
+			} catch (Exception e) {
+				e.printStackTrace();
+				em.getTransaction().rollback();
+				returned = false;
+				CodeGenerator cd = new CodeGenerator();
+				course.setCourseCode(cd.getToken(5));
+			}
+			
+		} while (returned = false);
 
 		return returned;
 
@@ -116,5 +143,5 @@ public class CourseData {
 		return returned;
 
 	}
-	
+
 }

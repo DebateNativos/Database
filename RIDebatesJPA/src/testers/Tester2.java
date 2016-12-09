@@ -1,17 +1,18 @@
 package testers;
 
-import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import com.podiumcr.jpa.data.ConfirmedUserData;
+ 
+import com.podiumcr.jpa.data.CommentData;
+
+import com.podiumcr.jpa.data.CourseData;
 import com.podiumcr.jpa.data.DebateData;
 import com.podiumcr.jpa.data.UserData;
-import com.podiumcr.jpa.entities.ConfirmedUser;
-import com.podiumcr.jpa.entities.Debate;
-import com.podiumcr.jpa.entities.User;
+import com.podiumcr.jpa.entities.Comment;
+import com.podiumcr.jpa.entities.Course;
 
 public class Tester2 {
 
@@ -24,19 +25,24 @@ public class Tester2 {
 						
 				UserData ud = new UserData(em);
 				DebateData dd = new DebateData(em);
-				
-				ConfirmedUserData cud = new ConfirmedUserData(em); 
-				//DebateData dd = new DebateData();		
-				//User u = ud.getUserByEmail("@gmail");
-				List<User> listaUsuarios= ud.getUsers();			
-			    List<Debate> listaDebates = dd.getDebates();	
-			     User u = new User("latinapodiumcr@gmail.com","123", "San jose", "wdqf", "TESTER", "TESTERINO", 321, false, "7001-7001");
-			    if(ud.registerUser(u)){
-			    	System.out.println("Registrado" );
-			    }else{
-			    	
-			    	System.out.println("NO Registrado" );
-			    }
+				CourseData cd = new CourseData(em);
+			    CommentData com = new CommentData(em);
+			    Course c = new Course("CursoPrueba1",2,2016,"C3-3","Viernes Noche");
+			    
+			    if (cd.persistCourse(c)) {
+			    	 for (Course c2 :cd.getAll()) {		
+					    	System.out.println("TEST: " + c2.getName() + " " + c2.getCourseCode());
+						}
+				}
+			    
+
+			    
+			    List<String> ls =cd.getAllCodes();
+			    for (String s : ls) {		
+			    	System.out.println("TEST: " + s);
+				}
+			    //Comment c = new Comment(1, dd.getDebateById(1), ud.getUserByEmail("@gmail"), "HOLAAAA", cd.getCourseByCode("6O1J4"));  
+			    //em.persist(c);
 				/*TypedQuery<ConfirmedUser> getallCU = em.createNamedQuery("ConfirmedUser.findAll", ConfirmedUser.class);
 				List<ConfirmedUser> cu = getallCU.getResultList();
 				em.getTransaction().commit();

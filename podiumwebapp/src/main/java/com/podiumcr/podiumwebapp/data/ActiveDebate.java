@@ -6,7 +6,6 @@
 package com.podiumcr.podiumwebapp.data;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  *
@@ -20,6 +19,9 @@ public class ActiveDebate {
     private int debateTypeId;
     private Date startingDate;
     private boolean isActive;
+    private String course1;
+    private String course2;
+    
 
     public ActiveDebate() {
     }
@@ -70,6 +72,22 @@ public class ActiveDebate {
 
     public void setDebateTypeId(int debateTypeId) {
         this.debateTypeId = debateTypeId;
+    }
+
+    public String getCourse1() {
+        return course1;
+    }
+
+    public void setCourse1(String course1) {
+        this.course1 = course1;
+    }
+
+    public String getCourse2() {
+        return course2;
+    }
+
+    public void setCourse2(String course2) {
+        this.course2 = course2;
     }
 
     

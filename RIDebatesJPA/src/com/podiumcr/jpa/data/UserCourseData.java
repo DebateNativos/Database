@@ -92,6 +92,7 @@ public class UserCourseData {
 
 			em.getTransaction().begin();
 			em.persist(userCourse);
+			em.flush();
 			em.getTransaction().commit();
 
 			returned = true;
@@ -114,6 +115,7 @@ public class UserCourseData {
 
 			em.getTransaction().begin();
 			em.remove(userCourse);
+			em.flush();
 			em.getTransaction().commit();
 
 			returned = true;

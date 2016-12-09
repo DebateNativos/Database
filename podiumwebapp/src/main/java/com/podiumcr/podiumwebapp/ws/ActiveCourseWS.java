@@ -9,6 +9,7 @@ import com.podiumcr.jpa.data.CourseData;
 import com.podiumcr.podiumwebapp.data.ActiveUserCourse;
 import com.podiumcr.jpa.data.UserCourseData;
 import com.podiumcr.jpa.data.UserData;
+import com.podiumcr.jpa.entities.Course;
 import com.podiumcr.jpa.entities.UserCourse;
 import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFactory;
 import com.podiumcr.podiumwebapp.data.ActiveCourse;
@@ -57,11 +58,15 @@ public class ActiveCourseWS {
         EntityManager em = entityManagerFactory.createEntityManager();
         CourseStatus cs = new CourseStatus();
         CourseData cd = new CourseData(em);
+        Course c = cd.getCourseByCode(code);
         try {
-            ActiveCourse ac = new ActiveCourse(cd.getCourseByCode(code));
-            cs.setStatus("@validCode");
-            cs.setCourse(ac);
-
+            if (c != null) {
+                ActiveCourse ac = new ActiveCourse(c);
+                cs.setStatus("@validCode");
+                cs.setCourse(ac);
+            } else {
+                cs.setStatus("@invalidCode");
+            }
             em.close();
         } catch (Exception e) {
             em.close();

@@ -3,6 +3,7 @@ package com.podiumcr.jpa.entities;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.podiumcr.jpa.data.CourseData;
 import com.podiumcr.jpa.resources.CodeGenerator;
 
 import java.io.Serializable;
@@ -18,6 +19,7 @@ import java.util.List;
 @Table(name = "course")
 @NamedQueries(value = {
 		@NamedQuery(name= "Course.findAll", query = "SELECT c FROM Course c"),
+		@NamedQuery(name= "Course.findAllCodes", query = "SELECT c.courseCode FROM Course c"),
 		@NamedQuery(name= "Course.findById", query = "SELECT c FROM Course c WHERE c.idCourse = :id"),
 		@NamedQuery(name= "Course.findByProfessor", query = "SELECT c FROM Course c WHERE c.professor = :professor"),
 		@NamedQuery(name= "Course.findByName", query = "SELECT c FROM Course c WHERE c.name = :name"),
@@ -36,6 +38,7 @@ public class Course implements Serializable {
 	private int curseYear;
 	private List<User> users;
 	private Professor professor;
+	private List<Comment> comments;
 
 	public Course() {
 	}
@@ -128,6 +131,14 @@ public class Course implements Serializable {
 		this.schedule = schedule;
 	}
 
+	@OneToMany (mappedBy="course", targetEntity= Comment.class, fetch = FetchType.LAZY)
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
 	
 	
 }
