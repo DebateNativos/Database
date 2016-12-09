@@ -206,4 +206,15 @@ public class LoginAdmin implements Serializable {
    
    }  
      
+   
+   public void deleteUser() {
+        addMessage("Eliminar","Usuario borrado");
+    }
+     
+    public void addMessage(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+   
+   
 }

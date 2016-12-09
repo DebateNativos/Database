@@ -370,7 +370,7 @@
                        <p:growl id="msgs" showDetail="true" />
                             
                        
-                       <p:dataTable id="dataList" var="user" value="#{login.user}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe"  widgetVar="dataTable" paginator="true" rows="10" editable="true" selectionMode="single" selection="#{dialogView.selectedUser}" rowKey="#{user.idUniversity}"  >
+                       <p:dataTable id="dataList" var="user" value="#{login.users}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe"  widgetVar="dataTable" paginator="true" rows="10" editable="true" selectionMode="single" selection="#{dialogView.selectedUser}" rowKey="#{user.idUniversity}"  >
 
        
                                 <f:facet name="header" >
@@ -416,12 +416,17 @@
                                 <f:facet name="footer">
 
                                     <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Nuevo" type="button" onclick="PF('UserDialog').show()" />
-                                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil"  process="dataList" update=":form:editDetail" value="Editar" oncomplete="PF('editDialog').show()" />
+                                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil"  process="dataList" update=":form:msgs" value="Editar" onclick="PF('editDialog').show()" />
                                      
-                                   
-                                    <p:commandButton id="deleteButton" styleClass="btn-warning" icon="fa fa-trash"  value="Borrar" actionListener="#{dialogView.deleteUser()}"  onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()">
-                                    <p:confirm header="Confirmación" message="¿Desea borrar el registro?" icon="fa fa-warning" />
+                                    <p:commandButton value="Eliminar" icon="fa fa-trash"  actionListener="#{login.deleteUser()}" update=":form:msgs" styleClass="btn-warning">
+                                        <p:confirm header="Confirmation" message="¿Desea eleminar el usuario?" icon="ui-icon-alert" />
                                     </p:commandButton>
+ 
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                    </p:confirmDialog>
+
                                     <p:commandButton styleClass="btn-danger" icon="fa fa-pencil" value="Sancionar" type="button" actionListener="#{dialogView.penalty()}"/>
                                
    
@@ -448,8 +453,8 @@
                                     
                                     <p:outputLabel value="Segundo apellido" for="secondLastName" />
                                     <p:inplace id="secondLastName" editor="true">
-                                    <p:inputText  value="#{dialogView.selectedUser.lastName2}" title="" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
-                                    </p:inplace>
+                                    <p:inputText   value="#{dialogView.selectedUser.lastName2}" title="true" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
+                                   </p:inplace>
 
                                     <p:outputLabel value="Correo electrónico" for="email" />
                                     <p:inplace id="email" editor="true">
@@ -475,7 +480,7 @@
 
                                     <f:facet name="footer" >
                                         <div class="footer-right">
-                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Agregar" actionListener="#{dialogView.editUser1()}" update=":form:msgs"  />
+                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Guardar" actionListener="#{dialogView.editUser1()}" update=":form:msgs" onsuccess="PF('editDialog').hide()" />
                                             <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('editDialog').hide()" immediate="true" onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()"/>
                                         </div>
                                     </f:facet>
