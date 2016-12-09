@@ -373,7 +373,7 @@
                     <f:facet name="footer">
 
                         <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Nuevo" type="button" onclick="PF('DebateDialog').show();" />
-                        <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar" type="button" onclick="PF('DebateEditDialog').show();" />
+                        <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar" type="button" onclick="PF('EditDialog').show();" />
                          <!-- onclick="PF('DebateEditDialog').show();" -->
                          <p:commandButton styleClass="btn-warning" icon="fa fa-check-circle-o" value="Activar" type="button" />
                         <p:commandButton id="deleteButton" styleClass="btn-danger" icon="fa fa-trash"  value="Borrar"  onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()">
@@ -383,12 +383,41 @@
                     </f:facet>
                 </p:dataTable>
 
+                <p:dialog header="Editar" widgetVar="EditDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
+                            <p:outputPanel id="editDetail" style="text-align:center;">
+                                <p:panelGrid  columns="2" rendered="#{not empty debateNew.selectedDebate}">
+                                    <f:facet name="header">
+                                        <h1 >#{debateNew.selectedDebate.name}</h1>
+                                    </f:facet>
+                                    <p:outputLabel value="Nombre" for="firstName" />
+                                    <p:inplace id="firstName" editor="true">
+                                    <p:inputText  value="#{debateNew.selectedDebate.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                    </p:inplace>
+                                    
+                                    
+                                    <p:outputLabel value="Tipo de debate" for="type" />
+                                    <p:inplace id="type" editor="true">
+                                        <p:inputText value="#{debateNew.selectedDebate.debateType.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                    </p:inplace>
+                                    
+                                    
+                                    <p:outputLabel value="Fecha y hora" for="time" />
+                                    <p:inplace id="time" editor="true">
+                                        <p:inputText  value="#{debateNew.selectedDebate.startingDate}" title="" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
+                                    </p:inplace>
+
+                                    <f:facet name="footer" >
+                                        <div class="footer-right">
+                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Editar" actionListener="#{debateNew.newDeb}" update=":form:msgs"  />
+                                            <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('editDialog').hide()" immediate="true" onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()"/>
+                                        </div>
+                                    </f:facet>
+                                </p:panelGrid>
+                            </p:outputPanel>
+                        </p:dialog>
+                
             </h:form>
-        
-        
-        
-        
-        
+          
         </h:panelGroup>
                     
                 </section>

@@ -35,7 +35,8 @@ public class DebateNew implements Serializable{
     private DebateType debateType;
     private Date startingDate;
     private Date hour;
-
+   
+    
    
     private boolean isActive;
     

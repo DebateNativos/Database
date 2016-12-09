@@ -409,43 +409,43 @@
         <h:form id="CourseTableForm">
             <p:dataTable id="dataList" var="course" value="#{login.course}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe" widgetVar="dataTable" >
 
-                                <f:facet name="header" >
-                                    <p:commandButton id="toggler" type="button"  icon="ui-icon-calculator" style="float:right; width: 10px; height: 10px;" class="btn-primary"  />
-                                    <p:columnToggler datasource="dataList" trigger="toggler" />
-                                    <h:outputText value="Cursos"/>
-                                </f:facet>
-                                
+                <f:facet name="header" >
+                    <p:commandButton id="toggler" type="button"  icon="ui-icon-calculator" style="float:right; width: 10px; height: 10px;" class="btn-primary"  />
+                    <p:columnToggler datasource="dataList" trigger="toggler" />
+                    <h:outputText value="Cursos"/>
+                </f:facet>
+
                 <p:column headerText="Código" sortBy="#{course.courseCode}" filterBy="#{course.courseCode}"   filterMatchMode="contains" style=" height: 2%;">
                     <h:outputText value="#{course.courseCode}" />
-                                </p:column>
+                </p:column>
 
                 <p:column headerText="Cuatrimeste" sortBy="#{course.curseQuarter}" filterBy="#{course.curseQuarter}"   filterMatchMode="contains">
                     <h:outputText value="#{course.curseQuarter}" />
-                                </p:column>
+                </p:column>
 
                 <p:column headerText="Nombre" sortBy="#{course.name}" filterBy="#{course.name}"   filterMatchMode="contains" >
-                                    <h:outputText value="#{course.name}" />
-                                </p:column>
+                    <h:outputText value="#{course.name}" />
+                </p:column>
 
-                            <p:column headerText="Año" sortBy="#{course.curseYear}" filterBy="#{course.curseYear}"  filterMatchMode="contains">
-                                    <h:outputText value="#{course.curseYear}" />
-                                </p:column>
+                <p:column headerText="Año" sortBy="#{course.curseYear}" filterBy="#{course.curseYear}"  filterMatchMode="contains">
+                    <h:outputText value="#{course.curseYear}" />
+                </p:column>
 
                 <p:column headerText="Profesor" sortBy="#{course.professor.name}" filterBy="#{course.professor.name}"   filterMatchMode="contains">
                     <h:outputText value="#{course.professor.name}" />
-                                </p:column>
+                </p:column>
 
-                                <f:facet name="footer">
+                <f:facet name="footer">
 
-                                    <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Nuevo" type="button" onclick="PF('CourseCreateDialog').show();" />
-                                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar" type="button" onclick="PF('editDialog').show();" />
-                                    
-                                    <p:commandButton id="deleteButton" styleClass="btn-danger" icon="fa fa-trash"  value="Borrar"  onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()">
-                                    <p:confirm header="Confirmación" message="¿Desea borrar el registro?" icon="fa fa-warning"/>
-                                    </p:commandButton>
-                                    <!--<p:commandButton process="user" update=":UserTableForm:userInfoDetail" icon="ui-icon-search" value="Ver" oncomplete="PF('userInfoDialog').show()" />-->
-                                </f:facet>
-                            </p:dataTable>
+                    <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Nuevo" type="button" onclick="PF('CourseCreateDialog').show();" />
+                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar" type="button" onclick="PF('editDialog').show();" />
+
+                    <p:commandButton id="deleteButton" styleClass="btn-danger" icon="fa fa-trash"  value="Borrar"  onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()">
+                        <p:confirm header="Confirmación" message="¿Desea borrar el registro?" icon="fa fa-warning"/>
+                    </p:commandButton>
+                    
+                </f:facet>
+            </p:dataTable>
             
             <p:dialog header="Editar" widgetVar="editDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
                 <p:outputPanel id="editDetail" style="text-align:center;">

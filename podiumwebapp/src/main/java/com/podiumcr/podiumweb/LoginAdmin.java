@@ -202,6 +202,8 @@ public class LoginAdmin implements Serializable {
         return active;
     }
      
-     
+   void sendResetPassword(){
+   
+   }  
      
 }
