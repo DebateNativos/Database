@@ -416,9 +416,9 @@
                                 <f:facet name="footer">
 
                                     <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Nuevo" type="button" onclick="PF('UserDialog').show()" />
-                                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil"  process="dataList" update=":form:msgs" value="Editar" onclick="PF('editDialog').show()" />
+                                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil"  process="dataList" update=":form:msgs" value="Editar" onclick="PF('EditUserDialog').show()" />
                                      
-                                    <p:commandButton value="Eliminar" icon="fa fa-trash"  actionListener="#{login.deleteUser()}" update=":form:msgs" styleClass="btn-warning">
+                                    <p:commandButton value="Eliminar" icon="fa fa-trash"  actionListener="#{login.deleteCourse()}" update=":form:msgs" styleClass="btn-warning">
                                         <p:confirm header="Confirmation" message="¿Desea eleminar el usuario?" icon="ui-icon-alert" />
                                     </p:commandButton>
  
@@ -433,7 +433,7 @@
                                 </f:facet>
                             </p:dataTable>
                        
-                              <p:dialog header="Editar" widgetVar="editDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
+                              <p:dialog header="Editar" widgetVar="EditUserDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
                             <p:outputPanel id="editDetail" style="text-align:center;">
                                 <p:panelGrid  columns="2" rendered="#{not empty dialogView.selectedUser}">
                                     <f:facet name="header">
@@ -481,7 +481,7 @@
                                     <f:facet name="footer" >
                                         <div class="footer-right">
                                             <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Guardar" actionListener="#{dialogView.editUser1()}" update=":form:msgs" onsuccess="PF('editDialog').hide()" />
-                                            <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('editDialog').hide()" immediate="true" onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()"/>
+                                            <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('editDialog').hide()" immediate="true"/>
                                         </div>
                                     </f:facet>
                                 </p:panelGrid>

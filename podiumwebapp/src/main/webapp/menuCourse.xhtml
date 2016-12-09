@@ -292,15 +292,15 @@
                 <section class="content-header">
 
                     <h1>
-                        Debate
-                        <small>Panel de control de debates</small>
+                        Cursos
+                        <small>Panel de control de curso</small>
                     </h1>
                     <h:panelGroup id="myDashBoard" class="breadcrumb">
                         <ol class="breadcrumb">
 
                             <li><a href="menuPrincipal.xhtml"><i class="fa fa-dashboard"></i>Página Principal</a></li>
 
-                            <li class="active">Debate</li>
+                            <li class="active">Cursos</li>
 
                         </ol>
 
@@ -345,69 +345,16 @@
             </h:form>
         </p:dialog>
           <!--Editar-->
-        <p:dialog id="CourseEditDlg" widgetVar="CourseEditDialog" modal="true" appendTo="@(body)" resizable="false"  header="Editar">
-            <h:form id="CourseEditForm">
-                <p:panelGrid columns="2">
-                    <p:outputLabel value="Codigo" for="code" />
-                    <p:inputText id="code" value="#{courseView.courseCode}" required="true" requiredMessage="Debes ingresar el código" size="45" maxlength="45"/>
-
-                    <p:outputLabel value="Cuatrimestre" for="Term" />
-                    <p:inputText id="Term" value="#{courseView.curseQuarter}"  required="true" requiredMessage="Ingresar el cuatrimeste actual" size="45" maxlength="45"/>
-
-                    <p:outputLabel value="Nombre del curso" for="name" />
-                    <p:inputText id="name" value="#{courseView.name}" required="true" requiredMessage="Ingresar el nombre del curso"  size="50" maxlength="50"/>
-
-
-                    <p:outputLabel value="Año" for="year" />
-                    <p:inputText id="year" value="" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50"/>
-
-                    <p:outputLabel value="Profesor" for="profesor" />
-                    <p:selectOneMenu id="profesor" value="#{courseView.professor.name} #{courseView.professor.lastName}"  >
-                        <f:selectItem itemLabel="Seleccione un profesor"/>
-                        <f:selectItems value=""
-                                       var="profesorItem"
-                                       itemValue=""
-                                       itemLabel=""
-                                       />
-
-                    </p:selectOneMenu>
-                    <f:facet name="footer" >
-                        <div class="footer-right">
-                            <p:commandButton icon="fa fa-pencil" styleClass="btn-success" value="Editar"  />
-                            <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('').hide()" immediate="true" onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()"/>
-                        </div>
-                    </f:facet>
-                </p:panelGrid>
-            </h:form>
-        </p:dialog>
-        <!--Ver-->
-        <p:dialog header="Informacio del curso" widgetVar="userInfoDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-                            <p:outputPanel id="userInfoDetail" style="text-align:center;">
-                                <p:panelGrid  columns="2" rendered="#{not empty editController.selectedCar}" columnClasses="label,value">
-                                    <f:facet name="header">
-                                        <p:graphicImage/> 
-                                    </f:facet>
-
-                                    <h:outputText value="Codigo:" />
-                                    <h:outputText value="" />
-
-                                    <h:outputText value="Cuatrimeste:" />
-                                    <h:outputText value="" />
-
-                                    <h:outputText value="Nombre:" />
-                                    <h:outputText value=""/>
-
-                                    <h:outputText value="Año:" />
-                                    <h:outputText value="" />
-                                    
-                                    <h:outputText value="Profesor:" />
-                                    <h:outputText value="" />
-                                </p:panelGrid>
-                            </p:outputPanel>
-                        </p:dialog>
         
-        <h:form id="CourseTableForm">
-            <p:dataTable id="dataList" var="course" value="#{login.course}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe" widgetVar="dataTable" >
+        <!--Ver-->
+        
+        
+        <h:form id="form">
+            <p:growl id="msgs" showDetail="true" />
+            
+            
+
+               <p:dataTable id="dataList" var="course" value="#{login.course}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe" paginator="true" widgetVar="dataTable" rows="10" editable="true" selectionMode="single" selection="#{courseView.selectedCourse}" rowKey="#{course.courseCode}"  >
 
                 <f:facet name="header" >
                     <p:commandButton id="toggler" type="button"  icon="ui-icon-calculator" style="float:right; width: 10px; height: 10px;" class="btn-primary"  />
@@ -438,49 +385,52 @@
                 <f:facet name="footer">
 
                     <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Nuevo" type="button" onclick="PF('CourseCreateDialog').show();" />
-                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar" type="button" onclick="PF('editDialog').show();" />
-
-                    <p:commandButton id="deleteButton" styleClass="btn-danger" icon="fa fa-trash"  value="Borrar"  onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()">
-                        <p:confirm header="Confirmación" message="¿Desea borrar el registro?" icon="fa fa-warning"/>
-                    </p:commandButton>
+                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar" type="button" onclick="PF('EditCourseDialog').show();"  />
+                    <p:commandButton value="Eliminar" icon="fa fa-trash"  actionListener="#{login.deleteUser()}" update=":form:msgs" styleClass="btn-warning">
+                                        <p:confirm header="Confirmation" message="¿Desea eleminar el usuario?" icon="ui-icon-alert" />
+                                    </p:commandButton>
+ 
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                    </p:confirmDialog>
                     
                 </f:facet>
             </p:dataTable>
             
-            <p:dialog header="Editar" widgetVar="editDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
+            <p:dialog header="Editar" widgetVar="EditCourseDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
                 <p:outputPanel id="editDetail" style="text-align:center;">
                     <p:panelGrid  columns="2" rendered="#{not empty courseView.selectedCourse}">
                         <f:facet name="header">
                             <h1 >#{courseView.selectedCourse.name}</h1>
                         </f:facet>
-                        <p:outputLabel value="Nombre" for="name" />
+                        <p:outputLabel value="Nombre:" for="name" />
                         <p:inplace>
                             <p:inputText id="name" value="#{courseView.selectedCourse.name}" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50"/>
                         </p:inplace>
-
-
-                        <p:outputLabel value="Cuatrimestre" for="Term" />
+                        
+                        <p:outputLabel value="Cuatrimestre:" for="Term" />
                         <p:inplace>
                             <p:inputText id="Term" type="number" value="#{courseView.selectedCourse.curseQuarter}"  required="true" requiredMessage="Ingresar el cuatrimeste actual" size="45" maxlength="45"/>
                         </p:inplace>
 
-                        <p:outputLabel value="Año" for="year" />
+                        <p:outputLabel value="Año:" for="year" />
                         <p:inplace>
                             <p:inputMask id="year"  value="#{courseView.selectedCourse.curseYear}" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50" mask=""/>
                         </p:inplace>
+                        <p:outputLabel value="Profesor" for="profesor" />
+                    <p:selectOneMenu id="profesor" value="#{courseView.professor}"  >
+                        <f:selectItem itemLabel="Seleccione un profesor"/>
+                        <f:selectItems value="" />
 
-                        <p:outputLabel value="Profesor" for="course" />
-                        <p:selectOneMenu id="course" value="" effect="fold">
-                            <f:selectItem itemLabel="Seleccione uno" itemValue="" />
-
-                            <f:selectItems value="" />
-                        </p:selectOneMenu>
+                    </p:selectOneMenu>
+                        
 
                         <f:facet name="footer" >
                             <div class="footer-right">
 
-                                <p:commandButton icon="fa fa-pencil" styleClass="btn-success" value="Crear" actionListener="#{courseView.newCourse()}" update=":form:msgs" />
-                                <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('CourseCreateDialog').hide()"  immediate="true" onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()"/>
+                                <p:commandButton icon="fa fa-pencil" styleClass="btn-success" value="Guardar" actionListener="#{courseView.newCourse()}" update=":form:msgs" onsuccess="PF('EditCourseDialog').hide()"/>
+                                <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('CourseCreateDialog').hide()"  immediate="true" />
                             </div>
                         </f:facet>
                     </p:panelGrid>
