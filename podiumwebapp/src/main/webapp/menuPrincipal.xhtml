@@ -3,7 +3,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta charset="utf-8"/>
@@ -124,7 +125,7 @@
                                         <h:graphicImage library="dist" name="img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
                                         <p>
                                             <!-- Devolver aquí el usuario logeado-->
-                                             #{login.user}
+                                             #{login.user.name}
                                              <small>-Administrador-</small>
                                         </p>
                                     </li>
@@ -220,7 +221,7 @@
                                                        <ui:fragment >
 
                                                         <li >
-                                                            <a href="menuChronometer.xhtml">
+                                                            <a href="menuTime.xhtml">
                                                                 <i class="fa fa-circle-o"></i>
                                                                 Asignar cronómetro
                                                                 <small class="label pull-right bg-aqua"></small>
@@ -261,20 +262,7 @@
                                         </li>
                                     </ui:fragment>
 
-                                <ui:fragment >
-                                        <li class="treeview" id="mainTree">
-                                            <ui:fragment >
-                                                <a href="menuQuestion.xhtml">
-                                                    <i class="fa fa-clipboard" style="color:"></i>
-                                                    <span>
-                                                       Preguntas
-                                                    </span>
-                                                    
-                                                </a>
-                                            </ui:fragment>
-                                          
-                                        </li>
-                                    </ui:fragment>
+                               
                             </h:panelGroup>
                         </ul>
                         
@@ -293,7 +281,10 @@
                         Menú principal
                         <small>Panel de control</small>
                     </h1>
+                    
                     <h:panelGroup id="myDashBoard" class="breadcrumb">
+                       
+                        
                         <ol class="breadcrumb">
 
                             <li><a href="menuPrincipal.xhtml"><i class="fa fa-dashboard"></i>Página Principal</a></li>
@@ -301,7 +292,15 @@
                             <li class="active"> </li>
 
                         </ol>
-
+ <p:dataList value="" var="car" type="definition">
+                            <f:facet name="header">
+                               Estudiantes
+                            </f:facet>
+                           
+                            <f:facet name="description">
+                                
+                            </f:facet>
+                        </p:dataList>
                     </h:panelGroup>
                 </section>
 

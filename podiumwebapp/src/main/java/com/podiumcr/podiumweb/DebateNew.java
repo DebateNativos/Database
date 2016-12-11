@@ -121,6 +121,7 @@ public class DebateNew implements Serializable{
         this.hour = hour;
     }
     
+    
     public void newDeb() {
         Debate newDebate = null;
 

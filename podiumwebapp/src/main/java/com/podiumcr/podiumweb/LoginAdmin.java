@@ -45,6 +45,8 @@ public class LoginAdmin implements Serializable {
     private List<Course> course;
     private List<DebateType> type;
 
+    
+    
     public LoginAdmin() {
     }
 
@@ -121,6 +123,8 @@ public class LoginAdmin implements Serializable {
     public void setType(List<DebateType> type) {
         this.type = type;
     }
+
+ 
     
 
     public void loginSession(ActionEvent event) {
@@ -222,4 +226,7 @@ public class LoginAdmin implements Serializable {
     }
    
    
+    
+    
+    
 }

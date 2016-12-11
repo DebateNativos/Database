@@ -221,7 +221,7 @@
                                                        <ui:fragment >
 
                                                         <li >
-                                                            <a href="menuChronometer.xhtml">
+                                                            <a href="menuTime.xhtml">
                                                                 <i class="fa fa-circle-o"></i>
                                                                 Asignar cronómetro
                                                                 <small class="label pull-right bg-aqua"></small>
@@ -378,7 +378,10 @@
                                     <p:columnToggler datasource="dataList" trigger="toggler" />
                                     <h:outputText value="Usuarios"/>
                                 </f:facet>
-
+                                <p:column headerText="Carnet" sortBy="#{user.idUniversity}" filterBy="#{user.idUniversity}"  >
+                                    <h:outputText  value="#{user.idUniversity}" />
+                                </p:column>
+                           
                                 <p:column headerText="Nombre" sortBy="#{user.name}" filterBy="#{user.name}" style=" height: 2%;">
                                     <h:outputText value="#{user.name}" />
                                 </p:column>
@@ -403,9 +406,7 @@
                                 <p:column headerText="Dirección" sortBy="#{user.address}" filterBy="#{user.address}"  >
                                     <h:outputText  value="#{user.address}" />
                                 </p:column>
-                                <p:column headerText="Carnet" sortBy="#{user.idUniversity}" filterBy="#{user.idUniversity}"  >
-                                    <h:outputText  value="#{user.idUniversity}" />
-                                </p:column>
+                                
                               
                                 <p:column  headerText="Teléfono:" sortBy="#{user.phone}" filterBy="#{user.phone}"  >
                                     <h:outputText id="phone" value="#{user.phone}"/>
@@ -415,8 +416,8 @@
 
                                 <f:facet name="footer">
 
-                                    <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Nuevo" type="button" onclick="PF('UserDialog').show()" />
-                                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil"  process="dataList" update=":form:msgs" value="Editar" onclick="PF('EditUserDialog').show()" />
+                                    <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Nuevo" type="button" onclick="PF('UserDialog').show()"/>
+                                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar" onclick="PF('EditUserDialog').show()"  />
                                      
                                     <p:commandButton value="Eliminar" icon="fa fa-trash"  actionListener="#{login.deleteCourse()}" update=":form:msgs" styleClass="btn-warning">
                                         <p:confirm header="Confirmation" message="¿Desea eleminar el usuario?" icon="ui-icon-alert" />
@@ -433,42 +434,44 @@
                                 </f:facet>
                             </p:dataTable>
                        
-                              <p:dialog header="Editar" widgetVar="EditUserDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
+                              
+                       
+                   <p:dialog header="Editar" widgetVar="EditUserDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
                             <p:outputPanel id="editDetail" style="text-align:center;">
-                                <p:panelGrid  columns="2" rendered="#{not empty dialogView.selectedUser}">
+                                <p:panelGrid  columns="2" >
                                     <f:facet name="header">
-                                        <h1 >#{dialogView.selectedUser.name}</h1>
+                                        <h1> Usuario </h1>
                                     </f:facet>
                                     <p:outputLabel value="Nombre" for="firstName" />
                                     <p:inplace id="firstName" editor="true">
-                                    <p:inputText  value="#{dialogView.selectedUser.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                    <p:inputText  value=""  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
                                     </p:inplace>
                                     
                                     
                                     <p:outputLabel value="Primer apellido" for="lastName" />
                                     <p:inplace id="lastName" editor="true">
-                                    <p:inputText value="#{dialogView.selectedUser.lastName}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                    <p:inputText value=""  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
                                     </p:inplace>
                                     
                                     
                                     <p:outputLabel value="Segundo apellido" for="secondLastName" />
                                     <p:inplace id="secondLastName" editor="true">
-                                    <p:inputText   value="#{dialogView.selectedUser.lastName2}" title="true" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
+                                    <p:inputText   value="" title="true" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
                                    </p:inplace>
 
                                     <p:outputLabel value="Correo electrónico" for="email" />
                                     <p:inplace id="email" editor="true">
-                                    <p:inputText  value="#{dialogView.selectedUser.email}" required="true" requiredMessage="Debe ingresar la información correcta" size="50" maxlength="50"/>
+                                    <p:inputText  value="" required="true" requiredMessage="Debe ingresar la información correcta" size="50" maxlength="50"/>
                                     </p:inplace>
                                     
                                     <p:outputLabel value="Dirección" for="address" />
                                     <p:inplace id="address" editor="true">
-                                    <p:inputText  value="#{dialogView.selectedUser.address}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                    <p:inputText  value=""  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
                                     </p:inplace>
 
                                     <p:outputLabel for="phone" value="Teléfono:" />
                                     <p:inplace id="phone"  editor="true">
-                                    <p:inputMask value="#{dialogView.selectedUser.phone}" mask="(999) 999-9999"/>
+                                    <p:inputText value="" />
                                     </p:inplace>
                                         
                                    <p:outputLabel for="Role" value="Role:" />
@@ -487,10 +490,9 @@
                                 </p:panelGrid>
                             </p:outputPanel>
                         </p:dialog>
-                       
-                   
 
             </h:form>
+                      
                     </h:panelGroup>
 
                 </section>

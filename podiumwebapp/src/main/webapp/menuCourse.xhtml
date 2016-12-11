@@ -222,7 +222,7 @@
                                                        <ui:fragment >
 
                                                         <li >
-                                                            <a href="menuChronometer.xhtml">
+                                                            <a href="menuTime.xhtml">
                                                                 <i class="fa fa-circle-o"></i>
                                                                 Asignar cronómetro
                                                                 <small class="label pull-right bg-aqua"></small>
@@ -312,7 +312,7 @@
                     <!--                    <ui:insert name="body"/>                   -->
            <h:panelGroup id="myPanel" layout="block">
                         <!--Crear-->
-            <p:dialog id="CourseCreateDlg" widgetVar="CourseCreateDialog" modal="true" appendTo="@(body)" resizable="false"  header="Nuevo">
+            <p:dialog id="CourseCreateDlg" widgetVar="CourseCreateDialog"  modal="true" appendTo="@(body)" resizable="false"  header="Nuevo">
             <h:form id="CourseCreateForm">
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Codigo" for="code" />
@@ -337,7 +337,7 @@
                     <f:facet name="footer" >
                         <div class="footer-right">
                             
-                            <p:commandButton icon="fa fa-pencil" styleClass="btn-success" value="Nuevo" actionListener="#{courseView.newCourse()}" />
+                            <p:commandButton icon="fa fa-pencil" styleClass="btn-success" value="Nuevo" actionListener="#{courseView.newCourse()}" update=":form:msgs" />
                             <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('CourseCreateDialog').hide()" immediate="true" onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()"/>
                         </div>
                     </f:facet>
@@ -384,10 +384,10 @@
 
                 <f:facet name="footer">
 
-                    <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Nuevo" type="button" onclick="PF('CourseCreateDialog').show();" />
-                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar" type="button" onclick="PF('EditCourseDialog').show();"  />
-                    <p:commandButton value="Eliminar" icon="fa fa-trash"  actionListener="#{login.deleteUser()}" update=":form:msgs" styleClass="btn-warning">
-                                        <p:confirm header="Confirmation" message="¿Desea eleminar el usuario?" icon="ui-icon-alert" />
+                    <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Nuevo" type="button" onclick="PF('CourseCreateDialog').show();" update=":form:msgs" />
+                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar" type="button" onclick="PF('EditDialog').show();"   />
+                    <p:commandButton value="Eliminar" icon="fa fa-trash"  actionListener="#{login.deleteCourse()}" update=":form:msgs" styleClass="btn-warning">
+                                        <p:confirm header="Confirmación" message="¿Desea eleminar el usuario?" icon="ui-icon-alert" />
                                     </p:commandButton>
  
                                     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
@@ -398,15 +398,15 @@
                 </f:facet>
             </p:dataTable>
             
-            <p:dialog header="Editar" widgetVar="EditCourseDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
+            <p:dialog header="Editar" widgetVar="EditDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
                 <p:outputPanel id="editDetail" style="text-align:center;">
-                    <p:panelGrid  columns="2" rendered="#{not empty courseView.selectedCourse}">
+                    <p:panelGrid  columns="2" >
                         <f:facet name="header">
-                            <h1 >#{courseView.selectedCourse.name}</h1>
+                            <h1 >Curso </h1>
                         </f:facet>
                         <p:outputLabel value="Nombre:" for="name" />
                         <p:inplace>
-                            <p:inputText id="name" value="#{courseView.selectedCourse.name}" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50"/>
+                            <p:inputText id="name" value="" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50"/>
                         </p:inplace>
                         
                         <p:outputLabel value="Cuatrimestre:" for="Term" />
@@ -416,10 +416,10 @@
 
                         <p:outputLabel value="Año:" for="year" />
                         <p:inplace>
-                            <p:inputMask id="year"  value="#{courseView.selectedCourse.curseYear}" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50" mask=""/>
+                            <p:inputMask id="year"  value="" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50" mask=""/>
                         </p:inplace>
                         <p:outputLabel value="Profesor" for="profesor" />
-                    <p:selectOneMenu id="profesor" value="#{courseView.professor}"  >
+                        <p:selectOneMenu id="profesor" value=""  >
                         <f:selectItem itemLabel="Seleccione un profesor"/>
                         <f:selectItems value="" />
 
