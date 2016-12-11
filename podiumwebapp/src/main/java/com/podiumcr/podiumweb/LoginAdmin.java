@@ -44,6 +44,7 @@ public class LoginAdmin implements Serializable {
     private List<User> users;
     private List<Course> course;
     private List<DebateType> type;
+    
 
     
     

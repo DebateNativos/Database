@@ -4,7 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta charset="utf-8"/>
@@ -112,7 +113,7 @@
                         <ul class="nav navbar-nav">
 
                           
-                            
+                             
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -155,6 +156,7 @@
                             <li>
                                 <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                             </li>
+                             
                         </ul>
                     </div>
                 </nav>
@@ -292,15 +294,17 @@
 
                     <h1>
                         Debate activo
-                        <small>Panel de control debate activo</small>
+                        <small>Panel de control del debate activo</small>
+                        
+                                
                     </h1>
                     <h:panelGroup id="myDashBoard" class="breadcrumb">
                         <ol class="breadcrumb">
 
                             <li><a href="menuPrincipal.xhtml"><i class="fa fa-dashboard"></i>Página Principal</a></li>
 
-                            <li class="active">Cronómetro </li>
-
+                            <li class="active">Debate Activo</li>
+                           
                         </ol>
 
                     </h:panelGroup>
@@ -310,19 +314,45 @@
                 <section class="content">
                     <!--                    <ui:insert name="body"/>                   -->
                     
-                    <h3>Responsive</h3>
+                    
                     <div class="ui-g">
                          
-                        <div class="ui-g-12 ui-md-6 ui-lg-6"><ui:include src="role.xhtml"/></div>
-                        <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
-                        <div class="ui-g-12 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
+                        <div class="ui-g-12 ui-md-12 ui-lg-6"><ui:include src="role.xhtml"/></div>
+                        
+                        <div class="ui-g-12 ui-md-12 ui-lg-3">
+                            <p:panelGrid columns="2" layout="grid">
+                                <f:facet name="header">
+                                    Información del debate 
+                                </f:facet>
+
+                                <p:outputLabel for="debate" value="Nombre"/>
+                                <p:outputLabel id="debate" value=""/>
+
+                                <p:outputLabel for="date" value="Fecha"/>
+                                <p:outputLabel id="date" value=""/>
+
+                                <p:outputLabel for="hour" value="Hora"/>
+                                <p:outputLabel id="hour" value=""/>
+                            </p:panelGrid>
+                        </div>
+                        <div class="ui-g-12 ui-md-12 ui-lg-3"><ui:include src="menuStage.xhtml"/> </div>
                       
                     </div>
-
                     <div class="ui-g">
-                        <div class="ui-g-12 ui-md-6 ui-lg-4">ui-g-12 ui-md-6 ui-lg-4</div>
-                        <div class="ui-g-12 ui-md-6 ui-lg-4">ui-g-12 ui-md-6 ui-lg-4</div>
-                        <div class="ui-g-12 ui-lg-4"> <ui:include src= "chromometer.xhtml"/></div>
+                        <div class="ui-g-12 "></div>
+                      
+                    </div>
+                    <div class="ui-g">
+                        <div class="ui-g-12 ui-md-12 ui-lg-3"  >
+                         
+                                 
+                                
+                       <ui:include src="chronometer.xhtml"/>
+                         
+                        </div>
+                        <div class="ui-g-12 ui-md-12 ui-lg-6"><ui:include src="question.xhtml"/></div>
+                        
+                        <div class="ui-g-12 ui-lg-3"><ui:include src="chronometer.xhtml"/></div>
                     </div>
 
                     <p:panelGrid id="myPanel" columns="6" layout="grid">

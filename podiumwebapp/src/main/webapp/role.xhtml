@@ -8,9 +8,9 @@
 
     <ui:composition>
         
-       <h:form id="form">
+       <h:form id="dform">
                        <p:growl id="msgs" showDetail="true" />
-            <p:dataTable var="role" value="" reflow="true"  >
+                       <p:dataTable var="role" value="" reflow="true" styleClass="success"  >
         <f:facet name="header">
             Estudiantes con roles asignados
         </f:facet>
@@ -56,7 +56,8 @@
              
        
         <f:facet name="footer">
-            <p:commandButton value="Sancionar" icon="fa fa-user"  actionListener="#{login.deleteCourse()}" update=":form:msgs" styleClass="btn-warning">
+            <p:commandButton value="Ceder la palabra" icon="fa fa-user"   update=":dform:msgs" styleClass="btn-success"></p:commandButton>
+            <p:commandButton value="Sancionar" icon="fa fa-user"   update=":dform:msgs" styleClass="btn-danger">
                                         <p:confirm header="Confirmation" message="¿Desea sancionar al usuario?" icon="ui-icon-alert" />
                                     </p:commandButton>
  
