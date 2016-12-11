@@ -13,19 +13,24 @@ import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFacto
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
-import javax.inject.Named;
+
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import org.primefaces.context.RequestContext;
+import javax.faces.event.ActionEvent;
 
 /**
  *
  * @author Joss
  */
 
-@Named(value = "debateNew")
+@ManagedBean(name = "debateNew")
+
 @SessionScoped
-public class DebateNew implements Serializable{
+public class DebateView implements Serializable{
     
     private String id;
 
@@ -35,6 +40,7 @@ public class DebateNew implements Serializable{
     private DebateType debateType;
     private Date startingDate;
     private Date hour;
+    private int sanction; 
    
     
    
@@ -43,7 +49,7 @@ public class DebateNew implements Serializable{
     
     private Debate selectedDebate; 
         
-    public DebateNew(String name, Date createdDate, DebateType debateType, Date startingDate, boolean isActive) {
+    public DebateView(String name, Date createdDate, DebateType debateType, Date startingDate, boolean isActive) {
         this.name = name;
         this.createdDate = createdDate;
         this.debateType = debateType;
@@ -55,7 +61,7 @@ public class DebateNew implements Serializable{
     /**
      * Creates a new instance of DebateNew
      */
-    public DebateNew() {
+    public DebateView() {
     }
 
     public String getName() {
@@ -120,6 +126,14 @@ public class DebateNew implements Serializable{
     public void setHour(Date hour) {
         this.hour = hour;
     }
+
+    public int getSanction() {
+        return sanction;
+    }
+
+    public void setSanction(int sanction) {
+        this.sanction = sanction;
+    }
     
     
     public void newDeb() {
@@ -139,5 +153,22 @@ public class DebateNew implements Serializable{
         RequestContext.getCurrentInstance().closeDialog("El debate ha sido registrado");
     }
     
+    public void sanctionUser(){
+        sanction++;
+        FacesMessage message = null;
+        message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Info", "Sancionado" + sanction);
+        FacesContext.getCurrentInstance().addMessage(null, message );
+    
+    }
+    
+    public boolean desableButton(){
+    boolean desableB = true;
+    if(sanction >= 3){
+    desableB= true;
+    }else{
+    desableB= false;
+    }
+    return desableB;
+            }
     
 }

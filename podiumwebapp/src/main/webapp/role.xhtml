@@ -9,7 +9,7 @@
     <ui:composition>
         
        <h:form id="dform">
-                       <p:growl id="msgs" showDetail="true" />
+                       <p:growl id="message" showDetail="true" life="2000"/>
                        <p:dataTable var="role" value="" reflow="true" styleClass="success"  >
         <f:facet name="header">
             Estudiantes con roles asignados
@@ -53,12 +53,10 @@
                     <h:outputText value="" />
                 </p:column>
 
-             
-       
         <f:facet name="footer">
-            <p:commandButton value="Ceder la palabra" icon="fa fa-user"   update=":dform:msgs" styleClass="btn-success"></p:commandButton>
-            <p:commandButton value="Sancionar" icon="fa fa-user"   update=":dform:msgs" styleClass="btn-danger">
-                                        <p:confirm header="Confirmation" message="¿Desea sancionar al usuario?" icon="ui-icon-alert" />
+            <p:commandButton value="Ceder la palabra" icon="fa fa-user"   update=":dform:message" styleClass="btn-success"></p:commandButton>
+            <p:commandButton value="Amonestar" icon="fa fa-times" actionListener="#{debateNew.sanctionUser}" update=":dform:message" styleClass="btn-danger" disabled="#{debateNew.desableButton()}" >
+                                        <p:confirm header="Confirmación" message="¿Desea sancionar al usuario?" icon="ui-icon-alert" />
                                     </p:commandButton>
  
                                     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
@@ -68,6 +66,9 @@
         </f:facet>
     </p:dataTable>
 
+                       
+                       
+                       
         </h:form>  
         
     </ui:composition>
