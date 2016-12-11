@@ -310,10 +310,26 @@
                 <section class="content">
                     <!--                    <ui:insert name="body"/>                   -->
                     
-                    
-                    <h:panelGroup id="myPanel" layout="block">
-                         <ui:include src= "chromometer.xhtml"/>
-                    </h:panelGroup>
+                    <h3>Responsive</h3>
+                    <div class="ui-g">
+                         
+                        <div class="ui-g-12 ui-md-6 ui-lg-6"><ui:include src="role.xhtml"/></div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
+                        <div class="ui-g-12 ui-lg-3">ui-g-12 ui-md-6 ui-lg-3</div>
+                      
+                    </div>
+
+                    <div class="ui-g">
+                        <div class="ui-g-12 ui-md-6 ui-lg-4">ui-g-12 ui-md-6 ui-lg-4</div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-4">ui-g-12 ui-md-6 ui-lg-4</div>
+                        <div class="ui-g-12 ui-lg-4"> <ui:include src= "chromometer.xhtml"/></div>
+                    </div>
+
+                    <p:panelGrid id="myPanel" columns="6" layout="grid">
+                       
+                        
+                        
+                    </p:panelGrid>
 
                 </section>
             </div><!-- /.content-wrapper -->
