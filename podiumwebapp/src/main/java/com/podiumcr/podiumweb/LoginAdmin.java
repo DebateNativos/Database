@@ -212,13 +212,13 @@ public class LoginAdmin implements Serializable {
    }  
     
    
-   public void deleteUser() {
+   public void deleteUser(ActionEvent event) {
         addMessage("Eliminar","Usuario borrado");
     }
-    public void deleteCourse() {
+    public void deleteCourse(ActionEvent event) {
         addMessage("Eliminar","Curso eliminado");
     } 
-    public void deleteDebate() {
+    public void deleteDebate(ActionEvent event) {
         addMessage("Eliminar","Debate eliminado");
     } 
  public void addMessage(String summary, String detail) {

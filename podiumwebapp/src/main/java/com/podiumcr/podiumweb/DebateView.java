@@ -153,10 +153,10 @@ public class DebateView implements Serializable{
         RequestContext.getCurrentInstance().closeDialog("El debate ha sido registrado");
     }
     
-    public void sanctionUser(){
+    public void sanctionUser(ActionEvent event){
         sanction++;
         FacesMessage message = null;
-        message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Info", "Sancionado" + sanction);
+        message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Info", "Amonestación: " + sanction);
         FacesContext.getCurrentInstance().addMessage(null, message );
     
     }
