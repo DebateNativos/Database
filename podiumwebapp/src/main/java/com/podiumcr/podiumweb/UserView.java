@@ -182,29 +182,7 @@ public class UserView implements Serializable {
     public void editUser1(){
      
      User editUser = null;
-       switch (role) {
-           case 0:
-               selectedUser.setName(name);
-               selectedUser.setEmail(email);
-               selectedUser.setPassword(password);
-               selectedUser.setAddress(address);
-               selectedUser.setLastName(lastName);
-               selectedUser.setLastName2(lastName);
-               selectedUser.setIdUniversity(idUniversity);
-               selectedUser.setAdmin(true);
-               selectedUser.setPhone(phone);
-               break;
-           case 1:
-               editUser = new Professor(selectedUser.getEmail(),selectedUser.getPassword(), selectedUser.getAddress(),selectedUser.getName(),selectedUser.getLastName(), selectedUser.getLastName2(),selectedUser.getIdUniversity(),selectedUser.getPhone());
-               break;
-           case 2:
-              editUser = new User(selectedUser.getEmail(),selectedUser.getPassword(), selectedUser.getAddress(),selectedUser.getName(),selectedUser.getLastName(), selectedUser.getLastName2(),selectedUser.getIdUniversity(),false,selectedUser.getPhone());
-               break;
-       }
-       //cambiar este metodo por uno de editar y enviar el id user
-       user.registerUser(selectedUser);
        
-      RequestContext.getCurrentInstance().closeDialog(editUser);
     }
 
     //Terminar

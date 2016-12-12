@@ -13,6 +13,7 @@
                 <div class="panel-body" style="height: 90%;position:inherit;">
                     <div class="row" style="height: 100%">
                         <div class="col-lg-3 col-xs-6">
+                            
                             <div class="small-box bg-yellow">
                                 <div class="inner" style="font-size: medium">
                                     <p style="font-size: 22px; font-weight: bold;">Usuarios</p>
@@ -22,7 +23,7 @@
                                 <div class="icon">
                                     <i class="fa fa-user"></i>
                                 </div>
-                                <p:commandLink class="small-box-footer" action="menuUser.xhtml" update="myPanel,myDashBoard">
+                                <p:commandLink class="small-box-footer" action="menuUser.xhtml">
                                     <i class="fa fa-arrow-circle-right"></i> Mas información
                                 </p:commandLink>
                             </div>
@@ -37,14 +38,14 @@
                                 <div class="icon">
                                     <i class="fa fa-user-secret"></i>
                                 </div>
-                                <p:commandLink class="small-box-footer" action="menuDebate.xhtml" update="myPanel,myDashBoard">
+                                <p:commandLink class="small-box-footer" action="menuDebate.xhtml" >
                                     <i class="fa fa-arrow-circle-right"></i> Más información
                                 </p:commandLink>
                             </div>
                         </div> 
                         
                         <div class="col-lg-3 col-xs-6">
-                            <div class="small-box bg-blue">
+                            <div class="small-box bg-green">
                                 <div class="inner">
                                     <p style="font-size: 22px; font-weight: bold;">Curso</p>
                                     <p style="font-size: 24px; font-weight: bold;">#{login.course.size()}</p>
@@ -52,7 +53,7 @@
                                 <div class="icon">
                                     <i class="fa fa-clipboard"></i>
                                 </div>
-                                <p:commandLink class="small-box-footer" action="menuCourse.xhtml" update="myPanel,myDashBoard">
+                                <p:commandLink class="small-box-footer" action="menuCourse.xhtml">
                                     <i class="fa fa-arrow-circle-right"></i> Más información
                                 </p:commandLink>
                             </div>

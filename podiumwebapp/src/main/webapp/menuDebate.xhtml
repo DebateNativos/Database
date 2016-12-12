@@ -216,17 +216,7 @@
                                                     </ui:fragment>      
                                             
                                                
-                                                       <ui:fragment >
-
-                                                        <li >
-                                                            <a href="menuTime.xhtml">
-                                                                <i class="fa fa-calendar"></i>
-                                                                Debate activo
-                                                                <small class="label pull-right bg-aqua"></small>
-                                                            </a>
-                                                        </li>      
-
-                                                    </ui:fragment>      
+                                                           
                                             </ul>
                                            </ui:fragment>      
                                         </li>
@@ -275,9 +265,9 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-
+                    
                     <h1>
-                        Debate
+                        Debates
                         <small>Panel de control de debates</small>
                     </h1>
                     <h:panelGroup id="myDashBoard" class="breadcrumb">
@@ -295,8 +285,11 @@
                 <!-- Main content -->
                 <section class="content">
                     <!--                    <ui:insert name="body"/>                   -->
+                    <div class="container">
+                    
                     <h:panelGroup id="myPanel" layout="block">
-                         
+                     <div class="ui-g-1 ui-md-1 ui-lg-1"></div>
+                    <div class="ui-g-10 ui-md-10 ui-lg-10">    
             <!-- pop up de agregar-->
              <p:dialog id="debateDlg"  widgetVar="DebateDialog" modal="true" appendTo="@(body)" resizable="false"  header="Nuevo">
                             <h:form id="UserForm">
@@ -332,7 +325,7 @@
             <h:form id="debform">
                 <p:growl id="msgs" showDetail="true" />
 
-                <p:dataTable id="dataList" var="debate" value="#{login.debates}" widgetVar="dataTable" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe"  paginator="true" rows="10" editable="true" selectionMode="single" selection="#{debateNew.selectedDebate}" rowKey="#{debate.name}"  >
+                <p:dataTable id="dataList" var="debate" value="#{login.debates}" widgetVar="dataTable" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe"  paginator="true" rows="6" editable="true" selectionMode="single" selection="#{debateNew.selectedDebate}" rowKey="#{debate.name}"  >
 
                     <f:facet name="header" >
                         <p:commandButton id="toggler" type="button"  icon="ui-icon-calculator" style="float:right; width: 10px; height: 10px;" class="btn-primary"  />
@@ -373,6 +366,7 @@
                     </f:facet>
                 </p:dataTable>
 
+ 
                 <p:dialog header="Editar" widgetVar="EditDebateDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
                             <p:outputPanel id="editDetail" style="text-align:center;">
                                 <p:panelGrid  columns="2" >
@@ -406,10 +400,44 @@
                             </p:outputPanel>
                         </p:dialog>
                 
+                  
             </h:form>
+            
+                    </div>
+          <div class="ui-g-1 ui-md-1 ui-lg-1"></div>
           
-        </h:panelGroup>
+          <div class="ui-g-12 ui-md-12 ui-lg-12">
                     
+              <center>
+                  <h:form>
+                  <p:panelGrid columns="2">
+                      <f:facet name="header">
+                          Debate activo
+                      </f:facet>
+
+                      <h:outputText value="Nombre:" />
+                      <h:outputText value="" />
+
+                      <h:outputText value="Fecha:" />
+                      <h:outputText value="" />
+
+                      <h:outputText value="Hora:" />
+                      <h:outputText value="" />
+
+                      <f:facet name="footer">
+                          <p:commandLink class="small-box-footer" action="menuTime.xhtml" >
+                                    Más información del debate<i class="fa fa-arrow-circle-right"></i> 
+                                </p:commandLink>
+                      </f:facet>
+                      
+                  </p:panelGrid> 
+                      </h:form>
+              </center> 
+          </div>
+                    </h:panelGroup>
+                    
+</div>
+
                 </section>
             </div><!-- /.content-wrapper -->
 

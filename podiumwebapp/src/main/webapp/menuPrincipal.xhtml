@@ -125,7 +125,7 @@
                                         <h:graphicImage library="dist" name="img/avatar2.png" class="img-circle" alt="User Image"/>
                                         <p>
                                             <!-- Devolver aquí el usuario logeado-->
-                                             #{login.user.name}
+                                             #{login.user.name} #{login.user.lastName}
                                              <small>-Administrador-</small>
                                         </p>
                                     </li>
@@ -216,17 +216,7 @@
                                                     </ui:fragment>      
                                             
                                                
-                                                       <ui:fragment >
-
-                                                        <li >
-                                                            <a href="menuTime.xhtml">
-                                                                <i class="fa fa-calendar"></i>
-                                                                Debate activo
-                                                                <small class="label pull-right bg-aqua"></small>
-                                                            </a>
-                                                        </li>      
-
-                                                    </ui:fragment>      
+                                                           
                                             </ul>
                                            </ui:fragment>      
                                         </li>

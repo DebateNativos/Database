@@ -216,17 +216,7 @@
                                                     </ui:fragment>     
                                             
                                                
-                                                       <ui:fragment >
-
-                                                        <li >
-                                                            <a href="menuTime.xhtml">
-                                                                <i class="fa fa-calendar"></i>
-                                                                Debate activo
-                                                                <small class="label pull-right bg-aqua"></small>
-                                                            </a>
-                                                        </li>      
-
-                                                    </ui:fragment>      
+                                                          
                                             </ul>
                                            </ui:fragment>      
                                         </li>
@@ -405,7 +395,7 @@
                                     <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Nuevo" type="button" onclick="PF('UserDialog').show()"/>
                                     <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar" onclick="PF('EditUserDialog').show()"  />
                                      
-                                    <p:commandButton value="Eliminar" icon="fa fa-trash"  actionListener="#{login.deleteCourse()}" update=":form:msgs" styleClass="btn-warning">
+                                    <p:commandButton value="Eliminar" icon="fa fa-trash"  update=":form:msgs" styleClass="btn-danger">
                                         <p:confirm header="Confirmation" message="¿Desea eleminar el usuario?" icon="ui-icon-alert" />
                                     </p:commandButton>
  
@@ -414,8 +404,7 @@
                                         <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                                     </p:confirmDialog>
 
-                                    <p:commandButton styleClass="btn-danger" icon="fa fa-pencil" value="Sancionar" type="button" actionListener="#{dialogView.penalty()}"/>
-                               
+                                   
    
                                 </f:facet>
                             </p:dataTable>
