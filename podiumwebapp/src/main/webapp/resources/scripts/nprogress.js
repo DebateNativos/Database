@@ -127,12 +127,12 @@
         /**
          * For skins change background color loading bar
          */
-        if (cssClass.indexOf("skin-blue") > -1
+        if (cssClass.indexOf("skin-red") > -1
                 || cssClass.indexOf("skin-purple") > -1
                 || cssClass.indexOf("skin-green") > -1
-                || cssClass.indexOf("skin-red") > -1
+                || cssClass.indexOf("skin-blue") > -1
                 || cssClass.indexOf("skin-yellow") > -1) {
-            $(".bar").css({"background": "white"});
+            $(".bar").css({"background": "#fbfbf0"});
         } else if (cssClass.indexOf("skin-black") > -1) {
             $(".bar").css({"background": "#29d"});
         }
