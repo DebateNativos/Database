@@ -19,6 +19,7 @@ import com.podiumcr.jpa.entities.Professor;
 import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFactory;
 import java.io.Serializable;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -27,7 +28,7 @@ import javax.persistence.EntityManager;
  *
  * @author Joss
  */
-@Named(value = "allView")
+@ManagedBean(name = "allView")
 @SessionScoped
 public class AllView implements Serializable {
 

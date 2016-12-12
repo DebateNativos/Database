@@ -9,13 +9,17 @@ import com.podiumcr.jpa.data.UserData;
 import com.podiumcr.jpa.entities.Professor;
 import com.podiumcr.jpa.entities.User;
 import static com.podiumcr.podiumwebapp.common.EntityListener.em;
+import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFactory;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 import org.primefaces.context.RequestContext;
 import java.io.Serializable;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
+import javax.faces.event.ActionEvent;
+import javax.persistence.EntityManager;
 import org.primefaces.event.CellEditEvent;
 
 
@@ -23,20 +27,21 @@ import org.primefaces.event.CellEditEvent;
  *
  * @author Joss
  */
-@Named(value = "dialogView")
+
+@ManagedBean(name = "dialogView")
 @SessionScoped
 public class UserView implements Serializable {
-   int id;
-   String email;
-   String password;
-   String name;
-   String lastName;
-   String secondLastname;
-   Boolean admin;
-   int idUniversity;
-   String phone;
-   int role;
-   String address;
+   private int id;
+   private String email;
+   private String password;
+   private String name;
+   private String lastName;
+   private String secondLastname;
+   private Boolean admin;
+   private int idUniversity;
+   private String phone;
+   private int role;
+   private String address;
    
    private User selectedUser;
  
@@ -161,23 +166,48 @@ public class UserView implements Serializable {
     
     
     
-    public void newUser1(){
-     User newUser = null;
+   public void newUser1(ActionEvent event) {
+
+        EntityManager em = entityManagerFactory.createEntityManager();
+        UserData ud = new UserData(em);
+       
        switch (role) {
            case 0:
-               newUser = new User(email, password, address, name, lastName,secondLastname, idUniversity,true, phone);
+               selectedUser = new User(this.email, this.password, this.address, this.name, this.lastName,this.secondLastname, this.idUniversity,true, this.phone);
+              ud.registerUser(this.selectedUser);
+                  if (ud.registerUser(this.selectedUser)) {
+                    FacesMessage message = null;
+                    message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Administrador Insertado", this.email);
+                    FacesContext.getCurrentInstance().addMessage(null, message);
+                }
                break;
            case 1:
-               newUser = new Professor(email, password, address, name, lastName,secondLastname, idUniversity,phone);
-               break;
+               selectedUser = new Professor(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity,phone);
+               
+               selectedUser.setAdmin(false);
+                
+                if (ud.registerUser(this.selectedUser)) {
+                    FacesMessage message = null;
+                    message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor Insertado", this.email);
+                    FacesContext.getCurrentInstance().addMessage(null, message);
+                }
+                break;
+               
            case 2:
-               newUser = new User(email, password, address, name, lastName,secondLastname, idUniversity,false, phone);
-               break;
+            selectedUser = new User(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity,false, this.phone);
+            
+               selectedUser.setAdmin(false);
+                if (ud.registerUser(this.selectedUser)) {
+                    FacesMessage message = null;
+                    message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Estudiante Insertado", this.email);
+                    FacesContext.getCurrentInstance().addMessage(null, message);
+                }
+            break;
        }
        
-       user.registerUser(newUser);
-       
-      RequestContext.getCurrentInstance().closeDialog(newUser);
+ 
+        em.close();
+
     }
     public void editUser1(){
      
@@ -193,24 +223,8 @@ public class UserView implements Serializable {
     }
   
   //Informar
-  public void penalty(){
-      
+
+  
      
-        FacesMessage message = null;
-        message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Advertencia","El usuario: " + selectedUser.getName() + " "+ selectedUser.getLastName()+" ha sido sancionado");
-      
- 
-  
-  }
-  
-      public void onCellEdit(CellEditEvent event) {
-        Object oldValue = event.getOldValue();
-        Object newValue = event.getNewValue();
-         
-        if(newValue != null && !newValue.equals(oldValue)) {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-        }
-    }
 
 }

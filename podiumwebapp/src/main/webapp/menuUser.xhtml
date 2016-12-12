@@ -125,7 +125,7 @@
                                         <h:graphicImage library="dist" name="img/avatar2.png" class="img-circle" alt="User Image"/>
                                         <p>
                                             <!-- Devolver aquí el usuario logeado-->
-                                             #{login.user.name}
+                                             #{login.user.name} #{login.user.lastName}
                                              <small>-Administrador-</small>
                                         </p>
                                     </li>
@@ -312,7 +312,7 @@
                                     <p:inputMask id="phone" value="#{dialogView.phone}" mask="9999-9999"/>
 
                                     <p:outputLabel value="Carnet: " for="idUniversity" />
-                                    <p:password id="idUniversity" value="#{dialogView.idUniversity}"  />
+                                    <p:inputText id="idUniversity" value="#{dialogView.idUniversity}"  />
 
                                     <p:outputLabel value="Contraseña: " for="password" />
                                     <p:password id="password" value="#{dialogView.password}" feedback="true" />
@@ -327,8 +327,8 @@
 
                                     <f:facet name="footer" >
                                         <div class="footer-right">
-                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Agregar" actionListener="#{dialogView.newUser1()}" update=":form:msgs"  />
-                                            <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('UserDialog').hide()" immediate="true" onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()"/>
+                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Agregar" actionListener="#{dialogView.editUser1()}" update=":form:msgs"  oncomplete="PF('UserDialog').hide()"  />
+                                            <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('UserDialog').hide()" immediate="true"/>
                                         </div>
                                     </f:facet>
                                 </p:panelGrid>
@@ -370,7 +370,7 @@
                                     <h:outputText value="#{user.lastName2}" />
                                 </p:column>
 
-                           <p:column headerText="Rol" sortBy="#{login.roleSelected(user)}" filterBy="#{login.roleSelected(user)}"  >
+                                <p:column headerText="Rol" sortBy="#{login.roleSelected(user)}" filterBy="#{login.roleSelected(user)}"  >
 
                                     <h:outputText id="Role" value="#{login.roleSelected(user)}" />
                                 </p:column>
