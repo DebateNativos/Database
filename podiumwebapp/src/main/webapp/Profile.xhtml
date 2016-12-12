@@ -9,21 +9,22 @@
     <ui:composition>
         <p:dialog id="ProfileDlg" widgetVar="ProfileDialog" modal="true" appendTo="@(body)" resizable="false" draggable="false" header="Profile">
             <h:form id="ProfileForm">
-                <p:panelGrid columnClasses="column" columns="2">
-                    
-                    <!-- LLenar con la info que jala-->
-                    <h:outputText value="Name :"/>
-                    <h:outputText value=""/>
+                <p:panelGrid  columns="2">
+                    <h:outputText value="Name:"/>
+                    <h:outputText value="#{login.user.name}"/>
 
                     <h:outputText value="Apellido :"/>
-                    <h:outputText value=""/>
+                    <h:outputText value="#{login.user.lastName}"/>
                     
                     <h:outputText value="Correo:"/>
-                    <h:outputText value=""/>
+                    <h:outputText value="#{login.user.email}"/>
+                    
+                    <h:outputText value="Telefóno:"/>
+                    <h:outputText value="#{login.user.phone}"/>
                     
                     <f:facet name="footer">
                         <div class="footer-right">
-                            <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="" onclick="PF('ProfileDialog').hide()" immediate="true" onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()"/>
+                            <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="" onclick="PF('ProfileDialog').hide()" immediate="true"  />
                         </div>
                     </f:facet>
                 </p:panelGrid>

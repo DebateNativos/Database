@@ -96,9 +96,9 @@
 
             <header class="main-header">
                 <!-- Logo -->
-                <a href="menu.xhtml" class="logo">
+                <a href="menuPrincipal.xhtml" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini"><h3 style="font-size: 20px;">P</h3></span>
+                    <span class="logo-mini"><h3 style="font-size: 25px; font-weight: bold; align-content: center;">P</h3></span>
                     <!-- logo for regular state and mobile devices -->
                     <span class="logo-m"><h:graphicImage library="images" name="logo.png" /></span>
                 </a>
@@ -116,16 +116,16 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <h:graphicImage library="dist" name="img/user2-160x160.jpg" class="user-image" alt="User Image"/>
+                                    <h:graphicImage library="dist" name="img/avatar2.png" class="user-image" alt="User Image"/>
                                     <span class="hidden-xs"></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <h:graphicImage library="dist" name="img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                                        <h:graphicImage library="dist" name="img/avatar2.png" class="img-circle" alt="User Image"/>
                                         <p>
                                             <!-- Devolver aquí el usuario logeado-->
-                                             #{login.user}
+                                             #{login.user.name}
                                              <small>-Administrador-</small>
                                         </p>
                                     </li>
@@ -142,7 +142,7 @@
                                             <h:form>
                                                 <p:commandLink style="color: white" value="Cerrar sesión" styleClass="btn btn-default btn-flat" action="#{login.logout()}">
                                                     <i class="fa fa-sign-out fa-lg"></i>
-                                                    
+                                                   
                                                 </p:commandLink>
                                             </h:form>
                                         </div>
@@ -171,7 +171,7 @@
                             </div>
                             <div class="pull-left info">
                                 <p></p>
-                                <a href="#"><i class=""></i>PODIUM</a>
+                                <a href="#" style="text-align: center; font-size: 12px; font-weight: bold" >PODIUM</a>
                             </div>
                         </div>
                       <ul class="sidebar-menu" id="sidebar-menu" style="height: 80%;width: 100%">
@@ -181,7 +181,7 @@
                                         <li class="treeview" id="mainTree">
                                             <ui:fragment >
                                                 <a >
-                                                    <i class="fa fa-dashboard" style="color:"></i>
+                                                    <i class="fa fa-university" style="color:"></i>
                                                     <span>
                                                         Debates
                                                     </span>
@@ -194,41 +194,39 @@
 
                                                         <li >
                                                             <a href="menuStage.xhtml">
-                                                                <i class="fa fa-circle-o"></i>
+                                                                <i class="fa fa-file-text"></i>
                                                                 Tipos de debates
                                                                 <small class="label pull-right bg-aqua"></small>
                                                             </a>
                                                         </li>      
 
                                                     </ui:fragment>>      
-                                            </ul>
-                                            <ul class="treeview-menu">
+                                          
                                                
                                                        <ui:fragment >
 
                                                         <li >
                                                             <a href="menuDebate.xhtml">
-                                                                <i class="fa fa-circle-o"></i>
+                                                                <i class="fa fa-copy"></i>
                                                                 Debates
                                                                 <small class="label pull-right bg-aqua"></small>
                                                             </a>
                                                         </li>      
 
                                                     </ui:fragment>>      
-                                            </ul>
-                                                <ul class="treeview-menu">
+                                            
                                                
                                                        <ui:fragment >
 
                                                         <li >
                                                             <a href="menuTime.xhtml">
-                                                                <i class="fa fa-circle-o"></i>
-                                                                Asignar cronómetro
+                                                                <i class="fa fa-calendar"></i>
+                                                                Debate activo
                                                                 <small class="label pull-right bg-aqua"></small>
                                                             </a>
                                                         </li>      
 
-                                                    </ui:fragment>>      
+                                                    </ui:fragment>      
                                             </ul>
                                            </ui:fragment>      
                                         </li>
@@ -262,20 +260,7 @@
                                         </li>
                                     </ui:fragment>
 
-                                <ui:fragment >
-                                        <li class="treeview" id="mainTree">
-                                            <ui:fragment >
-                                                <a href="menuQuestion.xhtml">
-                                                    <i class="fa fa-clipboard" style="color:"></i>
-                                                    <span>
-                                                       Preguntas
-                                                    </span>
-                                                    
-                                                </a>
-                                            </ui:fragment>
-                                          
-                                        </li>
-                                    </ui:fragment>
+                               
                             </h:panelGroup>
                         </ul>
                         
@@ -283,6 +268,7 @@
                     <!-- /.sidebar -->
                 </h:form>
             </aside>
+
 
 
             <!-- Content Wrapper. Contains page content -->
@@ -297,7 +283,7 @@
                     <h:panelGroup id="myDashBoard" class="breadcrumb">
                         <ol class="breadcrumb">
 
-                            <li><a href="menuPrincipal.xhtml"><i class="fa fa-dashboard"></i>Página Principal</a></li>
+                            <li><a href="menuPrincipal.xhtml"><i class="fa fa-arrow-left"></i>Página Principal</a></li>
 
                             <li class="active">Debate</li>
 
@@ -428,7 +414,33 @@
             </div><!-- /.content-wrapper -->
 
             <!-- Control Sidebar -->
-            
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <!-- Home tab content -->
+                    <div class="tab-pane" id="control-sidebar-home-tab">
+
+
+                        <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                        <ul class="control-sidebar-menu">
+                          
+                            <li>
+                                <a href="javascript::;">
+                                    <h4 class="control-sidebar-subheading">
+                                        Laravel Integration
+                                        <span class="label label-warning pull-right">50%</span>
+                                    </h4>
+                                    <div class="progress progress-xxs">
+                                        <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul><!-- /.control-sidebar-menu -->
+
+                    </div><!-- /.tab-pane -->
+
+                </div>
+            </aside>
 
             <!-- Add the sidebar's background. This div must be placed
                  immediately after the control sidebar -->
