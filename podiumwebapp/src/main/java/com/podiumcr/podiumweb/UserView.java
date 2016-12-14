@@ -14,48 +14,43 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 import java.io.Serializable;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
-
-
 
 /**
  *
  * @author Joss
  */
-
 @ManagedBean(name = "dialogView")
 @SessionScoped
 public class UserView implements Serializable {
-   private int id;
-   private String email;
-   private String password;
-   private String name;
-   private String lastName;
-   private String secondLastname;
-   private Boolean admin;
-   private int idUniversity;
-   private String phone;
-   private int role;
-   private String address;
-   private User selectedUser;
-   
-    public String getAddress() {
-        return address;
-    }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-           
-   
-   UserData user = new UserData(em);
+    @ManagedProperty(value = "#{login}")
+    private LoginAdmin login;   
+    private List<User> users = login.getUsers();
+    
+    private int id;
+    private String email;
+    private String password;
+    private String name;
+    private String lastName;
+    private String secondLastname;
+    private Boolean admin;
+    private int idUniversity;
+    private String phone;
+    private int role;
+    private String address;
+    private User selectedUser;
+
+    UserData user = new UserData(em);
+
     /**
      * Creates a new instance of DialogView
      */
-   
-    public UserView()  {
+    public UserView() {
     }
     //hacer la instancia según el rol
 
@@ -158,68 +153,90 @@ public class UserView implements Serializable {
     public void setSelectedUser(User selectedUser) {
         this.selectedUser = selectedUser;
     }
-    
-    
-    
-   public void newUser1(ActionEvent event) {
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public LoginAdmin getLogin() {
+        return login;
+    }
+
+    public void setLogin(LoginAdmin login) {
+        this.login = login;
+    }
+
+    public void newUser1(ActionEvent event) {
 
         EntityManager em = entityManagerFactory.createEntityManager();
         UserData ud = new UserData(em);
-       
-       switch (role) {
-           case 0:
-               selectedUser = new User(this.email, this.password, this.address, this.name, this.lastName,this.secondLastname, this.idUniversity,true, this.phone);
-              ud.registerUser(this.selectedUser);
-                  if (ud.registerUser(this.selectedUser)) {
+
+        switch (role) {
+            case 0:
+                selectedUser = new User(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity, true, this.phone);
+                ud.registerUser(this.selectedUser);
+                if (ud.registerUser(this.selectedUser)) {
                     FacesMessage message = null;
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Administrador Insertado", this.email);
                     FacesContext.getCurrentInstance().addMessage(null, message);
+                    login.refreshTables();
                 }
-               break;
-           case 1:
-               selectedUser = new Professor(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity,phone);
-               
-               selectedUser.setAdmin(false);
-                
+                break;
+            case 1:
+                selectedUser = new Professor(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity, phone);
+
+                selectedUser.setAdmin(false);
+
                 if (ud.registerUser(this.selectedUser)) {
                     FacesMessage message = null;
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor Insertado", this.email);
                     FacesContext.getCurrentInstance().addMessage(null, message);
+                    login.refreshTables();
                 }
                 break;
-               
-           case 2:
-            selectedUser = new User(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity,false, this.phone);
-            
-               selectedUser.setAdmin(false);
+
+            case 2:
+                selectedUser = new User(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity, false, this.phone);
+
+                selectedUser.setAdmin(false);
                 if (ud.registerUser(this.selectedUser)) {
                     FacesMessage message = null;
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Estudiante Insertado", this.email);
                     FacesContext.getCurrentInstance().addMessage(null, message);
+                    login.refreshTables();
                 }
-            break;
-       }
-       
- 
+                break;
+        }
+
         em.close();
 
     }
-    public void editUser1(){
-     
-     User editUser = null;
-       
+
+    public void editUser1() {
+
+        User editUser = null;
+        login.refreshTables();
+
     }
 
     //Terminar
-  public void deleteUser() {
-     
+    public void deleteUser() {
+
         //user.remove(selectedUser);
         selectedUser = null;
     }
-  
-  //Informar
 
-  
-     
-
+    //Informar
 }

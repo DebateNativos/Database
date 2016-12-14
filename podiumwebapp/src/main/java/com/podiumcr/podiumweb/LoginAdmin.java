@@ -44,10 +44,7 @@ public class LoginAdmin implements Serializable {
     private List<User> users;
     private List<Course> course;
     private List<DebateType> type;
-    
 
-    
-    
     public LoginAdmin() {
     }
 
@@ -125,8 +122,18 @@ public class LoginAdmin implements Serializable {
         this.type = type;
     }
 
- 
-    
+    public void refreshTables() {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        UserData userdata = new UserData(em);
+        DebateData dDta = new DebateData(em);
+        UserData data = new UserData(em);
+        CourseData cData = new CourseData(em);
+        DebateTypeData typedata = new DebateTypeData(em);
+        this.users = data.getUsers();
+        this.course = cData.getAll();
+        this.debates = dDta.getDebates();
+        this.type = typedata.getAll();
+    }
 
     public void loginSession(ActionEvent event) {
 
@@ -143,7 +150,7 @@ public class LoginAdmin implements Serializable {
         FacesMessage message = null;
         userVerification = userdata.getUserByEmail(email);
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        
+
         boolean loggedIn = false;
 
         if (email.equals(userVerification.getEmail())) {
@@ -160,7 +167,7 @@ public class LoginAdmin implements Serializable {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                     //Logger.getLogger(this.email).log(Level.SEVERE, null, ex);
-                     loggedIn = false;
+                    loggedIn = false;
                 }
 
             } else {
@@ -183,7 +190,7 @@ public class LoginAdmin implements Serializable {
         return "/index.xhtml?faces-redirect=true";
     }
 
-     public String roleSelected(User a) {
+    public String roleSelected(User a) {
         String role = null;
         if (a instanceof Professor) {
             role = "Profesor";
@@ -195,7 +202,8 @@ public class LoginAdmin implements Serializable {
         }
         return role;
     }
-     public String activeDebate(Debate d) {
+
+    public String activeDebate(Debate d) {
         String active = null;
 
         if (d.getIsActive() == true) {
@@ -206,28 +214,26 @@ public class LoginAdmin implements Serializable {
 
         return active;
     }
-     
-   void sendResetPassword(){
-   
-   }  
-    
-   
-   public void deleteUser(ActionEvent event) {
-        addMessage("Eliminar","Usuario borrado");
+
+    void sendResetPassword() {
+
     }
+
+    public void deleteUser(ActionEvent event) {
+        addMessage("Eliminar", "Usuario borrado");
+    }
+
     public void deleteCourse(ActionEvent event) {
-        addMessage("Eliminar","Curso eliminado");
-    } 
+        addMessage("Eliminar", "Curso eliminado");
+    }
+
     public void deleteDebate(ActionEvent event) {
-        addMessage("Eliminar","Debate eliminado");
-    } 
- public void addMessage(String summary, String detail) {
+        addMessage("Eliminar", "Debate eliminado");
+    }
+
+    public void addMessage(String summary, String detail) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
         FacesContext.getCurrentInstance().addMessage(null, message);
-    } 
-   
-   
-    
-    
-    
+    }
+
 }

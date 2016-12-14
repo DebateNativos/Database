@@ -343,9 +343,7 @@
                         
                         <!--Tabla-->
                        <h:form id="form">
-                       <p:growl id="msgs" showDetail="true" />
-                            
-                       
+                       <p:growl id="msgs" showDetail="true" />                       
                        <p:dataTable id="dataList" var="user" value="#{login.users}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe"  widgetVar="dataTable" paginator="true" rows="10" editable="true" selectionMode="single" selection="#{dialogView.selectedUser}" rowKey="#{user.idUsers}"  >
 
        
@@ -395,7 +393,7 @@
 
                                 <f:facet name="footer">
 
-                                    <p:commandButton styleClass="btn-success" icon="fa fa-list" update=":form:msgs" value="Nuevo" type="button" onclick="PF('UserDialog').show()"/>
+                                    <p:commandButton styleClass="btn-success" icon="fa fa-list" update=":form:msgs" value="Nuevo" type="button" onclick="PF('UserDialog').show()" ajax="true"/>
                                     <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" update=":editU:editDetail" value="Editar" onclick="PF('EditUserDialog').show()"  />
                                      
                                     <p:commandButton value="Eliminar" icon="fa fa-trash"  update=":form:msgs" styleClass="btn-danger">
