@@ -115,8 +115,8 @@
             <artifactId>jstl</artifactId>
             <version>1.1.2</version>
         </dependency>
-        <dependency>
-            <groupId>com.podium.jpa</groupId>
+         <dependency>
+            <groupId>com.podiumcr.jpa</groupId>
             <artifactId>jpa</artifactId>
             <version>1.0</version>
         </dependency>

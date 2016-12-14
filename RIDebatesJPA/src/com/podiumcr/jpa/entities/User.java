@@ -43,6 +43,7 @@ public class User implements Serializable {
 	private String idToken;
 	private List<Debate> debates;
 	private List<Comment> comments;
+	private List<Question> question;
 	
 	public User() {
 		
@@ -209,6 +210,15 @@ public class User implements Serializable {
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+	
+	@OneToMany (mappedBy="user", targetEntity= Question.class, fetch = FetchType.LAZY)
+	public List<Question> getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(List<Question> question) {
+		this.question = question;
 	}
 	
 	public String createIdToken(String email) 

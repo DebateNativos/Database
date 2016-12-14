@@ -36,6 +36,7 @@ public class Debate implements Serializable {
 	private Course course2;
 	private List<User> users;
 	private List<Comment> comments;
+	private List<Question> question;
 
 	public Debate() {
 	}
@@ -153,4 +154,13 @@ public class Debate implements Serializable {
 		this.comments = comments;
 	}
 
+	@OneToMany (mappedBy="debate", targetEntity= Question.class, fetch = FetchType.LAZY)
+	public List<Question> getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(List<Question> question) {
+		this.question = question;
+	}
+	
 }

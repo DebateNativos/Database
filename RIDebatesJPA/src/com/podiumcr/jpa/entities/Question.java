@@ -54,6 +54,8 @@ public class Question implements Serializable {
 		this.idQuestion = idQuestion;
 	}
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="debate", nullable=false)
 	public Debate getDebate() {
 		return this.debate;
 	}
@@ -62,6 +64,8 @@ public class Question implements Serializable {
 		this.debate = debate;
 	}
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="user", nullable=false)
 	public User getUser() {
 		return this.user;
 	}
