@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import com.podiumcr.jpa.entities.Comment;
 import com.podiumcr.jpa.entities.Debate;
 import com.podiumcr.jpa.entities.Question;
 import com.podiumcr.jpa.entities.User;
@@ -121,5 +122,49 @@ public class QuestionData {
 		}
 
 		return returnedList;
+	}
+	
+	public boolean persistQuestion(Question question) {
+
+		boolean returned = false;
+
+		try {
+
+			em.getTransaction().begin();
+			em.persist(question);
+			em.getTransaction().commit();
+
+			returned = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			em.getTransaction().rollback();
+			returned = false;
+		}
+
+		return returned;
+
+	}
+	
+	public boolean removeQuestion(Question question) {
+
+		boolean returned = false;
+
+		try {
+
+			em.getTransaction().begin();
+			em.remove(question);
+			em.getTransaction().commit();
+
+			returned = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			em.getTransaction().rollback();
+			returned = false;
+		}
+
+		return returned;
+
 	}
 }

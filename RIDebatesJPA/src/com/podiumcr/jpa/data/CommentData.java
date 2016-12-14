@@ -144,4 +144,26 @@ public class CommentData {
 		return returned;
 
 	}
+	
+	public boolean removeComment(Comment comment) {
+
+		boolean returned = false;
+
+		try {
+
+			em.getTransaction().begin();
+			em.remove(comment);
+			em.getTransaction().commit();
+
+			returned = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			em.getTransaction().rollback();
+			returned = false;
+		}
+
+		return returned;
+
+	}
 }
