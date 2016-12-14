@@ -289,17 +289,17 @@
                     
                     <h:panelGroup id="myPanel" layout="block">
                      <div class="ui-g-1 ui-md-1 ui-lg-1"></div>
-                    MN,<div class="ui-g-10 ui-md-10 ui-lg-10">    
+                    <div class="ui-g-10 ui-md-10 ui-lg-10">    
             <!-- pop up de agregar-->
-             <p:dialog id="debateDlg"  widgetVar="DebateDialog" modal="true" appendTo="@(body)" resizable="false"  header="Nuevo">
+             <p:dialog id="debateDlg"  widgetVar="DebateDialog" modal="true" appendTo="@(body)" resizable="true"  header="Nuevo">
                             <h:form id="UserForm">
                                 <p:panelGrid columns="2">
 
                                     <p:outputLabel value="Nombre" for="name" />
                                     <p:inputText id="name" value="#{debateBean.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
                                     
-                                    <p:outputLabel for="popup" value="Fecha del debate:" />
-                                    <p:calendar id="popup" value="#{debateBean.startingDate}" required="true" requiredMessage="Debe ingresar la información correcta"/>
+                                    <p:outputLabel for="date" value="Fecha del debate:" />
+                                    <p:calendar id="date" value="#{debateBean.startingDate}" required="true" requiredMessage="Debe ingresar la información correcta"/>
                                     
                                     <p:outputLabel for="time" value="Hora:" />
                                     <p:calendar id="time" value="#{debateBean.hour}" pattern="HH:mm" timeOnly="true"  required="true" requiredMessage="Debe ingresar la información correcta"/>
@@ -312,7 +312,7 @@
                                    
                                     <f:facet name="footer" >
                                         <div class="footer-right">
-                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Agregar" actionListener="#{debateBean.newDeb()}" update=":debform:msgs" onsuccess="PF('DebateDialog').hide()" />
+                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Agregar" actionListener="#{debateBean.newDeb()}" update=":debform:dataList" onsuccess="PF('DebateDialog').hide()" />
                                             <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('UserDialog').hide()" immediate="true" />
                                         </div>
                                     </f:facet>
@@ -324,14 +324,18 @@
             <h:form id="debform">
                 <p:growl id="msgs" showDetail="true" />
 
-                <p:dataTable id="dataList" var="debate" value="#{login.debates}" widgetVar="dataTable" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe"  paginator="true" rows="6" editable="true" selectionMode="single" selection="#{debateBean.selectedDebate}" rowKey="#{debate.name}"  >
+                <p:dataTable id="dataList" var="debate" value="#{login.debates}" widgetVar="dataTable" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe"  paginator="true" rows="6" editable="true" selectionMode="single" selection="#{debateBean.selectedDebate}" rowKey="#{debate.idDebates}"  >
 
                     <f:facet name="header" >
                         <p:commandButton id="toggler" type="button"  icon="ui-icon-calculator" style="float:right; width: 10px; height: 10px;" class="btn-primary"  />
                         <p:columnToggler datasource="dataList" trigger="toggler" />
                         <h:outputText value="Debates"/>
                     </f:facet>
-
+                    
+                    <p:column headerText="Identificador:" sortBy="#{debate.idDebates}" filterBy="#{debate.idDebates}"   filterMatchMode="contains" style=" height: 2%;" visible="false">
+                        <h:outputText value="#{debate.idDebates}" />
+                    </p:column>
+                    
                     <p:column headerText="Fecha del debate:" sortBy="#{debate.startingDate}" filterBy="#{debate.startingDate}"   filterMatchMode="contains" style=" height: 2%;">
                         <h:outputText value="#{debate.startingDate}" />
                     </p:column>
@@ -365,42 +369,64 @@
                     </f:facet>
                 </p:dataTable>
 
- 
-                <p:dialog header="Editar" widgetVar="EditDebateDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
-                            <p:outputPanel id="editDetail" style="text-align:center;">
+            </h:form>
+            
+                <p:dialog header="Editar" widgetVar="EditDebateDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="true" >
+                    <h:form id="debateE">         
+                    <p:outputPanel id="editDetail" style="text-align:center;">
                                 <p:panelGrid  columns="2" >
                                     <f:facet name="header">
                                         <h1 >Debate </h1>
                                     </f:facet>
                                     <p:outputLabel value="Nombre" for="firstName" />
                                     <p:inplace id="firstName" editor="true">
-                                    <p:inputText  value=""  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                        <p:inputText  value="#{debateBean.selectedDebate.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
                                     </p:inplace>
                                     
                                     
                                     <p:outputLabel value="Tipo de debate" for="type" />
                                     <p:inplace id="type" editor="true">
-                                        <p:inputText value=""  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                        <p:inputText value="#{debateBean.selectedDebate.debateType.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
                                     </p:inplace>
                                     
                                     
                                     <p:outputLabel value="Fecha y hora" for="time" />
                                     <p:inplace id="time" editor="true">
-                                        <p:inputText  value="" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
+                                        <p:inputText  value="#{debateBean.selectedDebate.startingDate.date}" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
                                     </p:inplace>
+                                    
+                                    <p:outputLabel for="debateType" value="Tipo de debate: " />
+                                    <p:selectOneMenu id="debatetype" value="#{debatetype.idDebateTypes}" effect="fold">
+                                        <f:selectItem itemLabel="Seleccione uno" itemValue="" />                                       
+                                        <f:selectItems value="#{login.type}" />
+                                    </p:selectOneMenu>
+                                    
+                                    <p:outputLabel for="course1" value="1º curso: " />
+                                    <p:selectOneMenu id="course1" value="#{courseBean.idCourse}" effect="fold">
+                                        <f:selectItem itemLabel="Seleccione uno" itemValue="" />                                       
+                                        <f:selectItems value="#{login.course}" />
+                                    </p:selectOneMenu>
+                                    
+                                    <p:outputLabel for="course2" value="1º curso: " />
+                                    <p:selectOneMenu id="course2" value="#{courseBean.idCourse}" effect="fold">
+                                        <f:selectItem itemLabel="Seleccione uno" itemValue="" />                                       
+                                        <f:selectItems value="#{login.course}" />
+                                    </p:selectOneMenu>
 
                                     <f:facet name="footer" >
                                         <div class="footer-right">
-                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Editar" actionListener="#{debateBean.newDeb}" update=":debform:msgs" onsuccess="PF('EditDebateDialog').hide()"  />
+                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Editar" actionListener="#{debateBean.editDeb}" update=":debform:dataList" onsuccess="PF('EditDebateDialog').hide()"  />
                                             <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('editDialog').hide()" immediate="true" update=":debform:msgs" />
                                         </div>
                                     </f:facet>
                                 </p:panelGrid>
+                        
                             </p:outputPanel>
+                        </h:form>
                         </p:dialog>
                 
                   
-            </h:form>
+            
             
                     </div>
           <div class="ui-g-1 ui-md-1 ui-lg-1"></div>

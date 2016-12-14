@@ -148,16 +148,31 @@ public class CourseView implements Serializable {
     }
          
      }
-   public void editCourse(){
+   public void editCourse(ActionEvent event)){
        EntityManager em = entityManagerFactory.createEntityManager();
        CourseData courseN = new CourseData(em);
+        Course c = courseN.getCourseByCode(this.selectedCourse.getCourseCode());
+        c.setClassroom(this.selectedCourse.getClassroom());
+        c.setName(this.selectedCourse.getName());
+        c.setCurseQuarter(this.selectedCourse.getCurseQuarter());
+        c.setCurseYear(this.selectedCourse.getCurseYear());
+        c.setSchedule(this.selectedCourse.getSchedule());
+        c.setProfessor(this.selectedCourse.getProfessor());
+        
+      //no encontré un método para el update
+       
+         if ( ) {
+                    FacesMessage message = null;
+                    message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Editar", " El curso ha se modificado");
+                    FacesContext.getCurrentInstance().addMessage(null, message);
+                }
        
        em.close();
       
       
       //dCourse.
    }
-   public void deleteCourse(){
+   public void deleteCourse(ActionEvent event){
        EntityManager em = entityManagerFactory.createEntityManager();
        CourseData courseN = new CourseData(em);
        String courseName= selectedCourse.getName();
