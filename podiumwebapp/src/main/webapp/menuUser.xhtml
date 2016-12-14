@@ -346,7 +346,7 @@
                        <p:growl id="msgs" showDetail="true" />
                             
                        
-                       <p:dataTable id="dataList" var="user" value="#{login.users}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe"  widgetVar="dataTable" paginator="true" rows="10" editable="true" selectionMode="single" selection="#{dialogView.selectedUser}" rowKey="#{user.idUniversity}"  >
+                       <p:dataTable id="dataList" var="user" value="#{login.users}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe"  widgetVar="dataTable" paginator="true" rows="10" editable="true" selectionMode="single" selection="#{dialogView.selectedUser}" rowKey="#{user.idUsers}"  >
 
        
                                 <f:facet name="header" >
@@ -354,6 +354,9 @@
                                     <p:columnToggler datasource="dataList" trigger="toggler" />
                                     <h:outputText value="Usuarios"/>
                                 </f:facet>
+                           <p:column headerText="Identificador" sortBy="#{user.idUsers}" filterBy="#{user.idUsers}" visible="false" >
+                               <h:outputText  value="#{user.idUsers}" />
+                                </p:column>
                                 <p:column headerText="Carnet" sortBy="#{user.idUniversity}" filterBy="#{user.idUniversity}"  >
                                     <h:outputText  value="#{user.idUniversity}" />
                                 </p:column>
@@ -392,8 +395,8 @@
 
                                 <f:facet name="footer">
 
-                                    <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Nuevo" type="button" onclick="PF('UserDialog').show()"/>
-                                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar" onclick="PF('EditUserDialog').show()"  />
+                                    <p:commandButton styleClass="btn-success" icon="fa fa-list" update=":form:msgs" value="Nuevo" type="button" onclick="PF('UserDialog').show()"/>
+                                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" update=":editU:editDetail" value="Editar" onclick="PF('EditUserDialog').show()"  />
                                      
                                     <p:commandButton value="Eliminar" icon="fa fa-trash"  update=":form:msgs" styleClass="btn-danger">
                                         <p:confirm header="Confirmation" message="¿Desea eleminar el usuario?" icon="ui-icon-alert" />
@@ -412,9 +415,9 @@
                               
                        
                    <p:dialog header="Editar" widgetVar="EditUserDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
-                    <h:form>        
+                    <h:form id="editU">        
                        <p:outputPanel id="editDetail" style="text-align:center;">
-                                <p:panelGrid  columns="2" >
+                               <p:panelGrid  columns="2" >
                                     <f:facet name="header">
                                         <h1>  
                                             #{dialogView.selectedUser.name}
@@ -423,7 +426,7 @@
                                     <p:outputLabel value="Nombre" for="firstName" />
                                     <p:inplace id="firstName" editor="true">
                                         <p:inputText  value="#{dialogView.selectedUser.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
-                                    </p:inplace>
+                                    </p:inplace> 
                                     
                                     
                                     <p:outputLabel value="Primer apellido" for="lastName" />
@@ -453,7 +456,7 @@
                                     </p:inplace>
                                         
                                    <p:outputLabel for="Role" value="Role:" />
-                                    <p:selectOneRadio id="Role" value="">
+                                    <p:selectOneRadio id="Role">
                                         <f:selectItem itemLabel="Administrador" itemValue="1" />
                                         <f:selectItem itemLabel="Profesor" itemValue="2" />
                                         <f:selectItem itemLabel="Estudiante" itemValue="3" />
