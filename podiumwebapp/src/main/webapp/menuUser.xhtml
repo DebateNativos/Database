@@ -327,7 +327,7 @@
 
                                     <f:facet name="footer" >
                                         <div class="footer-right">
-                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Agregar" actionListener="#{dialogView.editUser1()}" update=":form:msgs"  oncomplete="PF('UserDialog').hide()"  />
+                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Agregar" actionListener="#{dialogView.newUser1}" update=":form:msgs" onsuccess="PF('UserDialog').hide()"  />
                                             <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('UserDialog').hide()" immediate="true"/>
                                         </div>
                                     </f:facet>
@@ -408,45 +408,48 @@
    
                                 </f:facet>
                             </p:dataTable>
-                       
+                       </h:form>
                               
                        
                    <p:dialog header="Editar" widgetVar="EditUserDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
-                            <p:outputPanel id="editDetail" style="text-align:center;">
+                    <h:form>        
+                       <p:outputPanel id="editDetail" style="text-align:center;">
                                 <p:panelGrid  columns="2" >
                                     <f:facet name="header">
-                                        <h1> Usuario </h1>
+                                        <h1>  
+                                            #{dialogView.selectedUser.name}
+                                        </h1>
                                     </f:facet>
                                     <p:outputLabel value="Nombre" for="firstName" />
                                     <p:inplace id="firstName" editor="true">
-                                    <p:inputText  value=""  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                        <p:inputText  value="#{dialogView.selectedUser.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
                                     </p:inplace>
                                     
                                     
                                     <p:outputLabel value="Primer apellido" for="lastName" />
                                     <p:inplace id="lastName" editor="true">
-                                    <p:inputText value=""  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                        <p:inputText value="#{dialogView.selectedUser.lastName}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
                                     </p:inplace>
                                     
                                     
                                     <p:outputLabel value="Segundo apellido" for="secondLastName" />
                                     <p:inplace id="secondLastName" editor="true">
-                                    <p:inputText   value="" title="true" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
+                                        <p:inputText   value="#{dialogView.selectedUser.lastName2}" title="true" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
                                    </p:inplace>
 
                                     <p:outputLabel value="Correo electrónico" for="email" />
                                     <p:inplace id="email" editor="true">
-                                    <p:inputText  value="" required="true" requiredMessage="Debe ingresar la información correcta" size="50" maxlength="50"/>
+                                        <p:inputText  value="#{dialogView.selectedUser.email}" required="true" requiredMessage="Debe ingresar la información correcta" size="50" maxlength="50"/>
                                     </p:inplace>
                                     
                                     <p:outputLabel value="Dirección" for="address" />
                                     <p:inplace id="address" editor="true">
-                                    <p:inputText  value=""  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                        <p:inputText  value="#{dialogView.selectedUser.address}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
                                     </p:inplace>
 
                                     <p:outputLabel for="phone" value="Teléfono:" />
                                     <p:inplace id="phone"  editor="true">
-                                    <p:inputText value="" />
+                                        <p:inputText value="#{dialogView.selectedUser.phone}" />
                                     </p:inplace>
                                         
                                    <p:outputLabel for="Role" value="Role:" />
@@ -464,9 +467,10 @@
                                     </f:facet>
                                 </p:panelGrid>
                             </p:outputPanel>
+                    </h:form>
                         </p:dialog>
 
-            </h:form>
+            
                       
                     </h:panelGroup>
 

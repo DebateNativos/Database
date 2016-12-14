@@ -10,17 +10,14 @@ import com.podiumcr.jpa.entities.Professor;
 import com.podiumcr.jpa.entities.User;
 import static com.podiumcr.podiumwebapp.common.EntityListener.em;
 import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFactory;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
-import org.primefaces.context.RequestContext;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.ExternalContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
-import org.primefaces.event.CellEditEvent;
+
 
 
 /**
@@ -42,10 +39,8 @@ public class UserView implements Serializable {
    private String phone;
    private int role;
    private String address;
-   
    private User selectedUser;
- 
-
+   
     public String getAddress() {
         return address;
     }
