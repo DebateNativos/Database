@@ -35,7 +35,6 @@ public class ActiveCommentWS {
     @Produces(MediaType.APPLICATION_JSON)
     public List<ActiveComment> getDebatesCourseComments(@QueryParam("course") String course, @QueryParam("debate") int debate) {
         EntityManager em = entityManagerFactory.createEntityManager();
-        UserCourseData ucd = new UserCourseData(em);
         CommentData cd = new CommentData(em);
         CourseData coursed = new CourseData(em);
         DebateData dd = new DebateData(em);
@@ -64,7 +63,7 @@ public class ActiveCommentWS {
         CommentData cd = new CommentData(em);
         DebateData dd = new DebateData(em);
         CourseData coursed = new CourseData(em);
-        String status = "";
+        String status;
         try {
             Comment c = new Comment(dd.getDebateById(debate), ud.getUserByEmail(email), text, coursed.getCourseByCode(course));
             if (cd.persistComment(c)) {
