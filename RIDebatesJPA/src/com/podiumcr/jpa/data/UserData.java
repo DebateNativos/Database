@@ -88,19 +88,9 @@ public class UserData {
 		boolean returned = false;
 
 		try {
-
-			User searchUser = this.getUserByToken(user.getIdToken());
-			searchUser.setName(user.getName());
-			searchUser.setEmail(user.getEmail());
-			searchUser.setLastName(user.getLastName());
-			searchUser.setLastName2(user.getLastName2());
-			searchUser.setIdUniversity(user.getIdUniversity());
-			searchUser.setPassword(user.getPassword());
-			searchUser.setAddress(user.getAddress());
-			searchUser.setPhone(user.getPhone());
 					
 			em.getTransaction().begin();
-			em.persist(searchUser);
+			em.persist(user);
 			em.getTransaction().commit();
 			try {
 				se.SendInformationChangedEmail(user);

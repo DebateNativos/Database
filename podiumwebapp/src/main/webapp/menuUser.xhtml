@@ -291,35 +291,35 @@
                                 <p:panelGrid columns="2">
 
                                     <p:outputLabel value="Nombre" for="firstName" />
-                                    <p:inputText id="firstName" value="#{dialogView.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                    <p:inputText id="firstName" value="#{userBean.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
 
                                     <p:outputLabel value="Primer apellido" for="lastName" />
                                     
-                                    <p:inputText id="lastName" value="#{dialogView.lastName}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                    <p:inputText id="lastName" value="#{userBean.lastName}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
 
                                     <p:outputLabel value="Segundo apellido" for="secondLastName" />
-                                    <p:inputText id="secondLastName" value="#{dialogView.secondLastname}" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
+                                    <p:inputText id="secondLastName" value="#{userBean.secondLastname}" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
 
 
                                     <p:outputLabel value="Correo electrónico" for="email" />
-                                    <p:inputText id="email" value="#{dialogView.email}" required="true" requiredMessage="Debe ingresar la información correcta" size="50" maxlength="50"/>
+                                    <p:inputText id="email" value="#{userBean.email}" required="true" requiredMessage="Debe ingresar la información correcta" size="50" maxlength="50"/>
 
                                     <p:outputLabel value="Dirección" for="dirección" />
-                                    <p:inputText id="dirección" value="#{dialogView.address}" required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                    <p:inputText id="dirección" value="#{userBean.address}" required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
 
 
                                     <p:outputLabel for="phone" value="Teléfono:" />
-                                    <p:inputMask id="phone" value="#{dialogView.phone}" mask="9999-9999"/>
+                                    <p:inputMask id="phone" value="#{userBean.phone}" mask="9999-9999"/>
 
                                     <p:outputLabel value="Carnet: " for="idUniversity" />
-                                    <p:inputText id="idUniversity" value="#{dialogView.idUniversity}"  />
+                                    <p:inputText id="idUniversity" value="#{userBean.idUniversity}"  />
 
                                     <p:outputLabel value="Contraseña: " for="password" />
-                                    <p:password id="password" value="#{dialogView.password}" feedback="true" />
+                                    <p:password id="password" value="#{userBean.password}" feedback="true" />
 
 
                                     <p:outputLabel for="Role" value="Role:" />
-                                    <p:selectOneRadio id="Role" value="#{dialogView.role}">
+                                    <p:selectOneRadio id="Role" value="#{userBean.role}">
                                         <f:selectItem itemLabel="Administrador" itemValue="0" />
                                         <f:selectItem itemLabel="Profesor" itemValue="1" />
                                         <f:selectItem itemLabel="Estudiante" itemValue="2" />
@@ -327,24 +327,18 @@
 
                                     <f:facet name="footer" >
                                         <div class="footer-right">
-                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Agregar" actionListener="#{dialogView.newUser1}" update=":form:msgs" onsuccess="PF('UserDialog').hide()"  />
+                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Agregar" actionListener="#{userBean.newUser1}" update=":form:dataList" onsuccess="PF('UserDialog').hide()"  />
                                             <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('UserDialog').hide()" immediate="true"/>
                                         </div>
                                     </f:facet>
                                 </p:panelGrid>
                             </h:form>
                         </p:dialog>
-
-
-                      
-                        
-
-                        
-                        
+                   
                         <!--Tabla-->
                        <h:form id="form">
                        <p:growl id="msgs" showDetail="true" />                       
-                       <p:dataTable id="dataList" var="user" value="#{login.users}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe"  widgetVar="dataTable" paginator="true" rows="10" editable="true" selectionMode="single" selection="#{dialogView.selectedUser}" rowKey="#{user.idUsers}"  >
+                       <p:dataTable id="dataList" var="user" value="#{userBean.users}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe"  widgetVar="dataTable" paginator="true" rows="10" editable="true" selectionMode="single" selection="#{userBean.selectedUser}" rowKey="#{user.idUsers}"  >
 
        
                                 <f:facet name="header" >
@@ -393,7 +387,7 @@
 
                                 <f:facet name="footer">
 
-                                    <p:commandButton styleClass="btn-success" icon="fa fa-list" update=":form:msgs" value="Nuevo" type="button" onclick="PF('UserDialog').show()" ajax="true"/>
+                                    <p:commandButton styleClass="btn-success" icon="fa fa-list" update=":form:dataList" value="Nuevo" type="button" onclick="PF('UserDialog').show()" ajax="true"/>
                                     <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" update=":editU:editDetail" value="Editar" onclick="PF('EditUserDialog').show()"  />
                                      
                                     <p:commandButton value="Eliminar" icon="fa fa-trash"  update=":form:msgs" styleClass="btn-danger">
@@ -418,39 +412,39 @@
                                <p:panelGrid  columns="2" >
                                     <f:facet name="header">
                                         <h1>  
-                                            #{dialogView.selectedUser.name}
+                                            #{userBean.selectedUser.name}
                                         </h1>
                                     </f:facet>
                                     <p:outputLabel value="Nombre" for="firstName" />
                                     <p:inplace id="firstName" editor="true">
-                                        <p:inputText  value="#{dialogView.selectedUser.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                        <p:inputText  value="#{userBean.selectedUser.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
                                     </p:inplace> 
                                     
                                     
                                     <p:outputLabel value="Primer apellido" for="lastName" />
                                     <p:inplace id="lastName" editor="true">
-                                        <p:inputText value="#{dialogView.selectedUser.lastName}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                        <p:inputText value="#{userBean.selectedUser.lastName}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
                                     </p:inplace>
                                     
                                     
                                     <p:outputLabel value="Segundo apellido" for="secondLastName" />
                                     <p:inplace id="secondLastName" editor="true">
-                                        <p:inputText   value="#{dialogView.selectedUser.lastName2}" title="true" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
+                                        <p:inputText   value="#{userBean.selectedUser.lastName2}" title="true" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
                                    </p:inplace>
 
                                     <p:outputLabel value="Correo electrónico" for="email" />
                                     <p:inplace id="email" editor="true">
-                                        <p:inputText  value="#{dialogView.selectedUser.email}" required="true" requiredMessage="Debe ingresar la información correcta" size="50" maxlength="50"/>
+                                        <p:inputText  value="#{userBean.selectedUser.email}" required="true" requiredMessage="Debe ingresar la información correcta" size="50" maxlength="50"/>
                                     </p:inplace>
                                     
                                     <p:outputLabel value="Dirección" for="address" />
                                     <p:inplace id="address" editor="true">
-                                        <p:inputText  value="#{dialogView.selectedUser.address}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                        <p:inputText  value="#{userBean.selectedUser.address}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
                                     </p:inplace>
 
                                     <p:outputLabel for="phone" value="Teléfono:" />
                                     <p:inplace id="phone"  editor="true">
-                                        <p:inputText value="#{dialogView.selectedUser.phone}" />
+                                        <p:inputText value="#{userBean.selectedUser.phone}" />
                                     </p:inplace>
                                         
                                    <p:outputLabel for="Role" value="Role:" />
@@ -462,7 +456,7 @@
 
                                     <f:facet name="footer" >
                                         <div class="footer-right">
-                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Guardar" actionListener="#{dialogView.editUser1()}" update=":form:msgs" onsuccess="PF('editDialog').hide()" />
+                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Guardar" actionListener="#{userBean.editUser1()}" update=":form:dataList" onsuccess="PF('editDialog').hide()" />
                                             <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('editDialog').hide()" immediate="true"/>
                                         </div>
                                     </f:facet>

@@ -23,6 +23,7 @@ import java.util.List;
 		@NamedQuery(name= "Debate.findById", query = "SELECT d FROM Debate d WHERE d.idDebates = :id"),
 		@NamedQuery(name= "Debate.findByType", query = "SELECT d FROM Debate d WHERE d.debateType.idDebateTypes = :idDebateType")
 })
+
 public class Debate implements Serializable {
 	private static final long serialVersionUID = 1L;
 

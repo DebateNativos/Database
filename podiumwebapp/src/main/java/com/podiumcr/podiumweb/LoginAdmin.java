@@ -122,19 +122,6 @@ public class LoginAdmin implements Serializable {
         this.type = type;
     }
 
-    public void refreshTables() {
-        EntityManager em = entityManagerFactory.createEntityManager();
-        UserData userdata = new UserData(em);
-        DebateData dDta = new DebateData(em);
-        UserData data = new UserData(em);
-        CourseData cData = new CourseData(em);
-        DebateTypeData typedata = new DebateTypeData(em);
-        this.users = data.getUsers();
-        this.course = cData.getAll();
-        this.debates = dDta.getDebates();
-        this.type = typedata.getAll();
-    }
-
     public void loginSession(ActionEvent event) {
 
         EntityManager em = entityManagerFactory.createEntityManager();
@@ -144,7 +131,6 @@ public class LoginAdmin implements Serializable {
         RequestContext context = RequestContext.getCurrentInstance();
         UserData userdata = new UserData(em);
         DebateData dDta = new DebateData(em);
-        UserData data = new UserData(em);
         CourseData cData = new CourseData(em);
         DebateTypeData typedata = new DebateTypeData(em);
         FacesMessage message = null;
@@ -157,7 +143,7 @@ public class LoginAdmin implements Serializable {
             if (password != null && userToVerify.getPassword().equals(userVerification.getPassword()) && userVerification.getIsAdmin() == true) {
                 try {
                     this.user = userVerification;
-                    this.users = data.getUsers();
+                    this.users = userdata.getUsers();
                     this.course = cData.getAll();
                     this.debates = dDta.getDebates();
                     this.type = typedata.getAll();
