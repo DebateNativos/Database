@@ -71,7 +71,7 @@ public class ActiveUserWS {
     @Produces(MediaType.APPLICATION_JSON)
     public List<ActiveUser> getUsers() {
         EntityManager em = entityManagerFactory.createEntityManager();
-        UserData ud = new UserData(em);
+        UserData ud = new UserData(em); 
         List<ActiveUser> lau = new ArrayList<>();
         for (User user : ud.getUsers()) {
             ActiveUser au = new ActiveUser();

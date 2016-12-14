@@ -22,4 +22,17 @@
                 <goal>install</goal>
             </goals>
         </action>
+        <action>
+            <actionName>CUSTOM-jpaMAC</actionName>
+            <displayName>jpaMAC</displayName>
+            <goals>
+                <goal>install</goal>
+            </goals>
+            <properties>
+                <file>&lt;path-to-file&gt;</file>
+                <groupId>/Users/Soler/Documents/PodiumApp/Database/com.podiumcr.jpa.jar</groupId>
+                <artifactId>jpa</artifactId>
+                <version>1.0</version>
+            </properties>
+        </action>
     </actions>
