@@ -27,8 +27,7 @@ import javax.faces.event.ActionEvent;
  * @author Joss
  */
 
-@ManagedBean(name = "debateNew")
-
+@ManagedBean(name = "debateBean")
 @SessionScoped
 public class DebateView implements Serializable{
     
