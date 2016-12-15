@@ -166,9 +166,13 @@ public class DebateView implements Serializable {
         nD.setCourse2(this.selectedDebate.getCourse2());
 
         // no existe update
-        if(dD.persistDebate(nD)) {
+        if (dD.persistDebate(nD)) {
             FacesMessage message = null;
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nuevo", "Se ha agregado el debate: " + this.name);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        } else {
+            FacesMessage message = null;
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "No se ha agregado el debate: " + this.name);
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
 
@@ -176,11 +180,11 @@ public class DebateView implements Serializable {
 
     }
 
-    public void delete() {
+    public void deleteDeb() {
         EntityManager em = entityManagerFactory.createEntityManager();
         DebateData dD = new DebateData(em);
-        dD.removeDebate(selectedDebate);
-        if (dD.removeDebate(selectedDebate)) {
+        Debate nD = dD.getDebateById(this.selectedDebate.getIdDebates());
+        if (dD.removeDebate(nD)) {
             FacesMessage message = null;
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminado", "Se ha elimindo el debate");
             FacesContext.getCurrentInstance().addMessage(null, message);

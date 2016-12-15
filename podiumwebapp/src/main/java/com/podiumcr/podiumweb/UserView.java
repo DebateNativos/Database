@@ -31,8 +31,8 @@ public class UserView implements Serializable {
 
     @ManagedProperty(value = "#{login}")
     private LoginAdmin login;
+    
     private List<User> users;
-
     private int id;
     private String email;
     private String password;

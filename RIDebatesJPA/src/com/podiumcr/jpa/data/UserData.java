@@ -66,11 +66,11 @@ public class UserData {
 			em.getTransaction().begin();
 			em.persist(user);
 			em.getTransaction().commit();
-			try {
+/*			try {
 				se.SendWelcomeEmail(user);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+			}*/
 			returned = true;
 
 		} catch (Exception e) {
@@ -92,11 +92,11 @@ public class UserData {
 			em.getTransaction().begin();
 			em.persist(user);
 			em.getTransaction().commit();
-			try {
+/*			try {
 				se.SendInformationChangedEmail(user);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+			}*/
 			returned = true;
 
 		} catch (Exception e) {

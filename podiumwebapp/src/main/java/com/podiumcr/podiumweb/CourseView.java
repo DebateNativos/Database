@@ -42,7 +42,7 @@ public class CourseView implements Serializable {
     public CourseView() {
     }
 
-    public CourseView(String name, String courseCode, int curseQuarter, int curseYear, List<User> users, Professor professor, String classroom) {
+    public CourseView(String name, String courseCode, int curseQuarter, int curseYear, List<User> users, Professor professor, String classroom, String schedule) {
 
         this.name = name;
         this.curseQuarter = curseQuarter;
@@ -169,11 +169,10 @@ public class CourseView implements Serializable {
     public void deleteCourse(ActionEvent event) {
         EntityManager em = entityManagerFactory.createEntityManager();
         CourseData courseN = new CourseData(em);
-        String courseName = selectedCourse.getName();
-        courseN.removeCourse(selectedCourse);
-        if (courseN.removeCourse(selectedCourse)) {
+        Course c = courseN.getCourseByCode(this.selectedCourse.getCourseCode());
+        if (courseN.removeCourse(c)) {
             FacesMessage message = null;
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Curso ha sido eliminado", courseName);
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Curso ha sido eliminado", c.getName());
             FacesContext.getCurrentInstance().addMessage(null, message);
             em.close();
         }
