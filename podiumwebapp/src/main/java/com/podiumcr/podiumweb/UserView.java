@@ -196,33 +196,34 @@ public class UserView implements Serializable {
 
         UserData ud = new UserData(em);
         FacesMessage message = null;
+        User u;
         switch (role) {
             case 0:
-                this.selectedUser = new User(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity, true, this.phone);
-                ud.registerUser(this.selectedUser);
-                if (ud.registerUser(this.selectedUser)) {                   
+                u = new User(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity, true, this.phone);
+                if (ud.registerUser(u)) {                   
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Administrador Insertado", this.email);
                     FacesContext.getCurrentInstance().addMessage(null, message);
                 }
+                this.users = ud.getUsers();
                 break;
 
             case 1:
-                this.selectedUser = new Professor(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity, phone);
-                this.selectedUser.setAdmin(false);
-                if (ud.registerUser(this.selectedUser)) {
+                Professor p = new Professor(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity, phone);
+                p.setAdmin(false);
+                if (ud.registerUser(p)) {
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor Insertado", this.email);
                     FacesContext.getCurrentInstance().addMessage(null, message);
                 }
+                this.users = ud.getUsers();
                 break;
 
             case 2:
-                this.selectedUser = new User(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity, false, this.phone);
-
-                this.selectedUser.setAdmin(false);
-                if (ud.registerUser(this.selectedUser)) {
+                u = new User(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity, false, this.phone);
+                if (ud.registerUser(u)) {
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Estudiante Insertado", this.email);
                     FacesContext.getCurrentInstance().addMessage(null, message);
                 }
+                this.users = ud.getUsers();
                 break;
         }
 
@@ -242,12 +243,13 @@ public class UserView implements Serializable {
             FacesMessage message = null;
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario Editado", this.email);
             FacesContext.getCurrentInstance().addMessage(null, message);
+            this.users = ud.getUsers();
         } else {
             FacesMessage message = null;
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario No Editado", this.email);
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
-
+        
     }
 
     //Terminar
