@@ -426,10 +426,6 @@
                                             <p:inputText placeholder="  " value="#{userBean.selectedUser.lastName2}" title="true" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
                                         </p:inplace>
 
-                                        <p:outputLabel value="Correo electrónico" for="emailEdit" />
-                                        <p:inplace id="emailEdit" editor="true">
-                                            <p:inputText  placeholder="  " value="#{userBean.selectedUser.email}" required="true" requiredMessage="Debe ingresar la información correcta" size="50" maxlength="50"/>
-                                        </p:inplace>
 
                                         <p:outputLabel value="Dirección" for="addressEdit" />
                                         <p:inplace id="addressEdit" editor="true">
@@ -441,12 +437,7 @@
                                             <p:inputText placeholder="  " value="#{userBean.selectedUser.phone}" />
                                         </p:inplace>
 
-                                        <p:outputLabel for="RoleEdit" value="Role:" />
-                                        <p:selectOneRadio id="RoleEdit">
-                                            <f:selectItem itemLabel="Administrador" itemValue="1" />
-                                            <f:selectItem itemLabel="Profesor" itemValue="2" />
-                                            <f:selectItem itemLabel="Estudiante" itemValue="3" />
-                                        </p:selectOneRadio>
+                                        
 
                                         <f:facet name="footer" >
                                             <div class="footer-right">
