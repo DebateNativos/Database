@@ -5,19 +5,30 @@
  */
 package com.podiumcr.podiumweb;
 
+import com.podiumcr.jpa.data.DebateTypeData;
 import com.podiumcr.jpa.entities.DebateSection;
+import com.podiumcr.jpa.entities.DebateType;
+import static com.podiumcr.podiumwebapp.common.EntityListener.em;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 
 /**
  *
  * @author Soler
  */
-@ManagedBean(name = "debatetype")
+@ManagedBean(name = "debatetypeBean")
 @SessionScoped
+
+
 public class DebateTypeView implements Serializable{
+    
+   @ManagedProperty(value = "#{login}")
+    private LoginAdmin login; 
+    
     
     private int idDebateTypes;
     private String description;
@@ -25,6 +36,9 @@ public class DebateTypeView implements Serializable{
     private String rules;
     private int totalTimeInMinutes;
     private List<DebateSection> sections;
+    
+    private List<DebateType> types;
+    private DebateType typeD;
 
     public DebateTypeView() {
     }
@@ -36,6 +50,17 @@ public class DebateTypeView implements Serializable{
         this.rules = rules;
         this.totalTimeInMinutes = totalTimeInMinutes;
         this.sections = sections;
+    }
+    
+    @PostConstruct
+    public void init() {
+       
+   
+        if (this.types == null) {
+        DebateTypeData dtd = new DebateTypeData(em);
+        this.types = dtd.getAll();      
+        }
+        
     }
     
     public int getIdDebateTypes() {
@@ -84,6 +109,22 @@ public class DebateTypeView implements Serializable{
 
     public void setSections(List<DebateSection> sections) {
         this.sections = sections;
+    }
+
+    public List<DebateType> getTypes() {
+        return types;
+    }
+
+    public void setTypes(List<DebateType> types) {
+        this.types = types;
+    }
+
+    public DebateType getTypeD() {
+        return typeD;
+    }
+
+    public void setTypeD(DebateType typeD) {
+        this.typeD = typeD;
     }
     
     

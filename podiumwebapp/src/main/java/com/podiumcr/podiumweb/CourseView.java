@@ -192,7 +192,9 @@ public class CourseView implements Serializable {
       u= users.get(x);
       
      if (u instanceof Professor){
+         
      professorList.add((Professor) u);
+     
      em.close();
      }      
 }

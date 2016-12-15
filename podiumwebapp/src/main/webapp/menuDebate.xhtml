@@ -305,9 +305,9 @@
                                     <p:calendar id="time" value="#{debateBean.hour}" pattern="HH:mm" timeOnly="true"  required="true" requiredMessage="Debe ingresar la información correcta"/>
                                     
                                     <p:outputLabel for="debateType" value="Tipo de debate: " />
-                                    <p:selectOneMenu id="debatetype" value="#{debatetype.name}" effect="fold">
+                                    <p:selectOneMenu id="debatetypeBean" value="#{debatetypeBean.typeD}" effect="fold">
                                         <f:selectItem itemLabel="Seleccione uno" itemValue="" />                                       
-                                        <f:selectItems value="#{login.type}" />
+                                        <f:selectItems value="#{debatetypeBean.types}" var="typeD" itemLabel="#{typeD.name}" itemValue="#{typeD}" />
                                     </p:selectOneMenu>
                                    
                                     <f:facet name="footer" >
@@ -396,7 +396,7 @@
                                     </p:inplace>
                                     
                                     <p:outputLabel for="debateType" value="Tipo de debate: " />
-                                    <p:selectOneMenu id="debatetype" value="#{debatetype.idDebateTypes}" effect="fold">
+                                    <p:selectOneMenu id="debatetypeBean" value="#{debatetypeBean.idDebateTypes}" effect="fold">
                                         <f:selectItem itemLabel="Seleccione uno" itemValue="" />                                       
                                         <f:selectItems value="#{login.type}" />
                                     </p:selectOneMenu>
