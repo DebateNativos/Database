@@ -304,8 +304,8 @@
                                     <p:outputLabel for="time" value="Hora:" />
                                     <p:calendar id="time" value="#{debateBean.hour}" pattern="HH:mm" timeOnly="true"  required="true" requiredMessage="Debe ingresar la información correcta"/>
                                     
-                                    <p:outputLabel for="debateType" value="Tipo de debate: " />
-                                    <p:selectOneMenu id="debatetypeBean" value="#{debatetypeBean.typeD}" effect="fold">
+                                    <p:outputLabel for="debatetype" value="Tipo de debate: " />
+                                    <p:selectOneMenu id="debatetype" value="#{debatetypeBean.typeD}" effect="fold">
                                         <f:selectItem itemLabel="Seleccione uno" itemValue="" />                                       
                                         <f:selectItems value="#{debatetypeBean.types}" var="typeD" itemLabel="#{typeD.name}" itemValue="#{typeD}" />
                                     </p:selectOneMenu>
@@ -399,7 +399,7 @@
                                     <p:selectOneMenu id="debateT" value="#{debateBean.debateType}" panelStyle="width:180px"
                                                      effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
                                                   
-                                        <f:selectItems value="#{debatetypeBean.types}" var="debateType" itemLabel="#{debateType.name}" itemValue="#{debateType}"/>
+                                        <f:selectItems value="#{debatetypeBean.types}" var="debateT" itemLabel="#{debateT.name}" itemValue="#{debateT}"/>
                                     </p:selectOneMenu>
               
                                     <p:outputLabel for="course1" value="1º curso: " />
@@ -409,11 +409,11 @@
                                         <f:selectItems value="#{courseBean.courses}" var="course1" itemLabel="#{course1.name}" itemValue="#{course1}"/>
                                     </p:selectOneMenu>
                                     
-                                    <p:outputLabel for="course1" value="2º curso: " />
-                                    <p:selectOneMenu id="course1" value="#{debateBean.course2}" panelStyle="width:180px"
+                                    <p:outputLabel for="course2" value="2º curso: " />
+                                    <p:selectOneMenu id="course2" value="#{debateBean.course2}" panelStyle="width:180px"
                                                      effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
                                                                              
-                                        <f:selectItems value="#{courseBean.courses}" var="course1" itemLabel="#{course2.name}" itemValue="#{course2}"/>
+                                        <f:selectItems value="#{courseBean.courses}" var="course2" itemLabel="#{course2.name}" itemValue="#{course2}"/>
                                     </p:selectOneMenu>
 
                                     <f:facet name="footer" >

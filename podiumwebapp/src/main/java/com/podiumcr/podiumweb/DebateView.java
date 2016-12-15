@@ -7,12 +7,9 @@ package com.podiumcr.podiumweb;
 
 import com.podiumcr.jpa.data.DebateData;
 import com.podiumcr.jpa.data.DebateTypeData;
-import com.podiumcr.jpa.data.UserData;
 import com.podiumcr.jpa.entities.Course;
 import com.podiumcr.jpa.entities.Debate;
 import com.podiumcr.jpa.entities.DebateType;
-import com.podiumcr.jpa.entities.User;
-import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFactory;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -40,12 +37,13 @@ import javax.faces.event.ActionEvent;
 @ManagedBean(name = "debateBean")
 @SessionScoped
 public class DebateView implements Serializable {
-     @ManagedProperty(value = "#{login}")
+
+    @ManagedProperty(value = "#{login}")
     private LoginAdmin login;
-    
-     EntityManager em = null;
+
+    EntityManager em = null;
     private String id;
-    
+
     private List<Debate> debates;
     private String name;
     private Date createdDate;
@@ -57,7 +55,7 @@ public class DebateView implements Serializable {
     private int sanction;
 
     private boolean isActive;
-    private boolean buttonDisable; 
+    private boolean buttonDisable;
     private Debate selectedDebate;
 
     public DebateView(String name, Date createdDate, DebateType debateType, String startingDate, String hour, boolean isActive) {
@@ -154,7 +152,8 @@ public class DebateView implements Serializable {
     public void setLogin(LoginAdmin login) {
         this.login = login;
     }
-     public List<Debate> getDebates() {
+
+    public List<Debate> getDebates() {
         return debates;
     }
 
@@ -185,103 +184,99 @@ public class DebateView implements Serializable {
     public void setCourse2(Course course2) {
         this.course2 = course2;
     }
-    
-    
-    
+
     @PostConstruct
     public void init() {
         if (this.selectedDebate == null) {
-            this.selectedDebate  = new Debate();
+            this.selectedDebate = new Debate();
         }
         if (this.debateType == null) {
-            this.debateType  = new DebateType();
+            this.debateType = new DebateType();
         }
         if (this.course1 == null) {
-            this.course1  = new Course();
+            this.course1 = new Course();
         }
-         if (this.course2 == null) {
-            this.course2  = new Course();
+        if (this.course2 == null) {
+            this.course2 = new Course();
         }
-        if (this.em==null) {
-             this.em = login.em;
+        if (this.em == null) {
+            this.em = login.em;
         }
         if (this.debates == null) {
-        DebateData dd = new DebateData(em);
-        this.debates = dd.getDebates();      
+            DebateData dd = new DebateData(em);
+            this.debates = dd.getDebates();
         }
         if (this.buttonDisable) {
-        
-        this.buttonDisable =  desableButton();    
+
+            this.buttonDisable = desableButton();
         }
-       
+
     }
 
-    public void newDeb(ActionEvent event)  {
+    public void newDeb(ActionEvent event) {
         FacesMessage message = null;
         Calendar date1 = Calendar.getInstance();
         DateFormat date2 = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         String stringDate = this.startingDate + " " + this.hour;
         Date convert = null;
-         try {
-             convert = date2.parse(stringDate);
-         } catch (ParseException ex) {
-             Logger.getLogger(DebateView.class.getName()).log(Level.SEVERE, null, ex);
-         }
+        try {
+            convert = date2.parse(stringDate);
+        } catch (ParseException ex) {
+            Logger.getLogger(DebateView.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         DebateData dD = new DebateData(em);
         DebateTypeData dTD = new DebateTypeData(em);
         Debate d;
-      
+
         d = new Debate(this.name, date1.getTime(), this.debateType, convert, false);
-       
+
         if (dD.persistDebate(d)) {
-            
+
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nuevo", "Se ha agregado el debate: " + this.name);
             FacesContext.getCurrentInstance().addMessage(null, message);
-        } 
+        }
 
     }
 
     public void editDeb(ActionEvent event) {
         FacesMessage message = null;
-        
+
         DebateData dd = new DebateData(em);
         Debate d = dd.getDebateById(this.selectedDebate.getIdDebates());
         d.setName(this.selectedDebate.getName());
         d.setDebateType(this.selectedDebate.getDebateType());
-        
+
         DateFormat date2 = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         String stringDate = this.startingDate + " " + this.hour;
         Date convert = null;
-         try {
-             convert = date2.parse(stringDate);
-         } catch (ParseException ex) {
-             Logger.getLogger(DebateView.class.getName()).log(Level.SEVERE, null, ex);
-         }
+        try {
+            convert = date2.parse(stringDate);
+        } catch (ParseException ex) {
+            Logger.getLogger(DebateView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.selectedDebate.setStartingDate(convert);
-        
+
         d.setStartingDate(this.selectedDebate.getStartingDate());
         d.setCourse1(this.selectedDebate.getCourse1());
         d.setCourse2(this.selectedDebate.getCourse2());
 
-        
         if (dd.persistDebate(d)) {
-            
+
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nuevo", "Se ha editado el debate: " + this.name);
             FacesContext.getCurrentInstance().addMessage(null, message);
-            
+
         } else {
 
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "No se ha editado el debate: " + this.name);
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
 
-
     }
 
     public void deleteDeb(ActionEvent event) {
         FacesMessage message = null;
-       
+
         DebateData dd = new DebateData(em);
         Debate nd = dd.getDebateById(this.selectedDebate.getIdDebates());
         if (dd.removeDebate(nd)) {
@@ -289,13 +284,8 @@ public class DebateView implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
 
-       
-
     }
 
-   
-
-    
     public void sanctionUser(ActionEvent event) {
         sanction++;
         FacesMessage message = null;
@@ -305,9 +295,9 @@ public class DebateView implements Serializable {
     }
 
     public boolean desableButton() {
-      
+
         if (sanction > 3) {
-            this.buttonDisable= true;
+            this.buttonDisable = true;
         } else {
             this.buttonDisable = false;
         }

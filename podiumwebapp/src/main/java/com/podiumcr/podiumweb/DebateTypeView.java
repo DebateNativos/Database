@@ -8,7 +8,6 @@ package com.podiumcr.podiumweb;
 import com.podiumcr.jpa.data.DebateTypeData;
 import com.podiumcr.jpa.entities.DebateSection;
 import com.podiumcr.jpa.entities.DebateType;
-import static com.podiumcr.podiumwebapp.common.EntityListener.em;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -24,26 +23,25 @@ import javax.persistence.EntityManager;
 @ManagedBean(name = "debatetypeBean")
 @SessionScoped
 
+public class DebateTypeView implements Serializable {
 
-public class DebateTypeView implements Serializable{
-    
-   @ManagedProperty(value = "#{login}")
-    private LoginAdmin login; 
-    
-    private EntityManager em = null;
+    @ManagedProperty(value = "#{login}")
+    private LoginAdmin login;
+
+    EntityManager em = null;
     private int idDebateTypes;
     private String description;
     private String name;
     private String rules;
     private int totalTimeInMinutes;
     private List<DebateSection> sections;
-    
+
     private List<DebateType> types;
     private DebateType typeD;
 
     public DebateTypeView() {
     }
-    
+
     public DebateTypeView(int idDebateTypes, String description, String name, String rules, int totalTimeInMinutes, List<DebateSection> sections) {
         this.idDebateTypes = idDebateTypes;
         this.description = description;
@@ -52,22 +50,22 @@ public class DebateTypeView implements Serializable{
         this.totalTimeInMinutes = totalTimeInMinutes;
         this.sections = sections;
     }
-    
+
     @PostConstruct
     public void init() {
-          if (this.em==null) {
-             this.em = login.em;
+        if (this.em == null) {
+            this.em = login.em;
         }
         if (this.types == null) {
-        DebateTypeData dtd = new DebateTypeData(em);
-        this.types = dtd.getAll();      
+            DebateTypeData dtd = new DebateTypeData(em);
+            this.types = dtd.getAll();
         }
         if (this.typeD == null) {
-        this.typeD = new DebateType();
-           
+            this.typeD = new DebateType();
+
         }
     }
-    
+
     public int getIdDebateTypes() {
         return idDebateTypes;
     }
@@ -130,6 +128,22 @@ public class DebateTypeView implements Serializable{
 
     public void setTypeD(DebateType typeD) {
         this.typeD = typeD;
+    }
+
+    public EntityManager getEm() {
+        return em;
+    }
+
+    public void setEm(EntityManager em) {
+        this.em = em;
+    }
+
+    public LoginAdmin getLogin() {
+        return login;
+    }
+
+    public void setLogin(LoginAdmin login) {
+        this.login = login;
     }
     
     
