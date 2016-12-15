@@ -415,16 +415,13 @@
                         <p:inplace>
                             <p:inputMask id="year"  value="#{courseBean.selectedCourse.curseYear}" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50" mask=""/>
                         </p:inplace>
+                        
                         <p:outputLabel value="Profesor" for="professor" />
-                        <p:selectOneMenu id="professor" value="#{courseBean.professor}" converter="themeConverter" panelStyle="width:180px"
+                        <p:selectOneMenu id="professor" value="#{courseBean.professor}"  panelStyle="width:180px"
                          effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith" >
                         <f:selectItem itemLabel="Seleccione un profesor"/>
-                        <f:selectItems value="#{userBean.users}" />
-                        
-<p:outputLabel for="advanced" value="Advanced:"  />
-        <p:selectOneMenu id="advanced" value="#{selectOneMenuView.theme}" >
-            <f:selectItems value="#{selectOneMenuView.themes}" var="theme" itemLabel="#{theme.displayName}" itemValue="#{theme}" />
- 
+                        <f:selectItems value="#{userBean.users}" var="profesor" itemLabel="#{profesor.name}" itemValue="#{profesor}"/>
+
                     </p:selectOneMenu>
                         
 
