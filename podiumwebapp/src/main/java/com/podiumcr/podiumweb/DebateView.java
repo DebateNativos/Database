@@ -174,7 +174,7 @@ public class DebateView implements Serializable{
     nD.setCourse2(this.selectedDebate.getCourse2());
     
     // no existe update
-    if () {
+    if (dD.persistDebate(nD)) {
                     FacesMessage message = null;
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nuevo", "Se ha agregado el debate: " + this.name);
                     FacesContext.getCurrentInstance().addMessage(null, message);

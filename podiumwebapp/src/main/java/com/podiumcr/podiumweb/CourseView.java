@@ -148,7 +148,7 @@ public class CourseView implements Serializable {
     }
          
      }
-   public void editCourse(ActionEvent event)){
+   public void editCourse(ActionEvent event){
        EntityManager em = entityManagerFactory.createEntityManager();
        CourseData courseN = new CourseData(em);
         Course c = courseN.getCourseByCode(this.selectedCourse.getCourseCode());
@@ -161,7 +161,7 @@ public class CourseView implements Serializable {
         
       //no encontré un método para el update
        
-         if ( ) {
+         if (courseN.persistCourse(c) ) {
                     FacesMessage message = null;
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Editar", " El curso ha se modificado");
                     FacesContext.getCurrentInstance().addMessage(null, message);
