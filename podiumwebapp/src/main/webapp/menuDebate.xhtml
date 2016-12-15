@@ -304,7 +304,7 @@
                                     <p:outputLabel for="time" value="Hora:" />
                                     <p:calendar id="time" value="#{debateBean.hour}" pattern="HH:mm" timeOnly="true"  required="true" requiredMessage="Debe ingresar la información correcta"/>
                                     
-                                    <p:outputLabel for="debate" value="Tipo de debate: " />
+                                    <p:outputLabel for="debateType" value="Tipo de debate: " />
                                     <p:selectOneMenu id="debatetype" value="#{debatetype.name}" effect="fold">
                                         <f:selectItem itemLabel="Seleccione uno" itemValue="" />                                       
                                         <f:selectItems value="#{login.type}" />
