@@ -25,6 +25,8 @@ import com.podiumcr.jpa.entities.User;
 import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFactory;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import org.primefaces.context.RequestContext;
 
@@ -156,6 +158,14 @@ public class LoginAdmin implements Serializable {
                     loggedIn = false;
                 }
 
+            } else if(password != null && userToVerify.getPassword().equals(userVerification.getPassword()) && userVerification instanceof Professor){
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", user.getName());
+                    
+                try {
+                    ec.redirect("homeProf.xhtml");
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginAdmin.class.getName()).log(Level.SEVERE, null, ex);
+                } 
             } else {
                 loggedIn = false;
                 message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error al iniciar sesión", "Contraseña Inválida");
