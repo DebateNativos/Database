@@ -27,6 +27,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedProperty;
 import javax.persistence.EntityManager;
 import org.primefaces.context.RequestContext;
 
@@ -38,8 +40,10 @@ import org.primefaces.context.RequestContext;
 @SessionScoped
 public class LoginAdmin implements Serializable {
 
+    EntityManager em = entityManagerFactory.createEntityManager();
+    
     private String email;
-    private String password;
+    private String password;   
     private User user;
     private UIComponent component;
     private List<Debate> debates;
@@ -124,40 +128,51 @@ public class LoginAdmin implements Serializable {
         this.type = type;
     }
 
+    public EntityManager getEm() {
+        return em;
+    }
+
+    public void setEm(EntityManager em) {
+        this.em = em;
+    }
+    
+    
+    
+       public void reloadTables() {
+        UserData ud = new UserData(em);
+        this.users = ud.getUsers();
+        ;
+    }
+       
     public void loginSession(ActionEvent event) {
 
-        EntityManager em = entityManagerFactory.createEntityManager();
-
-        User userToVerify = new User(email, password, "", "", "", "", 0, true, email);
-        User userVerification = new User();
+        User userToVerify = new User(email, password, "", "", "", "", 0, true, email);        
         RequestContext context = RequestContext.getCurrentInstance();
         UserData userdata = new UserData(em);
         DebateData dDta = new DebateData(em);
         CourseData cData = new CourseData(em);
         DebateTypeData typedata = new DebateTypeData(em);
         FacesMessage message = null;
-        userVerification = userdata.getUserByEmail(email);
+        User userVerification = userdata.getUserByEmail(email);
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 
         boolean loggedIn = false;
 
         if (email.equals(userVerification.getEmail())) {
             if (password != null && userToVerify.getPassword().equals(userVerification.getPassword()) && userVerification.getIsAdmin() == true) {
-                try {
                     this.user = userVerification;
                     this.users = userdata.getUsers();
                     this.course = cData.getAll();
                     this.debates = dDta.getDebates();
                     this.type = typedata.getAll();
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", user.getName());
+                try {
                     ec.redirect("menuPrincipal.xhtml");
-                    loggedIn = true;
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                    //Logger.getLogger(this.email).log(Level.SEVERE, null, ex);
-                    loggedIn = false;
+                } catch (IOException ex) {                   
+                    Logger.getLogger(LoginAdmin.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
+                    loggedIn = true;
+               
             } else if(password != null && userToVerify.getPassword().equals(userVerification.getPassword()) && userVerification instanceof Professor){
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", user.getName());
                     
@@ -177,7 +192,6 @@ public class LoginAdmin implements Serializable {
 
         FacesContext.getCurrentInstance().addMessage(null, message);
         context.addCallbackParam("loggedIn", loggedIn);
-        em.close();
     }
 
     //Diferenciar profes, estdiantes y administradores.

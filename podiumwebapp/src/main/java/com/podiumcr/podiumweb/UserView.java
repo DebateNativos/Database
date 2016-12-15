@@ -26,12 +26,12 @@ import javax.persistence.EntityManager;
  */
 @ManagedBean(name = "userBean")
 @SessionScoped
-
 public class UserView implements Serializable {
 
     @ManagedProperty(value = "#{login}")
     private LoginAdmin login;
 
+    EntityManager em = null;
     private List<User> users;
     private int id;
     private String email;
@@ -179,32 +179,32 @@ public class UserView implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.users = login.getUsers();
-        this.selectedUser = new User();
-
-    }
-
-    public void refreshTable() {
-        EntityManager em = entityManagerFactory.createEntityManager();
+        if (this.selectedUser == null) {
+            this.selectedUser  = new User();
+        }
+        if (this.em==null) {
+             em = login.em;
+        }
+        if (this.users == null) {
         UserData ud = new UserData(em);
-        this.users = ud.getUsers();
-        em.close();
+        this.users = ud.getUsers();      
+        }
+        
     }
 
     public void newUser(ActionEvent event) {
 
-        EntityManager em = entityManagerFactory.createEntityManager();
         UserData ud = new UserData(em);
-
+        FacesMessage message = null;
         switch (role) {
             case 0:
                 this.selectedUser = new User(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity, true, this.phone);
                 ud.registerUser(this.selectedUser);
                 if (ud.registerUser(this.selectedUser)) {
-                    FacesMessage message = null;
+                    
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Administrador Insertado", this.email);
                     FacesContext.getCurrentInstance().addMessage(null, message);
-                    this.refreshTable();
+                    this.users = ud.getUsers();
                 }
                 break;
 
@@ -212,10 +212,9 @@ public class UserView implements Serializable {
                 this.selectedUser = new Professor(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity, phone);
                 this.selectedUser.setAdmin(false);
                 if (ud.registerUser(this.selectedUser)) {
-                    FacesMessage message = null;
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor Insertado", this.email);
                     FacesContext.getCurrentInstance().addMessage(null, message);
-                    this.refreshTable();
+                    this.users = ud.getUsers();
                 }
                 break;
 
@@ -224,10 +223,9 @@ public class UserView implements Serializable {
 
                 this.selectedUser.setAdmin(false);
                 if (ud.registerUser(this.selectedUser)) {
-                    FacesMessage message = null;
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Estudiante Insertado", this.email);
                     FacesContext.getCurrentInstance().addMessage(null, message);
-                    this.refreshTable();
+                    this.users = ud.getUsers();
                 }
                 break;
         }
@@ -237,7 +235,6 @@ public class UserView implements Serializable {
     }
 
     public void editUser(ActionEvent event) {
-        EntityManager em = entityManagerFactory.createEntityManager();
         UserData ud = new UserData(em);
         User u = ud.getUserByEmail(this.selectedUser.getEmail());
         u.setEmail(this.selectedUser.getEmail());
@@ -251,7 +248,7 @@ public class UserView implements Serializable {
             FacesMessage message = null;
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario Editado", this.email);
             FacesContext.getCurrentInstance().addMessage(null, message);
-            this.refreshTable();
+            this.users = ud.getUsers();
         } else {
             FacesMessage message = null;
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario No Editado", this.email);

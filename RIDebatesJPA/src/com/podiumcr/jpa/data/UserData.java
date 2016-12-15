@@ -65,8 +65,9 @@ public class UserData {
 
 			em.getTransaction().begin();
 			em.persist(user);
+			em.flush();
 			em.getTransaction().commit();
-/*			try {
+			/*try {
 				se.SendWelcomeEmail(user);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -88,11 +89,12 @@ public class UserData {
 		boolean returned = false;
 
 		try {
-					
+
 			em.getTransaction().begin();
 			em.persist(user);
+			em.flush();
 			em.getTransaction().commit();
-/*			try {
+		/*	try {
 				se.SendInformationChangedEmail(user);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -108,13 +110,13 @@ public class UserData {
 		return returned;
 
 	}
-	
+
 	public boolean removeUser(User user) {
 
 		boolean returned = false;
 
 		try {
-					
+
 			em.getTransaction().begin();
 			em.remove(user);
 			em.getTransaction().commit();
