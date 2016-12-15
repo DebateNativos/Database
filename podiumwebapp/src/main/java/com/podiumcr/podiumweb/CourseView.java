@@ -136,6 +136,14 @@ public class CourseView implements Serializable {
     public void setSelectedCourse(Course selectedCourse) {
         this.selectedCourse = selectedCourse;
     }
+
+    public LoginAdmin getLogin() {
+        return login;
+    }
+
+    public void setLogin(LoginAdmin login) {
+        this.login = login;
+    }
     
     
     @PostConstruct
