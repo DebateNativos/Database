@@ -43,20 +43,21 @@ public class CourseView implements Serializable {
     private int curseQuarter;
     private int curseYear;
     private String classroom;
-    private List<User> users;
+    
     private Professor professor;
+    private List<Professor> professorList;
 
     private Course selectedCourse;
 
     public CourseView() {
     }
 
-    public CourseView(String name, String courseCode, int curseQuarter, int curseYear, List<User> users, Professor professor, String classroom, String schedule) {
+    public CourseView(String name, String courseCode, int curseQuarter, int curseYear, Professor professor, String classroom, String schedule) {
 
         this.name = name;
         this.curseQuarter = curseQuarter;
         this.curseYear = curseYear;
-        this.users = users;
+        
         this.professor = professor;
         this.schedule = schedule;
         this.classroom = classroom;
@@ -112,13 +113,7 @@ public class CourseView implements Serializable {
         this.curseYear = curseYear;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
+   
 
     public Professor getProfessor() {
         return professor;
@@ -143,6 +138,14 @@ public class CourseView implements Serializable {
     public void setLogin(LoginAdmin login) {
         this.login = login;
     }
+
+    public List<Professor> getProfessorList() {
+        return professorList;
+    }
+
+    public void setProfessorList(List<Professor> professorList) {
+        this.professorList = professorList;
+    }
     
     
     @PostConstruct
@@ -157,7 +160,10 @@ public class CourseView implements Serializable {
         CourseData c = new CourseData(em);
         this.courses = c.getAll();      
         }
-        
+        if (this.professorList == null) {
+         UserData p = new UserData(em);
+        this.professorList = p.getProfesors();      
+        }
         
     }
 
@@ -213,26 +219,4 @@ public class CourseView implements Serializable {
         }
 
     }
-    
-    public List<Professor> listProfessor(){
-
-    UserData uD = new UserData(em);
-    User u;
-    users = uD.getUsers();
-    List<Professor> professorList = new ArrayList<>();
-    
-    for(int x=0;x<users.size();x++) {
-      u= users.get(x);
-      
-     if (u instanceof Professor){
-         
-     professorList.add((Professor) u);
-     
-     em.close();
-     }      
-}
-
-    return professorList;
-    }
-
-}
+ }

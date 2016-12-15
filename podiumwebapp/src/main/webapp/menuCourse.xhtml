@@ -414,7 +414,11 @@
                             <p:inputMask placeholder="  "  value="#{courseBean.selectedCourse.curseYear}" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50" mask=""/>
                         </p:inplace>
                         
-                     
+                        <p:selectOneMenu id="profList" value="#{courseBean.professor}"  panelStyle="width:180px"
+                                         effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
+                            <f:selectItems value="#{courseBean.professorList}" var="professor" itemLabel="#{professor.name}" itemValue="#{professor}" />
+
+                        </p:selectOneMenu>
 
                         <f:facet name="footer" >
                             <div class="footer-right">
