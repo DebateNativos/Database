@@ -136,9 +136,7 @@ public class LoginAdmin implements Serializable {
         this.em = em;
     }
     
-    
-    
-       public void reloadTables() {
+    public void reloadTables() {
         UserData ud = new UserData(em);
         this.users = ud.getUsers();
         ;

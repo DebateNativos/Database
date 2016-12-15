@@ -183,7 +183,7 @@ public class UserView implements Serializable {
             this.selectedUser  = new User();
         }
         if (this.em==null) {
-             em = login.em;
+             this.em = login.em;
         }
         if (this.users == null) {
         UserData ud = new UserData(em);
@@ -200,11 +200,9 @@ public class UserView implements Serializable {
             case 0:
                 this.selectedUser = new User(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity, true, this.phone);
                 ud.registerUser(this.selectedUser);
-                if (ud.registerUser(this.selectedUser)) {
-                    
+                if (ud.registerUser(this.selectedUser)) {                   
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Administrador Insertado", this.email);
                     FacesContext.getCurrentInstance().addMessage(null, message);
-                    this.users = ud.getUsers();
                 }
                 break;
 
@@ -214,7 +212,6 @@ public class UserView implements Serializable {
                 if (ud.registerUser(this.selectedUser)) {
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor Insertado", this.email);
                     FacesContext.getCurrentInstance().addMessage(null, message);
-                    this.users = ud.getUsers();
                 }
                 break;
 
@@ -225,12 +222,9 @@ public class UserView implements Serializable {
                 if (ud.registerUser(this.selectedUser)) {
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Estudiante Insertado", this.email);
                     FacesContext.getCurrentInstance().addMessage(null, message);
-                    this.users = ud.getUsers();
                 }
                 break;
         }
-
-        em.close();
 
     }
 
@@ -248,13 +242,11 @@ public class UserView implements Serializable {
             FacesMessage message = null;
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario Editado", this.email);
             FacesContext.getCurrentInstance().addMessage(null, message);
-            this.users = ud.getUsers();
         } else {
             FacesMessage message = null;
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario No Editado", this.email);
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
-        em.close();
 
     }
 
