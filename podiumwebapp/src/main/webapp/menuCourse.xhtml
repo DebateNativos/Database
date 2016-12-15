@@ -327,7 +327,7 @@
             
             
 
-            <p:dataTable id="dataList" var="course" value="#{login.course}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe" paginator="true" widgetVar="dataTable" rows="20" editable="true" selectionMode="single" selection="#{courseBean.selectedCourse}" rowKey="#{course.idCourse}"  >
+            <p:dataTable id="dataList" var="course" value="#{courseBean.courses}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe" paginator="true" widgetVar="dataTable" rows="20" editable="true" selectionMode="single" selection="#{courseBean.selectedCourse}" rowKey="#{course.idCourse}"  >
 
                 <f:facet name="header" >
                     <p:commandButton id="toggler" type="button"  icon="ui-icon-calculator" style="float:right; width: 10px; height: 10px;" class="btn-primary"  />
@@ -381,7 +381,7 @@
             </p:dataTable>
             </h:form>
         
-            <p:dialog header="Editar" widgetVar="EditCourseDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="true" >
+            <p:dialog header="Editar" widgetVar="EditCourseDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
                 <h:form id="editCourse">
                 <p:outputPanel id="editDetail" style="text-align:center;">
                     <p:panelGrid  columns="2" >

@@ -146,6 +146,14 @@ public class CourseView implements Serializable {
     public void setProfessorList(List<Professor> professorList) {
         this.professorList = professorList;
     }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
     
     
     @PostConstruct
@@ -162,7 +170,7 @@ public class CourseView implements Serializable {
         }
         if (this.professorList == null) {
          UserData p = new UserData(em);
-        this.professorList = p.getProfesors();      
+         this.professorList = p.getProfesors();      
         }
         
     }
