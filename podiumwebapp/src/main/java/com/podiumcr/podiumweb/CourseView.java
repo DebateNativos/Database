@@ -6,12 +6,14 @@
 package com.podiumcr.podiumweb;
 
 import com.podiumcr.jpa.data.CourseData;
+import com.podiumcr.jpa.data.UserData;
 import com.podiumcr.jpa.entities.Professor;
 import com.podiumcr.jpa.entities.User;
 import com.podiumcr.jpa.entities.Course;
 
 import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFactory;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -177,6 +179,25 @@ public class CourseView implements Serializable {
             em.close();
         }
 
+    }
+    
+    public List<Professor> listProfessor(){
+    EntityManager em = entityManagerFactory.createEntityManager();
+    UserData uD = new UserData(em);
+    User u;
+    users = uD.getUsers();
+    List<Professor> professorList = new ArrayList<>();
+    
+    for(int x=0;x<users.size();x++) {
+      u= users.get(x);
+      
+     if (u instanceof Professor){
+     professorList.add((Professor) u);
+     em.close();
+     }      
+}
+
+    return professorList;
     }
 
 }
