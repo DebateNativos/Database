@@ -31,8 +31,8 @@
         <h:outputStylesheet library="plugins" name="iCheck/flat/blue.css"/>
         <!-- jvectormap -->
         <h:outputStylesheet library="plugins" name="jvectormap/jquery-jvectormap-1.2.2.css"/>
-       
-  
+
+
         <h:outputStylesheet library="plugins" name="bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>
         <h:outputStylesheet library="css" name="nprogress.css"/>
         <style type="text/css">
@@ -89,7 +89,7 @@
         <p:dialog appendTo="@(body)" resizable="false" header="test" widgetVar="Chat" responsive="true" position="right,bottom" width="400px">
             <div class="col-md-12">
                 <!-- DIRECT CHAT -->
-                
+
             </div><!-- /.col -->
         </p:dialog>
 
@@ -110,10 +110,7 @@
                         <span class="sr-only">Toggle navigation</span>
                     </a>
                     <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">
-
-                          
-                            
+                        <ul class="nav navbar-nav">                 
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -126,12 +123,12 @@
                                         <h:graphicImage library="dist" name="img/avatar2.png" class="img-circle" alt="User Image"/>
                                         <p>
                                             <!-- Devolver aquí el usuario logeado-->
-                                             #{login.user.name} #{login.user.lastName}
-                                             <small>-Administrador-</small>
+                                            #{login.user.name} #{login.user.lastName}
+                                            <small>-Administrador-</small>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
-                                  
+
                                     <li class="user-footer">
                                         <div class="pull-left">
                                             <!--                                            <a href="#" class="btn btn-default btn-flat">Profile</a>-->
@@ -175,42 +172,42 @@
                                 <a href="#" style="text-align: center; font-size: 12px; font-weight: bold" >PODIUM</a>
                             </div>
                         </div>
-                      <ul class="sidebar-menu" id="sidebar-menu" style="height: 80%;width: 100%">
+                        <ul class="sidebar-menu" id="sidebar-menu" style="height: 80%;width: 100%">
                             <li class="header" id="liHeader">Menú</li>
                             <h:panelGroup id="menuListGroup" class="sidebar-menu">
-                             <ui:fragment >
-                                        <li class="treeview" id="mainTree">
-                                            <ui:fragment >
-                                                <a href="">
-                                                    <i class="fa fa-users" style="color:"></i>
-                                                    <span>
-                                                       Perfil
-                                                    </span>
-                                                    
-                                                </a>
-                                            </ui:fragment>
-                                            
-                                        </li>
-                                    </ui:fragment>
                                 <ui:fragment >
-                                        <li class="treeview" id="mainTree">
-                                            <ui:fragment >
-                                                <a href="menuPCourse.xhtml">
-                                                    <i class="fa fa-clipboard" style="color:"></i>
-                                                    <span>
-                                                       Cursos asignados
-                                                    </span>
-                                                    
-                                                </a>
-                                            </ui:fragment>
-                                          
-                                        </li>
-                                    </ui:fragment>
+                                    <li class="treeview" id="mainTree">
+                                        <ui:fragment >
+                                            <a href="">
+                                                <i class="fa fa-users" style="color:"></i>
+                                                <span>
+                                                    Perfil
+                                                </span>
 
-                               
+                                            </a>
+                                        </ui:fragment>
+
+                                    </li>
+                                </ui:fragment>
+                                <ui:fragment >
+                                    <li class="treeview" id="mainTree">
+                                        <ui:fragment >
+                                            <a href="menuPCourse.xhtml">
+                                                <i class="fa fa-clipboard" style="color:"></i>
+                                                <span>
+                                                    Cursos asignados
+                                                </span>
+
+                                            </a>
+                                        </ui:fragment>
+
+                                    </li>
+                                </ui:fragment>
+
+
                             </h:panelGroup>
                         </ul>
-                        
+
                     </section>
                     <!-- /.sidebar -->
                 </h:form>
@@ -226,15 +223,15 @@
                         Menú principal
                         <small>Panel de control</small>
                     </h1>
-                    
+
                     <h:panelGroup id="myDashBoard" class="breadcrumb">
-                       
-                        
+
+
                         <ol class="breadcrumb">
 
                             <li><a href="homeProf.xhtml"><i class="fa fa-arrow-left"></i>Página Principal</a></li>
 
-                           
+
 
                         </ol>
 
@@ -245,18 +242,18 @@
                 <section class="content">
                     <!--                    <ui:insert name="body"/>                   -->
                     <h:panelGroup id="myPanel" layout="block">
-                        
-                        
-                        
-                        
-                         
+
+
+
+
+
                     </h:panelGroup>
 
                 </section>
             </div><!-- /.content-wrapper -->
 
             <!-- Control Sidebar -->
-           <aside class="control-sidebar control-sidebar-dark">
+            <aside class="control-sidebar control-sidebar-dark">
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <!-- Home tab content -->
@@ -265,7 +262,7 @@
 
                         <h3 class="control-sidebar-heading">Tasks Progress</h3>
                         <ul class="control-sidebar-menu">
-                          
+
                             <li>
                                 <a href="javascript::;">
                                     <h4 class="control-sidebar-subheading">
@@ -326,7 +323,7 @@
 
 
         </script>
-       
+
     </h:body>
 </html>
 

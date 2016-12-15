@@ -8,6 +8,7 @@ import javax.persistence.TypedQuery;
 
 import org.hibernate.HibernateException;
 
+import com.podiumcr.jpa.entities.Professor;
 import com.podiumcr.jpa.entities.User;
 import com.podiumcr.jpa.resources.SendEmail;
 
@@ -38,6 +39,25 @@ public class UserData {
 
 		return returnedList;
 	}
+	
+	public List<Professor> getProfesors() {
+
+		List<Professor> returnedList = new ArrayList<>();
+
+		try {
+
+			TypedQuery<Professor> query = em.createNamedQuery("Professor.findAll", Professor.class);
+			List<Professor> listaUsuarios = query.getResultList();
+			returnedList = listaUsuarios;
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		return returnedList;
+	}
+
 
 	public User getUserByEmail(String email) {
 

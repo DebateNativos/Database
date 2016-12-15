@@ -8,7 +8,6 @@ package com.podiumcr.podiumweb;
 import com.podiumcr.jpa.data.UserData;
 import com.podiumcr.jpa.entities.Professor;
 import com.podiumcr.jpa.entities.User;
-import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFactory;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;

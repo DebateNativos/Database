@@ -27,8 +27,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedProperty;
 import javax.persistence.EntityManager;
 import org.primefaces.context.RequestContext;
 
@@ -144,12 +142,11 @@ public class LoginAdmin implements Serializable {
        
     public void loginSession(ActionEvent event) {
 
-        User userToVerify = new User(email, password, "", "", "", "", 0, true, email);        
+        User userToVerify = new User(email, password, "", "", "", "", 0, true, "");        
         RequestContext context = RequestContext.getCurrentInstance();
         UserData userdata = new UserData(em);
         DebateData dDta = new DebateData(em);
         CourseData cData = new CourseData(em);
-        DebateTypeData typedata = new DebateTypeData(em);
         FacesMessage message = null;
         User userVerification = userdata.getUserByEmail(email);
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
@@ -162,7 +159,6 @@ public class LoginAdmin implements Serializable {
                     this.users = userdata.getUsers();
                     this.course = cData.getAll();
                     this.debates = dDta.getDebates();
-                    this.type = typedata.getAll();
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", user.getName());
                 try {
                     ec.redirect("menuPrincipal.xhtml");
@@ -172,8 +168,8 @@ public class LoginAdmin implements Serializable {
                     loggedIn = true;
                
             } else if(password != null && userToVerify.getPassword().equals(userVerification.getPassword()) && userVerification instanceof Professor){
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", user.getName());
-                    
+                this.user = userVerification;
+                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", user.getName());                    
                 try {
                     ec.redirect("homeProf.xhtml");
                 } catch (IOException ex) {

@@ -11,7 +11,6 @@ import com.podiumcr.jpa.entities.Professor;
 import com.podiumcr.jpa.entities.User;
 import com.podiumcr.jpa.entities.Course;
 
-import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFactory;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
