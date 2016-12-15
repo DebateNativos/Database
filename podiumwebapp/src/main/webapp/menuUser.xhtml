@@ -327,7 +327,7 @@
 
                                     <f:facet name="footer" >
                                         <div class="footer-right">
-                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Agregar" actionListener="#{userBean.newUser1}" update=":form:dataList" onsuccess="PF('UserDialog').hide()"  />
+                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Agregar" actionListener="#{userBean.newUser}" update=":form:dataList" onsuccess="PF('UserDialog').hide()"  />
                                             <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('UserDialog').hide()" immediate="true"/>
                                         </div>
                                     </f:facet>
@@ -411,44 +411,42 @@
                        <p:outputPanel id="editDetail" style="text-align:center;">
                                <p:panelGrid  columns="2" >
                                     <f:facet name="header">
-                                        <h1>  
-                                            #{userBean.selectedUser.name}
-                                        </h1>
+                                        <h1>#{userBean.selectedUser.name}</h1>
                                     </f:facet>
-                                    <p:outputLabel value="Nombre" for="firstName" />
-                                    <p:inplace id="firstName" editor="true">
+                                    <p:outputLabel value="Nombre" for="firstNameEdit" />
+                                    <p:inplace id="firstNameEdit" editor="true">
                                         <p:inputText  value="#{userBean.selectedUser.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
                                     </p:inplace> 
                                     
                                     
-                                    <p:outputLabel value="Primer apellido" for="lastName" />
-                                    <p:inplace id="lastName" editor="true">
+                                    <p:outputLabel value="Primer apellido" for="lastNameEdit" />
+                                    <p:inplace id="lastNameEdit" editor="true">
                                         <p:inputText value="#{userBean.selectedUser.lastName}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
                                     </p:inplace>
                                     
                                     
-                                    <p:outputLabel value="Segundo apellido" for="secondLastName" />
-                                    <p:inplace id="secondLastName" editor="true">
+                                    <p:outputLabel value="Segundo apellido" for="secondLastNameEdit" />
+                                    <p:inplace id="secondLastNameEdit" editor="true">
                                         <p:inputText   value="#{userBean.selectedUser.lastName2}" title="true" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
                                    </p:inplace>
 
-                                    <p:outputLabel value="Correo electrónico" for="email" />
-                                    <p:inplace id="email" editor="true">
+                                    <p:outputLabel value="Correo electrónico" for="emailEdit" />
+                                    <p:inplace id="emailEdit" editor="true">
                                         <p:inputText  value="#{userBean.selectedUser.email}" required="true" requiredMessage="Debe ingresar la información correcta" size="50" maxlength="50"/>
                                     </p:inplace>
                                     
-                                    <p:outputLabel value="Dirección" for="address" />
-                                    <p:inplace id="address" editor="true">
+                                    <p:outputLabel value="Dirección" for="addressEdit" />
+                                    <p:inplace id="addressEdit" editor="true">
                                         <p:inputText  value="#{userBean.selectedUser.address}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
                                     </p:inplace>
 
-                                    <p:outputLabel for="phone" value="Teléfono:" />
-                                    <p:inplace id="phone"  editor="true">
+                                    <p:outputLabel for="phoneEdit" value="Teléfono:" />
+                                    <p:inplace id="phoneEdit"  editor="true">
                                         <p:inputText value="#{userBean.selectedUser.phone}" />
                                     </p:inplace>
                                         
-                                   <p:outputLabel for="Role" value="Role:" />
-                                    <p:selectOneRadio id="Role">
+                                   <p:outputLabel for="RoleEdit" value="Role:" />
+                                    <p:selectOneRadio id="RoleEdit">
                                         <f:selectItem itemLabel="Administrador" itemValue="1" />
                                         <f:selectItem itemLabel="Profesor" itemValue="2" />
                                         <f:selectItem itemLabel="Estudiante" itemValue="3" />
@@ -456,7 +454,7 @@
 
                                     <f:facet name="footer" >
                                         <div class="footer-right">
-                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Guardar" actionListener="#{userBean.editUser1()}" update=":form:dataList" onsuccess="PF('editDialog').hide()" />
+                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Guardar" actionListener="#{userBean.editUser}" update=":form:dataList" onsuccess="PF('editDialog').hide()" />
                                             <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('editDialog').hide()" immediate="true"/>
                                         </div>
                                     </f:facet>

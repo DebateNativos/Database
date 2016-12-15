@@ -30,9 +30,9 @@ import javax.persistence.EntityManager;
 public class UserView implements Serializable {
 
     @ManagedProperty(value = "#{login}")
-    private LoginAdmin login;   
+    private LoginAdmin login;
     private List<User> users;
-    
+
     private int id;
     private String email;
     private String password;
@@ -49,7 +49,6 @@ public class UserView implements Serializable {
     /**
      * Creates a new instance of DialogView
      */
-    
     public UserView() {
     }
     //hacer la instancia según el rol
@@ -177,21 +176,22 @@ public class UserView implements Serializable {
     public void setUsers(List<User> users) {
         this.users = users;
     }
-    
-    
+
     @PostConstruct
-    public void init() {     
+    public void init() {
         this.users = login.getUsers();
+        this.selectedUser = new User();
+
     }
-     
-    public void newUser1(ActionEvent event) {
+
+    public void newUser(ActionEvent event) {
 
         EntityManager em = entityManagerFactory.createEntityManager();
         UserData ud = new UserData(em);
 
         switch (role) {
             case 0:
-                selectedUser = new User(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity, true, this.phone);
+                this.selectedUser = new User(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity, true, this.phone);
                 ud.registerUser(this.selectedUser);
                 if (ud.registerUser(this.selectedUser)) {
                     FacesMessage message = null;
@@ -199,11 +199,11 @@ public class UserView implements Serializable {
                     FacesContext.getCurrentInstance().addMessage(null, message);
                 }
                 break;
-                
-            case 1:
-                selectedUser = new Professor(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity, phone);
 
-                selectedUser.setAdmin(false);
+            case 1:
+                this.selectedUser = new Professor(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity, phone);
+
+                this.selectedUser.setAdmin(false);
 
                 if (ud.registerUser(this.selectedUser)) {
                     FacesMessage message = null;
@@ -213,9 +213,9 @@ public class UserView implements Serializable {
                 break;
 
             case 2:
-                selectedUser = new User(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity, false, this.phone);
+                this.selectedUser = new User(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity, false, this.phone);
 
-                selectedUser.setAdmin(false);
+                this.selectedUser.setAdmin(false);
                 if (ud.registerUser(this.selectedUser)) {
                     FacesMessage message = null;
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Estudiante Insertado", this.email);
@@ -228,7 +228,7 @@ public class UserView implements Serializable {
 
     }
 
-    public void editUser1(ActionEvent event) {
+    public void editUser(ActionEvent event) {
         EntityManager em = entityManagerFactory.createEntityManager();
         UserData ud = new UserData(em);
         User u = ud.getUserByEmail(this.selectedUser.getEmail());
@@ -239,11 +239,15 @@ public class UserView implements Serializable {
         u.setLastName(this.selectedUser.getLastName());
         u.setLastName2(this.selectedUser.getLastName2());
         u.setPhone(this.selectedUser.getPhone());
-         if (ud.updateUser(u)) {
-                    FacesMessage message = null;
-                    message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Estudiante Insertado", this.email);
-                    FacesContext.getCurrentInstance().addMessage(null, message);
-                }
+        if (ud.updateUser(u)) {
+            FacesMessage message = null;
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Estudiante Editado", this.email);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        } else {
+            FacesMessage message = null;
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Estudiante No Editado", this.email);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
 
     }
 
