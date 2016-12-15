@@ -193,6 +193,15 @@ public class DebateView implements Serializable {
         if (this.selectedDebate == null) {
             this.selectedDebate  = new Debate();
         }
+        if (this.debateType == null) {
+            this.debateType  = new DebateType();
+        }
+        if (this.course1 == null) {
+            this.course1  = new Course();
+        }
+         if (this.course2 == null) {
+            this.course2  = new Course();
+        }
         if (this.em==null) {
              this.em = login.em;
         }
