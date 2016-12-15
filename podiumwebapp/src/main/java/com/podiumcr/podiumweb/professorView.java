@@ -113,7 +113,11 @@ public class professorView implements Serializable {
     return students;
     }
     
-     
+    public void saveGrade(){
+    
+    
+    }
+    
     
     
 }

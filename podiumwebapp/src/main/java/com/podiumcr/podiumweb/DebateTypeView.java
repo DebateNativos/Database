@@ -15,6 +15,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.persistence.EntityManager;
 
 /**
  *
@@ -29,7 +30,7 @@ public class DebateTypeView implements Serializable{
    @ManagedProperty(value = "#{login}")
     private LoginAdmin login; 
     
-    
+    private EntityManager em = null;
     private int idDebateTypes;
     private String description;
     private String name;
@@ -54,13 +55,17 @@ public class DebateTypeView implements Serializable{
     
     @PostConstruct
     public void init() {
-       
-   
+          if (this.em==null) {
+             this.em = login.em;
+        }
         if (this.types == null) {
         DebateTypeData dtd = new DebateTypeData(em);
         this.types = dtd.getAll();      
         }
-        
+        if (this.typeD == null) {
+        this.typeD = new DebateType();
+           
+        }
     }
     
     public int getIdDebateTypes() {
