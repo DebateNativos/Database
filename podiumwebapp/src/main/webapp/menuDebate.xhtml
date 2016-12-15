@@ -324,7 +324,7 @@
             <h:form id="debform">
                 <p:growl id="msgs" showDetail="true" />
 
-                <p:dataTable id="dataList" var="debate" value="#{login.debates}" widgetVar="dataTable" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe"  paginator="true" rows="6" editable="true" selectionMode="single" selection="#{debateBean.selectedDebate}" rowKey="#{debate.idDebates}"  >
+                <p:dataTable id="dataList" var="debate" value="#{debateBean.debates}" widgetVar="dataTable" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe"  paginator="true" rows="6" editable="true" selectionMode="single" selection="#{debateBean.selectedDebate}" rowKey="#{debate.idDebates}"  >
 
                     <f:facet name="header" >
                         <p:commandButton id="toggler" type="button"  icon="ui-icon-calculator" style="float:right; width: 10px; height: 10px;" class="btn-primary"  />
@@ -354,11 +354,11 @@
 
                     <f:facet name="footer">
 
-                        <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Nuevo" type="button" onclick="PF('DebateDialog').show();"/>
-                        <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar" type="button" onclick="PF('EditDebateDialog').show();" />
+                        <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Agregar"  onclick="PF('DebateDialog').show();" update=":UserForm"/>
+                        <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar"  onclick="PF('EditDebateDialog').show();" update=":debateE:editDetail" />
                          
-                         <p:commandButton styleClass="btn-warning" icon="fa fa-check-circle-o" value="Activar" type="button" />
-                         <p:commandButton value="Eliminar" icon="fa fa-trash"  actionListener="#{debateBean.delete}" update=":debform:msgs" styleClass="btn-danger">
+                         <p:commandButton styleClass="btn-warning" icon="fa fa-check-circle-o" value="Activar" />
+                         <p:commandButton value="Eliminar" icon="fa fa-trash"  actionListener="#{debateBean.deleteDeb}" update=":debform:dataList" styleClass="btn-danger">
                                         <p:confirm header="Confirmación" message="¿Desea eleminar el debate?" icon="ui-icon-alert" />
                                     </p:commandButton>
  
@@ -376,7 +376,7 @@
                     <p:outputPanel id="editDetail" style="text-align:center;">
                                 <p:panelGrid  columns="2" >
                                     <f:facet name="header">
-                                        <h1 >Debate </h1>
+                                        <h1>Debate</h1>
                                     </f:facet>
                                     <p:outputLabel value="Nombre" for="firstName" />
                                     <p:inplace id="firstName" editor="true">
@@ -395,22 +395,25 @@
                                         <p:inputText  value="#{debateBean.selectedDebate.startingDate.date}" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
                                     </p:inplace>
                                     
-                                    <p:outputLabel for="debateType" value="Tipo de debate: " />
-                                    <p:selectOneMenu id="debatetypeBean" value="#{debatetypeBean.idDebateTypes}" effect="fold">
-                                        <f:selectItem itemLabel="Seleccione uno" itemValue="" />                                       
-                                        <f:selectItems value="#{login.type}" />
+                                    <p:outputLabel for="debateT" value="Tipo de debate: " />
+                                    <p:selectOneMenu id="debateT" value="#{debateBean.debateType}" panelStyle="width:180px"
+                                                     effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
+                                                  
+                                        <f:selectItems value="#{debatetypeBean.types}" var="debateType" itemLabel="#{debateType.name}" itemValue="#{debateType}"/>
                                     </p:selectOneMenu>
-                                    
+              
                                     <p:outputLabel for="course1" value="1º curso: " />
-                                    <p:selectOneMenu id="course1" value="#{courseBean.idCourse}" effect="fold">
-                                        <f:selectItem itemLabel="Seleccione uno" itemValue="" />                                       
-                                        <f:selectItems value="#{login.course}" />
+                                    <p:selectOneMenu id="course1" value="#{debateBean.course1}" panelStyle="width:180px"
+                                                     effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
+                                                                             
+                                        <f:selectItems value="#{courseBean.courses}" var="course1" itemLabel="#{course1.name}" itemValue="#{course1}"/>
                                     </p:selectOneMenu>
                                     
-                                    <p:outputLabel for="course2" value="1º curso: " />
-                                    <p:selectOneMenu id="course2" value="#{courseBean.idCourse}" effect="fold">
-                                        <f:selectItem itemLabel="Seleccione uno" itemValue="" />                                       
-                                        <f:selectItems value="#{login.course}" />
+                                    <p:outputLabel for="course1" value="2º curso: " />
+                                    <p:selectOneMenu id="course1" value="#{debateBean.course2}" panelStyle="width:180px"
+                                                     effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
+                                                                             
+                                        <f:selectItems value="#{courseBean.courses}" var="course1" itemLabel="#{course2.name}" itemValue="#{course2}"/>
                                     </p:selectOneMenu>
 
                                     <f:facet name="footer" >

@@ -286,39 +286,39 @@
 
                 <!-- Main content -->
                 <section class="content">
-                <h:form>
-    <p:growl id="msgs" showDetail="true" />
- 
- 
-    <p:fieldset legend="Crear tipo de debate" toggleable="true" toggleSpeed="500" style="width: 60%; background-color: #ecf0f5">
-        
-        <p:panelGrid columns="2"  columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank" >
+                    <h:form>
+                        <p:growl id="msgs" showDetail="true" />
 
-            <p:outputLabel for="name" value="Nombre"/>
-            <p:inputText id="name"/>
- 
-        <p:outputLabel for="description" value="Descripción"/>
-        <p:inputTextarea id="description"/>
-        <f:facet name="footer" >
-        <p:commandButton value="Agregar" styleClass="btn-success" icon="ui-icon-check" />
-        
-        </f:facet>
-        </p:panelGrid>
-    </p:fieldset>
-    <p:separator style="width: 100% "/>
-    <p:fieldset legend="Crear secciones" toggleable="true" toggleSpeed="500" style="width: 60%; background-color: #ecf0f5">
-        
-         <p:panelGrid columns="2"  columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank" >
-   
-             <p:outputLabel for="section" value="Sección"/>
-             <p:inputText id="section"/>
-             <p:outputLabel for="minutesPerUser" value="Munitos por persona"/>
-             <p:inputText id="minutesPerUser"/>    
-             <p:outputLabel for="type" value="Tipo de debate: " />
-             <p:selectOneMenu id="type" value="" effect="fold" >
-                 <f:selectItem itemLabel="Seleccione uno" itemValue="" />
-                 <f:selectItems value="#{allView.type}" />
-             </p:selectOneMenu>
+
+                        <p:fieldset legend="Crear tipo de debate" toggleable="true" toggleSpeed="500" style="width: 60%; background-color: #ecf0f5">
+
+                            <p:panelGrid columns="2"  columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank" >
+
+                                <p:outputLabel for="name" value="Nombre"/>
+                                <p:inputText id="name"/>
+
+                                <p:outputLabel for="description" value="Descripción"/>
+                                <p:inputTextarea id="description"/>
+                                <f:facet name="footer" >
+                                    <p:commandButton value="Agregar" styleClass="btn-success" icon="ui-icon-check" />
+
+                                </f:facet>
+                            </p:panelGrid>
+                        </p:fieldset>
+                        <p:separator style="width: 100% "/>
+                        <p:fieldset legend="Crear secciones" toggleable="true" toggleSpeed="500" style="width: 60%; background-color: #ecf0f5">
+
+                            <p:panelGrid columns="2"  columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank" >
+
+                                <p:outputLabel for="section" value="Sección"/>
+                                <p:inputText id="section"/>
+                                <p:outputLabel for="minutesPerUser" value="Munitos por persona"/>
+                                <p:inputText id="minutesPerUser"/>    
+                                <p:outputLabel for="type" value="Tipo de debate: " />
+                                <p:selectOneMenu id="type" value="" effect="fold" >
+                                    <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                    <f:selectItems value="#{allView.type}" />
+                                </p:selectOneMenu>
            
              
        <f:facet name="footer" >
