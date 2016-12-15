@@ -420,7 +420,7 @@
                         <p:selectOneMenu id="professor" value="#{courseBean.professor}"  panelStyle="width:180px"
                          effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith" >
                         <f:selectItem itemLabel="Seleccione un profesor"/>
-                        <f:selectItems value="#{userBean.users}" var="profesor" itemLabel="#{profesor.name}" itemValue="#{profesor}"/>
+                        <f:selectItems value="#{courseBean.listProfessor}" var="profesor" itemLabel="#{profesor.name}" itemValue="#{profesor}"/>
 
                     </p:selectOneMenu>
                         
