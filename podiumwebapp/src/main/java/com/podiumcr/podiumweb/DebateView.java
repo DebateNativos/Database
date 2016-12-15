@@ -9,7 +9,6 @@ import com.podiumcr.jpa.data.DebateData;
 import com.podiumcr.jpa.data.DebateTypeData;
 import com.podiumcr.jpa.entities.Debate;
 import com.podiumcr.jpa.entities.DebateType;
-import static com.podiumcr.podiumwebapp.common.EntityListener.em;
 import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFactory;
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -24,45 +23,38 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
-import org.primefaces.context.RequestContext;
 import javax.faces.event.ActionEvent;
 
 /**
  *
  * @author Joss
  */
-
 @ManagedBean(name = "debateBean")
 @SessionScoped
-public class DebateView implements Serializable{
-    
+public class DebateView implements Serializable {
+
     private String id;
 
-   
     private String name;
     private Date createdDate;
     private DebateType debateType;
     private String startingDate;
     private String hour;
-    private int sanction; 
-   
-    
-   
+    private int sanction;
+
     private boolean isActive;
-    
-    
-    private Debate selectedDebate; 
-        
+
+    private Debate selectedDebate;
+
     public DebateView(String name, Date createdDate, DebateType debateType, String startingDate, String hour, boolean isActive) {
         this.name = name;
         this.createdDate = createdDate;
         this.debateType = debateType;
         this.startingDate = startingDate;
         this.isActive = isActive;
-        this.hour= hour;
+        this.hour = hour;
     }
 
-    
     /**
      * Creates a new instance of DebateNew
      */
@@ -108,8 +100,8 @@ public class DebateView implements Serializable{
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;
     }
-    
-     public String getId() {
+
+    public String getId() {
         return id;
     }
 
@@ -124,7 +116,8 @@ public class DebateView implements Serializable{
     public void setSelectedDebate(Debate selectedDebate) {
         this.selectedDebate = selectedDebate;
     }
-     public String getHour() {
+
+    public String getHour() {
         return hour;
     }
 
@@ -139,83 +132,80 @@ public class DebateView implements Serializable{
     public void setSanction(int sanction) {
         this.sanction = sanction;
     }
-    
-    
+
     public void newDeb() throws ParseException {
-        
-       EntityManager em = entityManagerFactory.createEntityManager();
-       Calendar date1 = Calendar.getInstance();
-       DebateData dD = new DebateData(em);
-       DebateTypeData dTD = new DebateTypeData(em);
-       DateFormat date2 = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-       String stringDate = this.startingDate + " "+ this.hour;
-       Date convert = date2.parse(stringDate);
-       selectedDebate = new Debate(this.name, date1.getTime(), this.debateType, convert, false); 
-       dD.persistDebate(selectedDebate);
-       if (dD.persistDebate(selectedDebate) ) {
-                    FacesMessage message = null;
-                    message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nuevo", "Se ha agregado el debate: " + this.name);
-                    FacesContext.getCurrentInstance().addMessage(null, message);
-                }
-       
-       em.close();
-      
+
+        EntityManager em = entityManagerFactory.createEntityManager();
+        Calendar date1 = Calendar.getInstance();
+        DebateData dD = new DebateData(em);
+        DebateTypeData dTD = new DebateTypeData(em);
+        DateFormat date2 = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        String stringDate = this.startingDate + " " + this.hour;
+        Date convert = date2.parse(stringDate);
+        selectedDebate = new Debate(this.name, date1.getTime(), this.debateType, convert, false);
+        dD.persistDebate(selectedDebate);
+        if (dD.persistDebate(selectedDebate)) {
+            FacesMessage message = null;
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nuevo", "Se ha agregado el debate: " + this.name);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+
+        em.close();
+
     }
-    
-    public void editDeb(){
-    
-    EntityManager em = entityManagerFactory.createEntityManager();
-    DebateData dD = new DebateData(em);
-    Debate nD = dD.getDebateById(this.selectedDebate.getIdDebates());
-    nD.setName(this.selectedDebate.getName());
-    nD.setDebateType(this.selectedDebate.getDebateType());
-    nD.setStartingDate(this.selectedDebate.getStartingDate());
-    nD.setCourse1(this.selectedDebate.getCourse1());
-    nD.setCourse2(this.selectedDebate.getCourse2());
-    
-    // no existe update
-    if () {
-                    FacesMessage message = null;
-                    message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nuevo", "Se ha agregado el debate: " + this.name);
-                    FacesContext.getCurrentInstance().addMessage(null, message);
-                }
-    
-    em.close();
-    
+
+    public void editDeb() {
+
+        EntityManager em = entityManagerFactory.createEntityManager();
+        DebateData dD = new DebateData(em);
+        Debate nD = dD.getDebateById(this.selectedDebate.getIdDebates());
+        nD.setName(this.selectedDebate.getName());
+        nD.setDebateType(this.selectedDebate.getDebateType());
+        nD.setStartingDate(this.selectedDebate.getStartingDate());
+        nD.setCourse1(this.selectedDebate.getCourse1());
+        nD.setCourse2(this.selectedDebate.getCourse2());
+
+        // no existe update
+        if(dD.persistDebate(nD)) {
+            FacesMessage message = null;
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nuevo", "Se ha agregado el debate: " + this.name);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+
+        em.close();
+
     }
-    
-    public void delete(){
-    EntityManager em = entityManagerFactory.createEntityManager();
-    DebateData dD = new DebateData(em);
-    dD.removeDebate(selectedDebate);
-      if (dD.removeDebate(selectedDebate)) {
-                    FacesMessage message = null;
-                    message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminado", "Se ha elimindo el debate");
-                    FacesContext.getCurrentInstance().addMessage(null, message);
-                }
-    
-    em.close();
-    
+
+    public void delete() {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        DebateData dD = new DebateData(em);
+        dD.removeDebate(selectedDebate);
+        if (dD.removeDebate(selectedDebate)) {
+            FacesMessage message = null;
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminado", "Se ha elimindo el debate");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+
+        em.close();
+
     }
-    
-    
-    
-    public void sanctionUser(ActionEvent event){
+
+    public void sanctionUser(ActionEvent event) {
         sanction++;
         FacesMessage message = null;
         message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Info", "Amonestación: " + sanction);
-        FacesContext.getCurrentInstance().addMessage(null, message );
-    
+        FacesContext.getCurrentInstance().addMessage(null, message);
+
     }
-    
-    public boolean desableButton(){
-    boolean desableB = true;
-    if(sanction >= 3){
-    desableB= true;
-    }else{
-    desableB= false;
+
+    public boolean desableButton() {
+        boolean disableB = true;
+        if (sanction >= 3) {
+            disableB = true;
+        } else {
+            disableB = false;
+        }
+        return disableB;
     }
-    return desableB;
-            }
-    
+
 }

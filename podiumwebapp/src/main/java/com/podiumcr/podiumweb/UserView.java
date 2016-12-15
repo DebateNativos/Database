@@ -241,11 +241,11 @@ public class UserView implements Serializable {
         u.setPhone(this.selectedUser.getPhone());
         if (ud.updateUser(u)) {
             FacesMessage message = null;
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Estudiante Editado", this.email);
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario Editado", this.email);
             FacesContext.getCurrentInstance().addMessage(null, message);
         } else {
             FacesMessage message = null;
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Estudiante No Editado", this.email);
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario No Editado", this.email);
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
 

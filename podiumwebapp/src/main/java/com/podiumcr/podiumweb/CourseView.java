@@ -6,7 +6,6 @@
 package com.podiumcr.podiumweb;
 
 import com.podiumcr.jpa.data.CourseData;
-import com.podiumcr.jpa.data.UserData;
 import com.podiumcr.jpa.entities.Professor;
 import com.podiumcr.jpa.entities.User;
 import com.podiumcr.jpa.entities.Course;
@@ -20,17 +19,15 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
-import org.primefaces.context.RequestContext;
- 
 
 /**
  *
  * @author Joss
  */
-@ManagedBean(name="courseBean")
+@ManagedBean(name = "courseBean")
 @SessionScoped
 public class CourseView implements Serializable {
-     
+
     private int idCourse;
     private String name;
     private String schedule;
@@ -39,14 +36,14 @@ public class CourseView implements Serializable {
     private String classroom;
     private List<User> users;
     private Professor professor;
-    
+
     private Course selectedCourse;
-  
-     public CourseView() {
+
+    public CourseView() {
     }
 
     public CourseView(String name, String courseCode, int curseQuarter, int curseYear, List<User> users, Professor professor, String classroom) {
-        
+
         this.name = name;
         this.curseQuarter = curseQuarter;
         this.curseYear = curseYear;
@@ -54,13 +51,13 @@ public class CourseView implements Serializable {
         this.professor = professor;
         this.schedule = schedule;
         this.classroom = classroom;
-        
+
     }
 
     public int getIdCourse() {
         return idCourse;
     }
- 
+
     public void setIdCourse(int idCourse) {
         this.idCourse = idCourse;
     }
@@ -88,8 +85,6 @@ public class CourseView implements Serializable {
     public void setClassroom(String classroom) {
         this.classroom = classroom;
     }
-
-   
 
     public int getCurseQuarter() {
         return curseQuarter;
@@ -130,27 +125,27 @@ public class CourseView implements Serializable {
     public void setSelectedCourse(Course selectedCourse) {
         this.selectedCourse = selectedCourse;
     }
-    
-    
-     public void newCourse(ActionEvent event){
-     
-     EntityManager em = entityManagerFactory.createEntityManager();
-     CourseData courseN = new CourseData(em);
-     
-     selectedCourse = new Course(this.name,this.curseQuarter, this.curseYear, this.classroom, this.schedule);
-     courseN.persistCourse(selectedCourse);
-   
-         if ( courseN.persistCourse(selectedCourse)) {
-             FacesMessage message = null;
-             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Curso insertado", this.name);
+
+    public void newCourse(ActionEvent event) {
+
+        EntityManager em = entityManagerFactory.createEntityManager();
+        CourseData courseN = new CourseData(em);
+
+        selectedCourse = new Course(this.name, this.curseQuarter, this.curseYear, this.classroom, this.schedule);
+        courseN.persistCourse(selectedCourse);
+
+        if (courseN.persistCourse(selectedCourse)) {
+            FacesMessage message = null;
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Curso insertado", this.name);
             FacesContext.getCurrentInstance().addMessage(null, message);
             em.close();
+        }
+
     }
-         
-     }
-   public void editCourse(ActionEvent event)){
-       EntityManager em = entityManagerFactory.createEntityManager();
-       CourseData courseN = new CourseData(em);
+
+    public void editCourse(ActionEvent event) {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        CourseData courseN = new CourseData(em);
         Course c = courseN.getCourseByCode(this.selectedCourse.getCourseCode());
         c.setClassroom(this.selectedCourse.getClassroom());
         c.setName(this.selectedCourse.getName());
@@ -158,34 +153,31 @@ public class CourseView implements Serializable {
         c.setCurseYear(this.selectedCourse.getCurseYear());
         c.setSchedule(this.selectedCourse.getSchedule());
         c.setProfessor(this.selectedCourse.getProfessor());
-        
-      //no encontré un método para el update
-       
-         if ( ) {
-                    FacesMessage message = null;
-                    message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Editar", " El curso ha se modificado");
-                    FacesContext.getCurrentInstance().addMessage(null, message);
-                }
-       
-       em.close();
-      
-      
-      //dCourse.
-   }
-   public void deleteCourse(ActionEvent event){
-       EntityManager em = entityManagerFactory.createEntityManager();
-       CourseData courseN = new CourseData(em);
-       String courseName= selectedCourse.getName();
-       courseN.removeCourse(selectedCourse);
-        if ( courseN.removeCourse(selectedCourse)) {
-             FacesMessage message = null;
-             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Curso ha sido eliminado", courseName);
+
+        //no encontré un método para el update
+        if (courseN.persistCourse(c)) {
+            FacesMessage message = null;
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Editar", " El curso ha se modificado");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+
+        em.close();
+
+        //dCourse.
+    }
+
+    public void deleteCourse(ActionEvent event) {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        CourseData courseN = new CourseData(em);
+        String courseName = selectedCourse.getName();
+        courseN.removeCourse(selectedCourse);
+        if (courseN.removeCourse(selectedCourse)) {
+            FacesMessage message = null;
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Curso ha sido eliminado", courseName);
             FacesContext.getCurrentInstance().addMessage(null, message);
             em.close();
-    }
-      
-      
-   }
-   
-}
+        }
 
+    }
+
+}

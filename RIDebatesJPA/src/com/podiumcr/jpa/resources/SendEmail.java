@@ -5,8 +5,6 @@ import java.util.Properties;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.NoSuchProviderException;
-import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
@@ -49,6 +47,7 @@ public class SendEmail {
 		String html = "HOLA!" + "\n\n Usted ha sido seleccionado para participar en el debate "
 		+ "link <a href='http://debatesapp.azurewebsites.net/podiumwebapp/ws/debate/confirmeddebates?email=@gmail'>Confirmar Asistencia</a>";
 		message.setContent(html, "text/html; charset=utf-8");
+		
 		Transport transport = session.getTransport("smtp");
 		try {
 			transport.connect("smtp.gmail.com", username, password);

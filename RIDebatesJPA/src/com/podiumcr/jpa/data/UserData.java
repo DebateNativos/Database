@@ -108,6 +108,27 @@ public class UserData {
 		return returned;
 
 	}
+	
+	public boolean removeUser(User user) {
+
+		boolean returned = false;
+
+		try {
+					
+			em.getTransaction().begin();
+			em.remove(user);
+			em.getTransaction().commit();
+			returned = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			em.getTransaction().rollback();
+			returned = false;
+		}
+
+		return returned;
+
+	}
 
 	public User getUserByToken(String token) {
 
