@@ -406,14 +406,13 @@
                         
                          <p:outputLabel value="Aula" for="classroom" />
                           <p:inplace id="classroom">
-                    <p:inputText placeholder="  " value="#{courseBean.classroom}" required="true" requiredMessage="Ingresar el aula"  size="50" maxlength="50"/>
+                    <p:inputText placeholder="  " value="#{courseBean.selectedCourse.classroom}" required="true" requiredMessage="Ingresar el aula"  size="50" maxlength="50"/>
                      </p:inplace>
 
                         <p:outputLabel value="Año:" for="year" />
                         <p:inplace id="year">
                             <p:inputText placeholder="  "  value="#{courseBean.selectedCourse.curseYear}" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50" />
                         </p:inplace>
-                        
                         
 
                         <f:facet name="footer" >
