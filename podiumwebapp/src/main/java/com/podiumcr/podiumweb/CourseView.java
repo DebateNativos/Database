@@ -8,11 +8,9 @@ package com.podiumcr.podiumweb;
 import com.podiumcr.jpa.data.CourseData;
 import com.podiumcr.jpa.data.UserData;
 import com.podiumcr.jpa.entities.Professor;
-import com.podiumcr.jpa.entities.User;
 import com.podiumcr.jpa.entities.Course;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -52,12 +50,11 @@ public class CourseView implements Serializable {
     public CourseView() {
     }
 
-    public CourseView(String name, String courseCode, int curseQuarter, int curseYear, Professor professor, String classroom, String schedule) {
+    public CourseView(String name, int curseQuarter, int curseYear, Professor professor, String classroom, String schedule) {
 
         this.name = name;
         this.curseQuarter = curseQuarter;
-        this.curseYear = curseYear;
-        
+        this.curseYear = curseYear;       
         this.professor = professor;
         this.schedule = schedule;
         this.classroom = classroom;
@@ -113,8 +110,6 @@ public class CourseView implements Serializable {
         this.curseYear = curseYear;
     }
 
-   
-
     public Professor getProfessor() {
         return professor;
     }
@@ -155,13 +150,12 @@ public class CourseView implements Serializable {
         this.courses = courses;
     }
     
-    
     @PostConstruct
     public void init() {
         if (this.selectedCourse == null) {
             this.selectedCourse  = new Course();
         }
-        if (this.em==null) {
+        if (this.em == null) {
              this.em = login.em;
         }
         if (this.courses == null) {
@@ -171,13 +165,10 @@ public class CourseView implements Serializable {
         if (this.professorList == null) {
          UserData p = new UserData(em);
          this.professorList = p.getProfesors();      
-        }
-        
+        }    
     }
 
-    public void newCourse(ActionEvent event) {
-
-        
+    public void newCourse(ActionEvent event) {        
         CourseData cd = new CourseData(em);
         FacesMessage message = null;
         Course c;
@@ -191,6 +182,7 @@ public class CourseView implements Serializable {
     }
 
     public void editCourse(ActionEvent event) {
+        System.out.println("CURSO " + this.selectedCourse.getName());
         FacesMessage message = null;
         CourseData cd = new CourseData(em);
         Course c = cd.getCourseByCode(this.selectedCourse.getCourseCode());
@@ -200,15 +192,12 @@ public class CourseView implements Serializable {
         c.setCurseYear(this.selectedCourse.getCurseYear());
         c.setSchedule(this.selectedCourse.getSchedule());
         c.setProfessor(this.selectedCourse.getProfessor());
-
-        
-        if (cd.persistCourse(c)) {
-            
+   
+        if (cd.persistCourse(c)) {         
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Editar", "El curso: " + this.name + "ha sido editado");
             FacesContext.getCurrentInstance().addMessage(null, message);
             this.courses =  cd.getAll();
-        } else {
-            
+        } else {        
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Editar", "El curso: " + this.name + " NO ha sido editado");
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
@@ -223,7 +212,7 @@ public class CourseView implements Serializable {
         if (cd.removeCourse(c)) {
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminar", "El curso ha sido eliminado");
             FacesContext.getCurrentInstance().addMessage(null, message);
-            em.close();
+            this.courses = cd.getAll();
         }
 
     }

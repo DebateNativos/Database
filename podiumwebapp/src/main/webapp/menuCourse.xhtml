@@ -31,8 +31,8 @@
         <h:outputStylesheet library="plugins" name="iCheck/flat/blue.css"/>
         <!-- jvectormap -->
         <h:outputStylesheet library="plugins" name="jvectormap/jquery-jvectormap-1.2.2.css"/>
-       
-  
+
+
         <h:outputStylesheet library="plugins" name="bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>
         <h:outputStylesheet library="css" name="nprogress.css"/>
         <style type="text/css">
@@ -89,7 +89,7 @@
         <p:dialog appendTo="@(body)" resizable="false" header="test" widgetVar="Chat" responsive="true" position="right,bottom" width="400px">
             <div class="col-md-12">
                 <!-- DIRECT CHAT -->
-                
+
             </div><!-- /.col -->
         </p:dialog>
 
@@ -112,8 +112,8 @@
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
 
-                          
-                            
+
+
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -126,12 +126,12 @@
                                         <h:graphicImage library="dist" name="img/avatar2.png" class="img-circle" alt="User Image"/>
                                         <p>
                                             <!-- Devolver aquí el usuario logeado-->
-                                             #{login.user.name} #{login.user.lastName}
-                                             <small>-Administrador-</small>
+                                            #{login.user.name} #{login.user.lastName}
+                                            <small>-Administrador-</small>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
-                                  
+
                                     <li class="user-footer">
                                         <div class="pull-left">
                                             <!--                                            <a href="#" class="btn btn-default btn-flat">Profile</a>-->
@@ -175,86 +175,86 @@
                                 <a href="#" style="text-align: center; font-size: 12px; font-weight: bold" >PODIUM</a>
                             </div>
                         </div>
-                      <ul class="sidebar-menu" id="sidebar-menu" style="height: 80%;width: 100%">
+                        <ul class="sidebar-menu" id="sidebar-menu" style="height: 80%;width: 100%">
                             <li class="header" id="liHeader">Menú</li>
                             <h:panelGroup id="menuListGroup" class="sidebar-menu">
-                              <ui:fragment >
-                                        <li class="treeview" id="mainTree">
-                                            <ui:fragment >
-                                                <a >
-                                                    <i class="fa fa-university" style="color:"></i>
-                                                    <span>
-                                                        Debates
-                                                    </span>
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </a>
-                                                
-                                            <ul class="treeview-menu">
-                                               
-                                                       <ui:fragment >
-
-                                                        <li >
-                                                            <a href="menuStage.xhtml">
-                                                                <i class="fa fa-file-text"></i>
-                                                                Tipos de debates
-                                                                <small class="label pull-right bg-aqua"></small>
-                                                            </a>
-                                                        </li>      
-
-                                                    </ui:fragment>      
-                                          
-                                               
-                                                       <ui:fragment >
-
-                                                        <li >
-                                                            <a href="menuDebate.xhtml">
-                                                                <i class="fa fa-copy"></i>
-                                                                Debates
-                                                                <small class="label pull-right bg-aqua"></small>
-                                                            </a>
-                                                        </li>      
-
-                                                    </ui:fragment>      
-                                            
-                                               
-                                                         
-                                            </ul>
-                                           </ui:fragment>      
-                                        </li>
-                                    </ui:fragment>
-                               <ui:fragment >
-                                        <li class="treeview" id="mainTree">
-                                            <ui:fragment >
-                                                <a href="menuUser.xhtml">
-                                                    <i class="fa fa-users" style="color:"></i>
-                                                    <span>
-                                                       Usuarios
-                                                    </span>
-                                                    
-                                                </a>
-                                            </ui:fragment>
-                                            
-                                        </li>
-                                    </ui:fragment>
                                 <ui:fragment >
-                                        <li class="treeview" id="mainTree">
-                                            <ui:fragment >
-                                                <a href="menuCourse.xhtml">
-                                                    <i class="fa fa-clipboard" style="color:"></i>
-                                                    <span>
-                                                       Cursos
-                                                    </span>
-                                                    
-                                                </a>
-                                            </ui:fragment>
-                                          
-                                        </li>
-                                    </ui:fragment>
+                                    <li class="treeview" id="mainTree">
+                                        <ui:fragment >
+                                            <a >
+                                                <i class="fa fa-university" style="color:"></i>
+                                                <span>
+                                                    Debates
+                                                </span>
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </a>
 
-                               
+                                            <ul class="treeview-menu">
+
+                                                <ui:fragment >
+
+                                                    <li >
+                                                        <a href="menuStage.xhtml">
+                                                            <i class="fa fa-file-text"></i>
+                                                            Tipos de debates
+                                                            <small class="label pull-right bg-aqua"></small>
+                                                        </a>
+                                                    </li>      
+
+                                                </ui:fragment>      
+
+
+                                                <ui:fragment >
+
+                                                    <li >
+                                                        <a href="menuDebate.xhtml">
+                                                            <i class="fa fa-copy"></i>
+                                                            Debates
+                                                            <small class="label pull-right bg-aqua"></small>
+                                                        </a>
+                                                    </li>      
+
+                                                </ui:fragment>      
+
+
+
+                                            </ul>
+                                        </ui:fragment>      
+                                    </li>
+                                </ui:fragment>
+                                <ui:fragment >
+                                    <li class="treeview" id="mainTree">
+                                        <ui:fragment >
+                                            <a href="menuUser.xhtml">
+                                                <i class="fa fa-users" style="color:"></i>
+                                                <span>
+                                                    Usuarios
+                                                </span>
+
+                                            </a>
+                                        </ui:fragment>
+
+                                    </li>
+                                </ui:fragment>
+                                <ui:fragment >
+                                    <li class="treeview" id="mainTree">
+                                        <ui:fragment >
+                                            <a href="menuCourse.xhtml">
+                                                <i class="fa fa-clipboard" style="color:"></i>
+                                                <span>
+                                                    Cursos
+                                                </span>
+
+                                            </a>
+                                        </ui:fragment>
+
+                                    </li>
+                                </ui:fragment>
+
+
                             </h:panelGroup>
                         </ul>
-                        
+
                     </section>
                     <!-- /.sidebar -->
                 </h:form>
@@ -287,151 +287,143 @@
                 <!-- Main content -->
                 <section class="content">
                     <!--                    <ui:insert name="body"/>                   -->
-           <h:panelGroup id="myPanel" layout="block">
+                    <h:panelGroup id="myPanel" layout="block">
                         <!--Crear-->
-            <p:dialog id="CourseCreateDlg" widgetVar="CourseCreateDialog"  modal="true" appendTo="@(body)" resizable="true"  header="Nuevo">
-            <h:form id="CourseCreateForm">
-                <p:panelGrid columns="2">
-                    <p:outputLabel value="Horario" for="schedule" />
-                    <p:inputText id="schedule" value="#{courseBean.schedule}" required="true" requiredMessage="Debes ingresar horario" size="45" maxlength="45"/>
+                        <p:dialog id="CourseCreateDlg" widgetVar="CourseCreateDialog"  modal="true" appendTo="@(body)" resizable="true"  header="Nuevo">
+                            <h:form id="CourseCreateForm">
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="Horario" for="schedule" />
+                                    <p:inputText id="schedule" value="#{courseBean.schedule}" required="true" requiredMessage="Debes ingresar horario" size="45" maxlength="45"/>
 
-                    <p:outputLabel value="Cuatrimestre" for="Term" />
-                    <p:inputText id="Term" value="#{courseBean.curseQuarter}"  required="true" requiredMessage="Ingresar el cuatrimeste actual" size="45" maxlength="45"/>
+                                    <p:outputLabel value="Cuatrimestre" for="Term" />
+                                    <p:inputText id="Term" value="#{courseBean.curseQuarter}"  required="true" requiredMessage="Ingresar el cuatrimeste actual" size="45" maxlength="45"/>
 
-                    <p:outputLabel value="Nombre del curso" for="name" />
-                    <p:inputText id="name" value="#{courseBean.name}" required="true" requiredMessage="Ingresar el nombre del curso"  size="50" maxlength="50"/>
+                                    <p:outputLabel value="Nombre del curso" for="name" />
+                                    <p:inputText id="name" value="#{courseBean.name}" required="true" requiredMessage="Ingresar el nombre del curso"  size="50" maxlength="50"/>
 
 
-                    <p:outputLabel value="Año" for="year" />
-                    <p:inputText id="year" value="#{courseBean.curseYear}" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50"/>
+                                    <p:outputLabel value="Año" for="year" />
+                                    <p:inputText id="year" value="#{courseBean.curseYear}" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50"/>
 
-                    <p:outputLabel value="Aula" for="classroom" />
-                    <p:inputText id="classroom" value="#{courseBean.classroom}" required="true" requiredMessage="Ingresar el aula"  size="50" maxlength="50"/>
-                    
-                   
-                    <f:facet name="footer" >
-                        <div class="footer-right">
-                            
-                            <p:commandButton icon="fa fa-pencil" styleClass="btn-success" value="Agregar" actionListener="#{courseBean.newCourse()}" update=":form:dataList"  onsuccess="PF('CourseCreateDialog').hide()"/>
-                            <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('CourseCreateDialog').hide()" />
-                        </div>
-                    </f:facet>
-                </p:panelGrid>
-            </h:form>
-        </p:dialog>
-         
-        
-        
-        <h:form id="form">
-            <p:growl id="msgs" showDetail="true" />
-            
-            
+                                    <p:outputLabel value="Aula" for="classroom" />
+                                    <p:inputText id="classroom" value="#{courseBean.classroom}" required="true" requiredMessage="Ingresar el aula"  size="50" maxlength="50"/>
 
-            <p:dataTable id="dataList" var="course" value="#{courseBean.courses}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe" paginator="true" widgetVar="dataTable" rows="20" editable="true" selectionMode="single" selection="#{courseBean.selectedCourse}" rowKey="#{course.idCourse}"  >
 
-                <f:facet name="header" >
-                    <p:commandButton id="toggler" type="button"  icon="ui-icon-calculator" style="float:right; width: 10px; height: 10px;" class="btn-primary"  />
-                    <p:columnToggler datasource="dataList" trigger="toggler" />
-                    <h:outputText value="Cursos"/>
-                </f:facet>
+                                    <f:facet name="footer" >
+                                        <div class="footer-right">
+                                            <p:commandButton icon="fa fa-pencil" styleClass="btn-success" value="Agregar" actionListener="#{courseBean.newCourse}" update=":form:dataList"  onsuccess="PF('CourseCreateDialog').hide()"/>
+                                            <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('CourseCreateDialog').hide()" />
+                                        </div>
+                                    </f:facet>
+                                </p:panelGrid>
+                            </h:form>
+                        </p:dialog>
 
-                <p:column headerText="identificador" sortBy="#{course.idCourse}" filterBy="#{course.idCourse}"   filterMatchMode="contains" style=" height: 2%;" visible="false">
-                       <h:outputText value="#{course.idCourse}" />
-                </p:column>
 
-                <p:column headerText="Cuatrimeste" sortBy="#{course.curseQuarter}" filterBy="#{course.curseQuarter}"   filterMatchMode="contains">
-                    <h:outputText value="#{course.curseQuarter}" />
-                </p:column>
 
-                <p:column headerText="Nombre" sortBy="#{course.name}" filterBy="#{course.name}"   filterMatchMode="contains" >
-                    <h:outputText value="#{course.name}" />
-                </p:column>
+                        <h:form id="form">
+                            <p:growl id="msgs" showDetail="true" />
+                            <p:dataTable id="dataList" var="course" value="#{courseBean.courses}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe" paginator="true" widgetVar="dataTable" rows="20" editable="true" selectionMode="single" selection="#{courseBean.selectedCourse}" rowKey="#{course.idCourse}"  >
+                                <f:facet name="header" >
+                                    <p:commandButton id="toggler" type="button"  icon="ui-icon-calculator" style="float:right; width: 10px; height: 10px;" class="btn-primary"  />
+                                    <p:columnToggler datasource="dataList" trigger="toggler" />
+                                    <h:outputText value="Cursos"/>
+                                </f:facet>
 
-                <p:column headerText="Año" sortBy="#{course.curseYear}" filterBy="#{course.curseYear}"  filterMatchMode="contains">
-                    <h:outputText value="#{course.curseYear}" />
-                </p:column>
-                 
-                <p:column headerText="Horario" sortBy="#{course.schedule}" filterBy="#{course.schedule}"  filterMatchMode="contains">
-                    <h:outputText value="#{course.schedule}" />
-                </p:column>
-                
-                <p:column headerText="Aula" sortBy="#{course.classroom}" filterBy="#{course.classroom}"  filterMatchMode="contains">
-                    <h:outputText value="#{course.classroom}" />
-                </p:column>
-                
-                
-                <p:column headerText="Profesor" sortBy="#{course.professor.name}" filterBy="#{course.professor.name}"   filterMatchMode="contains">
-                    <h:outputText value="#{course.professor.name}" />
-                </p:column>
+                                <p:column headerText="identificador" sortBy="#{course.idCourse}" filterBy="#{course.idCourse}"   filterMatchMode="contains" style=" height: 2%;" visible="false">
+                                    <h:outputText value="#{course.idCourse}" />
+                                </p:column>
 
-                <f:facet name="footer">
+                                <p:column headerText="Cuatrimeste" sortBy="#{course.curseQuarter}" filterBy="#{course.curseQuarter}"   filterMatchMode="contains">
+                                    <h:outputText value="#{course.curseQuarter}" />
+                                </p:column>
 
-                    <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Agregar" type="button" onclick="PF('CourseCreateDialog').show();" update=":form:dataList" ajax="true" />
-                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar" type="button" onclick="PF('EditCourseDialog').show();"  update=":editCourse:editDetail" />
-                    <p:commandButton value="Eliminar" icon="fa fa-trash"  actionListener="#{courseBean.deleteCourse}" update=":form:msgs" styleClass="btn-danger">
+                                <p:column headerText="Nombre" sortBy="#{course.name}" filterBy="#{course.name}"   filterMatchMode="contains" >
+                                    <h:outputText value="#{course.name}" />
+                                </p:column>
+
+                                <p:column headerText="Año" sortBy="#{course.curseYear}" filterBy="#{course.curseYear}"  filterMatchMode="contains">
+                                    <h:outputText value="#{course.curseYear}" />
+                                </p:column>
+
+                                <p:column headerText="Horario" sortBy="#{course.schedule}" filterBy="#{course.schedule}"  filterMatchMode="contains">
+                                    <h:outputText value="#{course.schedule}" />
+                                </p:column>
+
+                                <p:column headerText="Aula" sortBy="#{course.classroom}" filterBy="#{course.classroom}"  filterMatchMode="contains">
+                                    <h:outputText value="#{course.classroom}" />
+                                </p:column>
+
+
+                                <p:column headerText="Profesor" sortBy="#{course.professor.name}" filterBy="#{course.professor.name}"   filterMatchMode="contains">
+                                    <h:outputText value="#{course.professor.name}" />
+                                </p:column>
+
+                                <f:facet name="footer">
+
+                                    <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Agregar" type="button" update=":form:dataList" onclick="PF('CourseCreateDialog').show();"  ajax="true" />
+                                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar" update=":editCourse:editDetail" onclick="PF('EditCourseDialog').show();"   />
+                                    <p:commandButton value="Eliminar" icon="fa fa-trash"  actionListener="#{courseBean.deleteCourse}" update=":form:dataList" styleClass="btn-danger">
                                         <p:confirm header="Confirmación" message="¿Desea eleminar el usuario?" icon="ui-icon-alert" />
                                     </p:commandButton>
- 
+
                                     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                                         <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                                         <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                                     </p:confirmDialog>
-                    
-                </f:facet>
-            </p:dataTable>
-            </h:form>
-        
-            <p:dialog header="Editar" widgetVar="EditCourseDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
-                <h:form id="editCourse">
-                <p:outputPanel id="editDetail" style="text-align:center;">
-                    <p:panelGrid  columns="2" >
-                        <f:facet name="header">
-                            <h1 >Curso </h1>
-                        </f:facet>
-                        
-                        <p:outputLabel value="Horario" for="schedule" />
-                          <p:inplace id="schedule">
-                              <p:inputText placeholder="  " value="#{courseBean.selectedCourse.schedule}" required="true" requiredMessage="Ingresar el horario del curso"  size="50" maxlength="50"/>
-                     </p:inplace>
-                        
-                        <p:outputLabel value="Nombre:" for="name" />
-                        <p:inplace id="name">
-                            <p:inputText placeholder="  " value="#{courseBean.selectedCourse.name}" required="true" requiredMessage="Ingresar el nombre"  size="50" maxlength="50"/>
-                        </p:inplace>
-                        
-                        <p:outputLabel value="Cuatrimestre:" for="Term" />
-                        <p:inplace id="Term" >
-                            <p:inputText placeholder="  " type="number" value="#{courseBean.selectedCourse.curseQuarter}"  required="true" requiredMessage="Ingresar el cuatrimeste actual" size="45" maxlength="45"/>
-                        </p:inplace>
-                        
-                         <p:outputLabel value="Aula" for="classroom" />
-                          <p:inplace id="classroom">
-                    <p:inputText placeholder="  " value="#{courseBean.selectedCourse.classroom}" required="true" requiredMessage="Ingresar el aula"  size="50" maxlength="50"/>
-                     </p:inplace>
 
-                        <p:outputLabel value="Año:" for="year" />
-                        <p:inplace id="year">
-                            <p:inputText placeholder="  "  value="#{courseBean.selectedCourse.curseYear}" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50" />
-                        </p:inplace>
-                        
+                                </f:facet>
+                            </p:dataTable>
+                        </h:form>
 
-                        <f:facet name="footer" >
-                            <div class="footer-right">
+                        <p:dialog header="Editar" widgetVar="EditCourseDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
+                            <h:form id="editCourse">
+                                <p:outputPanel id="editDetail" style="text-align:center;">
+                                    <p:panelGrid  columns="2" >
+                                        <f:facet name="header">
+                                            <h1 >Curso </h1>
+                                        </f:facet>
 
-                                <p:commandButton icon="fa fa-pencil" styleClass="btn-success" value="Guardar" actionListener="#{courseBean.editCourse}" update=":form:dataList"  onsuccess="PF('EditCourseDialog').hide()"/>
-                                <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('EditCourseDialog').hide()"  immediate="true" />
-                            </div>
-                        </f:facet>
-                    </p:panelGrid>
-                </p:outputPanel>
-                    </h:form>
-            </p:dialog>
-            
-        
-       
+                                        <p:outputLabel value="Horario" for="scheduleEdit" />
+                                        <p:inplace id="scheduleEdit">
+                                            <p:inputText placeholder="  " value="#{courseBean.selectedCourse.schedule}" required="true" requiredMessage="Ingresar el horario del curso"  size="50" maxlength="50"/>
+                                        </p:inplace>
+
+                                        <p:outputLabel value="Nombre:" for="nameEdit" />
+                                        <p:inplace id="nameEdit">
+                                            <p:inputText placeholder="  " value="#{courseBean.selectedCourse.name}" required="true" requiredMessage="Ingresar el nombre"  size="50" maxlength="50"/>
+                                        </p:inplace>
+
+                                        <p:outputLabel value="Cuatrimestre:" for="TermEdit" />
+                                        <p:inplace id="TermEdit" >
+                                            <p:inputText placeholder="  " type="number" value="#{courseBean.selectedCourse.curseQuarter}"  required="true" requiredMessage="Ingresar el cuatrimeste actual" size="45" maxlength="45"/>
+                                        </p:inplace>
+
+                                        <p:outputLabel value="Aula" for="classroomEdit" />
+                                        <p:inplace id="classroomEdit">
+                                            <p:inputText placeholder="  " value="#{courseBean.selectedCourse.classroom}" required="true" requiredMessage="Ingresar el aula"  size="50" maxlength="50"/>
+                                        </p:inplace>
+
+                                        <p:outputLabel value="Año:" for="yearEdit" />
+                                        <p:inplace id="yearEdit">
+                                            <p:inputText placeholder="  "  value="#{courseBean.selectedCourse.curseYear}" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50" />
+                                        </p:inplace>
+                                        <f:facet name="footer" >
+                                            <div class="footer-right">
+                                                <p:commandButton icon="fa fa-pencil" styleClass="btn-success" value="Guardar" actionListener="#{courseBean.editCourse}" update=":form:dataList" onsuccess="PF('EditCourseDialog').hide()"/>
+                                                <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('EditCourseDialog').hide()"  immediate="true" />
+                                            </div>
+                                        </f:facet>
+                                    </p:panelGrid>
+                                </p:outputPanel>
+                            </h:form>
+                        </p:dialog>
+
+
+
                     </h:panelGroup>
-</section>
-               </div><!-- /.content-wrapper -->
+                </section>
+            </div><!-- /.content-wrapper -->
 
             <!-- Control Sidebar -->
             <aside class="control-sidebar control-sidebar-dark">
@@ -443,7 +435,7 @@
 
                         <h3 class="control-sidebar-heading">Tasks Progress</h3>
                         <ul class="control-sidebar-menu">
-                          
+
                             <li>
                                 <a href="javascript::;">
                                     <h4 class="control-sidebar-subheading">
@@ -538,9 +530,9 @@
                     });
         
                 </script>-->
-        
-        
-       
+
+
+
     </h:body>
 </html>
 

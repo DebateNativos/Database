@@ -381,16 +381,10 @@
                                 <p:column  headerText="Teléfono:" sortBy="#{user.phone}" filterBy="#{user.phone}"  >
                                     <h:outputText id="phone" value="#{user.phone}"/>
                                 </p:column>
-
-
                                 <f:facet name="footer">
 
                                     <p:commandButton styleClass="btn-success" icon="fa fa-list" update=":form:dataList" value="Agregar" type="button" onclick="PF('UserDialog').show()" ajax="true"/>
-                                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" update=":editU:editDetail" value="Editar" onclick="PF('EditUserDialog').show()"  />                    
-                                    
-
-
-
+                                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" update=":editU:editDetail" value="Editar" onclick="PF('EditUserDialog').show()"  />  
                                 </f:facet>
                             </p:dataTable>
                         </h:form>
@@ -413,13 +407,16 @@
                                             <p:inputText placeholder="  " value="#{userBean.selectedUser.lastName}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
                                         </p:inplace>
 
-
                                         <p:outputLabel value="Segundo apellido" for="secondLastNameEdit" />
                                         <p:inplace id="secondLastNameEdit" editor="true">
                                             <p:inputText placeholder="  " value="#{userBean.selectedUser.lastName2}" title="true" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
                                         </p:inplace>
 
-
+                                        <p:outputLabel value="Correo electrónico" for="emailEdit" />
+                                        <p:inplace id="emailEdit" editor="true">
+                                            <p:inputText value="#{userBean.selectedUser.email}" required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45" />
+                                        </p:inplace>
+                                        
                                         <p:outputLabel value="Dirección" for="addressEdit" />
                                         <p:inplace id="addressEdit" editor="true">
                                             <p:inputText  placeholder="  " value="#{userBean.selectedUser.address}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
@@ -430,7 +427,7 @@
                                             <p:inputText placeholder="  " value="#{userBean.selectedUser.phone}" />
                                         </p:inplace>
 
-                                        
+
 
                                         <f:facet name="footer" >
                                             <div class="footer-right">

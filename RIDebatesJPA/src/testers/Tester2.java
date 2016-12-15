@@ -13,6 +13,7 @@ import com.podiumcr.jpa.data.DebateData;
 import com.podiumcr.jpa.data.UserData;
 import com.podiumcr.jpa.entities.Comment;
 import com.podiumcr.jpa.entities.Course;
+import com.podiumcr.jpa.entities.Professor;
 
 public class Tester2 {
 
@@ -29,18 +30,22 @@ public class Tester2 {
 			    CommentData com = new CommentData(em);
 			    Course c = new Course("CursoPrueba1",2,2016,"C3-3","Viernes Noche");
 			    
-			    if (cd.persistCourse(c)) {
+			    
+			    for (Professor p : ud.getProfesors()) {		
+			    	System.out.println("TEST: " + p.getName() + " " + p.getEmail());
+				}
+			   /* if (cd.persistCourse(c)) {
 			    	 for (Course c2 :cd.getAll()) {		
 					    	System.out.println("TEST: " + c2.getName() + " " + c2.getCourseCode());
 						}
 				}
 			    
 
-			    
+			    for	
 			    List<String> ls =cd.getAllCodes();
 			    for (String s : ls) {		
 			    	System.out.println("TEST: " + s);
-				}
+				}*/
 			    //Comment c = new Comment(1, dd.getDebateById(1), ud.getUserByEmail("@gmail"), "HOLAAAA", cd.getCourseByCode("6O1J4"));  
 			    //em.persist(c);
 				/*TypedQuery<ConfirmedUser> getallCU = em.createNamedQuery("ConfirmedUser.findAll", ConfirmedUser.class);
