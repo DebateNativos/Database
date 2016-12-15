@@ -31,7 +31,7 @@ public class UserView implements Serializable {
 
     @ManagedProperty(value = "#{login}")
     private LoginAdmin login;
-    
+
     private List<User> users;
     private int id;
     private String email;
@@ -184,6 +184,13 @@ public class UserView implements Serializable {
 
     }
 
+    public void refreshTable() {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        UserData ud = new UserData(em);
+        this.users = ud.getUsers();
+        em.close();
+    }
+
     public void newUser(ActionEvent event) {
 
         EntityManager em = entityManagerFactory.createEntityManager();
@@ -197,18 +204,18 @@ public class UserView implements Serializable {
                     FacesMessage message = null;
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Administrador Insertado", this.email);
                     FacesContext.getCurrentInstance().addMessage(null, message);
+                    this.refreshTable();
                 }
                 break;
 
             case 1:
                 this.selectedUser = new Professor(this.email, this.password, this.address, this.name, this.lastName, this.secondLastname, this.idUniversity, phone);
-
                 this.selectedUser.setAdmin(false);
-
                 if (ud.registerUser(this.selectedUser)) {
                     FacesMessage message = null;
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Profesor Insertado", this.email);
                     FacesContext.getCurrentInstance().addMessage(null, message);
+                    this.refreshTable();
                 }
                 break;
 
@@ -220,6 +227,7 @@ public class UserView implements Serializable {
                     FacesMessage message = null;
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Estudiante Insertado", this.email);
                     FacesContext.getCurrentInstance().addMessage(null, message);
+                    this.refreshTable();
                 }
                 break;
         }
@@ -243,11 +251,13 @@ public class UserView implements Serializable {
             FacesMessage message = null;
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario Editado", this.email);
             FacesContext.getCurrentInstance().addMessage(null, message);
+            this.refreshTable();
         } else {
             FacesMessage message = null;
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario No Editado", this.email);
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
+        em.close();
 
     }
 
