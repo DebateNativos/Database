@@ -312,16 +312,14 @@
                     <f:facet name="footer" >
                         <div class="footer-right">
                             
-                            <p:commandButton icon="fa fa-pencil" styleClass="btn-success" value="Nuevo" actionListener="#{courseBean.newCourse()}" update=":form:dataList" />
-                            <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('CourseCreateDialog').hide()" immediate="true" onstart="PF('Loading').show()" onsuccess="PF('Loading').hide()"/>
+                            <p:commandButton icon="fa fa-pencil" styleClass="btn-success" value="Agregar" actionListener="#{courseBean.newCourse()}" update=":form:dataList"  onsuccess="PF('CourseCreateDialog').hide()"/>
+                            <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('CourseCreateDialog').hide()" />
                         </div>
                     </f:facet>
                 </p:panelGrid>
             </h:form>
         </p:dialog>
-          <!--Editar-->
-        
-        <!--Ver-->
+         
         
         
         <h:form id="form">
@@ -329,7 +327,7 @@
             
             
 
-            <p:dataTable id="dataList" var="course" value="#{login.course}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe" paginator="true" widgetVar="dataTable" rows="10" editable="true" selectionMode="single" selection="#{courseBean.selectedCourse}" rowKey="#{course.idCourse}"  >
+            <p:dataTable id="dataList" var="course" value="#{login.course}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe" paginator="true" widgetVar="dataTable" rows="20" editable="true" selectionMode="single" selection="#{courseBean.selectedCourse}" rowKey="#{course.idCourse}"  >
 
                 <f:facet name="header" >
                     <p:commandButton id="toggler" type="button"  icon="ui-icon-calculator" style="float:right; width: 10px; height: 10px;" class="btn-primary"  />
@@ -368,8 +366,8 @@
 
                 <f:facet name="footer">
 
-                    <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Nuevo" type="button" onclick="PF('CourseCreateDialog').show();" update=":form:dataList" />
-                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar" type="button" onclick="PF('EditDialog').show();"  update=":editCourse:editDetail" />
+                    <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Agregar" type="button" onclick="PF('CourseCreateDialog').show();" update=":form:dataList" ajax="true" />
+                    <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar" type="button" onclick="PF('EditCourseDialog').show();"  update=":editCourse:editDetail" />
                     <p:commandButton value="Eliminar" icon="fa fa-trash"  actionListener="#{courseBean.deleteCourse}" update=":form:msgs" styleClass="btn-danger">
                                         <p:confirm header="Confirmación" message="¿Desea eleminar el usuario?" icon="ui-icon-alert" />
                                     </p:commandButton>
@@ -383,7 +381,7 @@
             </p:dataTable>
             </h:form>
         
-            <p:dialog header="Editar" widgetVar="EditDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="true" >
+            <p:dialog header="Editar" widgetVar="EditCourseDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="true" >
                 <h:form id="editCourse">
                 <p:outputPanel id="editDetail" style="text-align:center;">
                     <p:panelGrid  columns="2" >
@@ -392,28 +390,28 @@
                         </f:facet>
                         
                         <p:outputLabel value="Horario" for="schedule" />
-                          <p:inplace>
-                              <p:inputText id="schedule" value="#{courseBean.selectedCourse.schedule}" required="true" requiredMessage="Ingresar el horario del curso"  size="50" maxlength="50"/>
+                          <p:inplace id="schedule">
+                              <p:inputText placeholder="  " value="#{courseBean.selectedCourse.schedule}" required="true" requiredMessage="Ingresar el horario del curso"  size="50" maxlength="50"/>
                      </p:inplace>
                         
                         <p:outputLabel value="Nombre:" for="name" />
-                        <p:inplace>
-                            <p:inputText id="name" value="#{courseBean.selectedCourse.name}" required="true" requiredMessage="Ingresar el nombre"  size="50" maxlength="50"/>
+                        <p:inplace id="name">
+                            <p:inputText placeholder="  " value="#{courseBean.selectedCourse.name}" required="true" requiredMessage="Ingresar el nombre"  size="50" maxlength="50"/>
                         </p:inplace>
                         
                         <p:outputLabel value="Cuatrimestre:" for="Term" />
-                        <p:inplace>
-                            <p:inputText id="Term" type="number" value="#{courseBean.selectedCourse.curseQuarter}"  required="true" requiredMessage="Ingresar el cuatrimeste actual" size="45" maxlength="45"/>
+                        <p:inplace id="Term" >
+                            <p:inputText placeholder="  " type="number" value="#{courseBean.selectedCourse.curseQuarter}"  required="true" requiredMessage="Ingresar el cuatrimeste actual" size="45" maxlength="45"/>
                         </p:inplace>
                         
                          <p:outputLabel value="Aula" for="classroom" />
-                          <p:inplace>
-                    <p:inputText id="classroom" value="#{courseBean.classroom}" required="true" requiredMessage="Ingresar el aula"  size="50" maxlength="50"/>
+                          <p:inplace id="classroom">
+                    <p:inputText placeholder="  " value="#{courseBean.classroom}" required="true" requiredMessage="Ingresar el aula"  size="50" maxlength="50"/>
                      </p:inplace>
 
                         <p:outputLabel value="Año:" for="year" />
-                        <p:inplace>
-                            <p:inputMask id="year"  value="#{courseBean.selectedCourse.curseYear}" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50" mask=""/>
+                        <p:inplace id="year">
+                            <p:inputMask placeholder="  "  value="#{courseBean.selectedCourse.curseYear}" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50" mask=""/>
                         </p:inplace>
                         
                      
@@ -422,7 +420,7 @@
                             <div class="footer-right">
 
                                 <p:commandButton icon="fa fa-pencil" styleClass="btn-success" value="Guardar" actionListener="#{courseBean.editCourse}" update=":form:dataList"  onsuccess="PF('EditCourseDialog').hide()"/>
-                                <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('CourseCreateDialog').hide()"  immediate="true" />
+                                <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('EditCourseDialog').hide()"  immediate="true" />
                             </div>
                         </f:facet>
                     </p:panelGrid>

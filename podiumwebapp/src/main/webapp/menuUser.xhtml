@@ -387,14 +387,7 @@
 
                                     <p:commandButton styleClass="btn-success" icon="fa fa-list" update=":form:dataList" value="Agregar" type="button" onclick="PF('UserDialog').show()" ajax="true"/>
                                     <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" update=":editU:editDetail" value="Editar" onclick="PF('EditUserDialog').show()"  />                    
-                                    <p:commandButton value="Eliminar" icon="fa fa-trash"  update=":form:msgs" styleClass="btn-danger">
-                                        <p:confirm header="Confirmation" message="¿Desea eleminar el usuario?" icon="ui-icon-alert" />
-                                    </p:commandButton>
-
-                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                                    </p:confirmDialog>
+                                    
 
 
 
