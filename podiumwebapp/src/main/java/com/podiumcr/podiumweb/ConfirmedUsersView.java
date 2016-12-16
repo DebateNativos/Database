@@ -7,6 +7,10 @@ package com.podiumcr.podiumweb;
 
 import com.podiumcr.jpa.data.ConfirmedUserData;
 import com.podiumcr.jpa.entities.ConfirmedUser;
+import com.podiumcr.jpa.entities.Course;
+import com.podiumcr.jpa.entities.Debate;
+import com.podiumcr.jpa.entities.Role;
+import com.podiumcr.jpa.entities.User;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -27,6 +31,12 @@ public class ConfirmedUsersView {
     private EntityManager em = null;
 
     private List<ConfirmedUser> confUsers;
+    private List<ConfirmedUser> group1;
+    private List<ConfirmedUser> group2;
+    private User user;
+    private Course course;
+    private Role role;
+    private int warnings;
 
     public DebateView getDebateView() {
         return debateView;
@@ -53,14 +63,22 @@ public class ConfirmedUsersView {
     }
 
     public void init() {
-        ConfirmedUserData cud = new ConfirmedUserData(this.em); 
+        ConfirmedUserData cud = new ConfirmedUserData(this.em);
+        Debate deb = debateView.activeDebate();
         if (this.confUsers == null) { 
-            this.confUsers = cud.getUsersFromDebate(debateView.activeDebate()); 
+            this.confUsers = cud.getUsersFromDebate(deb);
+            for (ConfirmedUser confUser : confUsers) {
+                if (confUser.getTeam().equals(deb.getCourse1().getCourseCode())) {
+                    this.group1.add(confUser);
+                }else if (confUser.getTeam().equals(deb.getCourse2().getCourseCode())) {
+                    this.group2.add(confUser);
+                }
+            }
         }
 
     }
 
-    public void getUsersFromDebate() {
+    public void giveWordTo(User user, int time) {
 
     }
 
