@@ -305,7 +305,11 @@
                                     <p:inputText id="classroom" value="#{courseBean.classroom}" required="true" requiredMessage="Ingresar el aula"  size="50" maxlength="50"/>
 
                                     <p:outputLabel value="Correo del profesor" for="prof" />
+
                                     <p:inputText id="prof" value="#{courseBean.profEmail}" required="true" requiredMessage="Ingresar el aula"  size="50" maxlength="50"/>
+
+                                    <p:inputText id="prof" value="#{courseBean.professor.email}" required="true" requiredMessage="Ingresar el correo del profesor"  size="50" maxlength="50"/>
+
 
                                     <f:facet name="footer" >
                                         <div class="footer-right">
@@ -408,9 +412,9 @@
                                             <p:inputText placeholder="  "  value="#{courseBean.selectedCourse.curseYear}" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50" />
                                         </p:inplace>
 
-                                        <p:outputLabel for="prof" value="Correo del profesor:" />
-                                        <p:inplace id="prof" editor="true">
-                                            <p:inputText placeholder="  "  value="#{courseBean.selectedCourse.professor.email}" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50" />
+                                        <p:outputLabel for="profEdit" value="Correo del profesor:" />
+                                        <p:inplace id="profEdit" editor="true">
+                                            <p:inputText placeholder="  "  value="#{courseBean.selectedCourse.professor.email}" required="true" requiredMessage="Ingresar el correo del profesor"  size="50" maxlength="50" />
                                         </p:inplace>
 
                                         <f:facet name="footer" >
