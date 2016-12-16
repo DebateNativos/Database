@@ -310,6 +310,18 @@
                                                 <f:selectItem itemLabel="Seleccione uno" itemValue="" />                                       
                                                 <f:selectItems value="#{debatetypeBean.types}" var="typeD" itemLabel="#{typeD.name}" itemValue="#{typeD}" />
                                             </p:selectOneMenu>
+                                            
+                                            <p:outputLabel for="course1" value="1º curso: " />
+                                                <p:selectOneMenu id="course1" value="#{debateBean.course1}" panelStyle="width:180px"
+                                                                 effect="fade" var="t" style="width:160px">
+                                                    <f:selectItems value="#{courseBean.courses}" var="course1" itemLabel="#{course1.name}" itemValue="#{course1}"/>
+                                                </p:selectOneMenu>
+
+                                                <p:outputLabel for="course2" value="2º curso: " />
+                                                <p:selectOneMenu id="course2" value="#{debateBean.course2}" panelStyle="width:180px"
+                                                                 effect="fade" var="t" style="width:160px">
+                                                    <f:selectItems value="#{courseBean.courses}" var="course2" itemLabel="#{course2.name}" itemValue="#{course2}"/>
+                                                </p:selectOneMenu>
 
                                             <f:facet name="footer" >
                                                 <div class="footer-right">
@@ -356,10 +368,10 @@
                                         <f:facet name="footer">
 
                                             <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Agregar"  onclick="PF('DebateDialog').show();" update=":debform:dataList" type="button" ajax="true"/>
-                                            <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar"  onclick="PF('EditDebateDialog').show();" update=":debateE:editDetail" />
+                                            <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar"  onclick="PF('EditDebateDialog').show();" update=":debateEdit:editDetail" />
 
                                             <p:commandButton styleClass="btn-warning" icon="fa fa-check-circle-o" value="Activar" />
-                                            <p:commandButton value="Eliminar" icon="fa fa-trash"  actionListener="#{debateBean.deleteDeb}" update=":debform:dataList" styleClass="btn-danger">
+                                            <p:commandButton value="Eliminar" icon="fa fa-trash"  actionListener="#{debateBean.buttonDisable}" update=":debform:dataList" styleClass="btn-danger">
                                                 <p:confirm header="Confirmación" message="¿Desea eleminar el debate?" icon="ui-icon-alert" />
                                             </p:commandButton>
 
@@ -372,8 +384,8 @@
 
                                 </h:form>
 
-                                <p:dialog header="Editar" widgetVar="EditDebateDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="true" >
-                                    <h:form id="debateE">         
+                                <p:dialog id="editDlg" header="Editar" widgetVar="EditDebateDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="true" >
+                                    <h:form id="debateEdit">         
                                         <p:outputPanel id="editDetail" style="text-align:center;">
                                             <p:panelGrid  columns="2" >
                                                 <f:facet name="header">
@@ -420,7 +432,7 @@
                                                 <f:facet name="footer" >
                                                     <div class="footer-right">
                                                         <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Editar" actionListener="#{debateBean.editDeb}" update=":debform:dataList" onsuccess="PF('EditDebateDialog').hide()"  />
-                                                        <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('editDialog').hide()"/>
+                                                        <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('EditDebateDialog').hide()"/>
                                                     </div>
                                                 </f:facet>
                                             </p:panelGrid>
