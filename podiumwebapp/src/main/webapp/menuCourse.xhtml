@@ -309,6 +309,7 @@
                                     <p:inputText id="classroom" value="#{courseBean.classroom}" required="true" requiredMessage="Ingresar el aula"  size="50" maxlength="50"/>
 
 
+
                                     <f:facet name="footer" >
                                         <div class="footer-right">
                                             <p:commandButton icon="fa fa-pencil" styleClass="btn-success" value="Agregar" actionListener="#{courseBean.newCourse}" update=":form:dataList"  onsuccess="PF('CourseCreateDialog').hide()"/>
@@ -408,12 +409,12 @@
                                         <p:inplace id="yearEdit" editor="true">
                                             <p:inputText placeholder="  "  value="#{courseBean.selectedCourse.curseYear}" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50" />
                                         </p:inplace>
-                                        
+
                                         <p:outputLabel for="prof" value="Profesor:" />
-                                        <p:selectOneMenu id="prof" value="#{courseBean.professor}" >
+                                        <p:selectOneMenu id="prof" value="#{courseBean.selectedCourse.professor}" >
                                             <f:selectItems value="#{courseBean.professorList}" var="professor" itemLabel="#{professor.name}" itemValue="#{professor}"/>
-                                            </p:selectOneMenu>
-                                        
+                                        </p:selectOneMenu>
+
                                         <f:facet name="footer" >
                                             <div class="footer-right">
                                                 <p:commandButton icon="fa fa-pencil" styleClass="btn-success" value="Guardar" actionListener="#{courseBean.editCourse}" update=":form:dataList" onsuccess="PF('EditCourseDialog').hide()"/>

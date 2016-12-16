@@ -5,6 +5,7 @@
  */
 package com.podiumcr.podiumweb;
 
+import com.podiumcr.jpa.data.CourseData;
 import com.podiumcr.jpa.data.DebateData;
 import com.podiumcr.jpa.data.DebateTypeData;
 import com.podiumcr.jpa.entities.Course;
@@ -53,6 +54,8 @@ public class DebateView implements Serializable {
     private String hour;
     private Course course1;
     private Course course2;
+    private String code;
+    private String code2;
     private int sanction;
     private Debate active;
 
@@ -203,14 +206,28 @@ public class DebateView implements Serializable {
         this.active = active;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getCode2() {
+        return code2;
+    }
+
+    public void setCode2(String code2) {
+        this.code2 = code2;
+    }
+
     @PostConstruct
     public void init() {
         if (this.selectedDebate == null) {
             this.selectedDebate = new Debate();
         }
-        if (this.active == null) {
-            this.active = activeDebate();
-        }
+       
         if (this.debateType == null) {
             this.debateType = new DebateType();
         }
@@ -228,10 +245,11 @@ public class DebateView implements Serializable {
             this.debates = dd.getDebates();
         }
         if (this.buttonDisable) {
-
             this.buttonDisable = desableButton();
         }
-
+         if (this.active == null) {
+            this.active = this.activeDebate();
+        }
     }
 
     public void newDebate(ActionEvent event) {
@@ -241,11 +259,11 @@ public class DebateView implements Serializable {
         Calendar date1 = Calendar.getInstance();
 
         DebateData dD = new DebateData(em);
+        CourseData cd = new CourseData(em);
         DebateTypeData dTD = new DebateTypeData(em);
         Debate d;
-
-        d = new Debate(this.name, date1.getTime(), this.debateType, this.std, false, this.course1, this.course2);
-
+        d = new Debate(this.name, date1.getTime(), dTD.getDebateTypeById(1), this.std, false, cd.getCourseByCode(code), cd.getCourseByCode(code2));
+        
         if (dD.persistDebate(d)) {
 
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nuevo", "Se ha agregado el debate: " + this.name);
@@ -258,17 +276,20 @@ public class DebateView implements Serializable {
         }
     }
 
-    public void editDeb() {
+    public void editDeb(ActionEvent event) {
         FacesMessage message = null;
         System.out.println("sirve?");
-
+        
+        CourseData cd = new CourseData(em);
         DebateData dd = new DebateData(em);
+        DebateTypeData dTD = new DebateTypeData(em);
         Debate d = dd.getDebateById(this.selectedDebate.getIdDebates());
         d.setName(this.selectedDebate.getName());
+        this.selectedDebate.setDebateType(dTD.getDebateTypeById(1));
         d.setDebateType(this.selectedDebate.getDebateType());
         d.setStartingDate(this.selectedDebate.getStartingDate());
-        d.setCourse1(this.selectedDebate.getCourse1());
-        d.setCourse2(this.selectedDebate.getCourse2());
+        d.setCourse1(cd.getCourseByCode(this.selectedDebate.getCourse1().getCourseCode()));
+        d.setCourse2(cd.getCourseByCode(this.selectedDebate.getCourse2().getCourseCode()));
 
         if (dd.persistDebate(d)) {
             System.out.println("ENTRO A DEBATE!!!!!!!");
@@ -314,14 +335,11 @@ public class DebateView implements Serializable {
     }
     
     public Debate activeDebate() {
-
-        for (int x = 0; x < debates.size(); x++) {
-            selectedDebate = debates.get(x);
-            if(selectedDebate.getIsActive()== true){
-            active =  selectedDebate;
+        for (Debate debate : this.debates) {
+            if(debate.getIsActive()== true){
+            active =  debate;
             } 
         }
-
       return active;  
     }
     

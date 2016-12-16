@@ -29,7 +29,7 @@ import javax.persistence.EntityManager;
 @SessionScoped
 public class CourseView implements Serializable {
     
-     @ManagedProperty(value = "#{login}")
+    @ManagedProperty(value = "#{login}")
     private LoginAdmin login;
 
     private EntityManager em = null;
@@ -155,7 +155,7 @@ public class CourseView implements Serializable {
         if (this.selectedCourse == null) {
             this.selectedCourse  = new Course();
         }
-        if (this.em == null) {
+        if (this.em == null) { 
              this.em = login.em;
         }
         if (this.courses == null) {
@@ -173,6 +173,7 @@ public class CourseView implements Serializable {
         FacesMessage message = null;
         Course c;
         c = new Course(this.name, this.curseQuarter, this.curseYear, this.classroom, this.schedule);
+        //c.setProfessor(this.professor);
         if (cd.persistCourse(c)) {  
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Curso insertado", this.name);
             FacesContext.getCurrentInstance().addMessage(null, message);

@@ -40,20 +40,16 @@ public class ConfirmedUserData {
 		return returnedList;
 	}
 
-	public List<User> getUsersFromDebate(Debate debate) {
+	public List<ConfirmedUser> getUsersFromDebate(Debate debate) {
 
-		List<User> returnedList = new ArrayList<>();
+		List<ConfirmedUser> returnedList = new ArrayList<>();
 
 		try {
 
-			TypedQuery<ConfirmedUser> queryCU = em.createNamedQuery("ConfirmedUser.findUsersFromDebate",
-					ConfirmedUser.class);
+			TypedQuery<ConfirmedUser> queryCU = em.createNamedQuery("ConfirmedUser.findUsersFromDebate", ConfirmedUser.class);
 			queryCU.setParameter("debate", debate);
 			List<ConfirmedUser> listaCU = queryCU.getResultList();
-			for (ConfirmedUser confirmedUser : listaCU) {
-
-				returnedList.add(confirmedUser.getUser());
-			}
+			returnedList = listaCU;
 
 		} catch (Exception e) {
 			// TODO: handle exception
