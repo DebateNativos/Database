@@ -54,6 +54,7 @@ public class DebateView implements Serializable {
     private Course course1;
     private Course course2;
     private int sanction;
+    private Debate active;
 
     private boolean isActive;
     private boolean buttonDisable;
@@ -194,10 +195,21 @@ public class DebateView implements Serializable {
         this.std = std;
     }
 
+    public Debate getActive() {
+        return active;
+    }
+
+    public void setActive(Debate active) {
+        this.active = active;
+    }
+
     @PostConstruct
     public void init() {
         if (this.selectedDebate == null) {
             this.selectedDebate = new Debate();
+        }
+        if (this.active == null) {
+            this.active = activeDebate();
         }
         if (this.debateType == null) {
             this.debateType = new DebateType();
@@ -300,5 +312,19 @@ public class DebateView implements Serializable {
         }
         return this.buttonDisable;
     }
+    
+    public Debate activeDebate() {
+
+        for (int x = 0; x < debates.size(); x++) {
+            selectedDebate = debates.get(x);
+            if(selectedDebate.getIsActive()== true){
+            active =  selectedDebate;
+            } 
+        }
+
+      return active;  
+    }
+    
+    
 
 }
