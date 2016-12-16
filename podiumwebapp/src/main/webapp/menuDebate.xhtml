@@ -292,7 +292,7 @@
                             <div class="ui-g-10 ui-md-10 ui-lg-10">    
                                 <!-- pop up de agregar-->
                                 <p:dialog id="debateDlg"  widgetVar="DebateDialog" modal="true" appendTo="@(body)" resizable="true"  header="Nuevo">
-                                    <h:form id="UserForm">
+                                    <h:form id="DebateForm">
                                         <p:panelGrid columns="2">
 
                                             <p:outputLabel value="Nombre" for="name" />
@@ -367,7 +367,7 @@
 
                                         <f:facet name="footer">
 
-                                            <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Agregar"  onclick="PF('DebateDialog').show();" update=":debform:dataList" type="button" ajax="true"/>
+                                            <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Agregar"  onclick="PF('DebateDialog').show();" update=":debateform" type="button" ajax="true"/>
                                             <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar"  onclick="PF('EditDebateDialog').show();" update=":debateEdit:editDetail" />
 
                                             <p:commandButton styleClass="btn-warning" icon="fa fa-check-circle-o" value="Activar" />
@@ -402,11 +402,9 @@
                                                     <p:inputText value="#{debateBean.selectedDebate.debateType.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
                                                 </p:inplace>
 
-
-                                                <p:outputLabel value="Fecha y hora" for="time" />
-                                                <p:inplace id="time" editor="true">
                                                     <h:outputLabel for="time" value="Fecha:" />
-                                                    <h:outputText id="time" value="#{debateBean.startingDate}">
+                                                 <p:inplace id="time" editor="true">   
+                                                    <h:outputText  value="#{debateBean.startingDate}">
                                                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                                     </h:outputText>
                                                 </p:inplace>
