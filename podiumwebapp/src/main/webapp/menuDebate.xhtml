@@ -30,8 +30,8 @@
         <h:outputStylesheet library="plugins" name="iCheck/flat/blue.css"/>
         <!-- jvectormap -->
         <h:outputStylesheet library="plugins" name="jvectormap/jquery-jvectormap-1.2.2.css"/>
-       
-  
+
+
         <h:outputStylesheet library="plugins" name="bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>
         <h:outputStylesheet library="css" name="nprogress.css"/>
         <style type="text/css">
@@ -88,7 +88,7 @@
         <p:dialog appendTo="@(body)" resizable="false" header="test" widgetVar="Chat" responsive="true" position="right,bottom" width="400px">
             <div class="col-md-12">
                 <!-- DIRECT CHAT -->
-                
+
             </div><!-- /.col -->
         </p:dialog>
 
@@ -111,8 +111,8 @@
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
 
-                          
-                            
+
+
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -125,12 +125,12 @@
                                         <h:graphicImage library="dist" name="img/avatar2.png" class="img-circle" alt="User Image"/>
                                         <p>
                                             <!-- Devolver aquí el usuario logeado-->
-                                             #{login.user.name} #{login.user.lastName}
-                                             <small>-Administrador-</small>
+                                            #{login.user.name} #{login.user.lastName}
+                                            <small>-Administrador-</small>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
-                                  
+
                                     <li class="user-footer">
                                         <div class="pull-left">
                                             <!--                                            <a href="#" class="btn btn-default btn-flat">Profile</a>-->
@@ -142,7 +142,7 @@
                                             <h:form>
                                                 <p:commandLink style="color: white" value="Cerrar sesión" styleClass="btn btn-default btn-flat" action="#{login.logout()}">
                                                     <i class="fa fa-sign-out fa-lg"></i>
-                                                   
+
                                                 </p:commandLink>
                                             </h:form>
                                         </div>
@@ -174,86 +174,86 @@
                                 <a href="#" style="text-align: center; font-size: 12px; font-weight: bold" >PODIUM</a>
                             </div>
                         </div>
-                      <ul class="sidebar-menu" id="sidebar-menu" style="height: 80%;width: 100%">
+                        <ul class="sidebar-menu" id="sidebar-menu" style="height: 80%;width: 100%">
                             <li class="header" id="liHeader">Menú</li>
                             <h:panelGroup id="menuListGroup" class="sidebar-menu">
-                              <ui:fragment >
-                                        <li class="treeview" id="mainTree">
-                                            <ui:fragment >
-                                                <a >
-                                                    <i class="fa fa-university" style="color:"></i>
-                                                    <span>
-                                                        Debates
-                                                    </span>
-                                                    <i class="fa fa-angle-left pull-right"></i>
-                                                </a>
-                                                
-                                            <ul class="treeview-menu">
-                                               
-                                                       <ui:fragment >
-
-                                                        <li >
-                                                            <a href="menuStage.xhtml">
-                                                                <i class="fa fa-file-text"></i>
-                                                                Tipos de debates
-                                                                <small class="label pull-right bg-aqua"></small>
-                                                            </a>
-                                                        </li>      
-
-                                                    </ui:fragment>      
-                                          
-                                               
-                                                       <ui:fragment >
-
-                                                        <li >
-                                                            <a href="menuDebate.xhtml">
-                                                                <i class="fa fa-copy"></i>
-                                                                Debates
-                                                                <small class="label pull-right bg-aqua"></small>
-                                                            </a>
-                                                        </li>      
-
-                                                    </ui:fragment>      
-                                            
-                                               
-                                                           
-                                            </ul>
-                                           </ui:fragment>      
-                                        </li>
-                                    </ui:fragment>
-                               <ui:fragment >
-                                        <li class="treeview" id="mainTree">
-                                            <ui:fragment >
-                                                <a href="menuUser.xhtml">
-                                                    <i class="fa fa-users" style="color:"></i>
-                                                    <span>
-                                                       Usuarios
-                                                    </span>
-                                                    
-                                                </a>
-                                            </ui:fragment>
-                                            
-                                        </li>
-                                    </ui:fragment>
                                 <ui:fragment >
-                                        <li class="treeview" id="mainTree">
-                                            <ui:fragment >
-                                                <a href="menuCourse.xhtml">
-                                                    <i class="fa fa-clipboard" style="color:"></i>
-                                                    <span>
-                                                       Cursos
-                                                    </span>
-                                                    
-                                                </a>
-                                            </ui:fragment>
-                                          
-                                        </li>
-                                    </ui:fragment>
+                                    <li class="treeview" id="mainTree">
+                                        <ui:fragment >
+                                            <a >
+                                                <i class="fa fa-university" style="color:"></i>
+                                                <span>
+                                                    Debates
+                                                </span>
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </a>
 
-                               
+                                            <ul class="treeview-menu">
+
+                                                <ui:fragment >
+
+                                                    <li >
+                                                        <a href="menuStage.xhtml">
+                                                            <i class="fa fa-file-text"></i>
+                                                            Tipos de debates
+                                                            <small class="label pull-right bg-aqua"></small>
+                                                        </a>
+                                                    </li>      
+
+                                                </ui:fragment>      
+
+
+                                                <ui:fragment >
+
+                                                    <li >
+                                                        <a href="menuDebate.xhtml">
+                                                            <i class="fa fa-copy"></i>
+                                                            Debates
+                                                            <small class="label pull-right bg-aqua"></small>
+                                                        </a>
+                                                    </li>      
+
+                                                </ui:fragment>      
+
+
+
+                                            </ul>
+                                        </ui:fragment>      
+                                    </li>
+                                </ui:fragment>
+                                <ui:fragment >
+                                    <li class="treeview" id="mainTree">
+                                        <ui:fragment >
+                                            <a href="menuUser.xhtml">
+                                                <i class="fa fa-users" style="color:"></i>
+                                                <span>
+                                                    Usuarios
+                                                </span>
+
+                                            </a>
+                                        </ui:fragment>
+
+                                    </li>
+                                </ui:fragment>
+                                <ui:fragment >
+                                    <li class="treeview" id="mainTree">
+                                        <ui:fragment >
+                                            <a href="menuCourse.xhtml">
+                                                <i class="fa fa-clipboard" style="color:"></i>
+                                                <span>
+                                                    Cursos
+                                                </span>
+
+                                            </a>
+                                        </ui:fragment>
+
+                                    </li>
+                                </ui:fragment>
+
+
                             </h:panelGroup>
                         </ul>
-                        
+
                     </section>
                     <!-- /.sidebar -->
                 </h:form>
@@ -265,7 +265,7 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    
+
                     <h1>
                         Debates
                         <small>Panel de control de debates</small>
@@ -286,185 +286,185 @@
                 <section class="content">
                     <!--                    <ui:insert name="body"/>                   -->
                     <div class="container">
-                    
-                    <h:panelGroup id="myPanel" layout="block">
-                     <div class="ui-g-1 ui-md-1 ui-lg-1"></div>
-                    <div class="ui-g-10 ui-md-10 ui-lg-10">    
-            <!-- pop up de agregar-->
-             <p:dialog id="debateDlg"  widgetVar="DebateDialog" modal="true" appendTo="@(body)" resizable="true"  header="Nuevo">
-                            <h:form id="UserForm">
-                                <p:panelGrid columns="2">
 
-                                    <p:outputLabel value="Nombre" for="name" />
-                                    <p:inputText id="name" value="#{debateBean.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
-                                    
-                                    <p:outputLabel for="date" value="Fecha del debate:" />
-                                    <p:calendar id="date" value="#{debateBean.startingDate}" required="true" requiredMessage="Debe ingresar la información correcta"/>
-                                    
-                                    <p:outputLabel for="time" value="Hora:" />
-                                    <p:calendar id="time" value="#{debateBean.hour}" pattern="HH:mm" timeOnly="true"  required="true" requiredMessage="Debe ingresar la información correcta"/>
-                                    
-                                    <p:outputLabel for="debatetype" value="Tipo de debate: " />
-                                    <p:selectOneMenu id="debatetype" value="#{debatetypeBean.typeD}" effect="fold">
-                                        <f:selectItem itemLabel="Seleccione uno" itemValue="" />                                       
-                                        <f:selectItems value="#{debatetypeBean.types}" var="typeD" itemLabel="#{typeD.name}" itemValue="#{typeD}" />
-                                    </p:selectOneMenu>
-                                   
-                                    <f:facet name="footer" >
-                                        <div class="footer-right">
-                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Agregar" actionListener="#{debateBean.newDeb}" update=":debform:dataList" onsuccess="PF('DebateDialog').hide()" />
-                                            <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('UserDialog').hide()" immediate="true" />
-                                        </div>
-                                    </f:facet>
-                                </p:panelGrid>
-                            </h:form>
-                        </p:dialog>
+                        <h:panelGroup id="myPanel" layout="block">
+                            <div class="ui-g-1 ui-md-1 ui-lg-1"></div>
+                            <div class="ui-g-10 ui-md-10 ui-lg-10">    
+                                <!-- pop up de agregar-->
+                                <p:dialog id="debateDlg"  widgetVar="DebateDialog" modal="true" appendTo="@(body)" resizable="true"  header="Nuevo">
+                                    <h:form id="UserForm">
+                                        <p:panelGrid columns="2">
 
-        
-            <h:form id="debform">
-                <p:growl id="msgs" showDetail="true" />
+                                            <p:outputLabel value="Nombre" for="name" />
+                                            <p:inputText id="name" value="#{debateBean.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
 
-                <p:dataTable id="dataList" var="debate" value="#{debateBean.debates}" widgetVar="dataTable" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe"  paginator="true" rows="6" editable="true" selectionMode="single" selection="#{debateBean.selectedDebate}" rowKey="#{debate.idDebates}"  >
+                                            <p:outputLabel for="date" value="Fecha del debate:" />
+                                            <p:calendar id="date" value="#{debateBean.startingDate}" required="true" requiredMessage="Debe ingresar la información correcta"/>
 
-                    <f:facet name="header" >
-                        <p:commandButton id="toggler" type="button"  icon="ui-icon-calculator" style="float:right; width: 10px; height: 10px;" class="btn-primary"  />
-                        <p:columnToggler datasource="dataList" trigger="toggler" />
-                        <h:outputText value="Debates"/>
-                    </f:facet>
-                    
-                    <p:column headerText="Identificador:" sortBy="#{debate.idDebates}" filterBy="#{debate.idDebates}"   filterMatchMode="contains" style=" height: 2%;" visible="false">
-                        <h:outputText value="#{debate.idDebates}" />
-                    </p:column>
-                    
-                    <p:column headerText="Fecha del debate:" sortBy="#{debate.startingDate}" filterBy="#{debate.startingDate}"   filterMatchMode="contains" style=" height: 2%;">
-                        <h:outputText value="#{debate.startingDate}" />
-                    </p:column>
+                                            <p:outputLabel for="time" value="Hora:" />
+                                            <p:calendar id="time" value="#{debateBean.hour}" pattern="HH:mm" timeOnly="true"  required="true" requiredMessage="Debe ingresar la información correcta"/>
 
-                    <p:column headerText="Nombre" sortBy="#{debate.startingDate}" filterBy="#{debate.startingDate}"   filterMatchMode="contains">
-                        <h:outputText value="#{debate.name}" />
-                    </p:column>
+                                            <p:outputLabel for="debatetype" value="Tipo de debate: " />
+                                            <p:selectOneMenu id="debatetype" value="#{debatetypeBean.typeD}" effect="fold">
+                                                <f:selectItem itemLabel="Seleccione uno" itemValue="" />                                       
+                                                <f:selectItems value="#{debatetypeBean.types}" var="typeD" itemLabel="#{typeD.name}" itemValue="#{typeD}" />
+                                            </p:selectOneMenu>
 
-                    <p:column headerText="Activo" sortBy="#{login.activeDebate(debate)}" filterBy="#{login.activeDebate(debate)}"   filterMatchMode="contains">
-                        <h:outputText value="#{login.activeDebate(debate)}" />
-                    </p:column>
+                                            <f:facet name="footer" >
+                                                <div class="footer-right">
+                                                    <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Agregar" actionListener="#{debateBean.newDeb}" update=":debform:dataList" onsuccess="PF('DebateDialog').hide()" />
+                                                    <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('UserDialog').hide()" immediate="true" />
+                                                </div>
+                                            </f:facet>
+                                        </p:panelGrid>
+                                    </h:form>
+                                </p:dialog>
 
-                    <p:column headerText="Type" sortBy="#{debate.debateType.name}" filterBy="#{debate.debateType.name}"   filterMatchMode="contains">
-                        <h:outputText value="#{debate.debateType.name}" />
-                    </p:column>
 
-                    <f:facet name="footer">
+                                <h:form id="debform">
+                                    <p:growl id="msgs" showDetail="true" />
 
-                        <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Agregar"  onclick="PF('DebateDialog').show();" update=":UserForm"/>
-                        <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar"  onclick="PF('EditDebateDialog').show();" update=":debateE:editDetail" />
-                         
-                         <p:commandButton styleClass="btn-warning" icon="fa fa-check-circle-o" value="Activar" />
-                         <p:commandButton value="Eliminar" icon="fa fa-trash"  actionListener="#{debateBean.deleteDeb}" update=":debform:dataList" styleClass="btn-danger">
-                                        <p:confirm header="Confirmación" message="¿Desea eleminar el debate?" icon="ui-icon-alert" />
-                                    </p:commandButton>
- 
-                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                                    </p:confirmDialog>
-                    </f:facet>
-                </p:dataTable>
+                                    <p:dataTable id="dataList" var="debate" value="#{debateBean.debates}" widgetVar="dataTable" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe"  paginator="true" rows="6" editable="true" selectionMode="single" selection="#{debateBean.selectedDebate}" rowKey="#{debate.idDebates}"  >
 
-            </h:form>
-            
-                <p:dialog header="Editar" widgetVar="EditDebateDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="true" >
-                    <h:form id="debateE">         
-                    <p:outputPanel id="editDetail" style="text-align:center;">
-                                <p:panelGrid  columns="2" >
-                                    <f:facet name="header">
-                                        <h1>Debate</h1>
-                                    </f:facet>
-                                    <p:outputLabel value="Nombre" for="firstName" />
-                                    <p:inplace id="firstName" editor="true">
-                                        <p:inputText  value="#{debateBean.selectedDebate.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
-                                    </p:inplace>
-                                    
-                                    
-                                    <p:outputLabel value="Tipo de debate" for="type" />
-                                    <p:inplace id="type" editor="true">
-                                        <p:inputText value="#{debateBean.selectedDebate.debateType.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
-                                    </p:inplace>
-                                    
-                                    
-                                    <p:outputLabel value="Fecha y hora" for="time" />
-                                    <p:inplace id="time" editor="true">
-                                        <p:inputText  value="#{debateBean.selectedDebate.startingDate.date}" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
-                                    </p:inplace>
-                                    
-                                    <p:outputLabel for="debateT" value="Tipo de debate: " />
-                                    <p:selectOneMenu id="debateT" value="#{debateBean.debateType}" panelStyle="width:180px"
-                                                     effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
-                                                  
-                                        <f:selectItems value="#{debatetypeBean.types}" var="debateT" itemLabel="#{debateT.name}" itemValue="#{debateT}"/>
-                                    </p:selectOneMenu>
-              
-                                    <p:outputLabel for="course1" value="1º curso: " />
-                                    <p:selectOneMenu id="course1" value="#{debateBean.course1}" panelStyle="width:180px"
-                                                     effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
-                                                                             
-                                        <f:selectItems value="#{courseBean.courses}" var="course1" itemLabel="#{course1.name}" itemValue="#{course1}"/>
-                                    </p:selectOneMenu>
-                                    
-                                    <p:outputLabel for="course2" value="2º curso: " />
-                                    <p:selectOneMenu id="course2" value="#{debateBean.course2}" panelStyle="width:180px"
-                                                     effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
-                                                                             
-                                        <f:selectItems value="#{courseBean.courses}" var="course2" itemLabel="#{course2.name}" itemValue="#{course2}"/>
-                                    </p:selectOneMenu>
+                                        <f:facet name="header" >
+                                            <p:commandButton id="toggler" type="button"  icon="ui-icon-calculator" style="float:right; width: 10px; height: 10px;" class="btn-primary"  />
+                                            <p:columnToggler datasource="dataList" trigger="toggler" />
+                                            <h:outputText value="Debates"/>
+                                        </f:facet>
 
-                                    <f:facet name="footer" >
-                                        <div class="footer-right">
-                                            <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Editar" actionListener="#{debateBean.editDeb}" update=":debform:dataList" onsuccess="PF('EditDebateDialog').hide()"  />
-                                            <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('editDialog').hide()" immediate="true" update=":debform:msgs" />
-                                        </div>
-                                    </f:facet>
-                                </p:panelGrid>
-                        
-                            </p:outputPanel>
-                        </h:form>
-                        </p:dialog>
-                
-                  
-            
-            
+                                        <p:column headerText="Identificador:" sortBy="#{debate.idDebates}" filterBy="#{debate.idDebates}"   filterMatchMode="contains" style=" height: 2%;" visible="false">
+                                            <h:outputText value="#{debate.idDebates}" />
+                                        </p:column>
+
+                                        <p:column headerText="Fecha del debate:" sortBy="#{debate.startingDate}" filterBy="#{debate.startingDate}"   filterMatchMode="contains" style=" height: 2%;">
+                                            <h:outputText value="#{debate.startingDate}" />
+                                        </p:column>
+
+                                        <p:column headerText="Nombre" sortBy="#{debate.startingDate}" filterBy="#{debate.startingDate}"   filterMatchMode="contains">
+                                            <h:outputText value="#{debate.name}" />
+                                        </p:column>
+
+                                        <p:column headerText="Activo" sortBy="#{login.activeDebate(debate)}" filterBy="#{login.activeDebate(debate)}"   filterMatchMode="contains">
+                                            <h:outputText value="#{login.activeDebate(debate)}" />
+                                        </p:column>
+
+                                        <p:column headerText="Type" sortBy="#{debate.debateType.name}" filterBy="#{debate.debateType.name}"   filterMatchMode="contains">
+                                            <h:outputText value="#{debate.debateType.name}" />
+                                        </p:column>
+
+                                        <f:facet name="footer">
+
+                                            <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Agregar"  onclick="PF('DebateDialog').show();" update=":UserForm" type="button" ajax="true"/>
+                                            <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar"  onclick="PF('EditDebateDialog').show();" update=":debateE:editDetail" />
+
+                                            <p:commandButton styleClass="btn-warning" icon="fa fa-check-circle-o" value="Activar" />
+                                            <p:commandButton value="Eliminar" icon="fa fa-trash"  actionListener="#{debateBean.deleteDeb}" update=":debform:dataList" styleClass="btn-danger">
+                                                <p:confirm header="Confirmación" message="¿Desea eleminar el debate?" icon="ui-icon-alert" />
+                                            </p:commandButton>
+
+                                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                            </p:confirmDialog>
+                                        </f:facet>
+                                    </p:dataTable>
+
+                                </h:form>
+
+                                <p:dialog header="Editar" widgetVar="EditDebateDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="true" >
+                                    <h:form id="debateE">         
+                                        <p:outputPanel id="editDetail" style="text-align:center;">
+                                            <p:panelGrid  columns="2" >
+                                                <f:facet name="header">
+                                                    <h1>Debate</h1>
+                                                </f:facet>
+                                                <p:outputLabel value="Nombre" for="firstName" />
+                                                <p:inplace id="firstName" editor="true">
+                                                    <p:inputText  value="#{debateBean.selectedDebate.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                                </p:inplace>
+
+
+                                                <p:outputLabel value="Tipo de debate" for="type" />
+                                                <p:inplace id="type" editor="true">
+                                                    <p:inputText value="#{debateBean.selectedDebate.debateType.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                                </p:inplace>
+
+
+                                                <p:outputLabel value="Fecha y hora" for="time" />
+                                                <p:inplace id="time" editor="true">
+                                                    <p:inputText  value="#{debateBean.selectedDebate.startingDate.date}" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
+                                                </p:inplace>
+
+                                                <p:outputLabel for="debateT" value="Tipo de debate: " />
+                                                <p:selectOneMenu id="debateT" value="#{debateBean.debateType}" panelStyle="width:180px"
+                                                                 effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
+
+                                                    <f:selectItems value="#{debatetypeBean.types}" var="debateT" itemLabel="#{debateT.name}" itemValue="#{debateT}"/>
+                                                </p:selectOneMenu>
+
+                                                <p:outputLabel for="course1" value="1º curso: " />
+                                                <p:selectOneMenu id="course1" value="#{debateBean.course1}" panelStyle="width:180px"
+                                                                 effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
+
+                                                    <f:selectItems value="#{courseBean.courses}" var="course1" itemLabel="#{course1.name}" itemValue="#{course1}"/>
+                                                </p:selectOneMenu>
+
+                                                <p:outputLabel for="course2" value="2º curso: " />
+                                                <p:selectOneMenu id="course2" value="#{debateBean.course2}" panelStyle="width:180px"
+                                                                 effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
+
+                                                    <f:selectItems value="#{courseBean.courses}" var="course2" itemLabel="#{course2.name}" itemValue="#{course2}"/>
+                                                </p:selectOneMenu>
+
+                                                <f:facet name="footer" >
+                                                    <div class="footer-right">
+                                                        <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Editar" actionListener="#{debateBean.editDeb}" update=":debform:dataList" onsuccess="PF('EditDebateDialog').hide()"  />
+                                                        <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('editDialog').hide()" immediate="true" update=":debform:msgs" />
+                                                    </div>
+                                                </f:facet>
+                                            </p:panelGrid>
+
+                                        </p:outputPanel>
+                                    </h:form>
+                                </p:dialog>
+
+
+
+
+                            </div>
+                            <div class="ui-g-1 ui-md-1 ui-lg-1"></div>
+
+                            <div class="ui-g-12 ui-md-12 ui-lg-12">
+
+                                <center>
+                                    <h:form>
+                                        <p:panelGrid columns="2">
+                                            <f:facet name="header">
+                                                Debate activo
+                                            </f:facet>
+
+                                            <h:outputText value="Nombre:" />
+                                            <h:outputText value="" />
+
+                                            <h:outputText value="Fecha:" />
+                                            <h:outputText value="" />
+
+                                            <h:outputText value="Hora:" />
+                                            <h:outputText value="" />
+
+                                            <f:facet name="footer">
+                                                <p:commandLink class="small-box-footer" action="menuTime.xhtml" >
+                                                    Adminitrar debate activo<i class="fa fa-arrow-circle-right"></i> 
+                                                </p:commandLink>
+                                            </f:facet>
+
+                                        </p:panelGrid> 
+                                    </h:form>
+                                </center> 
+                            </div>
+                        </h:panelGroup>
+
                     </div>
-          <div class="ui-g-1 ui-md-1 ui-lg-1"></div>
-          
-          <div class="ui-g-12 ui-md-12 ui-lg-12">
-                    
-              <center>
-                  <h:form>
-                  <p:panelGrid columns="2">
-                      <f:facet name="header">
-                          Debate activo
-                      </f:facet>
-
-                      <h:outputText value="Nombre:" />
-                      <h:outputText value="" />
-
-                      <h:outputText value="Fecha:" />
-                      <h:outputText value="" />
-
-                      <h:outputText value="Hora:" />
-                      <h:outputText value="" />
-
-                      <f:facet name="footer">
-                          <p:commandLink class="small-box-footer" action="menuTime.xhtml" >
-                                    Adminitrar debate activo<i class="fa fa-arrow-circle-right"></i> 
-                                </p:commandLink>
-                      </f:facet>
-                      
-                  </p:panelGrid> 
-                      </h:form>
-              </center> 
-          </div>
-                    </h:panelGroup>
-                    
-</div>
 
                 </section>
             </div><!-- /.content-wrapper -->
@@ -479,7 +479,7 @@
 
                         <h3 class="control-sidebar-heading">Tasks Progress</h3>
                         <ul class="control-sidebar-menu">
-                          
+
                             <li>
                                 <a href="javascript::;">
                                     <h4 class="control-sidebar-subheading">
@@ -574,9 +574,9 @@
                     });
         
                 </script>-->
-        
-        
-       
+
+
+
     </h:body>
 </html>
 

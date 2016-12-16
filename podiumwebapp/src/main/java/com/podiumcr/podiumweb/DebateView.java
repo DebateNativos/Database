@@ -235,39 +235,42 @@ public class DebateView implements Serializable {
 
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nuevo", "Se ha agregado el debate: " + this.name);
             FacesContext.getCurrentInstance().addMessage(null, message);
+            this.debates = dD.getDebates();
+        } else {
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "ERROR", "No se ha agregado el debate");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+
         }
 
     }
 
     public void editDeb(ActionEvent event) {
         FacesMessage message = null;
+        DateFormat date2 = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        Date convert = null;
 
         DebateData dd = new DebateData(em);
         Debate d = dd.getDebateById(this.selectedDebate.getIdDebates());
         d.setName(this.selectedDebate.getName());
         d.setDebateType(this.selectedDebate.getDebateType());
-
-        DateFormat date2 = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         String stringDate = this.startingDate + " " + this.hour;
-        Date convert = null;
+
         try {
             convert = date2.parse(stringDate);
         } catch (ParseException ex) {
             Logger.getLogger(DebateView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.selectedDebate.setStartingDate(convert);
-
-        d.setStartingDate(this.selectedDebate.getStartingDate());
+        d.setStartingDate(convert);
         d.setCourse1(this.selectedDebate.getCourse1());
         d.setCourse2(this.selectedDebate.getCourse2());
 
         if (dd.persistDebate(d)) {
-
+            System.out.println("ENTRO A DEBATE!!!!!!!");
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nuevo", "Se ha editado el debate: " + this.name);
             FacesContext.getCurrentInstance().addMessage(null, message);
-
+            this.debates = dd.getDebates();
         } else {
-
+            System.out.println("NOOOOOOOOOO    ENTRO A DEBATE!!!!!!!");
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "No se ha editado el debate: " + this.name);
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
