@@ -268,7 +268,7 @@ public class DebateView implements Serializable {
     }
 
     public void editDeb() {
-        System.out.println("TESSSSSSSSTTTTTTT " + this.selectedDebate.getIdDebates() + "111111111111111111111111111111111111111");
+        System.out.println("TESSSSSSSSTTTTTTT " + this.selectedDebate.getIdDebates() + " ---------------");
 
         CourseData cd = new CourseData(em);
         DebateData dd = new DebateData(em);

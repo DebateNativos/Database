@@ -317,8 +317,7 @@
 
                             <h:form id="debform">
                                 <p:growl id="msgs" showDetail="true" />
-
-                                <p:dataTable id="dataList" var="debate" value="#{debateBean.debates}" widgetVar="dataTable" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe"  paginator="true" rows="10" editable="true" selectionMode="single" selection="#{debateBean.selectedDebate}" rowKey="#{debate.idDebates}"  >
+                                <p:dataTable id="dataList" var="debate" value="#{debateBean.debates}" style="display:block; font: serif; font-size: 8px;" emptyMessage="No existe" widgetVar="dataTable" paginator="true" rows="15" editable="true" selectionMode="single" selection="#{debateBean.selectedDebate}" rowKey="#{debate.idDebates}"  >
 
                                     <f:facet name="header" >
                                         <p:commandButton id="toggler" type="button"  icon="ui-icon-calculator" style="float:right; width: 10px; height: 10px;" class="btn-primary"  />
@@ -350,17 +349,15 @@
                                         <h:outputText value="#{debate.course2.courseCode}" />
                                     </p:column>
 
-
-
                                     <f:facet name="footer">
-                                        
+
                                         <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Agregar"  onclick="PF('DebateDialog').show();" update=":debateform" type="button" ajax="true"/>
                                         <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar"  onclick="PF('EditDebateDialog').show();" update=":debateEdit:editDetail" />
 
                                         <p:commandButton icon="fa fa-list" styleClass="btn-warning" value="Iniciar Debate" actionListener="#{debateBean.startDebate}" update=":activeform :debform:dataList">
-                                        <p:confirm header="Confirmación" message="¿Desea iniciar el debate?" icon="ui-icon-alert" />
+                                            <p:confirm header="Confirmación" message="¿Desea iniciar el debate?" icon="ui-icon-alert" />
                                         </p:commandButton>
-                 
+
                                         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                                             <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                                             <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
@@ -385,19 +382,9 @@
                                             <p:outputLabel for="datetime" value="Fecha:" />
                                             <p:calendar id="datetime" value="#{debateBean.selectedDebate.startingDate}" pattern="MM/dd/yyyy HH:mm:ss" />
 
-                                            <p:outputLabel value="Código del primer curso" for="code" />
-                                            <p:inplace id="code" editor="true">
-                                                <p:inputText  value="#{debateBean.selectedDebate.course1.courseCode}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
-                                            </p:inplace>
-
-                                            <p:outputLabel value="Código del segundo curso" for="code2" />
-                                            <p:inplace id="code2" editor="true">
-                                                <p:inputText  value="#{debateBean.selectedDebate.course2.courseCode}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
-                                            </p:inplace>
-                                            
                                             <f:facet name="footer" >
                                                 <div class="footer-right">
-                                                    <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Editar" actionListener="#{debateBean.editDeb}" update=":debform:dataList" onsuccess="PF('EditDebateDialog').hide()"  />
+                                                    <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Editar" action="#{debateBean.editDeb}" update=":debform:dataList" onsuccess="PF('EditDebateDialog').hide()" />
                                                     <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('EditDebateDialog').hide()"/>
                                                 </div>
                                             </f:facet>
