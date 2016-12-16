@@ -28,6 +28,10 @@ public class ConfirmedUser implements Serializable {
 	private Role role;
 	private int warnings;
 	private String team;
+	private boolean talkedAlready;
+	private int minutesToTalk;
+	private boolean isTalking;
+	
 
 	public ConfirmedUser() {
 	}
@@ -95,6 +99,37 @@ public class ConfirmedUser implements Serializable {
 	public void setTeam(String team) {
 		this.team = team;
 	}
+
+
+	public boolean isTalkedAlready() {
+		return talkedAlready;
+	}
+
+
+	public void setTalkedAlready(boolean talkedAlready) {
+		this.talkedAlready = talkedAlready;
+	}
+
+
+	public int getMinutesToTalk() {
+		return minutesToTalk;
+	}
+
+
+	public void setMinutesToTalk(int minutesToTalk) {
+		this.minutesToTalk = minutesToTalk;
+	}
+
+
+	public boolean isTalking() {
+		return isTalking;
+	}
+
+
+	public void setTalking(boolean isTalking) {
+		this.isTalking = isTalking;
+	}
+	
 	
 	
 }

@@ -7,34 +7,33 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition>
-        
-       <h:form id="dform">
-                       <p:growl id="message" showDetail="true" life="2000"/>
-                       <p:dataTable var="role" value="" reflow="true" styleClass="success"  >
-        <f:facet name="header">
-            Estudiantes Confirmado
-        </f:facet>
- 
-        <p:columnGroup type="header">
-            <p:row>
-               
-                <p:column colspan="6" headerText="Grupos" />
-            </p:row>
-            <p:row>
-                <p:column colspan="3" headerText="Grupo 1" />
-                <p:column colspan="3" headerText="Grupo 2" />
-            </p:row>
-            
-            <p:row>
-                <p:column colspan="1" headerText="Rol" />
-                <p:column colspan="1" headerText="Nombre" />
-                <p:column colspan="1" headerText="Carnet" />
-                <p:column colspan="1" headerText="Rol" />
-                <p:column colspan="1" headerText="Nombre" />
-                <p:column colspan="1" headerText="Carnet" />
-            </p:row>
-        </p:columnGroup>
-                 <p:column >
+
+        <h:form id="dform">
+            <p:growl id="message" showDetail="true" life="2000"/>
+            <p:dataTable var="role" value="" reflow="true" styleClass="success"  >
+                <f:facet name="header">
+                    Estudiantes Confirmado
+                </f:facet>
+
+                <p:columnGroup type="header">
+                    <p:row>               
+                        <p:column colspan="6" headerText="Grupos" />
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="3" headerText="Grupo 1" />
+                        <p:column colspan="3" headerText="Grupo 2" />
+                    </p:row>
+
+                    <p:row>
+                        <p:column colspan="1" headerText="Rol" />
+                        <p:column colspan="1" headerText="Nombre" />
+                        <p:column colspan="1" headerText="Carnet" />
+                        <p:column colspan="1" headerText="Rol" />
+                        <p:column colspan="1" headerText="Nombre" />
+                        <p:column colspan="1" headerText="Carnet" />
+                    </p:row>
+                </p:columnGroup>
+                <p:column >
                     <h:outputText value="" />
                 </p:column>
                 <p:column>
@@ -53,24 +52,24 @@
                     <h:outputText value="" />
                 </p:column>
 
-        <f:facet name="footer">
-            <p:commandButton value="Ceder la palabra" icon="fa fa-user"   update=":dform:message" styleClass="btn-success"></p:commandButton>
-            <p:commandButton value="Amonestar" icon="fa fa-times" actionListener="#{debateBean.sanction}" update=":dform:message" styleClass="btn-danger" disabled="">
-                                        <p:confirm header="Confirmación" message="¿Desea sancionar al usuario?" icon="ui-icon-alert" />
-                                    </p:commandButton>
- 
-                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                                    </p:confirmDialog>
-        </f:facet>
-    </p:dataTable>
+                <f:facet name="footer">
+                    <p:commandButton value="Ceder la palabra" icon="fa fa-user"   update=":dform:message" styleClass="btn-success"></p:commandButton>
+                    <p:commandButton value="Amonestar" icon="fa fa-times" actionListener="#{debateBean.sanction}" update=":dform:message" styleClass="btn-danger" disabled="">
+                        <p:confirm header="Confirmación" message="¿Desea sancionar al usuario?" icon="ui-icon-alert" />
+                    </p:commandButton>
 
-                       
-                       
-                       
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </f:facet>
+            </p:dataTable>
+
+
+
+
         </h:form>  
-        
+
     </ui:composition>
 
 </html>

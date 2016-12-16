@@ -34,6 +34,7 @@ public class ConfirmedUsersView {
     private List<ConfirmedUser> group1;
     private List<ConfirmedUser> group2;
     private User user;
+    private ConfirmedUser selectedUser;
     private Course course;
     private Role role;
     private int warnings;
@@ -62,6 +63,64 @@ public class ConfirmedUsersView {
         this.em = em;
     }
 
+    public List<ConfirmedUser> getGroup1() {
+        return group1;
+    }
+
+    public void setGroup1(List<ConfirmedUser> group1) {
+        this.group1 = group1;
+    }
+
+    public List<ConfirmedUser> getGroup2() {
+        return group2;
+    }
+
+    public void setGroup2(List<ConfirmedUser> group2) {
+        this.group2 = group2;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public ConfirmedUser getSelectedUser() {
+        return selectedUser;
+    }
+
+    public void setSelectedUser(ConfirmedUser selectedUser) {
+        this.selectedUser = selectedUser;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public int getWarnings() {
+        return warnings;
+    }
+
+    public void setWarnings(int warnings) {
+        this.warnings = warnings;
+    }
+    
+    
+
     public void init() {
         ConfirmedUserData cud = new ConfirmedUserData(this.em);
         Debate deb = debateView.activeDebate();
@@ -78,8 +137,10 @@ public class ConfirmedUsersView {
 
     }
 
-    public void giveWordTo(User user, int time) {
-
+    public void giveWordTo() {
+        ConfirmedUserData cud = new ConfirmedUserData(this.em);
+        
+        
     }
 
 }
