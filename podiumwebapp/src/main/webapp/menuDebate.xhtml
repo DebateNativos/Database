@@ -299,21 +299,7 @@
                                         <p:outputLabel for="datetime" value="Fecha:" />
                                         <p:calendar id="datetime" value="#{debateBean.std}" pattern="MM/dd/yyyy HH:mm:ss" />
 
-                                        <p:outputLabel for="debatetype" value="Tipo de debate: " />
-                                        <p:selectOneMenu id="debatetype" value="#{debatetypeBean.typeD}" effect="fold">
-                                            <f:selectItem itemLabel="Seleccione uno" itemValue="" />                                       
-                                            <f:selectItems value="#{debatetypeBean.types}" var="typeD" itemLabel="#{typeD.name}" itemValue="#{typeD}" />
-                                        </p:selectOneMenu>
-
-                                        <p:outputLabel for="course1" value="1º curso: " />
-                                        <p:selectOneMenu id="course1" value="#{debateBean.course1}">
-                                            <f:selectItems value="#{courseBean.courses}" var="course1" itemLabel="#{course1.name}" itemValue="#{course1}"/>
-                                        </p:selectOneMenu>
-
-                                        <p:outputLabel for="course2" value="2º curso: " />
-                                        <p:selectOneMenu id="course2" value="#{debateBean.course2}">
-                                            <f:selectItems value="#{courseBean.courses}" var="course2" itemLabel="#{course2.name}" itemValue="#{course2}"/>
-                                        </p:selectOneMenu>
+                                        
 
                                         <f:facet name="footer" >
                                             <div class="footer-right">
@@ -353,9 +339,15 @@
                                         <h:outputText value="#{login.activeDebate(debate)}" />
                                     </p:column>
 
-                                    <p:column headerText="Type" sortBy="#{debate.debateType.name}" filterBy="#{debate.debateType.name}"   filterMatchMode="contains">
-                                        <h:outputText value="#{debate.debateType.name}" />
-                                    </p:column>
+                                    <p:outputLabel value="Código del primer curso" for="code" />
+                                    <p:inplace id="code" editor="true">
+                                        <p:inputText  value="#{debateBean.code}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                    </p:inplace>
+
+                                    <p:outputLabel value="Código del segundo curso" for="code2" />
+                                    <p:inplace id="code2" editor="true">
+                                        <p:inputText  value="#{debateBean.code2}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                    </p:inplace>
 
                                     <f:facet name="footer">
 
@@ -391,21 +383,17 @@
 
                                             <p:outputLabel for="datetime" value="Fecha:" />
                                             <p:calendar id="datetime" value="#{debateBean.selectedDebate.startingDate}" pattern="MM/dd/yyyy HH:mm:ss" />
-
-                                            <p:outputLabel for="debateT" value="Tipo de debate: " />
-                                            <p:selectOneMenu id="debateT" value="#{debateBean.debateType}"  effect="fade" >
-                                                <f:selectItems value="#{debatetypeBean.types}" var="debateT" itemLabel="#{debateT.name}" itemValue="#{debateT}"/>
-                                            </p:selectOneMenu>
-
-                                            <p:outputLabel for="course1" value="1º curso: " />
-                                            <p:selectOneMenu id="course1" value="#{debateBean.course1}" effect="fade">
-                                                <f:selectItems value="#{courseBean.courses}" var="course1" itemLabel="#{course1.name}" itemValue="#{course1}"/>
-                                            </p:selectOneMenu>
-
-                                            <p:outputLabel for="course2" value="2º curso: " />
-                                            <p:selectOneMenu id="course2" value="#{debateBean.course2}" effect="fade" >
-                                                <f:selectItems value="#{courseBean.courses}" var="course2" itemLabel="#{course2.name}" itemValue="#{course2}"/>
-                                            </p:selectOneMenu>
+                                            
+                                            <p:outputLabel value="Código del primer curso" for="code" />
+                                            <p:inplace id="code" editor="true">
+                                                <p:inputText  value="#{debateBean.selectedDebate.course1.courseCode}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                            </p:inplace>
+                                            
+                                            <p:outputLabel value="Código del segundo curso" for="code2" />
+                                            <p:inplace id="code2" editor="true">
+                                                <p:inputText  value="#{debateBean.selectedDebate.course2.courseCode}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                            </p:inplace>
+                                           
 
                                             <f:facet name="footer" >
                                                 <div class="footer-right">
