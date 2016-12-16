@@ -13,10 +13,14 @@
             
             <div class="ui-g-12 ui-md-6">
                 <h:form>    
-                    <p:dataTable var="userC" value="#{debateBean.group1}">
+                    <p:dataTable var="userC" value="#{debateBean.group1}" selectionMode="single" selection="#{debateBean.s}" rowKey="#{userC.id}" >
                         <f:facet name="header">
                             
                         </f:facet>
+                        <p:column headerText="id" visible="false">
+                            <h:outputText value="#{userC.id}" />
+                        </p:column>
+                        
                         <p:column headerText="Rol">
                             <h:outputText value="#{userC.role}" />
                         </p:column>
@@ -26,13 +30,10 @@
                         <p:column headerText="Amonestaciones ">
                             <h:outputText value="#{userC.warnings}" />
                         </p:column>
-                        <p:column headerText="Participó">
-                            <h:outputText value="#{userC.talkedAlready}" />
-                        </p:column>
 
                         <f:facet name="footer">
-                            <p:commandButton value="Ceder la palabra" icon="fa fa-user"   styleClass="btn-success"></p:commandButton>
-                            <p:commandButton value="Amonestar" icon="fa fa-times" actionListener="#{debateBean.sanction}" styleClass="btn-danger" disabled="">
+                            <p:commandButton value="Ceder la palabra" icon="fa fa-user" action="#{debateBean.startUser()}"   styleClass="btn-success"></p:commandButton>
+                            <p:commandButton value="Amonestar" icon="fa fa-times" action="#{debateBean.sanctionUser}" styleClass="btn-danger">
                                 <p:confirm header="Confirmación" message="¿Desea sancionar al usuario?" icon="ui-icon-alert" />
                             </p:commandButton>
 
@@ -61,14 +62,11 @@
                             <h:outputText value="#{userC2.warnings}" />
                         </p:column>
 
-                        <p:column headerText="Participó">
-                            <h:outputText value="" />
-                        </p:column>
 
                         <f:facet name="footer">
-                            <p:commandButton value="Ceder la palabra" icon="fa fa-user" styleClass="btn-success"></p:commandButton>
-                            <p:commandButton value="Amonestar" icon="fa fa-times" actionListener="#{debateBean.sanction}" styleClass="btn-danger" disabled="">
-                                <p:confirm header="Confirmación" message="¿Desea sancionar al usuario?" icon="ui-icon-alert" />
+                            <p:commandButton value="Ceder la palabra" icon="fa fa-user" action="#{debateBean.startUser()} styleClass="btn-success"></p:commandButton>
+                            <p:commandButton value="Amonestar" icon="fa fa-times" action="#{debateBean.sanctionUser}" styleClass="btn-danger" >
+                                <p:confirm header="Confirmación" message="¿Desea amonertar al usuario?" icon="ui-icon-alert" />
                             </p:commandButton>
 
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
