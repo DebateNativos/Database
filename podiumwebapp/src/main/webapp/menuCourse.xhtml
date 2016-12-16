@@ -308,9 +308,6 @@
 
                                     <p:inputText id="prof" value="#{courseBean.profEmail}" required="true" requiredMessage="Ingresar el aula"  size="50" maxlength="50"/>
 
-                                    <p:inputText id="prof" value="#{courseBean.professor.email}" required="true" requiredMessage="Ingresar el correo del profesor"  size="50" maxlength="50"/>
-
-
                                     <f:facet name="footer" >
                                         <div class="footer-right">
                                             <p:commandButton icon="fa fa-pencil" styleClass="btn-success" value="Agregar" actionListener="#{courseBean.newCourse}" update=":form:dataList"  onsuccess="PF('CourseCreateDialog').hide()"/>
@@ -354,11 +351,11 @@
                                     <h:outputText value="#{course.classroom}" />
                                 </p:column>
 
-                                <p:column headerText="Profesor" sortBy="#{course.professor.name}" filterBy="#{course.professor.name}"   filterMatchMode="contains">
+                                <p:column headerText="Profesor" sortBy="#{course.professor.name}" filterBy="#{course.professor.name}" filterMatchMode="contains">
                                     <h:outputText value="#{course.professor.name}" />
                                 </p:column>
                                 
-                                <p:column headerText="Código  del curso" sortBy="#{course.courseCode}" filterBy="#{course.courseCode}"   filterMatchMode="contains">
+                                <p:column headerText="Código  del curso" sortBy="#{course.courseCode}" filterBy="#{course.courseCode}" filterMatchMode="contains">
                                     <h:outputText value="#{course.courseCode}" />
                                 </p:column>
 
