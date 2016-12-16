@@ -298,12 +298,13 @@
                                             <p:outputLabel value="Nombre" for="name" />
                                             <p:inputText id="name" value="#{debateBean.name}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
 
-                                            <p:outputLabel for="date" value="Fecha del debate:" />
-                                            <p:calendar id="date" value="#{debateBean.startingDate}" required="true" requiredMessage="Debe ingresar la información correcta"/>
-
-                                            <p:outputLabel for="time" value="Hora:" />
-                                            <p:calendar id="time" value="#{debateBean.hour}" pattern="HH:mm" timeOnly="true"  required="true" requiredMessage="Debe ingresar la información correcta"/>
-
+                                       
+                                            <h:outputLabel for="time" value="Fecha:" />
+                                            <h:outputText id="time" value="#{debateBean.startingDate}">
+                                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                            </h:outputText>
+                                            
+                                            
                                             <p:outputLabel for="debatetype" value="Tipo de debate: " />
                                             <p:selectOneMenu id="debatetype" value="#{debatetypeBean.typeD}" effect="fold">
                                                 <f:selectItem itemLabel="Seleccione uno" itemValue="" />                                       
@@ -354,7 +355,7 @@
 
                                         <f:facet name="footer">
 
-                                            <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Agregar"  onclick="PF('DebateDialog').show();" update=":UserForm" type="button" ajax="true"/>
+                                            <p:commandButton styleClass="btn-success" icon="fa fa-list"  value="Agregar"  onclick="PF('DebateDialog').show();" update=":debform:dataList" type="button" ajax="true"/>
                                             <p:commandButton styleClass="btn-primary" icon="fa fa-pencil" value="Editar"  onclick="PF('EditDebateDialog').show();" update=":debateE:editDetail" />
 
                                             <p:commandButton styleClass="btn-warning" icon="fa fa-check-circle-o" value="Activar" />
@@ -392,34 +393,34 @@
 
                                                 <p:outputLabel value="Fecha y hora" for="time" />
                                                 <p:inplace id="time" editor="true">
-                                                    <p:inputText  value="#{debateBean.selectedDebate.startingDate.date}" required="true" requiredMessage="Debe ingresar la información correcta"  size="45" maxlength="45"/>
+                                                    <h:outputLabel for="time" value="Fecha:" />
+                                                    <h:outputText id="time" value="#{debateBean.startingDate}">
+                                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                    </h:outputText>
                                                 </p:inplace>
 
                                                 <p:outputLabel for="debateT" value="Tipo de debate: " />
                                                 <p:selectOneMenu id="debateT" value="#{debateBean.debateType}" panelStyle="width:180px"
                                                                  effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
-
                                                     <f:selectItems value="#{debatetypeBean.types}" var="debateT" itemLabel="#{debateT.name}" itemValue="#{debateT}"/>
                                                 </p:selectOneMenu>
 
                                                 <p:outputLabel for="course1" value="1º curso: " />
                                                 <p:selectOneMenu id="course1" value="#{debateBean.course1}" panelStyle="width:180px"
-                                                                 effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
-
+                                                                 effect="fade" var="t" style="width:160px">
                                                     <f:selectItems value="#{courseBean.courses}" var="course1" itemLabel="#{course1.name}" itemValue="#{course1}"/>
                                                 </p:selectOneMenu>
 
                                                 <p:outputLabel for="course2" value="2º curso: " />
                                                 <p:selectOneMenu id="course2" value="#{debateBean.course2}" panelStyle="width:180px"
-                                                                 effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
-
+                                                                 effect="fade" var="t" style="width:160px">
                                                     <f:selectItems value="#{courseBean.courses}" var="course2" itemLabel="#{course2.name}" itemValue="#{course2}"/>
                                                 </p:selectOneMenu>
 
                                                 <f:facet name="footer" >
                                                     <div class="footer-right">
                                                         <p:commandButton icon="fa fa-list" styleClass="btn-success" value="Editar" actionListener="#{debateBean.editDeb}" update=":debform:dataList" onsuccess="PF('EditDebateDialog').hide()"  />
-                                                        <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('editDialog').hide()" immediate="true" update=":debform:msgs" />
+                                                        <p:commandButton icon="fa fa-close" styleClass="btn-danger" value="Cancelar" onclick="PF('editDialog').hide()"/>
                                                     </div>
                                                 </f:facet>
                                             </p:panelGrid>

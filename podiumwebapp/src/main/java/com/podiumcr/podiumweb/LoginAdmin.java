@@ -213,7 +213,7 @@ public class LoginAdmin implements Serializable {
         if (d.getIsActive() == true) {
             active = "Activo";
         } else {
-            active = "Desactivo";
+            active = "Inactivo";
         }
 
         return active;

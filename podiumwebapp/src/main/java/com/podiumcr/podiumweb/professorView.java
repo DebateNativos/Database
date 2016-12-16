@@ -29,6 +29,7 @@ import javax.persistence.EntityManager;
  */
 @ManagedBean(name = "professorBean")
 @SessionScoped
+
 public class professorView implements Serializable {
 
    @ManagedProperty(value = "#{login}")
