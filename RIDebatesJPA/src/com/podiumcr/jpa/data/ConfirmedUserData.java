@@ -99,4 +99,30 @@ public class ConfirmedUserData {
 		return returnedList;
 	}
 
+	public boolean updateConfirmedUser(ConfirmedUser user) {
+
+		boolean returned = false;
+
+		try {
+
+			em.getTransaction().begin();
+			em.persist(user);
+			em.getTransaction().commit();
+		/*	try {
+				se.SendInformationChangedEmail(user);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}*/
+			returned = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			em.getTransaction().rollback();
+			returned = false;
+		}
+
+		return returned;
+
+	}
+
 }

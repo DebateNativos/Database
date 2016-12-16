@@ -64,7 +64,7 @@ public class DebateView implements Serializable {
     private boolean isActive;
     private boolean buttonDisable;
     private Debate selectedDebate;
-    private User userSelected;
+    private ConfirmedUser userSelected;
 
     public DebateView(String name, Date createdDate, DebateType debateType, String startingDate, String hour, boolean isActive) {
         this.name = name;
@@ -248,11 +248,11 @@ public class DebateView implements Serializable {
         this.group2 = group2;
     }
 
-    public User getUserSelected() {
+    public ConfirmedUser getUserSelected() {
         return userSelected;
     }
 
-    public void setUserSelected(User userSelected) {
+    public void setUserSelected(ConfirmedUser userSelected) {
         this.userSelected = userSelected;
     }
     
@@ -286,7 +286,7 @@ public class DebateView implements Serializable {
             this.active = this.activeDebate();
         }
          if (this.userSelected == null) {
-            this.userSelected = new User();
+            this.userSelected = new ConfirmedUser();
         }
           if (this.group1 == null) {
             this.group1 = new ArrayList<>();
@@ -352,14 +352,29 @@ public class DebateView implements Serializable {
 
     }
 
-    public void sanctionUser(ActionEvent event) {
+    public void sanctionUser() {
         
-        
-        sanction++;
-        FacesMessage message = null;
-  
-
+        for (ConfirmedUser cu: this.confUsers) {
+            if (userSelected.equals(cu.getUser())) {
+                int warnings = cu.getWarnings();
+                warnings++;
+                cu.setWarnings(warnings);
+                
+            }
+        }
     }
+    
+    public void startUser() {
+        ConfirmedUserData cud = new ConfirmedUserData(this.em);
+        for (ConfirmedUser cu: this.confUsers) {
+            if (userSelected.equals(cu.getUser())) {
+                
+                cu.setTalking(true);
+                cud.updateConfirmedUser(cu);
+            }
+        }
+    }
+
 
     public boolean desableButton() {
 
@@ -388,7 +403,7 @@ public class DebateView implements Serializable {
         for (Debate deb : this.debates) {
             if (deb.equals(d)) {
                 d.setIsActive(true);
-                if (dd.persistDebate(d)) {
+                if (dd.persistDebate(d)) { 
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Inicio", "Se ha iniciado el debate: " + d.getName());
                     FacesContext.getCurrentInstance().addMessage(null, message);
                     active = d;
