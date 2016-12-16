@@ -20,16 +20,16 @@ import javax.persistence.EntityManager;
  *
  * @author Joss
  */
-
 @ManagedBean(name = "questionBean")
 @SessionScoped
+
 public class QuestionView implements Serializable {
-@ManagedProperty(value = "#{login}")
+
+    @ManagedProperty(value = "#{login}")
     private LoginAdmin login;
 
     EntityManager em = null;
-    
-    
+
     private List<Question> questions;
 
     public List<Question> getQuestions() {
@@ -39,19 +39,30 @@ public class QuestionView implements Serializable {
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
-   
-   
 
-    @PostConstruct
-    public void init() {
-        
-        if (this.questions == null) {
-         QuestionData p = new QuestionData(em);
-         this.questions = p.getQuestions();      
-        }    
+    public LoginAdmin getLogin() {
+        return login;
     }
 
+    public void setLogin(LoginAdmin login) {
+        this.login = login;
+    }
+
+    public EntityManager getEm() {
+        return em;
+    }
+
+    public void setEm(EntityManager em) {
+        this.em = em;
+    }
     
-    
-    
+    @PostConstruct
+    public void init() {
+
+        if (this.questions == null) {
+            QuestionData p = new QuestionData(em);
+            this.questions = p.getQuestions();
+        }
+    }
+
 }

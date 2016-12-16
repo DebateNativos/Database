@@ -23,6 +23,7 @@ import javax.persistence.EntityManager;
  */
 @ManagedBean(name = "ConfirmedUsersBean")
 @SessionScoped
+
 public class ConfirmedUsersView {
 
     @ManagedProperty(value = "#{debateBean}")
@@ -38,6 +39,7 @@ public class ConfirmedUsersView {
     private Course course;
     private Role role;
     private int warnings;
+    private Debate debate;
 
     public DebateView getDebateView() {
         return debateView;
@@ -119,15 +121,24 @@ public class ConfirmedUsersView {
         this.warnings = warnings;
     }
 
+    public Debate getDebate() {
+        return debate;
+    }
+
+    public void setDebate(Debate debate) {
+        this.debate = debate;
+    }
+   
+
     public void init() {
         ConfirmedUserData cud = new ConfirmedUserData(this.em);
-        Debate deb = debateView.activeDebate();
+        this.debate = debateView.activeDebate();
         if (this.confUsers == null) { 
-            this.confUsers = cud.getUsersFromDebate(deb);
+            this.confUsers = cud.getUsersFromDebate(this.debate);
             for (ConfirmedUser confUser : confUsers) {
-                if (confUser.getTeam().equals(deb.getCourse1().getCourseCode())) {
+                if (confUser.getTeam().equals(this.debate.getCourse1().getCourseCode())) {
                     this.group1.add(confUser);
-                }else if (confUser.getTeam().equals(deb.getCourse2().getCourseCode())) {
+                }else if (confUser.getTeam().equals(this.debate.getCourse2().getCourseCode())) {
                     this.group2.add(confUser);
                 }
             }
