@@ -66,7 +66,6 @@ public class DebateView implements Serializable {
         this.isActive = isActive;
         this.hour = hour;
     }
-
     /**
      * Creates a new instance of DebateNew
      */

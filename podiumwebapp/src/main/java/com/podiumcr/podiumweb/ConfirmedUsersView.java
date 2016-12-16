@@ -30,9 +30,6 @@ public class ConfirmedUsersView implements Serializable {
     @ManagedProperty(value = "#{login}")
     private LoginAdmin login;
 
-    @ManagedProperty(value = "#{active}")
-    private DebateView debateView;
-
     private EntityManager em = null;
 
     private List<ConfirmedUser> confUsers;
@@ -45,14 +42,9 @@ public class ConfirmedUsersView implements Serializable {
     private int warnings;
     private Debate debate;
 
-    public DebateView getDebateView() {
-        return debateView;
+    public ConfirmedUsersView() {
     }
-
-    public void setDebateView(DebateView debateView) {
-        this.debateView = debateView;
-    }
-
+    
     public List<ConfirmedUser> getConfUsers() {
         return confUsers;
     }
@@ -144,7 +136,7 @@ public class ConfirmedUsersView implements Serializable {
     @PostConstruct
     public void init() {
         ConfirmedUserData cud = new ConfirmedUserData(this.em);
-        this.debate = this.debateView.getActive();
+        this.debate = new Debate();
         if (this.confUsers == null) {
             this.confUsers = cud.getUsersFromDebate(this.debate);
             for (ConfirmedUser confUser : confUsers) {
