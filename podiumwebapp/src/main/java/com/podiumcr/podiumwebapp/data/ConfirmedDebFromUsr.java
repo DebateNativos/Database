@@ -5,6 +5,8 @@
  */
 package com.podiumcr.podiumwebapp.data;
 
+import com.podiumcr.jpa.entities.ConfirmedUser;
+
 /**
  *
  * @author Soler
@@ -18,6 +20,27 @@ public class ConfirmedDebFromUsr {
     private int minutesToTalk;
     private boolean isTalking;
 
+    public ConfirmedDebFromUsr(int role, int debate, int warning, String team, int minutesToTalk, boolean isTalking) {
+        this.role = role;
+        this.debate = debate;
+        this.warning = warning;
+        this.team = team;
+        this.minutesToTalk = minutesToTalk;
+        this.isTalking = isTalking;
+    }
+     public ConfirmedDebFromUsr(ConfirmedUser cu) {
+        this.role = cu.getRole().getIdRole();
+        this.debate = cu.getDebate().getIdDebates();
+        this.warning = cu.getWarnings();
+        this.team = cu.getTeam();
+        this.minutesToTalk = cu.getMinutesToTalk();
+        this.isTalking = cu.isTalking();
+    }
+    
+    public ConfirmedDebFromUsr() {
+
+    }
+     
     public int getRole() {
         return role;
     }

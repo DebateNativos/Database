@@ -78,5 +78,25 @@ public class ConfirmedUserData {
 
 		return returnedList;
 	}
+	
+	public ConfirmedUser getActualFeed(User user, Debate debate) {
+
+		ConfirmedUser returnedList = new ConfirmedUser();
+
+		try {
+
+			TypedQuery<ConfirmedUser> queryCU = em.createNamedQuery("ConfirmedUser.findFeed", ConfirmedUser.class);
+			queryCU.setParameter("user", user);
+			queryCU.setParameter("debate", debate);
+			ConfirmedUser listaCU = queryCU.getSingleResult();
+			returnedList = listaCU;
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+		return returnedList;
+	}
 
 }

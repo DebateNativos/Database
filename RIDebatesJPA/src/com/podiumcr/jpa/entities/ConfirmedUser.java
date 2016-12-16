@@ -18,7 +18,7 @@ import java.io.Serializable;
 		@NamedQuery(name= "ConfirmedUser.findDebatesFromUser", query = "SELECT cu FROM ConfirmedUser cu WHERE cu.user = :user"),
 		@NamedQuery(name= "ConfirmedUser.findUsersFromDebate", query = "SELECT cu FROM ConfirmedUser cu WHERE cu.debate = :debate"),
 		@NamedQuery(name= "ConfirmedUser.findByRole", query = "SELECT cu FROM ConfirmedUser cu WHERE cu.role = :role"),
-		@NamedQuery(name= "ConfirmedUser.findRoleByDebate", query = "SELECT cu.role FROM ConfirmedUser cu WHERE cu.debate = :debate AND cu.user = :user")
+		@NamedQuery(name= "ConfirmedUser.findFeed", query = "SELECT cu FROM ConfirmedUser cu WHERE cu.debate = :debate AND cu.user = :user")
 })
 public class ConfirmedUser implements Serializable {
 	private static final long serialVersionUID = 1L;

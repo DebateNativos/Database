@@ -105,13 +105,29 @@ public class ActiveDebateWS {
                 cdu.setTeam(cuser.getTeam());
                 cdu.setIsTalking(cuser.isTalking());
                 cdu.setMinutesToTalk(cuser.getMinutesToTalk());
-                
+
                 lcu.add(cdu);
             }
             em.close();
         } catch (Exception e) {
             em.close();
         }
+        return lcu;
+    }
+
+    @GET
+    @Path("/realtimefeed")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ConfirmedDebFromUsr getConfirmedDebates(@QueryParam("email") String email, @QueryParam("debate") int debate) {
+        EntityManager em = entityManagerFactory.createEntityManager();
+        ConfirmedUserData cud = new ConfirmedUserData(em);
+        DebateData dd = new DebateData(em);
+        UserData ud = new UserData(em);
+
+        ConfirmedDebFromUsr lcu = new ConfirmedDebFromUsr(cud.getActualFeed(ud.getUserByEmail(email), dd.getDebateById(debate)));
+
+        em.close();
+
         return lcu;
     }
 
@@ -126,7 +142,7 @@ public class ActiveDebateWS {
         try {
             for (DebateSection ds : dsd.getAllBydebate(dd.getDebateById(id).getDebateType())) {
                 ActiveDebateSections ads = new ActiveDebateSections(ds.getSection(), ds.getMinutesPerUser(), ds.getIsActiveSection(), ds.getSectionName());
-                sectionsList.add(ads);              
+                sectionsList.add(ads);
             }
             em.close();
         } catch (Exception e) {
