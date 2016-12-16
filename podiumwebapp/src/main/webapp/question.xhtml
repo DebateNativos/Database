@@ -13,17 +13,11 @@
 
         <h:form>
             <p:growl id="msgs" showDetail="true"  />
-            <p:dataTable var="role" value=""  paginator="true" rows="10" rowsPerPageTemplate="5,10,15">
+            <p:dataTable var="question" value="#{questionBean.questions}"  paginator="true" rows="10" >
                 <f:facet name="header">
-                    Secciones de preguntas
+                    Sección de preguntas
                 </f:facet>
-
-                <p:columnGroup type="header">
-                <p:row>
-                        <p:column colspan="3" headerText="Preguntas" />
-                </p:row>
-                </p:columnGroup>
-                <p:column colspan="3" >
+                <p:column  >
                     <h:outputText value="" />
                 </p:column>
                 
