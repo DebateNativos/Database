@@ -225,20 +225,13 @@ public class DebateView implements Serializable {
     public void newDeb(ActionEvent event) {
         FacesMessage message = null;
         Calendar date1 = Calendar.getInstance();
-        DateFormat date2 = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-        String stringDate = this.startingDate + " " + this.hour;
-        Date convert = null;
-        try {
-            convert = date2.parse(stringDate);
-        } catch (ParseException ex) {
-            Logger.getLogger(DebateView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
 
         DebateData dD = new DebateData(em);
         DebateTypeData dTD = new DebateTypeData(em);
         Debate d;
 
-        d = new Debate(this.name, date1.getTime(), this.debateType, convert, false);
+        d = new Debate(this.name, date1.getTime(), this.debateType, this.std, false, this.course1, this.course2);
 
         if (dD.persistDebate(d)) {
 
@@ -255,21 +248,13 @@ public class DebateView implements Serializable {
 
     public void editDeb(ActionEvent event) {
         FacesMessage message = null;
-        DateFormat date2 = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-        Date convert = null;
+       
 
         DebateData dd = new DebateData(em);
         Debate d = dd.getDebateById(this.selectedDebate.getIdDebates());
         d.setName(this.selectedDebate.getName());
         d.setDebateType(this.selectedDebate.getDebateType());
-        String stringDate = this.startingDate + " " + this.hour;
-
-        try {
-            convert = date2.parse(stringDate);
-        } catch (ParseException ex) {
-            Logger.getLogger(DebateView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        d.setStartingDate(convert);
+        d.setStartingDate(this.selectedDebate.getStartingDate());
         d.setCourse1(this.selectedDebate.getCourse1());
         d.setCourse2(this.selectedDebate.getCourse2());
 
