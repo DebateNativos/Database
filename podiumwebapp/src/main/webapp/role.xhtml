@@ -15,13 +15,13 @@
                 <h:form>    
                     <p:dataTable var="userC" value="#{ConfirmedUsersBean.group1}">
                         <f:facet name="header">
-                         #{userC.team}    
+                            
                         </f:facet>
                         <p:column headerText="Rol">
                             <h:outputText value="#{userC.role}" />
                         </p:column>
                         <p:column headerText="Nombre">
-                            <h:outputText value="#{userC.user.name} #{userC.user.lastName}" />
+                            <h:outputText value="#{userC.user.name}" />
                         </p:column>
                         <p:column headerText="Amonestaciones ">
                             <h:outputText value="#{userC.warnings}" />
@@ -50,13 +50,13 @@
                  <h:form>    
                     <p:dataTable var="userC2" value="#{ConfirmedUsersBean.group2}">
                         <f:facet name="header">
-                            #{userC.team}    
+                              
                         </f:facet>
                         <p:column headerText="Rol">
                             <h:outputText value="#{userC2.role}" />
                         </p:column>
                         <p:column headerText="Nombre">
-                            <h:outputText value="#{userC2.user.name} #{userC2.user.lastName}" />
+                            <h:outputText value="#{userC2.user.name}" />
                         </p:column>
                         <p:column headerText="Amonestaciones ">
                             <h:outputText value="#{userC2.warnings}" />
