@@ -13,6 +13,7 @@ import com.podiumcr.jpa.entities.Role;
 import com.podiumcr.jpa.entities.User;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -24,13 +25,12 @@ import javax.persistence.EntityManager;
  */
 @ManagedBean(name = "ConfirmedUsersBean")
 @SessionScoped
-
 public class ConfirmedUsersView implements Serializable {
 
     @ManagedProperty(value = "#{login}")
     private LoginAdmin login;
 
-    @ManagedProperty(value = "#{debateBean}")
+    @ManagedProperty(value = "#{active}")
     private DebateView debateView;
 
     private EntityManager em = null;
@@ -133,9 +133,18 @@ public class ConfirmedUsersView implements Serializable {
         this.debate = debate;
     }
 
+    public LoginAdmin getLogin() {
+        return login;
+    }
+
+    public void setLogin(LoginAdmin login) {
+        this.login = login;
+    }
+    
+    @PostConstruct
     public void init() {
         ConfirmedUserData cud = new ConfirmedUserData(this.em);
-        this.debate = this.debateView.activeDebate();
+        this.debate = this.debateView.getActive();
         if (this.confUsers == null) {
             this.confUsers = cud.getUsersFromDebate(this.debate);
             for (ConfirmedUser confUser : confUsers) {
