@@ -301,13 +301,13 @@
                                 </f:facet>
 
                                 <p:outputLabel for="debate" value="Nombre"/>
-                                <p:outputLabel id="debate" value="#{debateBean.active.name}"/>
+                                <p:outputLabel id="debate" value="#{ConfirmedUsersBean.debateView.active.name}"/>
 
                                 <p:outputLabel for="date" value="Fecha"/>
-                                <p:outputLabel id="date" value="#{debateBean.active.startingDate}"/>
+                                <p:outputLabel id="date" value="#{ConfirmedUsersBean.debateView.active.startingDate}"/>
 
                                 <p:outputLabel for="hour" value="Tipo"/>
-                                <p:outputLabel id="hour" value="#{debateBean.active.debateType.name}"/>
+                                <p:outputLabel id="hour" value="#{ConfirmedUsersBean.debateView.active.debateType.name}"/>
                             </p:panelGrid>
                         </div>
                         <div class="ui-g-12 ui-md-12 ui-lg-3"><ui:include src="stage.xhtml"/> </div>

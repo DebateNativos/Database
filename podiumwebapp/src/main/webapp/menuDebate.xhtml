@@ -296,7 +296,15 @@
                                         <p:outputLabel for="datetime" value="Fecha:" />
                                         <p:calendar id="datetime" value="#{debateBean.std}" pattern="MM/dd/yyyy HH:mm:ss" />
 
-                                        
+                                        <p:outputLabel value="Código del primer curso" for="code" />
+                                            <p:inplace id="code" editor="true">
+                                                <p:inputText  value="#{debateBean.selectedDebate.course1.courseCode}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                            </p:inplace>
+                                            
+                                            <p:outputLabel value="Código del segundo curso" for="code2" />
+                                            <p:inplace id="code2" editor="true">
+                                                <p:inputText  value="#{debateBean.selectedDebate.course2.courseCode}"  required="true" requiredMessage="Debe ingresar la información correcta" size="45" maxlength="45"/>
+                                            </p:inplace>
 
                                         <f:facet name="footer" >
                                             <div class="footer-right">
