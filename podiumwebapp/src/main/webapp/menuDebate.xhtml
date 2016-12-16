@@ -427,13 +427,13 @@
                                             </f:facet>
 
                                             <h:outputText value="Nombre:" />
-                                            <h:outputText value="" />
+                                            <h:outputText value="#{debateBean.active.name}" />
 
                                             <h:outputText value="Fecha:" />
-                                            <h:outputText value="" />
+                                            <h:outputText value="#{debateBean.active.startingDate}" />
 
-                                            <h:outputText value="Hora:" />
-                                            <h:outputText value="" />
+                                            <h:outputText value="Tipo:" />
+                                            <h:outputText value="#{debateBean.active.debateType.name}" />
 
                                             <f:facet name="footer">
                                                 <p:commandLink class="small-box-footer" action="menuTime.xhtml" >
