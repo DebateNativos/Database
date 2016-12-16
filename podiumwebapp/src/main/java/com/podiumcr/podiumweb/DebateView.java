@@ -355,7 +355,7 @@ public class DebateView implements Serializable {
     public void sanctionUser() {
         
         for (ConfirmedUser cu: this.confUsers) {
-            if (userSelected.equals(cu.getUser())) {
+            if (userSelected.equals(cu)) {
                 int warnings = cu.getWarnings();
                 warnings++;
                 cu.setWarnings(warnings);
@@ -367,7 +367,7 @@ public class DebateView implements Serializable {
     public void startUser() {
         ConfirmedUserData cud = new ConfirmedUserData(this.em);
         for (ConfirmedUser cu: this.confUsers) {
-            if (userSelected.equals(cu.getUser())) {
+            if (userSelected.equals(cu)) {
                 
                 cu.setTalking(true);
                 cud.updateConfirmedUser(cu);
