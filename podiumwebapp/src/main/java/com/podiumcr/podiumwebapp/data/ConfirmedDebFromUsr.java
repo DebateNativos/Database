@@ -10,11 +10,13 @@ package com.podiumcr.podiumwebapp.data;
  * @author Soler
  */
 public class ConfirmedDebFromUsr {
-    
+
     private int role;
     private int debate;
     private int warning;
     private String team;
+    private int minutesToTalk;
+    private boolean isTalking;
 
     public int getRole() {
         return role;
@@ -48,6 +50,21 @@ public class ConfirmedDebFromUsr {
         this.team = team;
     }
     
-    
+    public int getMinutesToTalk() {
+        return minutesToTalk;
+    }
+
+    public void setMinutesToTalk(int minutesToTalk) {
+        this.minutesToTalk = minutesToTalk;
+    }
+
+    public boolean isIsTalking() {
+        return isTalking;
+    }
+
+    public void setIsTalking(boolean isTalking) {
+        this.isTalking = isTalking;
+    }
+
     
 }

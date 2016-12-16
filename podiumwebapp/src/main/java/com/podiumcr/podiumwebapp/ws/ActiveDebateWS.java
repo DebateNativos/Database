@@ -103,6 +103,8 @@ public class ActiveDebateWS {
                 cdu.setWarning(cuser.getWarnings());
                 cdu.setDebate(cuser.getDebate().getIdDebates());
                 cdu.setTeam(cuser.getTeam());
+                cdu.setIsTalking(cuser.isTalking());
+                cdu.setMinutesToTalk(cuser.getMinutesToTalk());
                 
                 lcu.add(cdu);
             }

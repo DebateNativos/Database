@@ -118,8 +118,6 @@ public class ConfirmedUsersView {
     public void setWarnings(int warnings) {
         this.warnings = warnings;
     }
-    
-    
 
     public void init() {
         ConfirmedUserData cud = new ConfirmedUserData(this.em);
@@ -138,7 +136,7 @@ public class ConfirmedUsersView {
     }
 
     public void giveWordTo() {
-        ConfirmedUserData cud = new ConfirmedUserData(this.em);
+        ConfirmedUserData cud = new ConfirmedUserData(this.em); 
         
         
     }
