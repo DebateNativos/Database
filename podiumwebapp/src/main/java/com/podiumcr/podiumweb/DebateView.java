@@ -13,7 +13,9 @@ import com.podiumcr.jpa.entities.ConfirmedUser;
 import com.podiumcr.jpa.entities.Course;
 import com.podiumcr.jpa.entities.Debate;
 import com.podiumcr.jpa.entities.DebateType;
+import com.podiumcr.jpa.entities.User;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import java.util.Date;
@@ -62,6 +64,7 @@ public class DebateView implements Serializable {
     private boolean isActive;
     private boolean buttonDisable;
     private Debate selectedDebate;
+    private User userSelected;
 
     public DebateView(String name, Date createdDate, DebateType debateType, String startingDate, String hour, boolean isActive) {
         this.name = name;
@@ -244,7 +247,14 @@ public class DebateView implements Serializable {
     public void setGroup2(List<ConfirmedUser> group2) {
         this.group2 = group2;
     }
-    
+
+    public User getUserSelected() {
+        return userSelected;
+    }
+
+    public void setUserSelected(User userSelected) {
+        this.userSelected = userSelected;
+    }
     
 
     @PostConstruct
@@ -275,6 +285,20 @@ public class DebateView implements Serializable {
         if (this.active == null) {
             this.active = this.activeDebate();
         }
+         if (this.userSelected == null) {
+            this.userSelected = new User();
+        }
+          if (this.group1 == null) {
+            this.group1 = new ArrayList<>();
+        }
+          if (this.group2 == null) {
+            this.group2 = new ArrayList<>();
+        }
+        if (this.confUsers == null) {
+            ConfirmedUserData cud = new ConfirmedUserData(this.em);
+            this.confUsers = cud.getUsersFromDebate(this.active);
+        }
+  
     }
 
     public void newDebate() {
@@ -329,10 +353,11 @@ public class DebateView implements Serializable {
     }
 
     public void sanctionUser(ActionEvent event) {
+        
+        
         sanction++;
         FacesMessage message = null;
-        message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Info", "Amonestación: " + sanction);
-        FacesContext.getCurrentInstance().addMessage(null, message);
+  
 
     }
 
@@ -395,7 +420,6 @@ public class DebateView implements Serializable {
     
     public void getGroups() {
         ConfirmedUserData cud = new ConfirmedUserData(this.em);
-        if (this.confUsers == null) {
             this.confUsers = cud.getUsersFromDebate(this.active);
             for (ConfirmedUser confUser : confUsers) {
                 if (confUser.getTeam().equals(this.active.getCourse1().getCourseCode())) {
@@ -404,7 +428,7 @@ public class DebateView implements Serializable {
                     this.group2.add(confUser);
                 }
             }
-        }
-
     }
+    
+    
 }
