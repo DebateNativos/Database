@@ -26,12 +26,12 @@ public class Tester {
             em.getTransaction().begin();
             
             User u = new User("@gmail","123", "San jose", "Joe", "Fernandez", "Lozano", 321, true, "7001-7001");
-            Course c = new Course("Basura politica", 2, 2016, "C1-4", "Viernes 3:00pm - 6:00pm");    
-            Course c2 = new Course("Mi mama amasa la masa", 2, 2016, "C2-5", "Jueves 11:00pm - 5:00pm"); 
-            DebateType dt = new DebateType("Modelos de 7 secciones", "Modelo Australiano");
-            Debate d = new Debate("Quorum", Calendar.getInstance().getTime(), dt, Calendar.getInstance().getTime(), false, c, c2);
+            Course c = new Course("Sistemas Políticos I", 2, 2016, "C1-4", "Viernes 3:00pm - 6:00pm");    
+            Course c2 = new Course("Historia Política de América Latina 2", 2, 2016, "C2-5", "Jueves 11:00pm - 5:00pm"); 
+            DebateType dt = new DebateType("Modelos de 5 secciones", "Modelo Australiano");
+            Debate d = new Debate("Referéndum", Calendar.getInstance().getTime(), dt, Calendar.getInstance().getTime(), false, c, c2);
             Comment com = new Comment(d, u, "HOLAAAA", c);  
-            Professor p = new Professor("@villalta","123", "CUBA","Jose Maria", "Villalta", "Solis", 6335, "800IZQUIERDA");
+            Professor p = new Professor("@profesor","123", "SJ","Jose", "Villalta", "Solis", 6335, "95599559");
            /* User u2 = new User("@gmail.com","123", "San jose", "Carlos", "Perez", "Solis", 34562, false, "7234-7334");
             
             

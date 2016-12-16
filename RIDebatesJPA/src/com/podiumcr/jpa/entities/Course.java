@@ -105,8 +105,8 @@ public class Course implements Serializable {
 		this.users = users;
 	}
 
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="course_professor")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="professor")
 	public Professor getProfessor() {
 		return this.professor;
 	}

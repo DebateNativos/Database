@@ -11,6 +11,7 @@ import com.podiumcr.jpa.entities.Course;
 import com.podiumcr.jpa.entities.Debate;
 import com.podiumcr.jpa.entities.Role;
 import com.podiumcr.jpa.entities.User;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -24,7 +25,10 @@ import javax.persistence.EntityManager;
 @ManagedBean(name = "ConfirmedUsersBean")
 @SessionScoped
 
-public class ConfirmedUsersView {
+public class ConfirmedUsersView implements Serializable {
+
+    @ManagedProperty(value = "#{login}")
+    private LoginAdmin login;
 
     @ManagedProperty(value = "#{debateBean}")
     private DebateView debateView;
@@ -128,28 +132,29 @@ public class ConfirmedUsersView {
     public void setDebate(Debate debate) {
         this.debate = debate;
     }
-   
 
     public void init() {
         ConfirmedUserData cud = new ConfirmedUserData(this.em);
-        this.debate = debateView.activeDebate();
-        if (this.confUsers == null) { 
+        this.debate = this.debateView.activeDebate();
+        if (this.confUsers == null) {
             this.confUsers = cud.getUsersFromDebate(this.debate);
             for (ConfirmedUser confUser : confUsers) {
                 if (confUser.getTeam().equals(this.debate.getCourse1().getCourseCode())) {
                     this.group1.add(confUser);
-                }else if (confUser.getTeam().equals(this.debate.getCourse2().getCourseCode())) {
+                } else if (confUser.getTeam().equals(this.debate.getCourse2().getCourseCode())) {
                     this.group2.add(confUser);
                 }
             }
+        }
+        if (this.em == null) {
+            this.em = login.em;
         }
 
     }
 
     public void giveWordTo() {
-        ConfirmedUserData cud = new ConfirmedUserData(this.em); 
-        
-        
+        ConfirmedUserData cud = new ConfirmedUserData(this.em);
+
     }
 
 }

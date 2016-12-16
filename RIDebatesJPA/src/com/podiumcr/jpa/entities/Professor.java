@@ -21,6 +21,7 @@ import java.util.List;
 public class Professor extends User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private List<Course> courses;
 	private List<Qualificationrubric> qualificationrubrics;
 
 	public Professor(){
@@ -41,5 +42,16 @@ public class Professor extends User implements Serializable {
 	public void setQualificationrubrics(List<Qualificationrubric> qualificationrubrics) {
 		this.qualificationrubrics = qualificationrubrics;
 	}
+
+	@OneToMany (mappedBy="professor", targetEntity=Course.class, fetch = FetchType.LAZY)
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+	
+	
 
 }

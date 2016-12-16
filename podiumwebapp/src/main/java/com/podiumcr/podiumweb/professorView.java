@@ -12,7 +12,6 @@ import com.podiumcr.jpa.entities.Course;
 import com.podiumcr.jpa.entities.User;
 import com.podiumcr.jpa.entities.UserCourse;
 import static com.podiumcr.podiumwebapp.common.EntityListener.entityManagerFactory;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;

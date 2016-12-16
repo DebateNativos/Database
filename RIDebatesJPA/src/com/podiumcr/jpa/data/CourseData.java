@@ -121,6 +121,38 @@ public class CourseData {
 		return returned;
 
 	}
+	
+	public boolean updateCourse(Course course) {
+
+		boolean returned = false;
+
+		do {
+			
+			try {
+				Course c = this.getCourseByCode(course.getCourseCode());
+				em.getTransaction().begin();
+				c.setName(course.getName());
+				c.setProfessor(course.getProfessor());
+				c.setSchedule(course.getSchedule());
+				c.setCurseQuarter(course.getCurseQuarter());
+				c.setCurseYear(course.getCurseYear());
+				c.setClassroom(course.getClassroom());
+				em.getTransaction().commit();
+
+				returned = true;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				em.getTransaction().rollback();
+				returned = false;
+			}
+			
+		} while (returned = false);
+
+		return returned;
+
+	}
+
 
 	public boolean removeCourse(Course course) {
 

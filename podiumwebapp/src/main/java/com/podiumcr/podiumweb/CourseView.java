@@ -41,6 +41,7 @@ public class CourseView implements Serializable {
     private int curseQuarter;
     private int curseYear;
     private String classroom;
+    private String profEmail;
     
     private Professor professor;
     private List<Professor> professorList;
@@ -61,7 +62,6 @@ public class CourseView implements Serializable {
 
     }
     
-
     public int getIdCourse() {
         return idCourse;
     }
@@ -149,7 +149,15 @@ public class CourseView implements Serializable {
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
-    
+
+    public String getProfEmail() {
+        return profEmail;
+    }
+
+    public void setProfEmail(String profEmail) {
+        this.profEmail = profEmail;
+    }
+ 
     @PostConstruct
     public void init() {
         if (this.selectedCourse == null) {
@@ -170,10 +178,15 @@ public class CourseView implements Serializable {
 
     public void newCourse(ActionEvent event) {        
         CourseData cd = new CourseData(em);
+        UserData ud = new UserData(em);
         FacesMessage message = null;
         Course c;
         c = new Course(this.name, this.curseQuarter, this.curseYear, this.classroom, this.schedule);
-        //c.setProfessor(this.professor);
+        for (Professor p : this.professorList) {
+            if (p.getEmail().equals(this.profEmail)) {
+              c.setProfessor(p);  
+            }
+        }       
         if (cd.persistCourse(c)) {  
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Curso insertado", this.name);
             FacesContext.getCurrentInstance().addMessage(null, message);
@@ -186,14 +199,15 @@ public class CourseView implements Serializable {
         System.out.println("CURSO " + this.selectedCourse.getName());
         FacesMessage message = null;
         CourseData cd = new CourseData(em);
+        UserData ud = new UserData(em);
         Course c = cd.getCourseByCode(this.selectedCourse.getCourseCode());
         c.setClassroom(this.selectedCourse.getClassroom());
         c.setName(this.selectedCourse.getName());
         c.setCurseQuarter(this.selectedCourse.getCurseQuarter());
         c.setCurseYear(this.selectedCourse.getCurseYear());
         c.setSchedule(this.selectedCourse.getSchedule());
-        c.setProfessor(this.selectedCourse.getProfessor());
-   
+        c.setProfessor((Professor) ud.getUserByEmail(this.selectedCourse.getProfessor().getEmail()));  
+
         if (cd.persistCourse(c)) {         
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Editar", "El curso: " + this.name + "ha sido editado");
             FacesContext.getCurrentInstance().addMessage(null, message);
@@ -201,9 +215,7 @@ public class CourseView implements Serializable {
         } else {        
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Editar", "El curso: " + this.name + " NO ha sido editado");
             FacesContext.getCurrentInstance().addMessage(null, message);
-        }
-   
-        
+        }       
     }
 
     public void deleteCourse(ActionEvent event) {
@@ -215,6 +227,5 @@ public class CourseView implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, message);
             this.courses = cd.getAll();
         }
-
     }
  }

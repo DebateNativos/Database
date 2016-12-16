@@ -12,15 +12,10 @@ import com.podiumcr.jpa.entities.Course;
 import com.podiumcr.jpa.entities.Debate;
 import com.podiumcr.jpa.entities.DebateType;
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 
 import javax.enterprise.context.SessionScoped;
@@ -227,7 +222,7 @@ public class DebateView implements Serializable {
         if (this.selectedDebate == null) {
             this.selectedDebate = new Debate();
         }
-       
+
         if (this.debateType == null) {
             this.debateType = new DebateType();
         }
@@ -247,7 +242,7 @@ public class DebateView implements Serializable {
         if (this.buttonDisable) {
             this.buttonDisable = desableButton();
         }
-         if (this.active == null) {
+        if (this.active == null) {
             this.active = this.activeDebate();
         }
     }
@@ -263,7 +258,7 @@ public class DebateView implements Serializable {
         DebateTypeData dTD = new DebateTypeData(em);
         Debate d;
         d = new Debate(this.name, date1.getTime(), dTD.getDebateTypeById(1), this.std, false, cd.getCourseByCode(code), cd.getCourseByCode(code2));
-        
+
         if (dD.persistDebate(d)) {
 
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nuevo", "Se ha agregado el debate: " + this.name);
@@ -279,7 +274,7 @@ public class DebateView implements Serializable {
     public void editDeb(ActionEvent event) {
         FacesMessage message = null;
         System.out.println("sirve?");
-        
+
         CourseData cd = new CourseData(em);
         DebateData dd = new DebateData(em);
         DebateTypeData dTD = new DebateTypeData(em);
@@ -333,16 +328,51 @@ public class DebateView implements Serializable {
         }
         return this.buttonDisable;
     }
-    
+
     public Debate activeDebate() {
         for (Debate debate : this.debates) {
-            if(debate.getIsActive()== true){
-            active =  debate;
-            } 
+            if (debate.getIsActive() == true) {
+                active = debate;
+            }
         }
-      return active;  
+        return active;
     }
-    
-    
 
+    public void startDebate() {
+        FacesMessage message = null;
+
+        DebateData dd = new DebateData(em);
+        Debate d = dd.getDebateById(this.selectedDebate.getIdDebates());     
+        for (Debate deb : this.debates) {
+            if (deb.equals(d)) {
+                d.setIsActive(true);
+                if (dd.persistDebate(d)) {
+                    message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Inicio", "Se ha iniciado el debate: " + d.getName());
+                    FacesContext.getCurrentInstance().addMessage(null, message);
+                    active = d;
+                    this.debates = dd.getDebates();
+                } else {
+                    message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "No se ha iniciado el debate: " + d.getName());
+                    FacesContext.getCurrentInstance().addMessage(null, message);
+                }
+            }else{
+            deb.setIsActive(false);
+            dd.persistDebate(deb);
+            }
+        }
+
+    }
+
+    public void stopDebate() {
+        FacesMessage message = null;
+        DebateData dd = new DebateData(em);
+        Debate d = dd.getDebateById(this.active.getIdDebates());
+        d.setIsActive(false);
+        if (dd.persistDebate(d)) {
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Deneter", "Se ha detenido el debate: " + d.getName());
+            FacesContext.getCurrentInstance().addMessage(null, message);
+            active = d;
+            this.debates = dd.getDebates();
+        }
+    }
 }
