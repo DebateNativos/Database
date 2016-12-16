@@ -5,9 +5,11 @@
  */
 package com.podiumcr.podiumweb;
 
+import com.podiumcr.jpa.data.ConfirmedUserData;
 import com.podiumcr.jpa.data.CourseData;
 import com.podiumcr.jpa.data.DebateData;
 import com.podiumcr.jpa.data.DebateTypeData;
+import com.podiumcr.jpa.entities.ConfirmedUser;
 import com.podiumcr.jpa.entities.Course;
 import com.podiumcr.jpa.entities.Debate;
 import com.podiumcr.jpa.entities.DebateType;
@@ -53,6 +55,9 @@ public class DebateView implements Serializable {
     private String code2;
     private int sanction;
     private Debate active;
+    private List<ConfirmedUser> confUsers;
+    private List<ConfirmedUser> group1;
+    private List<ConfirmedUser> group2;
 
     private boolean isActive;
     private boolean buttonDisable;
@@ -216,6 +221,32 @@ public class DebateView implements Serializable {
         this.code2 = code2;
     }
 
+    public List<ConfirmedUser> getConfUsers() {
+        return confUsers;
+    }
+
+    public void setConfUsers(List<ConfirmedUser> confUsers) {
+        this.confUsers = confUsers;
+    }
+
+    public List<ConfirmedUser> getGroup1() {
+        return group1;
+    }
+
+    public void setGroup1(List<ConfirmedUser> group1) {
+        this.group1 = group1;
+    }
+
+    public List<ConfirmedUser> getGroup2() {
+        return group2;
+    }
+
+    public void setGroup2(List<ConfirmedUser> group2) {
+        this.group2 = group2;
+    }
+    
+    
+
     @PostConstruct
     public void init() {
         if (this.selectedDebate == null) {
@@ -360,5 +391,21 @@ public class DebateView implements Serializable {
             active = d;
             this.debates = dd.getDebates();
         }
+    }
+    
+    
+    public void getGroups() {
+        ConfirmedUserData cud = new ConfirmedUserData(this.em);
+        if (this.confUsers == null) {
+            this.confUsers = cud.getUsersFromDebate(this.active);
+            for (ConfirmedUser confUser : confUsers) {
+                if (confUser.getTeam().equals(this.active.getCourse1().getCourseCode())) {
+                    this.group1.add(confUser);
+                } else if (confUser.getTeam().equals(this.active.getCourse2().getCourseCode())) {
+                    this.group2.add(confUser);
+                }
+            }
+        }
+
     }
 }
