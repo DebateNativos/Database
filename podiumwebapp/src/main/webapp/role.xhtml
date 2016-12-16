@@ -8,67 +8,81 @@
 
     <ui:composition>
 
-        <h:form id="dform">
-            <p:growl id="message" showDetail="true" life="2000"/>
-            <p:dataTable var="role" value="" reflow="true" styleClass="success"  >
-                <f:facet name="header">
-                    Estudiantes Confirmado
-                </f:facet>
+        <div class="ui-g">
+            <h3>Grupos</h3>
+            
+            <div class="ui-g-12 ui-md-6">
+                <h:form>    
+                    <p:dataTable var="userC" value="#{ConfirmedUsersBean.group1}">
+                        <f:facet name="header">
+                         #{userC.team}    
+                        </f:facet>
+                        <p:column headerText="Rol">
+                            <h:outputText value="#{userC.role}" />
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{userC.user.name} #{userC.user.lastName}" />
+                        </p:column>
+                        <p:column headerText="Amonestaciones ">
+                            <h:outputText value="#{userC.warnings}" />
+                        </p:column>
 
-                <p:columnGroup type="header">
-                    <p:row>               
-                        <p:column colspan="6" headerText="Grupos" />
-                    </p:row>
-                    <p:row>
-                        <p:column colspan="3" headerText="Grupo 1" />
-                        <p:column colspan="3" headerText="Grupo 2" />
-                    </p:row>
+                        <p:column headerText="Participó">
+                            <h:outputText value="" />
+                        </p:column>
 
-                    <p:row>
-                        <p:column colspan="1" headerText="Rol" />
-                        <p:column colspan="1" headerText="Nombre" />
-                        <p:column colspan="1" headerText="Carnet" />
-                        <p:column colspan="1" headerText="Rol" />
-                        <p:column colspan="1" headerText="Nombre" />
-                        <p:column colspan="1" headerText="Carnet" />
-                    </p:row>
-                </p:columnGroup>
-                <p:column >
-                    <h:outputText value="" />
-                </p:column>
-                <p:column>
-                    <h:outputText value="" />
-                </p:column>
-                <p:column>
-                    <h:outputText value="" />
-                </p:column>
-                <p:column>
-                    <h:outputText value="Debatiente:" />
-                </p:column>
-                <p:column>
-                    <h:outputText value="hhh:" />
-                </p:column>
-                <p:column>
-                    <h:outputText value="" />
-                </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton value="Ceder la palabra" icon="fa fa-user"   update=":dform:message" styleClass="btn-success"></p:commandButton>
+                            <p:commandButton value="Amonestar" icon="fa fa-times" actionListener="#{debateBean.sanction}" update=":dform:message" styleClass="btn-danger" disabled="">
+                                <p:confirm header="Confirmación" message="¿Desea sancionar al usuario?" icon="ui-icon-alert" />
+                            </p:commandButton>
 
-                <f:facet name="footer">
-                    <p:commandButton value="Ceder la palabra" icon="fa fa-user"   update=":dform:message" styleClass="btn-success"></p:commandButton>
-                    <p:commandButton value="Amonestar" icon="fa fa-times" actionListener="#{debateBean.sanction}" update=":dform:message" styleClass="btn-danger" disabled="">
-                        <p:confirm header="Confirmación" message="¿Desea sancionar al usuario?" icon="ui-icon-alert" />
-                    </p:commandButton>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
+                        </f:facet>
+                    </p:dataTable> 
+                </h:form> 
+            </div>
+            
+            <div class="ui-g-12 ui-md-6">
+                 <h:form>    
+                    <p:dataTable var="userC2" value="#{ConfirmedUsersBean.group2}">
+                        <f:facet name="header">
+                            #{userC.team}    
+                        </f:facet>
+                        <p:column headerText="Rol">
+                            <h:outputText value="#{userC2.role}" />
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{userC2.user.name} #{userC2.user.lastName}" />
+                        </p:column>
+                        <p:column headerText="Amonestaciones ">
+                            <h:outputText value="#{userC2.warnings}" />
+                        </p:column>
 
-                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                    </p:confirmDialog>
-                </f:facet>
-            </p:dataTable>
+                        <p:column headerText="Participó">
+                            <h:outputText value="" />
+                        </p:column>
 
+                        <f:facet name="footer">
+                            <p:commandButton value="Ceder la palabra" icon="fa fa-user"   update=":dform:message" styleClass="btn-success"></p:commandButton>
+                            <p:commandButton value="Amonestar" icon="fa fa-times" actionListener="#{debateBean.sanction}" update=":dform:message" styleClass="btn-danger" disabled="">
+                                <p:confirm header="Confirmación" message="¿Desea sancionar al usuario?" icon="ui-icon-alert" />
+                            </p:commandButton>
 
-
-
-        </h:form>  
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
+                        </f:facet>
+                    </p:dataTable> 
+                </h:form> 
+                
+            </div>
+    
+</div>
 
     </ui:composition>
 
