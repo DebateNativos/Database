@@ -17,11 +17,12 @@
                 <f:facet name="header">
                     Sección de preguntas
                 </f:facet>
-                <p:column  >
-                    <h:outputText value="" />
+                <p:column  headerText="Usuario" >
+                    <h:outputText value="#{question.user.name} #{question.user.lastName}" />
                 </p:column>
-                
-
+                <p:column  headerText="Pregunta" >
+                    <h:outputText value="#{question.text}" />
+                </p:column>
 
             </p:dataTable>
 
