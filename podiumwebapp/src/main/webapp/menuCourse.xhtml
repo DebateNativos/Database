@@ -385,29 +385,35 @@
                                         </f:facet>
 
                                         <p:outputLabel value="Horario" for="scheduleEdit" />
-                                        <p:inplace id="scheduleEdit">
+                                        <p:inplace id="scheduleEdit" editor="true">
                                             <p:inputText placeholder="  " value="#{courseBean.selectedCourse.schedule}" required="true" requiredMessage="Ingresar el horario del curso"  size="50" maxlength="50"/>
                                         </p:inplace>
 
                                         <p:outputLabel value="Nombre:" for="nameEdit" />
-                                        <p:inplace id="nameEdit">
+                                        <p:inplace id="nameEdit" editor="true">
                                             <p:inputText placeholder="  " value="#{courseBean.selectedCourse.name}" required="true" requiredMessage="Ingresar el nombre"  size="50" maxlength="50"/>
                                         </p:inplace>
 
                                         <p:outputLabel value="Cuatrimestre:" for="TermEdit" />
-                                        <p:inplace id="TermEdit" >
+                                        <p:inplace id="TermEdit" editor="true" >
                                             <p:inputText placeholder="  " type="number" value="#{courseBean.selectedCourse.curseQuarter}"  required="true" requiredMessage="Ingresar el cuatrimeste actual" size="45" maxlength="45"/>
                                         </p:inplace>
 
                                         <p:outputLabel value="Aula" for="classroomEdit" />
-                                        <p:inplace id="classroomEdit">
+                                        <p:inplace id="classroomEdit" editor="true">
                                             <p:inputText placeholder="  " value="#{courseBean.selectedCourse.classroom}" required="true" requiredMessage="Ingresar el aula"  size="50" maxlength="50"/>
                                         </p:inplace>
 
                                         <p:outputLabel value="Año:" for="yearEdit" />
-                                        <p:inplace id="yearEdit">
+                                        <p:inplace id="yearEdit" editor="true">
                                             <p:inputText placeholder="  "  value="#{courseBean.selectedCourse.curseYear}" required="true" requiredMessage="Ingresar el año"  size="50" maxlength="50" />
                                         </p:inplace>
+                                        
+                                        <p:outputLabel for="prof" value="Profesor:" />
+                                        <p:selectOneMenu id="prof" value="#{courseBean.professor}" >
+                                            <f:selectItems value="#{courseBean.professorList}" var="professor" itemLabel="#{professor.name}" itemValue="#{professor}"/>
+                                            </p:selectOneMenu>
+                                        
                                         <f:facet name="footer" >
                                             <div class="footer-right">
                                                 <p:commandButton icon="fa fa-pencil" styleClass="btn-success" value="Guardar" actionListener="#{courseBean.editCourse}" update=":form:dataList" onsuccess="PF('EditCourseDialog').hide()"/>

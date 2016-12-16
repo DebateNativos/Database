@@ -1,7 +1,5 @@
 package testers;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -11,7 +9,6 @@ import com.podiumcr.jpa.data.CommentData;
 import com.podiumcr.jpa.data.CourseData;
 import com.podiumcr.jpa.data.DebateData;
 import com.podiumcr.jpa.data.UserData;
-import com.podiumcr.jpa.entities.Comment;
 import com.podiumcr.jpa.entities.Course;
 import com.podiumcr.jpa.entities.Professor;
 

@@ -55,7 +55,7 @@
 
         <f:facet name="footer">
             <p:commandButton value="Ceder la palabra" icon="fa fa-user"   update=":dform:message" styleClass="btn-success"></p:commandButton>
-            <p:commandButton value="Amonestar" icon="fa fa-times" actionListener="#{debateBean.sanction}" update=":dform:message" styleClass="btn-danger" disabled="#{debateBean.desableButton}" >
+            <p:commandButton value="Amonestar" icon="fa fa-times" actionListener="#{debateBean.sanction}" update=":dform:message" styleClass="btn-danger" disabled="">
                                         <p:confirm header="Confirmación" message="¿Desea sancionar al usuario?" icon="ui-icon-alert" />
                                     </p:commandButton>
  

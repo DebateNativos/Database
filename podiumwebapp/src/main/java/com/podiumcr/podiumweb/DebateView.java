@@ -223,9 +223,10 @@ public class DebateView implements Serializable {
     }
 
     public void newDebate(ActionEvent event) {
+
+        System.out.println("sirve?");
         FacesMessage message = null;
         Calendar date1 = Calendar.getInstance();
-        
 
         DebateData dD = new DebateData(em);
         DebateTypeData dTD = new DebateTypeData(em);
@@ -245,9 +246,9 @@ public class DebateView implements Serializable {
         }
     }
 
-    public void editDeb(ActionEvent event) {
+    public void editDeb() {
         FacesMessage message = null;
-       
+        System.out.println("sirve?");
 
         DebateData dd = new DebateData(em);
         Debate d = dd.getDebateById(this.selectedDebate.getIdDebates());
@@ -272,7 +273,7 @@ public class DebateView implements Serializable {
 
     public void deleteDeb(ActionEvent event) {
         FacesMessage message = null;
-
+        System.out.println("sirve?");
         DebateData dd = new DebateData(em);
         Debate nd = dd.getDebateById(this.selectedDebate.getIdDebates());
         if (dd.removeDebate(nd)) {
