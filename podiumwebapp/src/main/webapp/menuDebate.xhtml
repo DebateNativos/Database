@@ -397,7 +397,7 @@
                                                 <p:calendar id="datetime" value="#{debateBean.selectedDebate.startingDate}" pattern="MM/dd/yyyy HH:mm:ss" />
 
                                                 <p:outputLabel for="debateT" value="Tipo de debate: " />
-                                                <p:selectOneMenu id="debateT" value="#{debateBean.selectedDebate.debateType}" panelStyle="width:180px"
+                                                <p:selectOneMenu id="debateT" value="#{debateBean.debateType}" panelStyle="width:180px"
                                                                  effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
                                                     <f:selectItems value="#{debatetypeBean.types}" var="debateT" itemLabel="#{debateT.name}" itemValue="#{debateT}"/>
                                                 </p:selectOneMenu>
