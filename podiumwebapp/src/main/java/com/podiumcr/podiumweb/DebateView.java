@@ -393,7 +393,6 @@ public class DebateView implements Serializable {
         }
     }
     
-    
     public void getGroups() {
         ConfirmedUserData cud = new ConfirmedUserData(this.em);
         if (this.confUsers == null) {

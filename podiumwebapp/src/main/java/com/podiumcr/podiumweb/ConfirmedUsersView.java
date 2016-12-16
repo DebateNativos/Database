@@ -30,9 +30,6 @@ public class ConfirmedUsersView implements Serializable {
     @ManagedProperty(value = "#{login}")
     private LoginAdmin login;
 
-    @ManagedProperty(value = "#{debateBean}")
-    private DebateView debateView;
-
     private EntityManager em = null;
 
     private List<ConfirmedUser> confUsers;
@@ -46,14 +43,6 @@ public class ConfirmedUsersView implements Serializable {
     private Debate debate;
 
     public ConfirmedUsersView() {
-    }
-    
-    public DebateView getDebateView() {
-        return debateView;
-    }
-
-    public void setDebateView(DebateView debateView) {
-        this.debateView = debateView;
     }
 
     public List<ConfirmedUser> getConfUsers() {
@@ -143,27 +132,7 @@ public class ConfirmedUsersView implements Serializable {
     public void setLogin(LoginAdmin login) {
         this.login = login;
     }
-    
-    @PostConstruct
-    public void init() {
-        ConfirmedUserData cud = new ConfirmedUserData(this.em);
-        this.debate = this.debateView.getActive();
-        if (this.confUsers == null) {
-            this.confUsers = cud.getUsersFromDebate(this.debate);
-            for (ConfirmedUser confUser : confUsers) {
-                if (confUser.getTeam().equals(this.debate.getCourse1().getCourseCode())) {
-                    this.group1.add(confUser);
-                } else if (confUser.getTeam().equals(this.debate.getCourse2().getCourseCode())) {
-                    this.group2.add(confUser);
-                }
-            }
-        }
-        if (this.em == null) {
-            this.em = login.em;
-        }
-
-    }
-
+   
     public void giveWordTo() {
         ConfirmedUserData cud = new ConfirmedUserData(this.em);
 
