@@ -48,8 +48,9 @@ public class DebateView implements Serializable {
     private String name;
     private Date createdDate;
     private DebateType debateType;
-    private Date startingDate;
-    
+    private Date std;
+    private String startingDate;
+    private String hour;
     private Course course1;
     private Course course2;
     private int sanction;
@@ -58,13 +59,13 @@ public class DebateView implements Serializable {
     private boolean buttonDisable;
     private Debate selectedDebate;
 
-    public DebateView(String name, Date createdDate, DebateType debateType, Date startingDate, boolean isActive) {
+    public DebateView(String name, Date createdDate, DebateType debateType, String startingDate, String hour, boolean isActive) {
         this.name = name;
         this.createdDate = createdDate;
         this.debateType = debateType;
         this.startingDate = startingDate;
         this.isActive = isActive;
-      
+        this.hour = hour;
     }
 
     /**
@@ -97,11 +98,11 @@ public class DebateView implements Serializable {
         this.debateType = debateType;
     }
 
-    public Date getStartingDate() {
+    public String getStartingDate() {
         return startingDate;
     }
 
-    public void setStartingDate(Date startingDate) {
+    public void setStartingDate(String startingDate) {
         this.startingDate = startingDate;
     }
 
@@ -128,7 +129,15 @@ public class DebateView implements Serializable {
     public void setSelectedDebate(Debate selectedDebate) {
         this.selectedDebate = selectedDebate;
     }
-    
+
+    public String getHour() {
+        return hour;
+    }
+
+    public void setHour(String hour) {
+        this.hour = hour;
+    }
+
     public int getSanction() {
         return sanction;
     }
@@ -177,6 +186,14 @@ public class DebateView implements Serializable {
         this.course2 = course2;
     }
 
+    public Date getStd() {
+        return std;
+    }
+
+    public void setStd(Date std) {
+        this.std = std;
+    }
+
     @PostConstruct
     public void init() {
         if (this.selectedDebate == null) {
@@ -208,12 +225,20 @@ public class DebateView implements Serializable {
     public void newDeb(ActionEvent event) {
         FacesMessage message = null;
         Calendar date1 = Calendar.getInstance();
- 
+        DateFormat date2 = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        String stringDate = this.startingDate + " " + this.hour;
+        Date convert = null;
+        try {
+            convert = date2.parse(stringDate);
+        } catch (ParseException ex) {
+            Logger.getLogger(DebateView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         DebateData dD = new DebateData(em);
         DebateTypeData dTD = new DebateTypeData(em);
         Debate d;
 
-        d = new Debate(this.name, date1.getTime(), this.debateType, this.startingDate, false);
+        d = new Debate(this.name, date1.getTime(), this.debateType, convert, false);
 
         if (dD.persistDebate(d)) {
 
@@ -230,12 +255,21 @@ public class DebateView implements Serializable {
 
     public void editDeb(ActionEvent event) {
         FacesMessage message = null;
-        
+        DateFormat date2 = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        Date convert = null;
+
         DebateData dd = new DebateData(em);
         Debate d = dd.getDebateById(this.selectedDebate.getIdDebates());
         d.setName(this.selectedDebate.getName());
         d.setDebateType(this.selectedDebate.getDebateType());
-        d.setStartingDate(this.selectedDebate.getStartingDate());
+        String stringDate = this.startingDate + " " + this.hour;
+
+        try {
+            convert = date2.parse(stringDate);
+        } catch (ParseException ex) {
+            Logger.getLogger(DebateView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        d.setStartingDate(convert);
         d.setCourse1(this.selectedDebate.getCourse1());
         d.setCourse2(this.selectedDebate.getCourse2());
 
