@@ -222,10 +222,10 @@ public class DebateView implements Serializable {
 
     }
 
-    public void newDeb(ActionEvent event) {
+    public void newDebate(ActionEvent event) {
         FacesMessage message = null;
         Calendar date1 = Calendar.getInstance();
-       
+        
 
         DebateData dD = new DebateData(em);
         DebateTypeData dTD = new DebateTypeData(em);
@@ -243,7 +243,6 @@ public class DebateView implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, message);
 
         }
-
     }
 
     public void editDeb(ActionEvent event) {
